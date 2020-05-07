@@ -1,2 +1,2 @@
 # Learning-repository
-Repository for learning purpose.
+Repository for Git and React learning purpose.
