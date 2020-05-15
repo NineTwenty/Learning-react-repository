@@ -1,0 +1,8 @@
+img {
+  width: 100%;
+}
+
+.profile {
+  grid-area: main;
+  background-color: rgb(100, 133, 134);
+}

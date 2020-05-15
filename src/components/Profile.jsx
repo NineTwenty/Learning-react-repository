@@ -1,7 +1,8 @@
 import React from 'react';
+import s from './Profile.module.css';
 
 export default () => (
-  <main className='app-main'>
+  <main className={s.profile}>
     <div>
       <img src='https://imagekit.io/static/img/newPages/wave-bg.svg'></img>
     </div>
