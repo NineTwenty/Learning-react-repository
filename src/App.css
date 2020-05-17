@@ -18,6 +18,7 @@
   grid-area: nav;
 }
 
-.profile {
+.app-wrapper-content {
   grid-area: main;
+  background-color: rgb(100, 133, 134);
 }
