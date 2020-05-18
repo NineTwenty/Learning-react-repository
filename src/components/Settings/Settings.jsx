@@ -1,10 +1,10 @@
 import React from 'react';
-import s from './Dialogs.module.css'
+import s from './Settings.module.css'
 
 export default () => {
   return (
   <div>
-    Dialogs
+    Settings
   </div>
   );
 };
