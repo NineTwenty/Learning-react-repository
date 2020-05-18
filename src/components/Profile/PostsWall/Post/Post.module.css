@@ -1,0 +1,9 @@
+.post {
+  display: block;
+}
+
+.post img {
+  width: 20px;
+  height: 20px;
+  /* border-radius: 30px; */
+}
