@@ -4,17 +4,17 @@ import Post from './Post/Post';
 
 export default () => {
   return (
-    <dev>
-      <dev>
+    <div>
+      <div>
         <textarea name='' id='' cols='20' rows='5'></textarea>
         <button>Add post</button>
-      </dev>
+      </div>
       <Post />
       <Post />
       <Post />
       <Post />
       <Post />
       <Post />
-    </dev>
+    </div>
   );
 };
