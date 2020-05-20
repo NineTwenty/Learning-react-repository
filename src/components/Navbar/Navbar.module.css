@@ -1,4 +1,19 @@
 .nav {
   grid-area: nav;
-  background-color: cadetblue;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffefcf;
+  padding: 20vh 30px;
+}
+
+a {
+  margin: 0.2rem;
+  padding: 0.2rem;
+  color: #000040;
+  text-decoration: none;
+}
+
+a.active {
+  border-bottom: 0.1rem solid skyblue;
 }
