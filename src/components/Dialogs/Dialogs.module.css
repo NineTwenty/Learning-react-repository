@@ -1,16 +1,16 @@
 .dialogsWrapper {
   display: grid;
-  grid-template-columns: 3fr 10fr;
+  grid-template-columns: 2fr 10fr;
 
   height: 94vh;
-  
+
   z-index: 0;
 }
 
 .dialogs {
+  padding: 2rem 0.5rem 2rem 1rem;
   background: var(--color-background);
 }
 
 .chat {
-  background: var(--color-secondary);
 }
