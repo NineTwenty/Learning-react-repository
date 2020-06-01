@@ -1,0 +1,19 @@
+.avatarWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.avatarImg {
+  border-radius: 15%;
+}
+
+.avatarStatus {
+  display: block;
+  position: absolute;
+  background: none;
+  border-radius: 50%;  
+}
+
+.avatarStatus.online{
+  background: greenyellow;
+}
