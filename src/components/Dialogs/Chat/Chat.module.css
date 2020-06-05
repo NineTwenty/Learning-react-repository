@@ -1,3 +1,18 @@
 .chatWrapper {
   background: var(--color-secondary);
+  display: grid;
+  grid-template-areas: 'header' 'messages' 'inputs';
+  grid-template-rows: 1.4fr 10fr 3fr;
+}
+
+.chatHeader {
+  grid-area: 'header';
+}
+
+.chatMessages {
+  grid-area: 'messages';
+}
+
+.chatInputs {
+  grid-area: 'inputs';
 }

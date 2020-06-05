@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog';
 import Chat from './Chat/Chat';
+import { Route } from 'react-router-dom';
 
 export default (props) => {
   return (
@@ -12,7 +13,10 @@ export default (props) => {
           <Dialog key={data.id} {...data} />
         ))}
       </div>
-      <Chat />
+      <Route
+        path='/dialogs/:id'
+        render={() => <Chat dialogs={props.data} />}
+      />
     </div>
   );
 };

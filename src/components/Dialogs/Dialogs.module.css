@@ -8,9 +8,6 @@
 }
 
 .dialogs {
-  padding: 2rem 0.5rem 2rem 1rem;
+  /* padding: 2rem 0.5rem 2rem 1rem; */
   background: var(--color-background);
-}
-
-.chat {
 }

@@ -1,0 +1,16 @@
+.messageItemWrapper {
+  font-size: 0.8rem;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.messageItemAvatar {
+  flex-basis: 2.4rem;
+  margin: 0 1.6rem;
+}
+
+.messageItemText {
+  background: var(--color-background);
+  border-radius: 15%;
+  padding: 1rem;
+}

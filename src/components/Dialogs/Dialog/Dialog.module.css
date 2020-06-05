@@ -1,11 +1,13 @@
 .dialogWrapper {
+  box-sizing: border-box;
   color: var(--color-text-header);
   position: relative;
   display: flex;
   flex-flow: row nowrap;
-  min-width: 12rem;
-  max-height: 3rem;
+  max-height: 5rem;
+  min-width: 14rem;
   padding: 1rem;
+  align-items: center;
 }
 
 .dialogLink {
@@ -19,17 +21,13 @@
 }
 
 .dialogAvatar {
-  width: 3rem;
-
-  border-radius: 15%;
+  height: 3rem;
+  flex: 0 0 3rem;
 }
 
-.dialogInfo {
-  display: flex;
-  width: 100%;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  padding: 0.5rem;
+.dialogPreview {
+  flex: 1;
+  margin-left: 0.5rem;
 }
 
 .dialogName {
@@ -45,14 +43,14 @@
 
 .dialogMeta {
   font-size: 0.6rem;
-  width: 3em;
+  flex: 0 0 2.5em;
 }
 
 .dialogCount {
   display: block;
   height: 1.5em;
   width: 1.5em;
-  
+
   border-radius: 50%;
   background: var(--color-primary);
   color: var(--color-background);
