@@ -1,3 +1,5 @@
+import explicitRender from './../render';
+
 let state = {
   dialogsData: [
     {
