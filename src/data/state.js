@@ -57,4 +57,31 @@ let state = {
   ],
 };
 
+const findDialog = (callback) => {
+  const indexInState = state.dialogsData.findIndex(callback);
+
+  return state.dialogsData[indexInState];
+};
+
+const makeNewId = (entryList) => entryList[entryList.length - 1].id + 1;
+
+const buildNewMessage = (text, id) => {
+  return {
+    id,
+    text,
+  };
+};
+
+export const addMessage = (text, dialogId) => {
+  const isCurrentDialog = (dialog) => dialog.id === dialogId;
+
+  const currentDialog = findDialog(isCurrentDialog);
+
+  const message = buildNewMessage(text, makeNewId(currentDialog.messages));
+
+  currentDialog.messages.push(message);
+
+  explicitRender(state, { addMessage });
+};
+
 export default state;

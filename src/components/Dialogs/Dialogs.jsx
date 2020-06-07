@@ -15,7 +15,7 @@ export default (props) => {
       </div>
       <Route
         path='/dialogs/:id'
-        render={() => <Chat dialogs={props.data} />}
+        render={() => <Chat dialogs={props.data} addMessage={props.addMessage}/>}
       />
     </div>
   );

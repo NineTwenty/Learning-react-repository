@@ -14,7 +14,7 @@ export default (props) => {
     <div className={styles.chatWrapper}>
       <ChatHeader />
       <Messages dialog={selectedDialog} />
-      <ChatImputs />
+      <ChatImputs addMessage={props.addMessage}/>
     </div>
   );
 };

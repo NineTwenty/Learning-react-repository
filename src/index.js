@@ -1,9 +1,14 @@
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import state from './data/state';
+import { addMessage } from './data/state';
 import explicitRender from './render';
 
-explicitRender(state);
+const actions = {
+  addMessage,
+};
+
+explicitRender(state, actions);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
