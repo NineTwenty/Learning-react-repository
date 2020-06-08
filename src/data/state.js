@@ -1,66 +1,71 @@
 import explicitRender from './../render';
 
 let state = {
-  dialogsData: [
-    {
-      avatar: 'https://loremflickr.com/48/48?r=1',
-      name: 'Charles',
-      messages: [
-        {
-          id: 1,
-          text: `I'm stupid`,
-        },
-      ],
-      count: 16,
-      time: '1min',
-      id: 1,
+  dialogsData: {
+    dialogs: [
+      {
+        avatar: 'https://loremflickr.com/48/48?r=1',
+        name: 'Charles',
+        messages: [
+          {
+            id: 1,
+            text: `I'm stupid`,
+          },
+        ],
+        count: 16,
+        time: '1min',
+        id: 1,
+      },
+      {
+        avatar: 'https://loremflickr.com/48/48?r=2',
+        name: 'Lando',
+        messages: [
+          {
+            id: 1,
+            text: `Its BWOKEN`,
+          },
+        ],
+        count: 4,
+        time: '2min',
+        id: 2,
+      },
+      {
+        avatar: 'https://loremflickr.com/48/48?r=3',
+        name: 'Max',
+        messages: [
+          {
+            id: 1,
+            text: `What a f*****g idiot`,
+          },
+        ],
+        count: 0,
+        time: '',
+        id: 3,
+      },
+      {
+        avatar: 'https://loremflickr.com/48/48?r=4',
+        name: 'Charles',
+        messages: [
+          {
+            id: 1,
+            text: `I'm stupid`,
+          },
+        ],
+        count: 0,
+        time: '',
+        id: 4,
+      },
+    ],
+    textareaState: {
+      text: 'dsfd',
     },
-    {
-      avatar: 'https://loremflickr.com/48/48?r=2',
-      name: 'Lando',
-      messages: [
-        {
-          id: 1,
-          text: `Its BWOKEN`,
-        },
-      ],
-      count: 4,
-      time: '2min',
-      id: 2,
-    },
-    {
-      avatar: 'https://loremflickr.com/48/48?r=3',
-      name: 'Max',
-      messages: [
-        {
-          id: 1,
-          text: `What a f*****g idiot`,
-        },
-      ],
-      count: 0,
-      time: '',
-      id: 3,
-    },
-    {
-      avatar: 'https://loremflickr.com/48/48?r=4',
-      name: 'Charles',
-      messages: [
-        {
-          id: 1,
-          text: `I'm stupid`,
-        },
-      ],
-      count: 0,
-      time: '',
-      id: 4,
-    },
-  ],
+  },
 };
 
 const findDialog = (callback) => {
-  const indexInState = state.dialogsData.findIndex(callback);
+  const indexInState = state.dialogsData.dialogs.findIndex(callback);
 
-  return state.dialogsData[indexInState];
+  return state.dialogsData.dialogs[indexInState];
 };
 
 const makeNewId = (entryList) => entryList[entryList.length - 1].id + 1;
@@ -81,7 +86,12 @@ export const addMessage = (text, dialogId) => {
 
   currentDialog.messages.push(message);
 
-  explicitRender(state, { addMessage });
+  explicitRender(state, { addMessage, updateTextareaContent });
 };
+
+export function updateTextareaContent(text) {
+  state.dialogsData.textareaState.text = text;
+  explicitRender(state, { addMessage, updateTextareaContent });
+}
 
 export default state;

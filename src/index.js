@@ -1,11 +1,12 @@
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import state from './data/state';
-import { addMessage } from './data/state';
+import { addMessage, updateTextareaContent } from './data/state';
 import explicitRender from './render';
 
 const actions = {
   addMessage,
+  updateTextareaContent
 };
 
 explicitRender(state, actions);

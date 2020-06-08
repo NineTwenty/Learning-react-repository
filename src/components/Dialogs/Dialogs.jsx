@@ -9,13 +9,13 @@ export default (props) => {
     <div className={s.dialogsWrapper}>
       <div className={s.dialogs}>
         <h2>Dialogs</h2>
-        {props.data.map((data) => (
+        {props.data.dialogs.map((data) => (
           <Dialog key={data.id} {...data} />
         ))}
       </div>
       <Route
         path='/dialogs/:id'
-        render={() => <Chat dialogs={props.data} addMessage={props.addMessage}/>}
+        render={() => <Chat dialogs={props.data.dialogs} textareaState={props.data.textareaState} addMessage={props.addMessage} updateTextareaContent={props.updateTextareaContent}/>}
       />
     </div>
   );
