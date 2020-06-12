@@ -1,15 +1,29 @@
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import state from './data/state';
-import { addMessage, updateTextareaContent } from './data/state';
-import explicitRender from './render';
+import store from './data/state';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-const actions = {
-  addMessage,
-  updateTextareaContent
+let { addMessage, updateTextareaContent } = store;
+
+addMessage = addMessage.bind(store)
+updateTextareaContent = updateTextareaContent.bind(store)
+
+const explicitRender = (state, actions) => {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App {...state} {...actions} />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
 };
 
-explicitRender(state, actions);
+window.store = store;
+
+store.subscribe(explicitRender);
+
+explicitRender(store.state, { addMessage, updateTextareaContent });
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
