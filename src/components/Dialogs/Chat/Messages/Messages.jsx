@@ -1,20 +1,12 @@
 import React from 'react';
 import MessageItem from './MessageItem/MessageItem';
 
-const Messages = (props) => {
-  const name = props.dialog.name;
-  const avatar = props.dialog.avatar;
-
+const Messages = ({ dialog: { name, avatar, messages } }) => {
   return (
     <div className='messagesWrapper'>
-      {props.dialog.messages.map((message) => {
+      {messages.map(({ text, id }) => {
         return (
-          <MessageItem
-            avatar={avatar}
-            username={name}
-            text={message.text}
-            key={message.id}
-          />
+          <MessageItem avatar={avatar} username={name} text={text} key={id} />
         );
       })}
     </div>

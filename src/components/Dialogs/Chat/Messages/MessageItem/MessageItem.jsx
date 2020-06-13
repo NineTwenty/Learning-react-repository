@@ -2,15 +2,15 @@ import React from 'react';
 import styles from './MessageItem.module.css';
 import Avatar from '../../../../Profile/Avatar/Avatar';
 
-const MessageItem = (props) => {
+const MessageItem = ({ avatar, username, text}) => {
   return (
     <div className={styles.messageItemWrapper}>
       <Avatar
         className={styles.messageItemAvatar}
-        avatar={props.avatar}
-        name={props.user}
+        avatar={avatar}
+        name={username}
       />
-      <span className={styles.messageItemText}>{props.text}</span>
+      <span className={styles.messageItemText}>{text}</span>
     </div>
   );
 };

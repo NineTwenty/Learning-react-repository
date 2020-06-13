@@ -10,18 +10,21 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 
-function App(props) {
+function App({ dialogsPage, dispatch }) {
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
         <Header />
         <Navbar />
         <div className='app-wrapper-content'>
-          <Route path='/dialogs' render={() => <Dialogs data={props.dialogsData} addMessage={props.addMessage} updateTextareaContent={props.updateTextareaContent}/>} />
-          <Route path='/profile' render={() => <Profile {...props.profileData} />} />
-          <Route path='/news' render={() => <News {...props.newsData} />} />
-          <Route path='/music' render={() => <Music {...props.musicData} />} />
-          <Route path='/settings' render={() => <Settings {...props.settingsData} />} />
+          <Route
+            path='/dialogs'
+            render={() => <Dialogs dialogsPage={dialogsPage} dispatch={dispatch} />}
+          />
+          <Route path='/profile' render={() => <Profile />} />
+          <Route path='/news' render={() => <News />} />
+          <Route path='/music' render={() => <Music />} />
+          <Route path='/settings' render={() => <Settings />} />
         </div>
       </div>
     </BrowserRouter>

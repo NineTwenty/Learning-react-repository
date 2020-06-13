@@ -1,26 +1,36 @@
 import React from 'react';
 import styles from './ChatImputs.module.css';
 import { useParams } from 'react-router-dom';
+import {
+  addMessageCreator,
+  updateNewMessageTextCreator,
+} from '../../../../data/dialogs-reducer';
 
-const ChatImputs = (props) => {
-  const textareaRef = React.createRef();
+const ChatImputs = ({ dispatch, textareaState: {text} }) => {
   const { id } = useParams();
 
-  function updateTextareaContent() {
-    const value = textareaRef.current.value;
-    props.updateTextareaContent(value)
+
+  function updateTextareaContent(event) {
+    const text = event.target.value;
+    const action = updateNewMessageTextCreator(text);
+    dispatch(action);
   }
 
   function addMessage() {
-    const text = textareaRef.current.value;
-    props.addMessage(text, +id);
-    textareaRef.current.value = ''
-  };
-
+    const action = addMessageCreator(+id, text);
+    dispatch(action);
+  }
 
   return (
     <div className={styles.chatImputsWrapper}>
-      <textarea onChange={updateTextareaContent} ref={textareaRef} name='Message' id='' cols='20' rows='3' value={props.textareaState.text} />
+      <textarea
+        onChange={updateTextareaContent}
+        name='Message'
+        id=''
+        cols='20'
+        rows='3'
+        value={text}
+      />
       <button onClick={addMessage}>Send</button>
     </div>
   );

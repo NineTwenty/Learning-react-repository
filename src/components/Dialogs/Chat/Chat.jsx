@@ -2,19 +2,21 @@ import React from 'react';
 import styles from './Chat.module.css';
 import ChatHeader from './ChatHeader/ChatHeader';
 import Messages from './Messages/Messages';
-import ChatImputs from './ChatInputs/ChatInputs';
+import ChatInputs from './ChatInputs/ChatInputs';
 import { useParams } from 'react-router-dom';
 
-export default (props) => {
+const Chat = ({ dialogs, textareaState, dispatch }) => {
   const { id } = useParams();
 
-  const selectedDialog = props.dialogs.filter((user) => user.id === +id)[0];
+  const selectedDialog = dialogs.filter((user) => user.id === +id)[0];
 
   return (
     <div className={styles.chatWrapper}>
       <ChatHeader />
       <Messages dialog={selectedDialog} />
-      <ChatImputs addMessage={props.addMessage} updateTextareaContent={props.updateTextareaContent} textareaState={props.textareaState}/>
+      <ChatInputs dispatch={dispatch} textareaState={textareaState} />
     </div>
   );
 };
+
+export default Chat;

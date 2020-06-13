@@ -4,19 +4,29 @@ import Dialog from './Dialog/Dialog';
 import Chat from './Chat/Chat';
 import { Route } from 'react-router-dom';
 
-export default (props) => {
+const Dialogs = ({ dialogsPage: { dialogs, textareaState }, dispatch }) => {
+  const populateDialogs = (dialogs) => {
+    return dialogs.map((data) => <Dialog key={data.id} {...data} />);
+  };
+
   return (
     <div className={s.dialogsWrapper}>
       <div className={s.dialogs}>
         <h2>Dialogs</h2>
-        {props.data.dialogs.map((data) => (
-          <Dialog key={data.id} {...data} />
-        ))}
+        {populateDialogs(dialogs)}
       </div>
       <Route
         path='/dialogs/:id'
-        render={() => <Chat dialogs={props.data.dialogs} textareaState={props.data.textareaState} addMessage={props.addMessage} updateTextareaContent={props.updateTextareaContent}/>}
+        render={() => (
+          <Chat
+            dialogs={dialogs}
+            textareaState={textareaState}
+            dispatch={dispatch}
+          />
+        )}
       />
     </div>
   );
 };
+
+export default Dialogs;
