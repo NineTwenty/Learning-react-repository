@@ -1,10 +1,18 @@
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import store from './data/store';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
+import store from './data/store';
 import App from './App';
 
+import { makeServer } from './server';
+import ky from 'ky';
+
+// Run Mirage mock server
+makeServer();
+
+window.ky = ky;
 window.store = store;
 
 const explicitRender = () => {
