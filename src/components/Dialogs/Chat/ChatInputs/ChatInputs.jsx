@@ -6,32 +6,33 @@ import {
   updateNewMessageTextCreator,
 } from '../../../../data/dialogs-reducer';
 
-const ChatImputs = ({ dispatch, textareaState: {text} }) => {
-  const { id } = useParams();
+const ChatImputs = (props) => {
+  // { dispatch, textareaState: {text} }
+  // const { id } = useParams();
 
 
-  function updateTextareaContent(event) {
-    const text = event.target.value;
-    const action = updateNewMessageTextCreator(text);
-    dispatch(action);
-  }
+  // function updateTextareaContent(event) {
+  //   const text = event.target.value;
+  //   const action = updateNewMessageTextCreator(text);
+  //   dispatch(action);
+  // }
 
-  function addMessage() {
-    const action = addMessageCreator(+id, text);
-    dispatch(action);
-  }
+  // function addMessage() {
+  //   const action = addMessageCreator(+id, text);
+  //   dispatch(action);
+  // }
 
   return (
     <div className={styles.chatImputsWrapper}>
       <textarea
-        onChange={updateTextareaContent}
+        // onChange={updateTextareaContent}
         name='Message'
         id=''
         cols='20'
         rows='3'
-        value={text}
+        // value={text}
       />
-      <button onClick={addMessage}>Send</button>
+      {/* <button onClick={addMessage}>Send</button> */}
     </div>
   );
 };

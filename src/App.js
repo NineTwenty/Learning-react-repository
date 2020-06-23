@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import './colors.css';
 import Header from './components/Header/Header';
@@ -17,14 +17,15 @@ function App({ dialogsPage, dispatch }) {
         <Header />
         <Navbar />
         <div className='app-wrapper-content'>
-          <Route
-            path='/dialogs'
-            render={() => <Dialogs dialogsPage={dialogsPage} dispatch={dispatch} />}
-          />
-          <Route path='/profile' render={() => <Profile />} />
-          <Route path='/news' render={() => <News />} />
-          <Route path='/music' render={() => <Music />} />
-          <Route path='/settings' render={() => <Settings />} />
+          <Switch>
+            <Route path='/dialogs/:id?'>
+              <Dialogs dialogsPage={dialogsPage} dispatch={dispatch} />
+            </Route>
+            <Route path='/profile' render={() => <Profile />} />
+            <Route path='/news' render={() => <News />} />
+            <Route path='/music' render={() => <Music />} />
+            <Route path='/settings' render={() => <Settings />} />
+          </Switch>
         </div>
       </div>
     </BrowserRouter>
