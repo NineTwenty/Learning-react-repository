@@ -93,10 +93,12 @@ export function makeServer() {
       this.namespace = 'api';
 
       this.get('/users');
+      this.get('/users/:id');
       this.post('/users', handleUser());
 
       // Dialogs routes
       this.get('/dialogs');
+      this.get('/dialogs/:id');
       this.post('/dialogs', handleDialog());
 
       // Messages routes
