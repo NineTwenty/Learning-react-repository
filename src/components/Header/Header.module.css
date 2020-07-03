@@ -1,8 +1,14 @@
 .header {
   grid-area: header;
   background-color: navy;
+  display: flex;
+  justify-content: space-between;
 }
 
 .header img {
   width: 6vh;
+}
+
+.headerAuthButton {
+
 }

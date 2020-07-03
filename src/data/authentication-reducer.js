@@ -11,7 +11,9 @@ function setAuthUser(state, { user }) {
   return { ...state, user };
 }
 
-const initialState = [];
+const initialState = {
+  user: null
+};
 
 function authentication(state = initialState, action) {
   switch (action.type) {

@@ -8,6 +8,7 @@ import App from './App';
 
 import { makeServer } from './server';
 import ky from 'ky';
+import { Provider } from 'react-redux';
 
 // Run Mirage mock server
 makeServer();
@@ -18,7 +19,9 @@ window.store = store;
 const explicitRender = () => {
   ReactDOM.render(
     <React.StrictMode>
-      <App {...store.getState()} dispatch={store.dispatch.bind(store)} />
+      <Provider store={store}>
+        <App {...store.getState()} dispatch={store.dispatch.bind(store)} />
+      </Provider>
     </React.StrictMode>,
     document.getElementById('root')
   );
