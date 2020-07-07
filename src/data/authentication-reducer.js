@@ -12,7 +12,14 @@ function setAuthUser(state, { user }) {
 }
 
 const initialState = {
-  user: null
+  user: {
+    avatar: 'https://loremflickr.com/48/48?r=1',
+    dialogs: ['1', '2'],
+    id: '4',
+    lastOnlineTime: '15min ago',
+    name: 'NineTwenty',
+    online: true,
+  },
 };
 
 function authentication(state = initialState, action) {

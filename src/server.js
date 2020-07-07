@@ -97,7 +97,12 @@ export function makeServer() {
       this.post('/users', handleUser());
 
       // Dialogs routes
-      this.get('/dialogs');
+      this.get('/dialogs', (schema, request) => {
+        const userId = request.requestHeaders.userid;
+        const { dialogIds } = schema.users.find(userId);
+
+        return schema.dialogs.find(dialogIds);
+      });
       this.get('/dialogs/:id');
       this.post('/dialogs', handleDialog());
 

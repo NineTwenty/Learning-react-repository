@@ -1,80 +1,42 @@
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
 const ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE';
 
-const legacyState = {
-  dialogs: [
-    {
-      avatar: 'https://loremflickr.com/48/48?r=1',
-      name: 'Charles',
-      messages: [
-        {
-          id: 1,
-          text: `I'm stupid`,
-        },
-      ],
-      count: 16,
-      time: '1min',
-      id: 1,
-    },
-    {
-      avatar: 'https://loremflickr.com/48/48?r=2',
-      name: 'Lando',
-      messages: [
-        {
-          id: 1,
-          text: `Its BWOKEN`,
-        },
-      ],
-      count: 4,
-      time: '2min',
-      id: 2,
-    },
-    {
-      avatar: 'https://loremflickr.com/48/48?r=3',
-      name: 'Max',
-      messages: [
-        {
-          id: 1,
-          text: `What a f*****g idiot`,
-        },
-      ],
-      count: 0,
-      time: '',
-      id: 3,
-    },
-    {
-      avatar: 'https://loremflickr.com/48/48?r=4',
-      name: 'Charles',
-      messages: [
-        {
-          id: 1,
-          text: `I'm stupid`,
-        },
-      ],
-      count: 0,
-      time: '',
-      id: 4,
-    },
-  ],
-  textareaState: {
-    text: 'dsfd',
-  },
-}
-
-const initialState = legacyState;
-
-export const addMessageCreator = (dialogId, text) => ({
+export const addNewMessage = (dialogId, text) => ({
   type: ADD_NEW_MESSAGE,
   dialogId,
   text,
 });
 
-export const updateNewMessageTextCreator = (text) => ({
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
+
+export const updateNewMessage = (text) => ({
   type: UPDATE_NEW_MESSAGE_TEXT,
   text,
 });
 
-function addNewMessage(state, action) {
+// Dialog fetching part
+
+const FETCH_DIALOGS_REQUEST = 'FETCH_DIALOGS_REQUEST';
+const FETCH_DIALOGS_SUCCESS = 'FETCH_DIALOGS_SUCCESS';
+const FETCH_DIALOGS_FAILURE = 'FETCH_DIALOGS_SUCCESS';
+
+export const dialogsFetchRequest = () => ({
+  type: FETCH_DIALOGS_REQUEST,
+});
+
+export const dialogsFetchSuccess = (data) => ({
+  type: FETCH_DIALOGS_SUCCESS,
+  receivedAt: Date.now(),
+  dialogs: data.dialogs,
+});
+
+export const dialogsFetchFailed = (error) => ({
+  type: FETCH_DIALOGS_FAILURE,
+  error
+});
+
+// Message creating handler
+
+function handleAddNewMessage(state, action) {
   function makeNewId(entryList) {
     return entryList[entryList.length - 1].id + 1;
   }
@@ -89,11 +51,19 @@ function addNewMessage(state, action) {
     text: action.text,
   };
 
-  state.dialogs[indexInState].messages.push(message)
-  state.textareaState.text = ''
+  state.dialogs[indexInState].messages.push(message);
+  state.textareaState.text = '';
 
   return state;
 }
+
+const initialState = {
+  dialogs: null,
+  selectedDialog: null,
+  isLoaded: false,
+  isFetching: false,
+  error: null,
+};
 
 function dialogsPage(state = initialState, action) {
   const type = action ? action.type : undefined;
@@ -103,7 +73,14 @@ function dialogsPage(state = initialState, action) {
       state.textareaState.text = action.text;
       return state;
     case ADD_NEW_MESSAGE:
-      return addNewMessage(state, action);
+      return handleAddNewMessage(state, action);
+    case FETCH_DIALOGS_REQUEST:
+      return { ...state, isFetching: true };
+    case FETCH_DIALOGS_SUCCESS:
+      const dialogs = action.dialogs;
+      return { ...state, isFetching: false, isLoaded: true, dialogs };
+    case FETCH_DIALOGS_FAILURE:
+      return {...state, isFetching: false, }
     default:
       return state;
   }

@@ -10,11 +10,13 @@ import Messages from './Chat/Messages/Messages';
 import MessageItem from './Chat/Messages/MessageItem/MessageItem';
 import ChatInputs from './Chat/ChatInputs/ChatInputs';
 
-const Dialogs = ({ user, dialogs }) => {
-  const { id } = useParams();
+const Dialogs = ({ dialogs, userId, isFetching }) => {
+  const { idParam } = useParams();
 
   const populateDialogs = (dialogs) => {
-    return dialogs.map((data) => <Dialog />);
+    if (dialogs) {
+      return dialogs.map((dialog) => <Dialog key={dialog.id} {...dialog} />);
+    }
   };
 
   const populateMessages = (messages) => {
@@ -28,12 +30,12 @@ const Dialogs = ({ user, dialogs }) => {
     <div className={s.dialogsWrapper}>
       <div className={s.dialogs}>
         <h2>Dialogs</h2>
-        {/* {populateDialogs(dialogs)} */}
+        {isFetching ? 'Loading' : populateDialogs(dialogs)}
       </div>
 
       <Chat>
         <ChatHeader />
-        {id ? `${id}` : 'null' }
+        {idParam ? `${idParam}` : 'null'}
         <ChatInputs />
       </Chat>
     </div>
