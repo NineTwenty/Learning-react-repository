@@ -1,34 +1,24 @@
 import React from 'react';
-import s from './Dialogs.module.css';
 import Dialogs from './Dialogs';
 
 // Actions and connect
-
 import {
   addNewMessage,
   updateNewMessage,
-  dialogsFetchRequest,
-  dialogsFetchSuccess,
-  dialogsFetchFailed,
+  getDialogs,
 } from '../../data/dialogs-reducer';
 import { connect } from 'react-redux';
 
-// Function for dialogs fetch from API
-
-import { fetchDialogs } from '../../api/APIUtils';
-
-// Class container for fetch
-
+// Class container for making ajax calls
 class DialogsContainer extends React.Component {
   componentDidMount() {
-    const { isLoaded, isFetching } = this.props;
-    const {dialogsFetchRequest, dialogsFetchSuccess} = this.props
+    const { isLoaded, isFetching, userId } = this.props;
 
+    // Check if dialogs are not already loaded
+    // or are in process of loading
     if (!isLoaded && !isFetching) {
-      dialogsFetchRequest();
-      fetchDialogs(this.props.userId).then((data) => {
-        dialogsFetchSuccess(data);
-      });
+      // And then require them
+      this.props.getDialogs(userId);
     }
   }
 
@@ -57,7 +47,5 @@ const mapStateToProps = ({
 export default connect(mapStateToProps, {
   addNewMessage,
   updateNewMessage,
-  dialogsFetchRequest,
-  dialogsFetchSuccess,
-  dialogsFetchFailed,
+  getDialogs,
 })(DialogsContainer);

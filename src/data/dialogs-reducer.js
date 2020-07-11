@@ -1,3 +1,5 @@
+import { fetchDialogs } from '../api/APIUtils';
+
 const ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE';
 
 export const addNewMessage = (dialogId, text) => ({
@@ -6,6 +8,7 @@ export const addNewMessage = (dialogId, text) => ({
   text,
 });
 
+// Textarea state update
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
 
 export const updateNewMessage = (text) => ({
@@ -14,28 +17,35 @@ export const updateNewMessage = (text) => ({
 });
 
 // Dialog fetching part
-
 const FETCH_DIALOGS_REQUEST = 'FETCH_DIALOGS_REQUEST';
 const FETCH_DIALOGS_SUCCESS = 'FETCH_DIALOGS_SUCCESS';
-const FETCH_DIALOGS_FAILURE = 'FETCH_DIALOGS_SUCCESS';
+const FETCH_DIALOGS_FAILURE = 'FETCH_DIALOGS_FAILURE';
 
-export const dialogsFetchRequest = () => ({
+const dialogsFetchRequest = () => ({
   type: FETCH_DIALOGS_REQUEST,
 });
 
-export const dialogsFetchSuccess = (data) => ({
+const dialogsFetchSuccess = (data) => ({
   type: FETCH_DIALOGS_SUCCESS,
   receivedAt: Date.now(),
   dialogs: data.dialogs,
 });
 
-export const dialogsFetchFailed = (error) => ({
+const dialogsFetchFailed = (error) => ({
   type: FETCH_DIALOGS_FAILURE,
-  error
+  error,
 });
 
-// Message creating handler
+// Dialogs fetch thunk
+export const getDialogs = (userId) => (dispatch) => {
+  // Set isFetching flag to true
+  dispatch(dialogsFetchRequest());
 
+  // Fetch and set dialogs
+  fetchDialogs(userId).then((data) => dispatch(dialogsFetchSuccess(data)));
+};
+
+// Message creating handler
 function handleAddNewMessage(state, action) {
   function makeNewId(entryList) {
     return entryList[entryList.length - 1].id + 1;
@@ -80,7 +90,7 @@ function dialogsPage(state = initialState, action) {
       const dialogs = action.dialogs;
       return { ...state, isFetching: false, isLoaded: true, dialogs };
     case FETCH_DIALOGS_FAILURE:
-      return {...state, isFetching: false, }
+      return { ...state, isFetching: false };
     default:
       return state;
   }
