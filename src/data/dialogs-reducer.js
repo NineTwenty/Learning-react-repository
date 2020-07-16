@@ -1,4 +1,4 @@
-import { fetchDialogs } from '../api/APIUtils';
+import { fetchDialogs } from '../api/API';
 
 const ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE';
 
@@ -37,12 +37,12 @@ const dialogsFetchFailed = (error) => ({
 });
 
 // Dialogs fetch thunk
-export const getDialogs = (userId) => (dispatch) => {
+export const getDialogs = () => (dispatch) => {
   // Set isFetching flag to true
   dispatch(dialogsFetchRequest());
 
   // Fetch and set dialogs
-  fetchDialogs(userId).then((data) => dispatch(dialogsFetchSuccess(data)));
+  fetchDialogs().then((data) => dispatch(dialogsFetchSuccess(data)));
 };
 
 // Message creating handler

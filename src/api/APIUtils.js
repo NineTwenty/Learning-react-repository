@@ -1,7 +1,22 @@
-import ky from 'ky';
+import agent from 'superagent';
 
-export async function fetchDialogs(userId) {
-  const respone = await ky.get('/api/dialogs', { headers: { userId } });
-  const json = await respone.json();
-  return json;
-}
+// Generation of URL with prefix part
+const API_PREFIX = '/api/';
+const prefix = (request) => {
+  request.url = `${API_PREFIX}${request.url}`;
+  return request;
+};
+
+// Callback for getting actual userId
+const userId = () => localStorage.getItem('userId');
+
+const getAPI = () =>
+  agent
+    .agent()
+    .type('application/json')
+    // Apply URL prefix
+    .use(prefix)
+    // set Headers property
+    .set('userId', `${userId()}`);
+
+export default getAPI;

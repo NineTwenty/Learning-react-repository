@@ -12,13 +12,13 @@ import { connect } from 'react-redux';
 // Class container for making ajax calls
 class DialogsContainer extends React.Component {
   componentDidMount() {
-    const { isLoaded, isFetching, userId } = this.props;
+    const { isLoaded, isFetching } = this.props;
 
     // Check if dialogs are not already loaded
     // or are in process of loading
     if (!isLoaded && !isFetching) {
       // And then require them
-      this.props.getDialogs(userId);
+      this.props.getDialogs();
     }
   }
 
@@ -29,7 +29,7 @@ class DialogsContainer extends React.Component {
 
 const mapStateToProps = ({
   authentication: {
-    user: { avatar, username, id },
+    user: { avatar, username},
   },
   dialogsPage: { isFetching, isLoaded, selectedDialog, dialogs },
 }) => {
@@ -37,7 +37,6 @@ const mapStateToProps = ({
     dialogs,
     avatar,
     username,
-    userId: id,
     isFetching,
     isLoaded,
     selectedDialog,

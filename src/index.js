@@ -7,14 +7,15 @@ import store from './data/store';
 import App from './App';
 
 import { makeServer } from './server';
-import ky from 'ky';
 import { Provider } from 'react-redux';
 
 // Run Mirage mock server
 makeServer();
 
-window.ky = ky;
 window.store = store;
+
+// Temporary hardcoded user credentials
+localStorage.setItem('userId', '4')
 
 const explicitRender = () => {
   ReactDOM.render(
