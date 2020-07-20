@@ -105,6 +105,33 @@ export function makeServer() {
       });
       this.post('/dialogs', handleDialog());
 
+      // Dialogs members
+      this.get('/dialogs/members', (schema, request) => {
+        const isNotRequester = (id) => !(id === +userId);
+        const filterMembers = (acc, dialog) => [
+          ...acc,
+          ...dialog.attrs.memberIds.filter(isNotRequester),
+        ];
+
+        // Requster id
+        const { userId } = request.requestHeaders;
+
+        // Find id of requester dialogs
+        const {
+          attrs: { dialogIds },
+        } = schema.users.find(userId);
+
+        // Find dialogs
+        const { models: dialogs } = schema.dialogs.find(dialogIds);
+
+        // Take ids of dialogs members
+        // Except of requester
+        const membersIds = dialogs.reduce(filterMembers, []);
+
+        // Find by ids and return
+        return schema.users.find(membersIds);
+      });
+
       // Messages routes
       this.get('/dialogs/:id/messages');
       this.post('/messages', handleMessage());
