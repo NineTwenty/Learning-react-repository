@@ -6,3 +6,11 @@ export async function fetchDialogs() {
 
   return response.body;
 }
+
+export const dialogsAPI = {
+  async fetchMembers() {
+    const response = await getAPI().get('dialogs/members')
+
+    return response.body.users
+  }
+}

@@ -3,19 +3,31 @@ import s from './Dialogs.module.css';
 import { useParams } from 'react-router-dom';
 
 import Dialog from './Dialog/Dialog';
-
 import Chat from './Chat/Chat';
 import ChatHeader from './Chat/ChatHeader/ChatHeader';
 import Messages from './Chat/Messages/Messages';
 import MessageItem from './Chat/Messages/MessageItem/MessageItem';
 import ChatInputs from './Chat/ChatInputs/ChatInputs';
 
-const Dialogs = ({ dialogs, userId, isFetching }) => {
+const Dialogs = ({ dialogs, members, isFetching, membersIsFetching }) => {
   const { idParam } = useParams();
 
   const populateDialogs = (dialogs) => {
-    if (dialogs) {
-      return dialogs.map((dialog) => <Dialog key={dialog.id} {...dialog} />);
+    // Func to find correct members for every dialog
+    const determinateMember = (dialog) => {
+      return members.find((member) => {
+        return dialog.members.some((id) => id === member.id);
+      });
+    };
+
+    // Check if dialogs and members is not null
+    if (dialogs && members) {
+      // And return filled Dialogs then
+      return dialogs.map((dialog) => {
+        const member = determinateMember(dialog);
+
+        return <Dialog key={dialog.id} {...dialog} {...member} />;
+      });
     }
   };
 
@@ -30,7 +42,7 @@ const Dialogs = ({ dialogs, userId, isFetching }) => {
     <div className={s.dialogsWrapper}>
       <div className={s.dialogs}>
         <h2>Dialogs</h2>
-        {isFetching ? 'Loading' : populateDialogs(dialogs)}
+        {isFetching || membersIsFetching ? 'Loading' : populateDialogs(dialogs)}
       </div>
 
       <Chat>

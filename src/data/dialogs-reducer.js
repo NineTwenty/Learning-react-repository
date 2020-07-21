@@ -1,4 +1,6 @@
+import { combineReducers } from 'redux';
 import { fetchDialogs } from '../api/API';
+import membersList from './dialogs-members-reducer';
 
 const ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE';
 
@@ -75,7 +77,7 @@ const initialState = {
   error: null,
 };
 
-function dialogsPage(state = initialState, action) {
+function dialogs(state = initialState, action) {
   const type = action ? action.type : undefined;
 
   switch (type) {
@@ -96,4 +98,8 @@ function dialogsPage(state = initialState, action) {
   }
 }
 
+const dialogsPage = combineReducers({
+  dialogs,
+  membersList
+})
 export default dialogsPage;
