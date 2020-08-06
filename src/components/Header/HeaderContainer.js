@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setAuthUserAC } from '../../data/authentication-reducer';
+import { setAuthUser } from '../../data/authentication-reducer';
 import ky from 'ky';
 import Header from './Header';
 
@@ -15,7 +15,7 @@ async function loadAuthUser() {
 
 const mapDispatchToProps = (dispatch) => ({
   authenticateUser(id) {
-    loadAuthUser(id).then((user) => dispatch(setAuthUserAC(user)));
+    loadAuthUser(id).then((user) => dispatch(setAuthUser(user)));
   },
 });
 

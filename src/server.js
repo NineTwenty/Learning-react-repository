@@ -135,24 +135,48 @@ export function makeServer() {
       // Messages routes
       this.get('/dialogs/:id/messages');
       this.post('/messages', handleMessage());
+
+      // Authentication related routes
+      this.put('/login', (schema, request) => {
+        const errors = []
+        const { login, password } = JSON.parse(request.requestBody);
+        const user = schema.users.findBy({ login });
+
+        // Validation
+        if (user && user.password === password) {
+          return { success: true, user };
+        }
+        
+        errors.push('Wrong login or password')
+        // Return submission erros
+        return { success: false, errors };
+      });
     },
 
     seeds(server) {
       server.create('user', {
         name: 'Charles',
         avatar: 'https://loremflickr.com/48/48?r=1',
+        login: 'charlesleclerc',
+        password: 'shitbox',
       });
       server.create('user', {
         name: 'Lando',
         avatar: 'https://loremflickr.com/48/48?r=1',
+        login: 'landobot',
+        password: 'scenario7',
       });
       server.create('user', {
         name: 'Max',
         avatar: 'https://loremflickr.com/48/48?r=1',
+        login: 'maxsupermax',
+        password: 'verstappening',
       });
       server.create('user', {
         name: 'NineTwenty',
         avatar: 'https://loremflickr.com/48/48?r=1',
+        login: 'admin',
+        password: 'admin',
       });
 
       server.create('dialog', {

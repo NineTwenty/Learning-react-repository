@@ -1,5 +1,4 @@
-import getAPI from "./APIUtils";
-
+import getAPI from './APIUtils';
 
 export async function fetchDialogs() {
   const response = await getAPI().get('dialogs');
@@ -14,3 +13,16 @@ export const dialogsAPI = {
     return response.body.users
   }
 }
+
+// Authentication API
+export const authAPI = {
+  async authLogin(login, password) {
+    // Login put request
+    const {
+      body: { success, user, errors },
+    } = await getAPI().put('login').send({ login, password });
+
+    // Return payload based on success status
+    return success ? { success, user } : { success, errors };
+  },
+};

@@ -14,9 +14,6 @@ makeServer();
 
 window.store = store;
 
-// Temporary hardcoded user credentials
-localStorage.setItem('userId', '4')
-
 const explicitRender = () => {
   ReactDOM.render(
     <React.StrictMode>

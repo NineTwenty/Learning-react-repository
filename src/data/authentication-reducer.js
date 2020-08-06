@@ -1,14 +1,19 @@
-const SET_AUTH_USER = 'SET_AUTH_USER';
+import { authAPI } from '../api/API';
 
-export function setAuthUserAC(user) {
+const SET_AUTH_USER = 'SET_AUTH_USER';
+const FINISH_LOG_IN = 'FINISH_LOG_IN';
+
+export function setAuthUser(user) {
   return {
     type: SET_AUTH_USER,
     user,
   };
 }
 
-function setAuthUser(state, { user }) {
-  return { ...state, user };
+export function finishLogin() {
+  return {
+    type: FINISH_LOG_IN,
+  };
 }
 
 const initialState = {
@@ -20,15 +25,37 @@ const initialState = {
     name: 'NineTwenty',
     online: true,
   },
+  loggedIn: false,
 };
 
 function authentication(state = initialState, action) {
-  switch (action.type) {
+  const { type, user} = action;
+
+  switch (type) {
     case SET_AUTH_USER:
-      return setAuthUser(state, action);
+      return { ...state, user };
+    case FINISH_LOG_IN:
+      return { ...state, loggedIn: true };
     default:
       return state;
   }
 }
 
 export default authentication;
+
+export const submitLoginForm = (login, password) => (dispatch) => {
+  // Login request
+  return authAPI
+    .authLogin(login, password)
+    .then(({ success, user, errors }) => {
+      if (success) {
+        // Cookie auth imitation workaround
+        localStorage.setItem('userId', user.id);
+
+        // On success set active user
+        dispatch(setAuthUser(user));
+
+        // Or return submission errors back to form
+      } else return errors;
+    });
+};

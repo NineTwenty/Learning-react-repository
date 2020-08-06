@@ -1,0 +1,7 @@
+.form {
+  color: var(--color-text-headers);
+}
+
+.form > * {
+  margin-top: 1.3em;
+}

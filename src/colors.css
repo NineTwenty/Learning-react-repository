@@ -1,7 +1,12 @@
 :root {
   --color-text-headers: #3f414d;
+  --color-text-unfocused: #a09e9e;
   --color-text-ui: #777d74;
   --color-background: #ffffff;
   --color-primary: #50b5ff;
   --color-secondary: #f5fbff;
+  --color-border-light: #f1f1f1;
+  --color-focus: #257c7c;
+  --color-error: #dc3545;
+  
 }
