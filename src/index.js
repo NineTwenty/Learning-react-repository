@@ -8,6 +8,7 @@ import App from './App';
 
 import { makeServer } from './server';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 // Run Mirage mock server
 makeServer();
@@ -17,9 +18,11 @@ window.store = store;
 const explicitRender = () => {
   ReactDOM.render(
     <React.StrictMode>
-      <Provider store={store}>
-        <App {...store.getState()} dispatch={store.dispatch.bind(store)} />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <App {...store.getState()} dispatch={store.dispatch.bind(store)} />
+        </Provider>
+      </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
   );

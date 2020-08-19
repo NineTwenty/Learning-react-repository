@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
 import './colors.css';
@@ -12,34 +12,61 @@ import Settings from './components/Settings/Settings';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Login from './components/Login/Login';
 
+function PrivateRoute({ children, loggedIn, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        loggedIn ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/login',
+              state: { referrer: location },
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+
 const App = ({ loggedIn }) => {
   return (
-    <BrowserRouter>
-      <Route path='/'>
-        {loggedIn ? (
+    <>
+      <Switch>
+        <Route path={'/login'}>
+          <Login loggedIn={loggedIn} />
+        </Route>
+        <Route>
           <div className='app-wrapper'>
             <HeaderContainer />
             <Navbar />
             <div className='app-wrapper-content'>
               <Switch>
-                <Route path='/dialogs/:id?'>
+                <PrivateRoute path='/dialogs/:id?' loggedIn={loggedIn}>
                   <DialogsContainer />
-                </Route>
-                <Route path='/profile' render={() => <Profile />} />
-                <Route path='/news' render={() => <News />} />
-                <Route path='/music' render={() => <Music />} />
-                <Route path='/settings' render={() => <Settings />} />
+                </PrivateRoute>
+                <PrivateRoute path='/profile' loggedIn={loggedIn}>
+                  <Profile />
+                </PrivateRoute>
+                <PrivateRoute path='/news' loggedIn={loggedIn}>
+                  <News />
+                </PrivateRoute>
+                <PrivateRoute path='/music' loggedIn={loggedIn}>
+                  <Music />
+                </PrivateRoute>
+                <PrivateRoute path='/settings' loggedIn={loggedIn}>
+                  <Settings />
+                </PrivateRoute>
+                <Redirect exact path='/' to='/login' />
               </Switch>
             </div>
           </div>
-        ) : (
-          <Redirect to={'/login'} />
-        )}
-      </Route>
-      <Route path={'/login'}>
-        <Login loggedIn={loggedIn} />
-      </Route>
-    </BrowserRouter>
+        </Route>
+      </Switch>
+    </>
   );
 };
 
