@@ -1,13 +1,13 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import dialogsPage from './dialogs-reducer';
-import authentication from './authentication-reducer';
 import thunkMiddleware from 'redux-thunk';
+import reducerRegistry from './reducerRegistery';
 
-const combinedReducers = combineReducers({
-  authentication,
-  dialogsPage,
-});
+const combinedReducers = combineReducers(reducerRegistry.getReducers());
 
 const store = createStore(combinedReducers, applyMiddleware(thunkMiddleware));
+
+reducerRegistry.setChangeListener((reducers) =>
+  store.replaceReducer(combineReducers(reducers))
+);
 
 export default store;

@@ -34,7 +34,11 @@ const initialState = {
   error: null,
 };
 
-function membersList(state = initialState, action) {
+export const reducerName = 'membersList';
+
+// Reducer
+
+function membersListReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_DIALOGS_MEMBERS_PENDING:
       return { ...state, isFetching: true };
@@ -52,4 +56,4 @@ function membersList(state = initialState, action) {
   }
 }
 
-export default membersList;
+export default membersListReducer;

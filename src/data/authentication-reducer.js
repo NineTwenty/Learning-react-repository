@@ -1,4 +1,5 @@
 import { authAPI } from '../api/API';
+import reducerRegistry from './reducerRegistery';
 
 const SET_AUTH_USER = 'SET_AUTH_USER';
 const FINISH_LOG_IN = 'FINISH_LOG_IN';
@@ -28,8 +29,12 @@ const initialState = {
   loggedIn: false,
 };
 
-function authentication(state = initialState, action) {
-  const { type, user} = action;
+const reducerName = 'authentication';
+
+// Reducer
+
+function authenticationReducer(state = initialState, action) {
+  const { type, user } = action;
 
   switch (type) {
     case SET_AUTH_USER:
@@ -41,7 +46,11 @@ function authentication(state = initialState, action) {
   }
 }
 
-export default authentication;
+// Registration
+
+reducerRegistry.register(reducerName, authenticationReducer);
+
+// Thunks
 
 export const submitLoginForm = (login, password) => (dispatch) => {
   // Login request
