@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './LoginForm.module.css';
 import {
   submitLoginForm,
-  finishLogin,
 } from '../../data/authentication-reducer';
 import { Formik, Form } from 'formik';
 import TextField from '../common/TextField';
@@ -43,21 +42,20 @@ const LoginForm = ({ submitLoginForm, finishLogin }) => {
         });
       }
 
-      // Finish with store notification
-      // that login successfully finished
+      // Finish with errors cleaning
       function finishWithoutErrors() {
-        // Make sure errors list is empty
         formUtils.setStatus({
           formErrors: null,
         });
-        // Toggle global loggedIn flag
-        finishLogin();
       }
     };
 
     return (
-      submitLoginForm(login, password)
+      submitLoginForm({ login, password })
         // Wait for any server errors from thunk
+        // TEMPORARY: Workaround until 'unwrapResult' will be fixed 
+        .then((action) => action.payload)
+        // .then(unwrapResult)
         .then(handleErrors)
     );
   };
@@ -99,4 +97,4 @@ const LoginForm = ({ submitLoginForm, finishLogin }) => {
   );
 };
 
-export default connect(null, { submitLoginForm, finishLogin })(LoginForm);
+export default connect(null, { submitLoginForm })(LoginForm);

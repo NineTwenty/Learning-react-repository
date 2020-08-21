@@ -1,10 +1,14 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
+import { combineReducers } from 'redux';
 import reducerRegistry from './reducerRegistery';
+import { configureStore } from '@reduxjs/toolkit';
 
-const combinedReducers = combineReducers(reducerRegistry.getReducers());
+let reducers = reducerRegistry.getReducers();
 
-const store = createStore(combinedReducers, applyMiddleware(thunkMiddleware));
+reducers = !reducers.keys ? () => {} : combineReducers(reducers);
+
+const store = configureStore({
+  reducer: reducers,
+});
 
 reducerRegistry.setChangeListener((reducers) =>
   store.replaceReducer(combineReducers(reducers))

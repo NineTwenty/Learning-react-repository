@@ -1,70 +1,68 @@
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { authAPI } from '../api/API';
 import reducerRegistry from './reducerRegistery';
 
-const SET_AUTH_USER = 'SET_AUTH_USER';
-const FINISH_LOG_IN = 'FINISH_LOG_IN';
-
-export function setAuthUser(user) {
-  return {
-    type: SET_AUTH_USER,
-    user,
-  };
-}
-
-export function finishLogin() {
-  return {
-    type: FINISH_LOG_IN,
-  };
-}
-
-const initialState = {
-  user: {
-    avatar: 'https://loremflickr.com/48/48?r=1',
-    dialogs: ['1', '2'],
-    id: '4',
-    lastOnlineTime: '15min ago',
-    name: 'NineTwenty',
-    online: true,
-  },
-  loggedIn: false,
-};
-
 const reducerName = 'authentication';
-
-// Reducer
-
-function authenticationReducer(state = initialState, action) {
-  const { type, user } = action;
-
-  switch (type) {
-    case SET_AUTH_USER:
-      return { ...state, user };
-    case FINISH_LOG_IN:
-      return { ...state, loggedIn: true };
-    default:
-      return state;
-  }
-}
-
-// Registration
-
-reducerRegistry.register(reducerName, authenticationReducer);
 
 // Thunks
 
-export const submitLoginForm = (login, password) => (dispatch) => {
-  // Login request
-  return authAPI
-    .authLogin(login, password)
-    .then(({ success, user, errors }) => {
-      if (success) {
-        // Cookie auth imitation workaround
-        localStorage.setItem('userId', user.id);
+export const submitLoginForm = createAsyncThunk(
+  `${reducerName}/submitLoginForm`,
+  async ({ login, password }, thunkAPI) => {
+    // Login request
+    const { success, user, errors } = await authAPI.authLogin(login, password);
 
-        // On success set active user
-        dispatch(setAuthUser(user));
+    // // TEMPORARY: Fix errors type
+    // const formatedErrors = Array.isArray(errors) ? errors : [errors];
 
-        // Or return submission errors back to form
-      } else return errors;
-    });
-};
+    if (success) {
+      // Cookie auth imitation workaround
+      localStorage.setItem('userId', user.id);
+
+      // On success set active user
+      return user;
+      // Or return submission errors back to form
+    } else return thunkAPI.rejectWithValue(errors);
+  }
+);
+
+// Slice
+
+const authSlice = createSlice({
+  name: 'authentication',
+  initialState: {
+    user: null,
+    loggedIn: false,
+    loading: 'idle',
+    currentRequestId: null,
+  },
+  extraReducers: {
+    [submitLoginForm.pending]: (state, action) => {
+      if (state.loading === 'idle') {
+        state.loading = 'pending';
+        state.currentRequestId = action.meta.requestId;
+      }
+    },
+    [submitLoginForm.fulfilled]: (state, action) => {
+      const { requestId } = action.meta;
+      if (state.loading === 'pending' && state.currentRequestId === requestId) {
+        state.loading = 'idle';
+        state.user = action.payload;
+        state.currentRequestId = null;
+        state.loggedIn = true;
+      }
+    },
+    [submitLoginForm.rejected]: (state, action) => {
+      const { requestId } = action.meta;
+      if (state.loading === 'pending' && state.currentRequestId === requestId) {
+        state.loading = 'idle';
+        state.error = action.error;
+        state.currentRequestId = null;
+      }
+    },
+  },
+});
+
+// Registration
+
+reducerRegistry.register(authSlice.name, authSlice.reducer);

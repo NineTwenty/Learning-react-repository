@@ -8,13 +8,6 @@ const Header = ({ user, authenticateUser }) => {
         src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRbqUkyAK84IcDm7zcaea_O8vPEYDDhEyZ-DR5wV_oqccAu65Zd&usqp=CAU'
         alt='logo'
       ></img>
-      {user ? (
-        ''
-      ) : (
-        <button className={styles.headerAuthButton} onClick={authenticateUser}>
-          Authenticate
-        </button>
-      )}
     </header>
   );
 };
