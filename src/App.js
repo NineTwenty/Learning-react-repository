@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './App.css';
 import './colors.css';
 import HeaderContainer from './components/Header/HeaderContainer';
@@ -11,8 +11,11 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Login from './components/Login/Login';
+import { getLoggedInStatus } from './data/authentication-reducer';
 
-function PrivateRoute({ children, loggedIn, ...rest }) {
+function PrivateRoute({ children, ...rest }) {
+  const loggedIn = useSelector(getLoggedInStatus);
+
   return (
     <Route
       {...rest}
@@ -32,7 +35,9 @@ function PrivateRoute({ children, loggedIn, ...rest }) {
   );
 }
 
-const App = ({ loggedIn }) => {
+const App = () => {
+  const loggedIn = useSelector(getLoggedInStatus);
+  
   return (
     <>
       <Switch>
@@ -45,19 +50,19 @@ const App = ({ loggedIn }) => {
             <Navbar />
             <div className='app-wrapper-content'>
               <Switch>
-                <PrivateRoute path='/dialogs/:id?' loggedIn={loggedIn}>
+                <PrivateRoute path='/dialogs/:id?'>
                   <DialogsContainer />
                 </PrivateRoute>
-                <PrivateRoute path='/profile' loggedIn={loggedIn}>
+                <PrivateRoute path='/profile'>
                   <Profile />
                 </PrivateRoute>
-                <PrivateRoute path='/news' loggedIn={loggedIn}>
+                <PrivateRoute path='/news'>
                   <News />
                 </PrivateRoute>
-                <PrivateRoute path='/music' loggedIn={loggedIn}>
+                <PrivateRoute path='/music'>
                   <Music />
                 </PrivateRoute>
-                <PrivateRoute path='/settings' loggedIn={loggedIn}>
+                <PrivateRoute path='/settings'>
                   <Settings />
                 </PrivateRoute>
                 <Redirect exact path='/' to='/login' />
@@ -70,8 +75,4 @@ const App = ({ loggedIn }) => {
   );
 };
 
-const mapStateToProps = ({ authentication: { loggedIn } }) => ({ loggedIn });
-
-const connectedApp = connect(mapStateToProps)(App);
-
-export default connectedApp;
+export default App;

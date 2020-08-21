@@ -1,4 +1,8 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import {
+  createSlice,
+  createAsyncThunk,
+  createSelector,
+} from '@reduxjs/toolkit';
 import { authAPI } from '../api/API';
 import reducerRegistry from './reducerRegistery';
 
@@ -66,3 +70,7 @@ const authSlice = createSlice({
 // Registration
 
 reducerRegistry.register(authSlice.name, authSlice.reducer);
+
+// Selectors
+
+export const getLoggedInStatus = (state) => state[reducerName].loggedIn;
