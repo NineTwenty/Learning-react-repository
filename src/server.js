@@ -6,6 +6,7 @@ import {
   RestSerializer,
   Factory,
 } from 'miragejs';
+import faker from 'faker';
 
 export function makeServer() {
   return new Server({
@@ -40,9 +41,15 @@ export function makeServer() {
 
     factories: {
       user: Factory.extend({
+        firstName: faker.name.firstName,
+        lastName: faker.name.lastName,
+        email: faker.internet.exampleEmail,
+        addres: faker.address.country,
+        phoneNumber: faker.phone.phoneNumber,
+        bithDate: faker.date.between('January 1, 1950', 'January 1, 2010'),
         online: false,
-        lastOnlineTime: '15min ago',
-        avatar: null,
+        lastOnlineTime: faker.date.recent,
+        avatar: faker.internet.avatar,
         friends: [],
         music: [],
       }),
@@ -53,7 +60,7 @@ export function makeServer() {
       }),
 
       message: Factory.extend({
-        text: 'Placeholder',
+        text: faker.lorem.sentence(),
         unread: true,
       }),
     },
@@ -138,7 +145,7 @@ export function makeServer() {
 
       // Authentication related routes
       this.put('/login', (schema, request) => {
-        const errors = []
+        const errors = [];
         const { login, password } = JSON.parse(request.requestBody);
         const user = schema.users.findBy({ login });
 
@@ -146,8 +153,8 @@ export function makeServer() {
         if (user && user.password === password) {
           return { success: true, user };
         }
-        
-        errors.push('Wrong login or password')
+
+        errors.push('Wrong login or password');
         // Return submission erros
         return { success: false, errors };
       });
@@ -178,6 +185,7 @@ export function makeServer() {
         login: 'admin',
         password: 'admin',
       });
+      server.create('user');
 
       server.create('dialog', {
         count: 16,
