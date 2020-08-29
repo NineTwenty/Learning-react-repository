@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "module": "es2020",
+    "moduleResolution": "node",
     "baseUrl": "src"
   },
+  "exclude": ["node_modules"],
   "include": ["src"]
 }
