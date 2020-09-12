@@ -26,3 +26,15 @@ export const authAPI = {
     return success ? { success, user } : { success, errors };
   },
 };
+
+export const postsAPI = {
+  async sumbitPost(post) {
+    const { body } = await getAPI().post('posts').send({ post });
+
+    if (body.resultCode) {
+      return body.data.posts;
+    } else {
+      throw Error('Request error');
+    }
+  },
+};

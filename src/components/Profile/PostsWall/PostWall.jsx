@@ -1,14 +1,13 @@
 import React from 'react';
-import s from './Profile.module.css';
+import style from './PostWall.module.css';
 import Post from './Post/Post';
+import PostingForm from './PostingForm';
+import { submitPost } from 'data/postSlice/postsSlice';
 
-export default () => {
+const PostWall = () => {
   return (
     <div>
-      <div>
-        <textarea name='' id='' cols='20' rows='5'></textarea>
-        <button>Add post</button>
-      </div>
+      <PostingForm header='Create Post' onSubmit={submitPost} />
       <Post />
       <Post />
       <Post />
@@ -18,3 +17,5 @@ export default () => {
     </div>
   );
 };
+
+export default PostWall;

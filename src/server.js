@@ -37,6 +37,9 @@ export function makeServer() {
         author: belongsTo('user'),
         dialog: belongsTo(),
       }),
+      post: Model.extend({
+        author: belongsTo('user'),
+      }),
     },
 
     factories: {
@@ -63,14 +66,51 @@ export function makeServer() {
         text: faker.lorem.sentence(),
         unread: true,
       }),
+      post: Factory.extend({
+        text: faker.lorem.sentences(),
+      }),
     },
 
     routes() {
       function handleWithDefaultValues(schemaName, defaultValues) {
-        return function (schema, request) {
-          const attrs = this.normalizedRequestAttrs();
+        // Func to form appropriate relationships object
+        function createRelationships(schemaName, userId) {
+          switch (schemaName) {
+            case 'posts':
+              return {
+                authorId: userId,
+              };
+            default:
+              return {};
+          }
+        }
 
-          return schema[schemaName].create({ ...defaultValues, ...attrs });
+        return function (schema, request) {
+          try {
+            const attrs = this.normalizedRequestAttrs();
+            const userId = request.requestHeaders.userId;
+            // Form relationship object
+            const relationships = createRelationships(schemaName, userId);
+
+            const entity = schema[schemaName].create({
+              ...defaultValues,
+              ...attrs,
+              ...relationships,
+            });
+
+            const response = {
+              resultCode: 1,
+              data: {
+                [schemaName]: [entity],
+              },
+            };
+
+            return response;
+          } catch (err) {
+            return {
+              resultCode: 0,
+            };
+          }
         };
       }
 
@@ -94,6 +134,12 @@ export function makeServer() {
         return handleWithDefaultValues('messages', {
           text: 'Placeholder',
           unread: true,
+        });
+      }
+      function handlePost() {
+        return handleWithDefaultValues('posts', {
+          postText: faker.lorem.sentences(),
+          views: 0,
         });
       }
 
@@ -142,6 +188,9 @@ export function makeServer() {
       // Messages routes
       this.get('/dialogs/:id/messages');
       this.post('/messages', handleMessage());
+
+      this.get('/posts/:id');
+      this.post('/posts', handlePost());
 
       // Authentication related routes
       this.put('/login', (schema, request) => {
