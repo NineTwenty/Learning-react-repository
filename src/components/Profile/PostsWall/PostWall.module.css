@@ -1,0 +1,4 @@
+.postWall {
+  display: grid;
+  gap: var(--padding-primary);
+}

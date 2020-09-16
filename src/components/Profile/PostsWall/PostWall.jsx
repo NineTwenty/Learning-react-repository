@@ -7,7 +7,7 @@ import { List } from 'components/common/List';
 
 const PostWall = () => {
   return (
-    <div>
+    <div className={style.postWall}>
       <PostingForm header='Create Post' onSubmit={submitPost} />
       <List>
         <Post id='1' />
