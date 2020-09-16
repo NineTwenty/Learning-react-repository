@@ -1,4 +1,4 @@
-import getAPI from './APIUtils';
+import { getAPI, handleFetchResult } from './APIUtils';
 
 export async function fetchDialogs() {
   const response = await getAPI().get('dialogs');
@@ -8,11 +8,11 @@ export async function fetchDialogs() {
 
 export const dialogsAPI = {
   async fetchMembers() {
-    const response = await getAPI().get('dialogs/members')
+    const response = await getAPI().get('dialogs/members');
 
-    return response.body.users
-  }
-}
+    return response.body.users;
+  },
+};
 
 // Authentication API
 export const authAPI = {
@@ -27,14 +27,13 @@ export const authAPI = {
   },
 };
 
+// Posts API
 export const postsAPI = {
-  async sumbitPost(post) {
-    const { body } = await getAPI().post('posts').send({ post });
+  endpointName: 'posts',
 
-    if (body.resultCode) {
-      return body.data.posts;
-    } else {
-      throw Error('Request error');
-    }
+  async sumbitPost(post) {
+    const { body } = await getAPI().post(this.endpointName).send({ post });
+
+    return handleFetchResult(body, this.endpointName);
   },
 };

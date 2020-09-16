@@ -10,7 +10,7 @@ const prefix = (request) => {
 // Callback for getting actual userId
 const userId = () => localStorage.getItem('userId');
 
-const getAPI = () =>
+export const getAPI = () =>
   agent
     .agent()
     .type('application/json')
@@ -19,4 +19,10 @@ const getAPI = () =>
     // set Headers property
     .set('userId', `${userId()}`);
 
-export default getAPI;
+export function handleFetchResult(body, endpointName) {
+  if (body.resultCode) {
+    return body.data[endpointName];
+  } else {
+    throw Error(`Request error: ${endpointName}`);
+  }
+}
