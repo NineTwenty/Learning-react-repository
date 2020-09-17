@@ -8,8 +8,29 @@ import {
 } from 'miragejs';
 import faker from 'faker';
 
+// ==================
+// 1. Serializers
+// 2. Models
+// 3. Factories
+// 4. Routes
+//  4.0 Utils
+//  4.1 Users
+//  4.2 Dialogs
+//  4.3 Messages
+//  4.4 Posts
+//  4.5 Authentication
+// 5. Seeds
+//  5.1 Users
+//  5.2 Dialogs
+//  5.3 Messages
+// ==================
+
 export function makeServer() {
   return new Server({
+    // ==================
+    // 1. Serializers
+    // ==================
+
     serializers: {
       application: RestSerializer.extend({
         serializeIds: 'always',
@@ -21,6 +42,10 @@ export function makeServer() {
         include: ['messages'],
       }),
     },
+
+    // ==================
+    // 2. Models
+    // ==================
 
     models: {
       user: Model.extend({
@@ -41,6 +66,10 @@ export function makeServer() {
         author: belongsTo('user'),
       }),
     },
+
+    // ==================
+    // 3. Factories
+    // ==================
 
     factories: {
       user: Factory.extend({
@@ -71,7 +100,15 @@ export function makeServer() {
       }),
     },
 
+    // ==================
+    // 4. Routes
+    // ==================
+
     routes() {
+      // ==================
+      // 4.0 Utils
+      // ==================
+
       function handleWithDefaultValues(schemaName, defaultValues) {
         // Func to form appropriate relationships object
         function createRelationships(schemaName, userId) {
@@ -145,11 +182,18 @@ export function makeServer() {
 
       this.namespace = 'api';
 
+      // ==================
+      // 4.1 Users
+      // ==================
+
       this.get('/users');
       this.get('/users/:id');
       this.post('/users', handleUser());
 
-      // Dialogs routes
+      // ==================
+      // 4.2 Dialogs
+      // ==================
+
       this.get('/dialogs', (schema, request) => {
         const userId = request.requestHeaders.userId;
         const { dialogIds } = schema.users.find(userId);
@@ -185,14 +229,24 @@ export function makeServer() {
         return schema.users.find(membersIds);
       });
 
-      // Messages routes
+      // ==================
+      // 4.3 Messages
+      // ==================
+
       this.get('/dialogs/:id/messages');
       this.post('/messages', handleMessage());
+
+      // ==================
+      // 4.4 Posts
+      // ==================
 
       this.get('/posts/:id');
       this.post('/posts', handlePost());
 
-      // Authentication related routes
+      // ==================
+      // 4.5 Authentication
+      // ==================
+
       this.put('/login', (schema, request) => {
         const errors = [];
         const { login, password } = JSON.parse(request.requestBody);
@@ -209,7 +263,15 @@ export function makeServer() {
       });
     },
 
+    // ==================
+    // 5. Seeds
+    // ==================
+
     seeds(server) {
+      // ==================
+      // 5.1 Users
+      // ==================
+
       server.create('user', {
         name: 'Charles',
         avatar: 'https://loremflickr.com/48/48?r=1',
@@ -236,6 +298,10 @@ export function makeServer() {
       });
       server.create('user');
 
+      // ==================
+      // 5.2 Dialogs
+      // ==================
+
       server.create('dialog', {
         count: 16,
         time: '1min',
@@ -246,6 +312,10 @@ export function makeServer() {
         time: '4min',
         memberIds: [2, 4],
       });
+
+      // ==================
+      // 5.3 Messages
+      // ==================
 
       server.create('message', {
         text: `I'm stupid`,
