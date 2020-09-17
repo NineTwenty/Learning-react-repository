@@ -25,8 +25,10 @@ import faker from 'faker';
 //  5.3 Messages
 // ==================
 
-export function makeServer() {
+export function makeServer({ environment = 'development' }) {
   return new Server({
+    environment,
+
     // ==================
     // 1. Serializers
     // ==================
