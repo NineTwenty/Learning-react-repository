@@ -111,25 +111,28 @@ export function makeServer({ environment = 'development' }) {
       // 4.0 Utils
       // ==================
 
-      function handleWithDefaultValues(schemaName, defaultValues) {
-        // Func to form appropriate relationships object
-        function createRelationships(schemaName, userId) {
-          switch (schemaName) {
-            case 'posts':
-              return {
-                authorId: userId,
-              };
-            default:
-              return {};
-          }
+      // Func to form appropriate relationships object
+      function createRelationshipsBySchema(schemaName, userId) {
+        switch (schemaName) {
+          case 'posts':
+            return {
+              authorId: userId,
+            };
+          default:
+            return {};
         }
+      }
 
+      function handleWithDefaultValues(schemaName, defaultValues) {
         return function (schema, request) {
           try {
             const attrs = this.normalizedRequestAttrs();
             const userId = request.requestHeaders.userId;
             // Form relationship object
-            const relationships = createRelationships(schemaName, userId);
+            const relationships = createRelationshipsBySchema(
+              schemaName,
+              userId
+            );
 
             const entity = schema[schemaName].create({
               ...defaultValues,
