@@ -23,6 +23,7 @@ import faker from 'faker';
 //  5.1 Users
 //  5.2 Dialogs
 //  5.3 Messages
+//  5.4 Posts
 // ==================
 
 export function makeServer({ environment = 'development' } = {}) {
@@ -53,6 +54,7 @@ export function makeServer({ environment = 'development' } = {}) {
       user: Model.extend({
         dialogs: hasMany(),
         messages: hasMany(),
+        posts: hasMany(),
       }),
 
       dialog: Model.extend({
@@ -98,7 +100,7 @@ export function makeServer({ environment = 'development' } = {}) {
         unread: true,
       }),
       post: Factory.extend({
-        text: faker.lorem.sentences(),
+        postText: faker.lorem.sentences(),
       }),
     },
 
@@ -327,6 +329,15 @@ export function makeServer({ environment = 'development' } = {}) {
         authorId: 1,
         dialogId: 1,
       });
+
+      // ==================
+      // 5.4 Posts
+      // ==================
+
+      server.create('post', {
+        postText: 'Test post',
+        authorId: 4,
+      })
     },
   });
 }
