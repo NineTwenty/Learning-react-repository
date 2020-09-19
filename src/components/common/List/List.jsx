@@ -3,7 +3,9 @@ import style from './List.module.css';
 
 export const List = ({ children }) => {
   // Wrap children elements in li tag
-  const listElements = children.map((el) => <li key={el.props.id}>{el}</li>);
+  const listElements = React.Children.map(children, (el) => (
+    <li key={el.props.id}>{el}</li>
+  ));
 
   return (
     <div className={style.wrapper}>
