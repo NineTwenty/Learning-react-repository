@@ -247,6 +247,26 @@ export function makeServer({ environment = 'development' } = {}) {
       // 4.4 Posts
       // ==================
 
+      this.get('/posts', (schema, request) => {
+        try {
+          const { userId } = request.requestHeaders;
+          const { postIds } = schema.users.find(userId);
+          const postsModel = schema.posts.find(postIds);
+          const posts = postsModel.models.map((model) => model.attrs);
+
+          return {
+            resultCode: 1,
+            data: {
+              posts: [...posts],
+            },
+          };
+        } catch (error) {
+          return {
+            resultCode: 0,
+            error,
+          };
+        }
+      });
       this.get('/posts/:id');
       this.post('/posts', handlePost());
 
@@ -336,8 +356,9 @@ export function makeServer({ environment = 'development' } = {}) {
 
       server.create('post', {
         postText: 'Test post',
-        authorId: 4,
-      })
+        authorId: '4',
+        views: 0,
+      });
     },
   });
 }

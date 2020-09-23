@@ -36,4 +36,10 @@ export const postsAPI = {
 
     return handleFetchResult(body, this.endpointName);
   },
+
+  async fetchPosts() {
+    const { body } = await getAPI().get(this.endpointName);
+
+    return handleFetchResult(body, this.endpointName);
+  }
 };

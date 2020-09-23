@@ -23,6 +23,17 @@ export const submitPost = createAsyncThunk(
   }
 );
 
+export const updatePosts = createAsyncThunk(
+  `${sliceName}/updatePosts`,
+  async (_, thunkAPI) => {
+    try {
+      return await postsAPI.fetchPosts();
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
+
 // Slice
 
 const postsSlice = createSlice({
@@ -32,13 +43,13 @@ const postsSlice = createSlice({
     allIds: [],
   },
   extraReducers: {
-    [submitPost.fulfilled]: (state, action) => {
+    [updatePosts.fulfilled]: (state, action) => {
       // Format new posts
       const posts = formByIdsList(action.payload);
 
-      state.byId = { ...state.byId, ...posts };
+      state.byId = { ...posts };
       // Add new ids
-      state.allIds.push(...Object.keys(posts).map(Number));
+      state.allIds = Object.keys(posts).map(Number);
     },
   },
 });
@@ -58,4 +69,7 @@ reducerRegistry.register(postsSlice.name, postsReducer);
 
 // Selectors
 
-export const getIsLoadingPostStatus = state => state[postsSlice.name].isLoading
+export const getIsLoadingPostStatus = (state) =>
+  state[postsSlice.name].isLoading;
+
+export const getPostsIds = (state) => state[postsSlice.name].data.allIds;
