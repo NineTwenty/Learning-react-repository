@@ -73,3 +73,5 @@ export const getIsLoadingPostStatus = (state) =>
   state[postsSlice.name].isLoading;
 
 export const getPostsIds = (state) => state[postsSlice.name].data.allIds;
+
+export const getPostById = (id) => (state) => state[postsSlice.name].data.byId[id]
