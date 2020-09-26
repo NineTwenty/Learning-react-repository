@@ -3,7 +3,7 @@ import style from './Profile.module.css';
 import PostWall from './PostsWall/PostWall';
 import { Tabs } from '../common/Tabs';
 import { Tab } from '../common/Tab';
-import { Route, useRouteMatch } from 'react-router-dom';
+import { Route, useRouteMatch, Redirect } from 'react-router-dom';
 
 const Profile = (props) => {
   const { url } = useRouteMatch();
@@ -22,6 +22,7 @@ const Profile = (props) => {
         <div className={style.aside}></div>
         <PostWall className={style.postwall} />
       </Route>
+      <Redirect exact from={url} to={`${url}/posts`} />
     </main>
   );
 };
