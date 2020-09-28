@@ -5,6 +5,8 @@
   justify-content: center;
   padding: 1.2em;
   border-radius: 0.5em;
+  text-decoration: none;
+  color: var(--color-text-ui);
   transition: background-color 0.5s;
 }
 
