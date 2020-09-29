@@ -1,28 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 .app-wrapper {
-  display: grid;
   width: 100vw;
   margin: 0 auto;
-
-  grid-template-rows: 6vh 1fr;
-  grid-template-columns: 2fr 10fr;
-
-  grid-template-areas: ' header header'
-    'nav main';
 
   font-family: Poppins;
 }
 
 .header {
-  grid-area: header;
 }
 
 .navbar {
-  grid-area: nav;
 }
 
 .app-wrapper-content {
-  grid-area: main;
   background-color: rgb(100, 133, 134);
 }
