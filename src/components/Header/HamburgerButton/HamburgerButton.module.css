@@ -1,0 +1,15 @@
+.hamButton {
+  border: none;
+  background: none;
+  color: var(--color-text-ui);
+}
+
+.hamButton:focus {
+  outline: none;
+}
+
+.hamButton:focus > span,
+.isActive > span {
+  transition: color 0.5s ease;
+  color: var(--color-primary);
+}

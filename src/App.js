@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './App.css';
 import './constants.css';
-import HeaderContainer from './components/Header/HeaderContainer';
+import Header from 'components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import News from './components/News/News';
@@ -37,7 +37,9 @@ function PrivateRoute({ children, ...rest }) {
 
 const App = () => {
   const loggedIn = useSelector(getLoggedInStatus);
-  
+
+  const [isSideNavForceOpen, setSideNavForceOpen] = useState(false);
+
   return (
     <>
       <Switch>
@@ -46,8 +48,11 @@ const App = () => {
         </Route>
         <Route>
           <div className='app-wrapper'>
-            <HeaderContainer />
-            <Navbar />
+            <Header
+              isSideNavForceOpen={isSideNavForceOpen}
+              setSideNavForceOpen={setSideNavForceOpen}
+            />
+            <Navbar isSideNavForceOpen={isSideNavForceOpen} />
             <div className='app-wrapper-content'>
               <Switch>
                 <PrivateRoute path='/dialogs/:id?'>
