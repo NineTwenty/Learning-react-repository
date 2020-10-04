@@ -1,4 +1,6 @@
 .header {
+  position: sticky;
+  top: 0;
   background-color: navy;
   display: flex;
   justify-content: space-between;
