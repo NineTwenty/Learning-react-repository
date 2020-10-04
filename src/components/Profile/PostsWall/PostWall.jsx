@@ -26,7 +26,7 @@ const PostWall = () => {
 
   const postsIds = useSelector(getPostsIds);
 
-  const posts = postsIds.map((id) => <Post id={id} key={id} />);
+  const posts = postsIds.map((id) => <Post id={id} key={id} />).reverse();
 
   return (
     <div className={style.postWall}>
