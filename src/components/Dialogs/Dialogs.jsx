@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Dialogs.module.css';
+import styles from './Dialogs.module.css';
 import { useParams } from 'react-router-dom';
 
 import Dialog from './Dialog/Dialog';
@@ -39,8 +39,8 @@ const Dialogs = ({ dialogs, members, isFetching, membersIsFetching }) => {
 
   // <Messages>{id ? populateMessages() : ''}</Messages>
   return (
-    <div className={s.dialogsWrapper}>
-      <div className={s.dialogs}>
+    <div className={styles.dialogsWrapper}>
+      <div className={styles.dialogs}>
         <h2>Dialogs</h2>
         {isFetching || membersIsFetching ? 'Loading' : populateDialogs(dialogs)}
       </div>
