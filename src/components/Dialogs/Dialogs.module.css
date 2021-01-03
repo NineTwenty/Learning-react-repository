@@ -2,6 +2,10 @@
   display: grid;
   grid-template-columns: 2fr 10fr;
 
+  margin: 0 auto;
+  padding: var(--padding-primary);
+  width: 82vw;
+
   height: 94vh;
 
   z-index: 0;
