@@ -45,11 +45,13 @@ const Dialogs = ({ dialogs, members, isFetching, membersIsFetching }) => {
         {isFetching || membersIsFetching ? 'Loading' : populateDialogs(dialogs)}
       </div>
 
-      <Chat>
-        <ChatHeader />
-        {idParam ? `${idParam}` : 'null'}
-        <ChatInputs />
-      </Chat>
+      <div className={styles.dialogsChat}>
+        <Chat>
+          <ChatHeader />
+          {idParam ? `${idParam}` : 'null'}
+          <ChatInputs />
+        </Chat>
+      </div>
     </div>
   );
 };
