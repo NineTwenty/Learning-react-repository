@@ -11,12 +11,19 @@
 }
 
 .dialogs {
+  flex: 1 1;
+
   /* padding: 2rem 0.5rem 2rem 1rem; */
   background: var(--color-background);
 }
 
 .dialogsChat {
   flex: 1 1 80%;
+  display: none;
+}
+
+.dialogsWrapper.dialogChosen .dialogsChat {
+  display: inline;
 }
 
 @media (min-width: 769px) {

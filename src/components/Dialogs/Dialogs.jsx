@@ -11,6 +11,7 @@ import ChatInputs from './Chat/ChatInputs/ChatInputs';
 
 const Dialogs = ({ dialogs, members, isFetching, membersIsFetching }) => {
   const { id: idParam } = useParams();
+  const isDialogChosen = !!idParam;
 
   const populateDialogs = (dialogs) => {
     // Func to find correct members for every dialog
@@ -38,8 +39,14 @@ const Dialogs = ({ dialogs, members, isFetching, membersIsFetching }) => {
   // const selectedDialog = dialogs.filter((user) => user.id === +id)[0];
 
   // <Messages>{id ? populateMessages() : ''}</Messages>
+
+  // Show Chat if dialog is chosen
+  const wrapperClasses = `${styles.dialogsWrapper} ${
+    isDialogChosen ? styles.dialogChosen : ''
+  }`;
+
   return (
-    <div className={styles.dialogsWrapper}>
+    <div className={wrapperClasses}>
       <div className={styles.dialogs}>
         <h2>Dialogs</h2>
         {isFetching || membersIsFetching ? 'Loading' : populateDialogs(dialogs)}
