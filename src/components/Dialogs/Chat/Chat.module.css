@@ -3,6 +3,8 @@
   display: grid;
   grid-template-areas: 'header' 'messages' 'inputs';
   grid-template-rows: 1.4fr 10fr 3fr;
+
+  height: 100%;
 }
 
 .chatHeader {
