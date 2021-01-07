@@ -10,7 +10,7 @@ import MessageItem from './Chat/Messages/MessageItem/MessageItem';
 import ChatInputs from './Chat/ChatInputs/ChatInputs';
 
 const Dialogs = ({ dialogs, members, isFetching, membersIsFetching }) => {
-  const { idParam } = useParams();
+  const { id: idParam } = useParams();
 
   const populateDialogs = (dialogs) => {
     // Func to find correct members for every dialog
