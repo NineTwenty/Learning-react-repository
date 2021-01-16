@@ -2,10 +2,16 @@
   display: flex;
   flex-flow: column;
 
-  margin: 0 auto;
+  margin: var(--padding-primary) auto;
   padding: var(--padding-primary);
+  border-radius: var(--border-radius-small);
 
-  height: 94vh;
+  width: 98vw;
+  height: 88vh;
+
+  background: var(--color-background);
+
+  box-shadow: -3px 3px 16px -4px #dde5eb;
 
   z-index: 0;
 }
@@ -13,7 +19,6 @@
 .dialogs {
   flex: 1 1;
 
-  /* padding: 2rem 0.5rem 2rem 1rem; */
   background: var(--color-background);
 }
 
@@ -30,5 +35,8 @@
   .dialogsWrapper {
     flex-flow: row;
     width: 82vw;
+    height: auto;
+    min-height: 70vh;
+    max-height: 88vh;
   }
 }
