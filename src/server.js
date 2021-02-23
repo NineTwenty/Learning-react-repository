@@ -36,13 +36,9 @@ export function makeServer({ environment = 'development' } = {}) {
 
     serializers: {
       application: RestSerializer.extend({
-        serializeIds: 'always',
-      }),
-      user: RestSerializer.extend({
-        include: ['dialogs'],
-      }),
-      dialog: RestSerializer.extend({
-        include: ['messages'],
+        include: (request) => {
+          return [request.queryParams.include];
+        },
       }),
     },
 
@@ -209,33 +205,6 @@ export function makeServer({ environment = 'development' } = {}) {
       });
       this.post('/dialogs', handleDialog());
 
-      // Dialogs members
-      this.get('/dialogs/members', (schema, request) => {
-        const isNotRequester = (id) => !(id === +userId);
-        const filterMembers = (acc, dialog) => [
-          ...acc,
-          ...dialog.attrs.memberIds.filter(isNotRequester),
-        ];
-
-        // Requster id
-        const { userId } = request.requestHeaders;
-
-        // Find id of requester dialogs
-        const {
-          attrs: { dialogIds },
-        } = schema.users.find(userId);
-
-        // Find dialogs
-        const { models: dialogs } = schema.dialogs.find(dialogIds);
-
-        // Take ids of dialogs members
-        // Except of requester
-        const membersIds = dialogs.reduce(filterMembers, []);
-
-        // Find by ids and return
-        return schema.users.find(membersIds);
-      });
-
       // ==================
       // 4.3 Messages
       // ==================
@@ -248,26 +217,10 @@ export function makeServer({ environment = 'development' } = {}) {
       // ==================
 
       this.get('/posts', (schema, request) => {
-        try {
-          const { userId } = request.requestHeaders;
-          const { postIds } = schema.users.find(userId);
-          const postsModel = schema.posts.find(postIds);
-          const posts = postsModel.models.map((model) => model.attrs);
-
-          return {
-            resultCode: 1,
-            data: {
-              posts: [...posts],
-            },
-          };
-        } catch (error) {
-          return {
-            resultCode: 0,
-            error,
-          };
-        }
+        const { userId } = request.requestHeaders;
+        const { postIds } = schema.users.find(userId);
+        return schema.posts.find(postIds);
       });
-      this.get('/posts/:id');
       this.post('/posts', handlePost());
 
       // ==================
