@@ -7,21 +7,22 @@ const prefix = (request) => {
   return request;
 };
 
-// Callback for getting actual userId
+// func to get actual userId
 const userId = () => localStorage.getItem('userId');
 
-export const getAPI = () =>
+// func to get superagent instance
+export const getAgent = () =>
   agent
     .agent()
     .type('application/json')
     // Apply URL prefix
     .use(prefix)
     // set Headers property
-    .set('userId', `${userId()}`);
+    .set('userId', `${userId()}`); // keep userId actual every call
 
 export function handleFetchResult(body, endpointName) {
-  if (body.resultCode) {
-    return body.data[endpointName];
+  if (body[endpointName]) {
+    return body[endpointName];
   } else {
     throw Error(`Request error: ${endpointName}`);
   }

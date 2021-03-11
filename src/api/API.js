@@ -1,14 +1,14 @@
-import { getAPI, handleFetchResult } from './APIUtils';
+import { getAgent, handleFetchResult } from './APIUtils';
 
 export async function fetchDialogs() {
-  const response = await getAPI().get('dialogs');
+  const response = await getAgent().get('dialogs?include=members');
 
   return response.body;
 }
 
 export const dialogsAPI = {
   async fetchMembers() {
-    const response = await getAPI().get('dialogs/members');
+    const response = await getAgent().get('dialogs?include=members');
 
     return response.body.users;
   },
@@ -20,7 +20,7 @@ export const authAPI = {
     // Login put request
     const {
       body: { success, user, errors },
-    } = await getAPI().put('login').send({ login, password });
+    } = await getAgent().put('login').send({ login, password });
 
     // Return payload based on success status
     return success ? { success, user } : { success, errors };
@@ -32,14 +32,28 @@ export const postsAPI = {
   endpointName: 'posts',
 
   async sumbitPost(post) {
-    const { body } = await getAPI().post(this.endpointName).send({ post });
+    const { body } = await getAgent().post(this.endpointName).send({ post });
 
     return handleFetchResult(body, this.endpointName);
   },
 
   async fetchPosts() {
-    const { body } = await getAPI().get(this.endpointName);
+    const response = await getAgent().get(this.endpointName);
+    console.dir(response);
+    return handleFetchResult(response.body, this.endpointName);
+  },
+};
 
-    return handleFetchResult(body, this.endpointName);
-  }
+export const api = {
+  /**
+   * Fetch with get method
+   * @param {string} url
+   */
+  async get(url) {
+    const { ok, body } = await getAgent().get(url);
+
+    if (ok) {
+      return body;
+    }
+  },
 };
