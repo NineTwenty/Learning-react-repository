@@ -1,9 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import s from './Dialog.module.css';
 import { Link } from 'react-router-dom';
 import Avatar from '../../Profile/Avatar/Avatar';
+import { selectUserById } from 'data/dialogs-members-reducer';
 
-export default ({ avatar, name, count, time, id }) => {
+export default ({ id, time, count, memberId }) => {
+  const { avatar, name } = useSelector(selectUserById(memberId));
   return (
     <div className={s.dialogWrapper}>
       <Avatar className={s.dialogAvatar} avatar={avatar} name={name} />

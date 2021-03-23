@@ -1,18 +1,4 @@
-import { getAgent, handleFetchResult } from './APIUtils';
-
-export async function fetchDialogs() {
-  const response = await getAgent().get('dialogs?include=members');
-
-  return response.body;
-}
-
-export const dialogsAPI = {
-  async fetchMembers() {
-    const response = await getAgent().get('dialogs?include=members');
-
-    return response.body.users;
-  },
-};
+import { getAgent } from './APIUtils';
 
 // Authentication API
 export const authAPI = {

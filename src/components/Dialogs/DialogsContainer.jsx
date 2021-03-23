@@ -8,7 +8,6 @@ import {
   getDialogs,
 } from '../../data/dialogs-reducer';
 import { connect } from 'react-redux';
-import { getMembers } from '../../data/dialogs-members-reducer';
 
 // Class container for making ajax calls
 class DialogsContainer extends React.Component {
@@ -21,13 +20,6 @@ class DialogsContainer extends React.Component {
       // And then require them
       this.props.getDialogs();
     }
-
-    const { membersIsLoaded, membersIsFetching } = this.props;
-
-    // Same for members
-    if (!membersIsLoaded && !membersIsFetching) {
-      this.props.getMembers();
-    }
   }
 
   render() {
@@ -37,7 +29,7 @@ class DialogsContainer extends React.Component {
 
 const mapStateToProps = ({
   authentication: {
-    user: { avatar, username },
+    user: { avatar, username, id: userId },
   },
   dialogsPage: {
     dialogs: { isFetching, isLoaded, selectedDialog, dialogs },
@@ -49,6 +41,7 @@ const mapStateToProps = ({
   },
 }) => {
   return {
+    userId,
     dialogs,
     avatar,
     username,
@@ -65,5 +58,4 @@ export default connect(mapStateToProps, {
   addNewMessage,
   updateNewMessage,
   getDialogs,
-  getMembers,
 })(DialogsContainer);

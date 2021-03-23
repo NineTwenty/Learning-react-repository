@@ -9,25 +9,26 @@ import Messages from './Chat/Messages/Messages';
 import MessageItem from './Chat/Messages/MessageItem/MessageItem';
 import ChatInputs from './Chat/ChatInputs/ChatInputs';
 
-const Dialogs = ({ dialogs, members, isFetching, membersIsFetching }) => {
+const Dialogs = ({
+  dialogs,
+  members,
+  userId,
+  isFetching,
+  membersIsFetching,
+}) => {
   const { id: idParam } = useParams();
   const isDialogChosen = !!idParam;
 
   const populateDialogs = (dialogs) => {
     // Func to find correct members for every dialog
-    const determinateMember = (dialog) => {
-      return members.find((member) => {
-        return dialog.members.some((id) => id === member.id);
-      });
-    };
-
+    const determinateMember = (dialog) =>
+      dialog.members.find((member) => member !== userId);
     // Check if dialogs and members is not null
     if (dialogs && members) {
       // And return filled Dialogs then
       return dialogs.map((dialog) => {
-        const member = determinateMember(dialog);
-
-        return <Dialog key={dialog.id} {...dialog} {...member} />;
+        const memberId = determinateMember(dialog);
+        return <Dialog key={dialog.id} {...dialog} memberId={memberId} />;
       });
     }
   };

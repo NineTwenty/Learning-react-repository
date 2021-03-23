@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import { fetchDialogs } from '../api/API';
+import { api, fetchDialogs } from '../api/API';
+import reducerRegistry from './reducerRegistery';
 import membersListReducer, {
   reducerName as membersList,
+  fetchDialogsMembersSuccess,
 } from './dialogs-members-reducer';
-import reducerRegistry from './reducerRegistery';
 
 const ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE';
 
@@ -33,7 +34,7 @@ const dialogsFetchRequest = () => ({
 const dialogsFetchSuccess = (data) => ({
   type: FETCH_DIALOGS_SUCCESS,
   receivedAt: Date.now(),
-  dialogs: data.dialogs,
+  dialogs: data,
 });
 
 const dialogsFetchFailed = (error) => ({
@@ -42,12 +43,13 @@ const dialogsFetchFailed = (error) => ({
 });
 
 // Dialogs fetch thunk
-export const getDialogs = () => (dispatch) => {
+export const getDialogs = () => async (dispatch) => {
   // Set isFetching flag to true
   dispatch(dialogsFetchRequest());
-
   // Fetch and set dialogs
-  fetchDialogs().then((data) => dispatch(dialogsFetchSuccess(data)));
+  const { dialogs, users } = await api.get('dialogs?include=members');
+  dispatch(dialogsFetchSuccess(dialogs));
+  dispatch(fetchDialogsMembersSuccess(users))
 };
 
 // Message creating handler

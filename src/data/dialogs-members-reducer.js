@@ -8,7 +8,7 @@ const fetchDialogsMembersPending = () => ({
   type: FETCH_DIALOGS_MEMBERS_PENDING,
 });
 
-const fetchDialogsMembersSuccess = (members) => ({
+export const fetchDialogsMembersSuccess = (members) => ({
   type: FETCH_DIALOGS_MEMBERS_SUCCESS,
   members,
 });
@@ -17,15 +17,6 @@ const fetchDialogsMembersFailure = (error) => ({
   type: FETCH_DIALOGS_MEMBERS_FAILURE,
   error,
 });
-
-// Members fetch thunk
-export const getMembers = () => (dispatch) => {
-  dispatch(fetchDialogsMembersPending());
-
-  dialogsAPI.fetchMembers().then((members) => {
-    dispatch(fetchDialogsMembersSuccess(members));
-  });
-};
 
 const initialState = {
   members: null,
@@ -55,5 +46,8 @@ function membersListReducer(state = initialState, action) {
       return state;
   }
 }
+
+export const selectUserById = (id) => (state) =>
+  state.dialogsPage.membersList.members.find((member) => member.id === id);
 
 export default membersListReducer;
