@@ -1,77 +1,89 @@
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { api } from 'api/API';
 import {
-  createSlice,
-  createAsyncThunk,
-  combineReducers,
-  createReducer,
-} from '@reduxjs/toolkit';
-import reducerRegistry from 'data/reducerRegistery';
-import { formByIdsList, reducerLoadingMap } from 'data/utils';
-import { postsAPI } from 'api/API';
+  createLoadingActions,
+  createLoadingMatchers,
+  createLoadingReducers,
+} from 'data/utils';
 
 const sliceName = 'posts';
 
-// Thunks
+// Loading reducers
+const { handleRequestStart, handleRequestEnd } = createLoadingReducers();
+// Loading matchers
+const { isStartOfRequest, isEndOfRequest } = createLoadingMatchers(sliceName);
 
-export const submitPost = createAsyncThunk(
-  `${sliceName}/submitPost`,
-  async (posts, thunkAPI) => {
-    try {
-      return await postsAPI.sumbitPost(posts);
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
+// Adapter
+const adapter = createEntityAdapter();
 
-export const updatePosts = createAsyncThunk(
-  `${sliceName}/updatePosts`,
-  async (_, thunkAPI) => {
-    try {
-      return await postsAPI.fetchPosts();
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
+const initialState = adapter.getInitialState({ status: 'idle' });
+
+const getRequest = createLoadingActions(sliceName, 'get');
+const submitRequest = createLoadingActions(sliceName, 'submit');
 
 // Slice
 
 const postsSlice = createSlice({
   name: sliceName,
-  initialState: {
-    byId: {},
-    allIds: [],
+  initialState,
+  reducers: {
+    addOne: adapter.addOne,
+    addMany: adapter.addMany,
+    setAll: adapter.setAll,
+    removeOne: adapter.removeOne,
+    removeMany: adapter.removeMany,
+    updateOne: adapter.updateOne,
+    updateMany: adapter.updateMany,
+    upsertOne: adapter.upsertOne,
+    upsertMany: adapter.upsertMany,
   },
-  extraReducers: {
-    [updatePosts.fulfilled]: (state, action) => {
-      // Format new posts
-      const posts = formByIdsList(action.payload);
-
-      state.byId = { ...posts };
-      // Add new ids
-      state.allIds = Object.keys(posts).map(Number);
-    },
+  extraReducers: (builder) => {
+    // setAll payload of 'success' get action
+    builder.addCase(getRequest.success.type, adapter.setAll);
+    builder.addCase(submitRequest.success.type, adapter.addOne);
+    builder.addMatcher(isStartOfRequest, handleRequestStart);
+    builder.addMatcher(isEndOfRequest, handleRequestEnd);
   },
 });
 
-// Create complete reducer
+// Reducer
 
-const postsLoading = createReducer(false, reducerLoadingMap(submitPost));
+export const postsReducer = postsSlice.reducer;
 
-export const postsReducer = combineReducers({
-  data: postsSlice.reducer,
-  isLoading: postsLoading,
-});
+// Actions
 
-// Registration
+const actions = postsSlice.actions;
 
-reducerRegistry.register(postsSlice.name, postsReducer);
+// Thunks
+
+export const fetchPosts = () => async (dispatch) => {
+  dispatch(getRequest.request());
+  try {
+    const { posts } = await api.get('posts');
+    dispatch(getRequest.success(posts));
+  } catch (error) {
+    dispatch(getRequest.failure(error));
+  }
+};
+
+export const submitPost = (newPost) => async (dispatch) => {
+  dispatch(submitRequest.request());
+  try {
+    const { post } = await api.post('posts', newPost);
+    dispatch(submitRequest.success(post));
+  } catch (error) {
+    dispatch(submitRequest.failure());
+  }
+};
 
 // Selectors
 
+const selectors = adapter.getSelectors((state) => state.entities[sliceName]);
+
+const { selectIds, selectById } = selectors;
+
 export const getIsLoadingPostStatus = (state) =>
-  state[postsSlice.name].isLoading;
+  state.entities[sliceName].status !== 'idle';
 
-export const getPostsIds = (state) => state[postsSlice.name].data.allIds;
-
-export const getPostById = (id) => (state) => state[postsSlice.name].data.byId[id]
+export const selectPostsIds = (state) => selectIds(state);
+export const selectPostById = (id) => (state) => selectById(state, id);

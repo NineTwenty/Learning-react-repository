@@ -1,12 +1,12 @@
 import React from 'react';
 import style from './Post.module.css';
 import { useSelector } from 'react-redux';
-import { getPostById } from 'data/postSlice/postsSlice';
+import { selectPostById } from 'data/postSlice/postsSlice';
 import { Separator } from 'components/common/Separator';
 import Button from 'components/common/Button';
 
 export const Post = ({ id }) => {
-  const post = useSelector(getPostById(id));
+  const post = useSelector(selectPostById(id));
 
   return (
     <div className={style.post}>

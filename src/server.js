@@ -221,7 +221,14 @@ export function makeServer({ environment = 'development' } = {}) {
         const { postIds } = schema.users.find(userId);
         return schema.posts.find(postIds);
       });
-      this.post('/posts', handlePost());
+      this.post('/posts', (schema, request) => {
+        const { userId } = request.requestHeaders;
+        const post = JSON.parse(request.requestBody);
+        if (post && post.postText) {
+          post.authorId = userId;
+          return schema.posts.create(post);
+        }
+      });
 
       // ==================
       // 4.5 Authentication

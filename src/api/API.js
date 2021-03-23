@@ -27,23 +27,6 @@ export const authAPI = {
   },
 };
 
-// Posts API
-export const postsAPI = {
-  endpointName: 'posts',
-
-  async sumbitPost(post) {
-    const { body } = await getAgent().post(this.endpointName).send({ post });
-
-    return handleFetchResult(body, this.endpointName);
-  },
-
-  async fetchPosts() {
-    const response = await getAgent().get(this.endpointName);
-    console.dir(response);
-    return handleFetchResult(response.body, this.endpointName);
-  },
-};
-
 export const api = {
   /**
    * Fetch with get method

@@ -3,10 +3,9 @@ import style from './PostWall.module.css';
 import { Post } from './Post/Post';
 import PostingForm from './PostingForm';
 import {
+  fetchPosts,
   submitPost,
-  getPostsIds,
-  updatePosts,
-  getIsLoadingPostStatus,
+  selectPostsIds,
 } from 'data/postSlice/postsSlice';
 import { List } from 'components/common/List';
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,17 +13,15 @@ import { useSelector, useDispatch } from 'react-redux';
 const PostWall = () => {
   const dispatch = useDispatch();
 
-  const postsIsLoading = useSelector(getIsLoadingPostStatus);
-
-  // Update posts on each render
-  // if there no active loading
   useEffect(() => {
-    if (!postsIsLoading) {
-      dispatch(updatePosts());
-    }
-  }, [dispatch, postsIsLoading]);
+    dispatch(fetchPosts());
+    const interval = setInterval(() => {
+      dispatch(fetchPosts());
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [dispatch]);
 
-  const postsIds = useSelector(getPostsIds);
+  const postsIds = useSelector(selectPostsIds);
 
   const posts = postsIds.map((id) => <Post id={id} key={id} />).reverse();
 
