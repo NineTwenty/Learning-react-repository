@@ -1,10 +1,6 @@
 import React from 'react';
 import styles from './ChatImputs.module.css';
 import { useParams } from 'react-router-dom';
-import {
-  addMessageCreator,
-  updateNewMessageTextCreator,
-} from '../../../../data/dialogs-reducer';
 
 const ChatImputs = (props) => {
   // { dispatch, textareaState: {text} }
