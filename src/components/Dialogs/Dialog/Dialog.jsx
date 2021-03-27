@@ -3,10 +3,14 @@ import { useSelector } from 'react-redux';
 import s from './Dialog.module.css';
 import { Link } from 'react-router-dom';
 import Avatar from '../../Profile/Avatar/Avatar';
-import { selectUserById } from 'data/dialogs-members-reducer';
+import { selectUserById } from 'data/usersSlice';
 
 export default ({ id, time, count, memberId }) => {
-  const { avatar, name } = useSelector(selectUserById(memberId));
+  const user = useSelector(selectUserById(memberId));
+  if (!user) {
+    return (<div>Loading</div>)
+  }
+  const { avatar, name } = user;
   return (
     <div className={s.dialogWrapper}>
       <Avatar className={s.dialogAvatar} avatar={avatar} name={name} />

@@ -1,10 +1,7 @@
 import { combineReducers } from 'redux';
 import { api, fetchDialogs } from '../api/API';
 import reducerRegistry from './reducerRegistery';
-import membersListReducer, {
-  reducerName as membersList,
-  fetchDialogsMembersSuccess,
-} from './dialogs-members-reducer';
+import { addUsers } from './usersSlice';
 
 const ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE';
 
@@ -49,7 +46,7 @@ export const getDialogs = () => async (dispatch) => {
   // Fetch and set dialogs
   const { dialogs, users } = await api.get('dialogs?include=members');
   dispatch(dialogsFetchSuccess(dialogs));
-  dispatch(fetchDialogsMembersSuccess(users))
+  dispatch(addUsers(users))
 };
 
 // Message creating handler
@@ -107,7 +104,7 @@ function dialogsReducer(state = initialState, action) {
 
 const dialogsPage = combineReducers({
   [reducerName]: dialogsReducer,
-  [membersList]: membersListReducer,
+  // [membersList]: membersListReducer,
 });
 
 reducerRegistry.register('dialogsPage', dialogsPage);

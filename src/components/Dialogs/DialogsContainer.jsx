@@ -33,11 +33,6 @@ const mapStateToProps = ({
   },
   dialogsPage: {
     dialogs: { isFetching, isLoaded, selectedDialog, dialogs },
-    membersList: {
-      members,
-      isFetching: membersIsFetching,
-      isLoaded: membersIsLoaded,
-    },
   },
 }) => {
   return {
@@ -48,9 +43,6 @@ const mapStateToProps = ({
     isFetching,
     isLoaded,
     selectedDialog,
-    members,
-    membersIsFetching,
-    membersIsLoaded,
   };
 };
 

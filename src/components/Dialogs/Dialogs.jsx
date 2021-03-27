@@ -11,10 +11,8 @@ import ChatInputs from './Chat/ChatInputs/ChatInputs';
 
 const Dialogs = ({
   dialogs,
-  members,
   userId,
   isFetching,
-  membersIsFetching,
 }) => {
   const { id: idParam } = useParams();
   const isDialogChosen = !!idParam;
@@ -24,7 +22,7 @@ const Dialogs = ({
     const determinateMember = (dialog) =>
       dialog.members.find((member) => member !== userId);
     // Check if dialogs and members is not null
-    if (dialogs && members) {
+    if (dialogs) {
       // And return filled Dialogs then
       return dialogs.map((dialog) => {
         const memberId = determinateMember(dialog);
@@ -50,7 +48,7 @@ const Dialogs = ({
     <div className={wrapperClasses}>
       <div className={styles.dialogs}>
         <h2>Dialogs</h2>
-        {isFetching || membersIsFetching ? 'Loading' : populateDialogs(dialogs)}
+        {isFetching ? 'Loading' : populateDialogs(dialogs)}
       </div>
 
       <div className={styles.dialogsChat}>
