@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "faker": "^5.0.0",
     "formik": "^2.1.5",
+    "jsonwebtoken": "^8.5.1",
     "ky": "^0.20.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
