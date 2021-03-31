@@ -31,21 +31,12 @@ const LoginForm = ({ submitLoginForm, finishLogin }) => {
     const handleErrors = (errors) => {
       if (errors) {
         finishWithErrors(errors);
-      } else {
-        finishWithoutErrors();
       }
 
       // Finish with setting errors to form status
       function finishWithErrors(errors) {
         formUtils.setStatus({
           formErrors: [...errors],
-        });
-      }
-
-      // Finish with errors cleaning
-      function finishWithoutErrors() {
-        formUtils.setStatus({
-          formErrors: null,
         });
       }
     };
