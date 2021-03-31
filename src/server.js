@@ -5,6 +5,7 @@ import {
   belongsTo,
   RestSerializer,
   Factory,
+  Response,
 } from 'miragejs';
 import faker from 'faker';
 
@@ -25,6 +26,9 @@ import faker from 'faker';
 //  5.3 Messages
 //  5.4 Posts
 // ==================
+
+const secret =
+  'B850B9761597B154641D8C3D7768F8AE500FE6BBA5409C1616D0DFC15495F4E5';
 
 export function makeServer({ environment = 'development' } = {}) {
   return new Server({
@@ -198,7 +202,7 @@ export function makeServer({ environment = 'development' } = {}) {
       // ==================
 
       this.get('/dialogs', (schema, request) => {
-        const userId = request.requestHeaders.userId;
+        const userId = authenticateUser(request);
         const { dialogIds } = schema.users.find(userId);
 
         return schema.dialogs.find(dialogIds);
@@ -217,12 +221,14 @@ export function makeServer({ environment = 'development' } = {}) {
       // ==================
 
       this.get('/posts', (schema, request) => {
-        const { userId } = request.requestHeaders;
+        const userId = authenticateUser(request);
         const { postIds } = schema.users.find(userId);
+
         return schema.posts.find(postIds);
       });
       this.post('/posts', (schema, request) => {
-        const { userId } = request.requestHeaders;
+        const userId = authenticateUser(request);
+
         const post = JSON.parse(request.requestBody);
         if (post && post.postText) {
           post.authorId = userId;
@@ -234,19 +240,50 @@ export function makeServer({ environment = 'development' } = {}) {
       // 4.5 Authentication
       // ==================
 
-      this.put('/login', (schema, request) => {
+      function createJWT(user) {
+        const { id: userId } = user;
+        const jwt = require('jsonwebtoken');
+        return jwt.sign({ userId }, secret, { expiresIn: '15m' });
+      }
+
+      function verifyJWT(authHeader) {
+        let token;
+
+        if (authHeader.startsWith('Bearer ')) {
+          token = authHeader.substring(7, authHeader.length);
+        }
+
+        const jwt = require('jsonwebtoken');
+        return jwt.verify(token, secret);
+      }
+
+      function authenticateUser(request) {
+        const { Authorization } = request.requestHeaders;
+        const { userId } = verifyJWT(Authorization);
+        return userId;
+      }
+
+      this.post('/auth/login', (schema, request) => {
         const errors = [];
         const { login, password } = JSON.parse(request.requestBody);
         const user = schema.users.findBy({ login });
 
-        // Validation
+        // Authentication
         if (user && user.password === password) {
-          return { success: true, user };
+          const token = createJWT(user);
+          return { body: { token } };
         }
 
+        // Add error
         errors.push('Wrong login or password');
         // Return submission erros
-        return { success: false, errors };
+        return new Response(401, {}, errors);
+      });
+
+      // Get current user
+      this.get('/auth/me', (schema, request) => {
+        const userId = authenticateUser(request);
+        return schema.users.find(userId);
       });
     },
 

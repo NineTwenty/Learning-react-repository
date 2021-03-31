@@ -7,8 +7,14 @@ const prefix = (request) => {
   return request;
 };
 
-// func to get actual userId
-const userId = () => localStorage.getItem('userId');
+const getToken = () => localStorage.getItem('token');
+
+const getAuthString = () => {
+  const token = getToken();
+  if (token) return `Bearer ${token}`;
+
+  return '';
+};
 
 // func to get superagent instance
 export const getAgent = () =>
@@ -18,7 +24,7 @@ export const getAgent = () =>
     // Apply URL prefix
     .use(prefix)
     // set Headers property
-    .set('userId', `${userId()}`); // keep userId actual every call
+    .set('Authorization', getAuthString()); // keep token actual every call
 
 export function handleFetchResult(body, endpointName) {
   if (body[endpointName]) {

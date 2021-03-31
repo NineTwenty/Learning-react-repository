@@ -3,13 +3,24 @@ import { getAgent } from './APIUtils';
 // Authentication API
 export const authAPI = {
   async authLogin(login, password) {
-    // Login put request
-    const {
-      body: { success, user, errors },
-    } = await getAgent().put('login').send({ login, password });
+    try {
+      // Login request
+      const {
+        body: { token },
+      } = await getAgent().post('auth/login').send({ login, password });
 
-    // Return payload based on success status
-    return success ? { success, user } : { success, errors };
+      if (token) {
+        // Set token
+        localStorage.setItem('token', token);
+
+        // Get user
+        const { user } = await getAgent().get('auth/me');
+        return { token, user };
+      }
+    } catch (err) {
+      // Return error to form
+      return { errors: err.response.body };
+    }
   },
 };
 

@@ -14,15 +14,9 @@ export const submitLoginForm = createAsyncThunk(
   `${reducerName}/submitLoginForm`,
   async ({ login, password }, thunkAPI) => {
     // Login request
-    const { success, user, errors } = await authAPI.authLogin(login, password);
+    const { user, errors } = await authAPI.authLogin(login, password);
 
-    // // TEMPORARY: Fix errors type
-    // const formatedErrors = Array.isArray(errors) ? errors : [errors];
-
-    if (success) {
-      // Cookie auth imitation workaround
-      localStorage.setItem('userId', user.id);
-
+    if (!errors) {
       // On success set active user
       return user;
       // Or return submission errors back to form
