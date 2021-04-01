@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from './LoginForm.module.css';
-import {
-  submitLoginForm,
-} from '../../data/authentication-reducer';
+import { submitLoginForm } from '../../data/authSlice';
 import { Formik, Form } from 'formik';
 import TextField from '../common/TextField';
 import PasswordField from '../common/PasswordField';
@@ -26,30 +24,18 @@ const validate = ({ login, password }) => {
 
 const LoginForm = ({ submitLoginForm, finishLogin }) => {
   // Async submit with server-side errors handling
-  const onSubmit = ({ login, password }, formUtils) => {
-    // Handler function
-    const handleErrors = (errors) => {
-      if (errors) {
-        finishWithErrors(errors);
-      }
-
-      // Finish with setting errors to form status
-      function finishWithErrors(errors) {
-        formUtils.setStatus({
-          formErrors: [...errors],
-        });
-      }
-    };
-
-    return (
-      submitLoginForm({ login, password })
-        // Wait for any server errors from thunk
-        // TEMPORARY: Workaround until 'unwrapResult' will be fixed 
-        .then((action) => action.payload)
-        // .then(unwrapResult)
-        .then(handleErrors)
-    );
-  };
+  const onSubmit = ({ login, password }, formUtils) =>
+    submitLoginForm({ login, password })
+      // Wait for any server errors from thunk
+      .then((action) => action.payload)
+      .then((errors) => {
+        if (errors) {
+          // Finish with setting errors to form status
+          formUtils.setStatus({
+            formErrors: [...errors],
+          });
+        }
+      });
 
   // Render
 

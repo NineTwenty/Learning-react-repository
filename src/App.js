@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import './constants.css';
 import Header from 'components/Header/Header';
@@ -11,10 +11,13 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Login from './components/Login/Login';
-import { getLoggedInStatus } from './data/authentication-reducer';
+import {
+  authorizationRequest,
+  selectLoggedInStatus,
+} from './data/authSlice';
 
 function PrivateRoute({ children, ...rest }) {
-  const loggedIn = useSelector(getLoggedInStatus);
+  const loggedIn = useSelector(selectLoggedInStatus);
 
   return (
     <Route
@@ -36,7 +39,15 @@ function PrivateRoute({ children, ...rest }) {
 }
 
 const App = () => {
-  const loggedIn = useSelector(getLoggedInStatus);
+  const loggedIn = useSelector(selectLoggedInStatus);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!loggedIn) {
+      // Authorization request in case the JWT is present in localStorage
+      dispatch(authorizationRequest());
+    }
+  }, [dispatch, loggedIn]);
 
   const [isSideNavForceOpen, setSideNavForceOpen] = useState(false);
 

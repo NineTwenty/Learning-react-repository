@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { selectDialogs } from 'data/dialogsSlice';
+import { selectCurrentUserId } from 'data/authSlice';
 import Dialogs from './Dialogs';
 
 class DialogsContainer extends React.Component {
@@ -11,9 +12,7 @@ class DialogsContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    userId: state.authentication.user.id,
-    avatar: state.authentication.user.avatar,
-    username: state.authentication.user.username,
+    userId: selectCurrentUserId(state),
     dialogs: selectDialogs(state),
   };
 };

@@ -1,5 +1,4 @@
 import { postsReducer, submitPost } from './postsSlice';
-import { submitLoginForm } from 'data/authentication-reducer';
 
 // Reducer test
 
