@@ -1,6 +1,4 @@
-import {
-  createSlice,
-} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { api } from '../api/API';
 import reducerRegistry from './reducerRegistery';
 import {
@@ -56,14 +54,31 @@ const authSlice = createSlice({
 
     // authorizationRequest failed authorization
     builder.addCase(authorizationActions.failure, (state, action) => {
-      if (state.status === 'pending') {
-        state.user = null;
-        state.loggedIn = false;
-      }
+      state.user = null;
+      state.loggedIn = false;
     });
 
     builder.addMatcher(isStartOfRequest, handleRequestStart);
     builder.addMatcher(isEndOfRequest, handleRequestEnd);
+
+    // Force logout if any failed request has error
+    // which say that the JWT is expired
+    builder.addMatcher(
+      (action) => action.type.endsWith('/failure'),
+      (state, { payload }) => {
+        const isErrorResponse =
+          payload && payload.response && payload.response.body.message;
+
+        if (isErrorResponse) {
+          const message = payload.response.body.message;
+          //
+          if (message === 'jwt expired') {
+            state.user = null;
+            state.loggedIn = false;
+          }
+        }
+      }
+    );
   },
 });
 
