@@ -10,12 +10,12 @@ export default ({ id, time, count, memberId }) => {
   if (!user) {
     return (<div>Loading</div>)
   }
-  const { avatar, name } = user;
+  const { avatar, firstName } = user;
   return (
     <div className={s.dialogWrapper}>
-      <Avatar className={s.dialogAvatar} avatar={avatar} name={name} />
+      <Avatar className={s.dialogAvatar} avatar={avatar} name={firstName} />
       <div className={s.dialogPreview}>
-        <h5 className={s.dialogName}>{name}</h5>
+        <h5 className={s.dialogName}>{firstName}</h5>
         <p className={s.dialogMessage}></p>
       </div>
       <div className={s.dialogMeta}>

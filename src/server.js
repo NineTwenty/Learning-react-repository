@@ -85,7 +85,7 @@ export function makeServer({ environment = 'development' } = {}) {
         bithDate: faker.date.between('January 1, 1950', 'January 1, 2010'),
         online: false,
         lastOnlineTime: faker.date.recent,
-        avatar: faker.internet.avatar,
+        avatar: () => `https://loremflickr.com/48/48?random=${Math.random()}`,
         friends: [],
         music: [],
       }),
@@ -176,7 +176,7 @@ export function makeServer({ environment = 'development' } = {}) {
       }
       function handleMessage() {
         return handleWithDefaultValues('messages', {
-          text: 'Placeholder',
+          text: faker.lorem.sentence(),
           unread: true,
         });
       }
@@ -296,27 +296,9 @@ export function makeServer({ environment = 'development' } = {}) {
       // 5.1 Users
       // ==================
 
+      server.createList('user', 3);
       server.create('user', {
-        name: 'Charles',
-        avatar: 'https://loremflickr.com/48/48?r=1',
-        login: 'charlesleclerc',
-        password: 'shitbox',
-      });
-      server.create('user', {
-        name: 'Lando',
-        avatar: 'https://loremflickr.com/48/48?r=1',
-        login: 'landobot',
-        password: 'scenario7',
-      });
-      server.create('user', {
-        name: 'Max',
-        avatar: 'https://loremflickr.com/48/48?r=1',
-        login: 'maxsupermax',
-        password: 'verstappening',
-      });
-      server.create('user', {
-        name: 'NineTwenty',
-        avatar: 'https://loremflickr.com/48/48?r=1',
+        avatar: () => `https://loremflickr.com/48/48?random=${Math.random()}`,
         login: 'admin',
         password: 'admin',
       });
@@ -342,7 +324,6 @@ export function makeServer({ environment = 'development' } = {}) {
       // ==================
 
       server.create('message', {
-        text: `I'm stupid`,
         authorId: 1,
         dialogId: 1,
       });
@@ -352,7 +333,6 @@ export function makeServer({ environment = 'development' } = {}) {
       // ==================
 
       server.create('post', {
-        postText: 'Test post',
         authorId: '4',
         views: 0,
       });
