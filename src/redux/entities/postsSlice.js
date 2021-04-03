@@ -4,10 +4,9 @@ import {
   createLoadingActions,
   createLoadingMatchers,
   createLoadingReducers,
-} from 'data/utils';
-import { addUsers } from './usersSlice';
+} from 'redux/utils';
 
-const sliceName = 'dialogs';
+const sliceName = 'posts';
 
 // Loading reducers
 const { handleRequestStart, handleRequestEnd } = createLoadingReducers();
@@ -19,13 +18,12 @@ const adapter = createEntityAdapter();
 
 const initialState = adapter.getInitialState({ status: 'idle' });
 
-// Loading actions
 const getRequest = createLoadingActions(sliceName, 'get');
 const submitRequest = createLoadingActions(sliceName, 'submit');
 
 // Slice
 
-const dialogsSlice = createSlice({
+const postsSlice = createSlice({
   name: sliceName,
   initialState,
   reducers: {
@@ -50,30 +48,29 @@ const dialogsSlice = createSlice({
 
 // Reducer
 
-export const dialogsReducer = dialogsSlice.reducer;
+export const postsReducer = postsSlice.reducer;
 
 // Actions
 
-export const addDialogs = dialogsSlice.actions.addMany;
+const actions = postsSlice.actions;
 
 // Thunks
 
-export const fetchDialogs = () => async (dispatch) => {
+export const fetchPosts = () => async (dispatch) => {
   dispatch(getRequest.request());
   try {
-    const { dialogs, users } = await api.get('dialogs?include=members');
-    dispatch(getRequest.success(dialogs));
-    dispatch(addUsers(users));
+    const { posts } = await api.get('posts');
+    dispatch(getRequest.success(posts));
   } catch (error) {
     dispatch(getRequest.failure(error));
   }
 };
 
-export const submitDialog = (newDialog) => async (dispatch) => {
+export const submitPost = (newPost) => async (dispatch) => {
   dispatch(submitRequest.request());
   try {
-    const { dialog } = await api.post('dialogs', newDialog);
-    dispatch(submitRequest.success(dialog));
+    const { post } = await api.post('posts', newPost);
+    dispatch(submitRequest.success(post));
   } catch (error) {
     dispatch(submitRequest.failure());
   }
@@ -83,8 +80,10 @@ export const submitDialog = (newDialog) => async (dispatch) => {
 
 const selectors = adapter.getSelectors((state) => state.entities[sliceName]);
 
-const { selectIds, selectById, selectAll } = selectors;
+const { selectIds, selectById } = selectors;
 
-export const selectDialogs = (state) => selectAll(state);
-export const selectDialogsIds = (state) => selectIds(state);
-export const selectDialogById = (id) => (state) => selectById(state, id);
+export const getIsLoadingPostStatus = (state) =>
+  state.entities[sliceName].status !== 'idle';
+
+export const selectPostsIds = (state) => selectIds(state);
+export const selectPostById = (id) => (state) => selectById(state, id);

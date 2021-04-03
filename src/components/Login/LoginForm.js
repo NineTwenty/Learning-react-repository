@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './LoginForm.module.css';
-import { submitLoginForm } from '../../data/authSlice';
+import { submitLoginForm } from '../../redux/authSlice';
 import { Formik, Form } from 'formik';
 import TextField from '../common/TextField';
 import PasswordField from '../common/PasswordField';

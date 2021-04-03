@@ -1,7 +1,7 @@
-import reducerRegistry from 'data/reducerRegistery';
+import reducerRegistry from 'redux/reducerRegistery';
 import { combineReducers } from 'redux';
 import { dialogsReducer } from './dialogsSlice';
-import { postsReducer } from './postSlice/postsSlice';
+import { postsReducer } from './postsSlice';
 import { usersReducer } from './usersSlice';
 // forced export to include module in webpack bundle
 export const workaround = 'workaround';

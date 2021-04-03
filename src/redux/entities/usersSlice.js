@@ -4,7 +4,7 @@ import {
   createLoadingActions,
   createLoadingMatchers,
   createLoadingReducers,
-} from 'data/utils';
+} from 'redux/utils';
 
 const sliceName = 'users';
 

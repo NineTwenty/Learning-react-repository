@@ -3,7 +3,7 @@ import * as serviceWorker from './serviceWorker';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import store from './data/store';
+import store from './redux/store';
 import App from './App';
 
 import { makeServer } from './server';

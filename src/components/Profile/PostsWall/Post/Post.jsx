@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Post.module.css';
 import { useSelector } from 'react-redux';
-import { selectPostById } from 'data/postSlice/postsSlice';
+import { selectPostById } from 'redux/entities/postsSlice';
 import { Separator } from 'components/common/Separator';
 import Button from 'components/common/Button';
 
