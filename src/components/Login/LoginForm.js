@@ -66,7 +66,7 @@ const LoginForm = ({ submitLoginForm, finishLogin }) => {
 
             <CheckboxField name='rememberMe' label='Remember Me' />
 
-            <SubmitField />
+            <SubmitField buttonText='Sign in' />
           </Form>
         )}
       </Formik>

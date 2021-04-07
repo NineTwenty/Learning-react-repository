@@ -34,7 +34,7 @@ const PostingForm = ({ header, onSubmit }) => {
           <TextAreaField placeholder={'Write something...'} name='postText' disabled={isLoading} />
           <Separator />
           <div className={style.submitField}>
-            <SubmitField />
+            <SubmitField buttonText='Post' />
           </div>
         </Form>
       </Formik>
