@@ -14,7 +14,7 @@ import Login from './components/Login/Login';
 import {
   authorizationRequest,
   selectLoggedInStatus,
-} from './redux/authSlice';
+} from './redux';
 
 function PrivateRoute({ children, ...rest }) {
   const loggedIn = useSelector(selectLoggedInStatus);

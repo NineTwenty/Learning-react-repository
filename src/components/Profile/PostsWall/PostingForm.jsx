@@ -5,7 +5,7 @@ import { TextAreaField } from 'components/common/TextAreaField';
 import SubmitField from 'components/common/SubmitField';
 import { Separator } from 'components/common/Separator/Separator';
 import { useDispatch, useSelector } from 'react-redux';
-import { getIsLoadingPostStatus } from 'redux/entities/postsSlice';
+import { getIsLoadingPostStatus } from 'redux/entities';
 
 const validate = (values) => {
   if (!values.postText) {

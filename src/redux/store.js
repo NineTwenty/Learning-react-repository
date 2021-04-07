@@ -1,9 +1,6 @@
 import { combineReducers } from 'redux';
-import reducerRegistry from './reducerRegistery';
 import { configureStore } from '@reduxjs/toolkit';
-// forced import to include module in webpack bundle
-import { workaround } from './entities/entitiesSlice';
-let fix = workaround;
+import reducerRegistry from './reducerRegistery';
 
 let reducers = reducerRegistry.getReducers();
 

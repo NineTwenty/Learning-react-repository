@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { api } from '../api/API';
-import reducerRegistry from './reducerRegistery';
 import {
   createLoadingActions,
   createLoadingMatchers,
@@ -82,6 +81,10 @@ const authSlice = createSlice({
   },
 });
 
+// Registration data
+export const authReducer = authSlice.reducer;
+export const authSliceName = authSlice.name;
+
 // Thunks
 
 // Authentication
@@ -147,10 +150,6 @@ export const submitLoginForm = ({ login, password }) => async (dispatch) => {
     dispatch(loginActions.loginCompleted());
   }
 };
-
-// Registration
-
-reducerRegistry.register(authSlice.name, authSlice.reducer);
 
 // Selectors
 

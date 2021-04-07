@@ -46,9 +46,10 @@ const postsSlice = createSlice({
   },
 });
 
-// Reducer
-
+// Registration data
 export const postsReducer = postsSlice.reducer;
+export const postsSliceName = postsSlice.name;
+
 
 // Actions
 

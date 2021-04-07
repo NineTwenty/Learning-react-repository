@@ -47,9 +47,10 @@ const usersSlice = createSlice({
   },
 });
 
-// Reducer
-
+// Registration data
 export const usersReducer = usersSlice.reducer;
+export const usersSliceName = usersSlice.name;
+
 
 // Exported actions
 

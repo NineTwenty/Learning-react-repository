@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectDialogs } from 'redux/entities/dialogsSlice';
+import { selectDialogs } from 'redux/entities';
 import { selectCurrentUserId } from 'redux/authSlice';
 import Dialogs from './Dialogs';
 

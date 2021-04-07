@@ -6,7 +6,7 @@ import {
   fetchPosts,
   submitPost,
   selectPostsIds,
-} from 'redux/entities/postsSlice';
+} from 'redux/entities';
 import { List } from 'components/common/List';
 import { useSelector, useDispatch } from 'react-redux';
 

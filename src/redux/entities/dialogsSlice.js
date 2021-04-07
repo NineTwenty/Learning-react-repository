@@ -48,9 +48,9 @@ const dialogsSlice = createSlice({
   },
 });
 
-// Reducer
-
+// Registration data
 export const dialogsReducer = dialogsSlice.reducer;
+export const dialogsSliceName = dialogsSlice.name;
 
 // Actions
 

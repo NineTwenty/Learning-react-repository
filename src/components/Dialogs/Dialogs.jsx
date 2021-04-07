@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { fetchDialogs } from 'redux/entities/dialogsSlice';
+import { fetchDialogs } from 'redux/entities';
 import styles from './Dialogs.module.css';
 
 import Dialog from './Dialog/Dialog';

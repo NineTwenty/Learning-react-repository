@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import s from './Dialog.module.css';
 import { Link } from 'react-router-dom';
 import Avatar from '../../Profile/Avatar/Avatar';
-import { selectUserById } from 'redux/entities/usersSlice';
+import { selectUserById } from 'redux/entities';
 
 export default ({ id, time, count, memberId }) => {
   const user = useSelector(selectUserById(memberId));
