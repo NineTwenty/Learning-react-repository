@@ -14,6 +14,7 @@ const sliceName = 'auth';
 
 const LOGIN_STARTED = `${sliceName}/login/started`;
 const LOGIN_COMPLETED = `${sliceName}/login/completed`;
+const LOGOUT = `${sliceName}/logout`;
 
 // Action creators
 
@@ -22,6 +23,9 @@ const loginStarted = () => ({
 });
 const loginCompleted = () => ({
   type: LOGIN_COMPLETED,
+});
+export const logout = () => ({
+  type: LOGOUT,
 });
 
 const loginActions = { loginStarted, loginCompleted };
@@ -51,33 +55,18 @@ const authSlice = createSlice({
       }
     });
 
-    // authorizationRequest failed authorization
-    builder.addCase(authorizationActions.failure, (state, action) => {
+    // Logout matcher
+    const isLogout = ({ type }) =>
+      type === LOGOUT || type === authorizationActions.failure;
+
+    // Logout handler
+    builder.addMatcher(isLogout, (state, action) => {
       state.user = null;
       state.loggedIn = false;
     });
 
     builder.addMatcher(isStartOfRequest, handleRequestStart);
     builder.addMatcher(isEndOfRequest, handleRequestEnd);
-
-    // Force logout if any failed request has error
-    // which say that the JWT is expired
-    builder.addMatcher(
-      (action) => action.type.endsWith('/failure'),
-      (state, { payload }) => {
-        const isErrorResponse =
-          payload && payload.response && payload.response.body.message;
-
-        if (isErrorResponse) {
-          const message = payload.response.body.message;
-          //
-          if (message === 'jwt expired') {
-            state.user = null;
-            state.loggedIn = false;
-          }
-        }
-      }
-    );
   },
 });
 

@@ -4,6 +4,7 @@ import reducerRegistry from './reducerRegistery';
 // Re-export
 
 export {
+  logout,
   submitLoginForm,
   authorizationRequest,
   selectLoggedInStatus,
