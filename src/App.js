@@ -12,9 +12,11 @@ import Settings from './components/Settings/Settings';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Login from './components/Login/Login';
 import {
-  authorizationRequest,
+  initialization,
+  selectIsAppInitialized,
   selectLoggedInStatus,
 } from './redux';
+import { SplashScreen } from 'components/SplashScreen/SplashScreen';
 
 function PrivateRoute({ children, ...rest }) {
   const loggedIn = useSelector(selectLoggedInStatus);
@@ -40,17 +42,22 @@ function PrivateRoute({ children, ...rest }) {
 
 const App = () => {
   const loggedIn = useSelector(selectLoggedInStatus);
+  const isInitialized = useSelector(selectIsAppInitialized);
   const dispatch = useDispatch();
 
+  // Initialization
   useEffect(() => {
-    if (!loggedIn) {
-      // Authorization request in case the JWT is present in localStorage
-      dispatch(authorizationRequest());
+    if (!isInitialized) {
+      dispatch(initialization());
     }
-  }, [dispatch, loggedIn]);
+  }, [dispatch, isInitialized]);
 
   const [isSideNavForceOpen, setSideNavForceOpen] = useState(false);
 
+  if (!isInitialized) {
+    return <SplashScreen />;
+  }
+  
   return (
     <>
       <Switch>
