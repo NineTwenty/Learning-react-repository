@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Header.module.css';
 import { HamburgerButton } from './HamburgerButton';
 
-const Header = ({ isSideNavForceOpen, setSideNavForceOpen }) => {
+const Header = ({ isSideNavForceOpen, setSideNavForceOpen, menuBtnRef }) => {
   return (
     <header className={styles.header}>
       <img
@@ -10,6 +10,7 @@ const Header = ({ isSideNavForceOpen, setSideNavForceOpen }) => {
         alt='logo'
       ></img>
       <HamburgerButton
+        menuBtnRef={menuBtnRef}
         isSideNavForceOpen={isSideNavForceOpen}
         setSideNavForceOpen={setSideNavForceOpen}
       />

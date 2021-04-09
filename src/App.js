@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import './constants.css';
 import Header from 'components/Header/Header';
-import Navbar from './components/Navbar/Navbar';
+import { Navbar } from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import News from './components/News/News';
 import Music from './components/Music/Music';
@@ -52,12 +52,15 @@ const App = () => {
     }
   }, [dispatch, isInitialized]);
 
+  // Navbar related
   const [isSideNavForceOpen, setSideNavForceOpen] = useState(false);
+  const menuBtnRef = useRef(null);
 
   if (!isInitialized) {
     return <SplashScreen />;
   }
-  
+ 
+  //Render
   return (
     <>
       <Switch>
@@ -67,10 +70,15 @@ const App = () => {
         <Route>
           <div className='app-wrapper'>
             <Header
+              menuBtnRef={menuBtnRef}
               isSideNavForceOpen={isSideNavForceOpen}
               setSideNavForceOpen={setSideNavForceOpen}
             />
-            <Navbar isSideNavForceOpen={isSideNavForceOpen} />
+            <Navbar
+              menuBtnRef={menuBtnRef}
+              isSideNavForceOpen={isSideNavForceOpen}
+              setSideNavForceOpen={setSideNavForceOpen}
+            />
             <div className='app-wrapper-content'>
               <Switch>
                 <PrivateRoute path='/dialogs/:id?'>
