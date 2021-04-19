@@ -96,8 +96,9 @@ export function makeServer({ environment = 'development' } = {}) {
       }),
 
       message: Factory.extend({
-        text: faker.lorem.sentence(),
+        text: () => faker.lorem.sentence(Math.floor(Math.random() * 14) + 1),
         unread: true,
+        created: Date.now(),
       }),
       post: Factory.extend({
         postText: faker.lorem.sentences(),
@@ -213,7 +214,29 @@ export function makeServer({ environment = 'development' } = {}) {
       // 4.3 Messages
       // ==================
 
-      this.get('/dialogs/:id/messages');
+      this.get('/messages', (schema, request) => {
+        const userId = authenticateUser(request);
+        let { dialogId, limit, page } = request.queryParams;
+        limit = limit ? +limit : 10;
+
+        const user = schema.users.find(userId);
+
+        // Decline if the dialog doesn't belong to requesting user
+        if (!user.dialogIds.includes(dialogId)) {
+          return new Response(403);
+        }
+
+        // Take messages from dialog
+        const { messages } = schema.dialogs.find(dialogId);
+        // Sort newest first
+        const sortedMessages = messages.sort((a, b) => b.created - a.created);
+
+        // Pagination
+        const start = (page - 1) * limit;
+        const end = limit * page;
+
+        return sortedMessages.slice(start, end);
+      });
       this.post('/messages', handleMessage());
 
       // ==================
@@ -323,6 +346,110 @@ export function makeServer({ environment = 'development' } = {}) {
       // 5.3 Messages
       // ==================
 
+      server.create('message', {
+        authorId: 1,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 1,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 4,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 1,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 4,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 1,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 4,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 1,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 4,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 1,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 4,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 1,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 4,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 1,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 1,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 4,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 1,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 4,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 1,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 4,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 1,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 4,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 1,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 4,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 1,
+        dialogId: 1,
+      });
+      server.create('message', {
+        authorId: 4,
+        dialogId: 1,
+      });
       server.create('message', {
         authorId: 1,
         dialogId: 1,
