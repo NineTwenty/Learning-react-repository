@@ -145,6 +145,6 @@ export const submitLoginForm = ({ login, password }) => async (dispatch) => {
 export const selectLoggedInStatus = (state) => state[sliceName].loggedIn;
 export const selectCurrentUserId = (state) => {
   if (state[sliceName].user) {
-    return state[sliceName].user.userId;
+    return +state[sliceName].user.id;
   }
 };
