@@ -85,7 +85,7 @@ export function makeServer({ environment = 'development' } = {}) {
         bithDate: faker.date.between('January 1, 1950', 'January 1, 2010'),
         online: false,
         lastOnlineTime: faker.date.recent,
-        avatar: () => `https://loremflickr.com/48/48?random=${Math.random()}`,
+        avatar: () => `https://loremflickr.com/48/48/cat?random=${Math.random()}`,
         friends: [],
         music: [],
       }),
