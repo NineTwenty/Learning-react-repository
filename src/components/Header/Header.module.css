@@ -4,11 +4,12 @@
   background-color: navy;
   display: flex;
   justify-content: space-between;
+  height: 5vh;
   z-index: 10;
 }
 
 .header img {
-  width: 6vh;
+  height: 100%;
 }
 
 .headerAuthButton {
