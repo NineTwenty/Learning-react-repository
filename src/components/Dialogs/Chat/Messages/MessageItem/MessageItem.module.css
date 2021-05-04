@@ -1,16 +1,24 @@
 .messageItemWrapper {
   font-size: 0.8rem;
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  padding: .4rem;
 }
 
 .messageItemAvatar {
-  flex-basis: 2.4rem;
-  margin: 0 1.6rem;
+  flex-basis: 2em;
+  margin: 0 1em;
 }
 
 .messageItemText {
   background: var(--color-background);
-  border-radius: 15%;
-  padding: 1rem;
+  border-radius: .4em;
+  padding: 1em;
+  box-shadow: .3em .3em .4em rgb(230, 233, 238);
+}
+
+.messageItemWrapper_positionLeft {
+  flex-direction: row;
 }
