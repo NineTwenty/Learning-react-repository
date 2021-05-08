@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { fetchDialogs } from 'redux/entities';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDialogs, selectDialogById } from 'redux/entities';
 import styles from './Dialogs.module.css';
 
 import Dialog from './Dialog/Dialog';
 import Chat from './Chat/Chat';
 import ChatHeader from './Chat/ChatHeader/ChatHeader';
 import Messages from './Chat/Messages/Messages';
-import MessageItem from './Chat/Messages/MessageItem/MessageItem';
 import ChatInputs from './Chat/ChatInputs/ChatInputs';
 import { Spinner } from 'components/common/Spinner';
 import Button from 'components/common/Button';
@@ -28,9 +27,12 @@ const DialogsHamburgerButton = ({ isOpen, toggleState, label }) => {
 };
 
 const Dialogs = ({ dialogs, userId }) => {
-  const { id: idParam } = useParams();
-  const isDialogChosen = !!idParam;
+  const { id: currentDialogId } = useParams();
+  const isDialogChosen = !!currentDialogId;
   const isDialogsLoaded = dialogs && dialogs.length;
+
+  const currentDialog = useSelector(selectDialogById(currentDialogId));
+  const messagesIds = currentDialog && currentDialog.messages;
 
   const dispatch = useDispatch();
 
@@ -55,10 +57,6 @@ const Dialogs = ({ dialogs, userId }) => {
         return <Dialog key={dialog.id} {...dialog} memberId={memberId} />;
       });
     }
-  };
-
-  const populateMessages = (messages) => {
-    return messages.map(({ text, id }) => <MessageItem />);
   };
 
   // Show Chat if dialog is chosen
@@ -116,6 +114,11 @@ const Dialogs = ({ dialogs, userId }) => {
               )
             }
           </ChatHeader>
+          <Messages
+            dialogId={currentDialogId}
+            messagesIds={messagesIds}
+            userId={userId}
+          />
           <ChatInputs />
         </Chat>
       )}
