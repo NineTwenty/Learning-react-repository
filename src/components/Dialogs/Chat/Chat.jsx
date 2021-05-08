@@ -1,13 +1,12 @@
 import React from 'react';
 import styles from './Chat.module.css';
 
-const Chat = ({ children }) => {
+const Chat = ({ children, className }) => {
+  const classes = className
+    ? `${className} ${styles.chatWrapper}`
+    : styles.chatWrapper;
 
-  return (
-    <div className={styles.chatWrapper}>
-      {children}
-    </div>
-  );
+  return <div className={classes}>{children}</div>;
 };
 
 export default Chat;

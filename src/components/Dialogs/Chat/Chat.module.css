@@ -1,20 +1,8 @@
 .chatWrapper {
   background: var(--color-secondary);
-  display: grid;
-  grid-template-areas: 'header' 'messages' 'inputs';
-  grid-template-rows: 1.4fr 10fr 3fr;
+  justify-content: space-between;
+  flex-flow: column;
 
-  height: 100%;
-}
-
-.chatHeader {
-  grid-area: 'header';
-}
-
-.chatMessages {
-  grid-area: 'messages';
-}
-
-.chatInputs {
-  grid-area: 'inputs';
+  /* fix messages scroll in mobile layout*/
+  min-height: 0;
 }

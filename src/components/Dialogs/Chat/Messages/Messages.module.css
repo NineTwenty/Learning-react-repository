@@ -1,1 +1,3 @@
-
+.messagesWrapper {
+  overflow-y: auto;
+}

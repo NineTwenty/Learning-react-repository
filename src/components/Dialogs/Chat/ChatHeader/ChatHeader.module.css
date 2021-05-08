@@ -1,0 +1,5 @@
+.chatHeaderWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--padding-primary);
+}

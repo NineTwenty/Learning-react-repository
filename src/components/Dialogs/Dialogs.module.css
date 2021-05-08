@@ -1,42 +1,91 @@
 .dialogsWrapper {
   display: flex;
   flex-flow: column;
-
-  margin: var(--padding-primary) auto;
-  padding: var(--padding-primary);
-  border-radius: var(--border-radius-small);
-
-  width: 98vw;
-  height: 88vh;
-
+  height: 95vh;
   background: var(--color-background);
-
-  box-shadow: -3px 3px 16px -4px #dde5eb;
-
-  z-index: 0;
-}
-
-.dialogs {
-  flex: 1 1;
-
-  background: var(--color-background);
-}
-
-.dialogsChat {
-  flex: 1 1 80%;
-  display: none;
-}
-
-.dialogsWrapper.dialogChosen .dialogsChat {
-  display: inline;
 }
 
 @media (min-width: 769px) {
   .dialogsWrapper {
     flex-flow: row;
-    width: 82vw;
-    height: auto;
-    min-height: 70vh;
-    max-height: 88vh;
+    max-width: 70vw;
+    height: 90vh;
+
+    margin: var(--padding-primary) auto;
+    padding: var(--padding-primary);
+    border-radius: var(--border-radius-small);
+
+    box-shadow: -3px 3px 16px -4px #dde5eb;
   }
+}
+
+.dialogsList {
+  position: absolute;
+  z-index: 1;
+  transform: translateX(0);
+  transition: transform .6s cubic-bezier(0,.77,.72,1.03);
+
+  display: flex;
+  flex-flow: column;
+  flex: 1 1;
+  width: 100%;
+  min-height: 0;
+  height: 95vh;
+
+  background: var(--color-background);
+}
+
+@media (min-width: 769px) {
+  .dialogsList {
+    transition: none;
+
+    flex-basis: 30%;
+    height: 100%;
+    position: static;
+  }
+}
+
+.dialogsWrapper.dialogChosen .dialogsList {
+  width: auto;
+}
+
+.dialogsListOverflowContainer {
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.dialogsList_hidden {
+  position: absolute;
+  transform: translateX(-200%);
+}
+
+.dialogsHeader {
+  margin: var(--padding-primary);
+  display: flex;
+  justify-content: space-between;
+}
+
+.dialogsHeader > h2 {
+  margin: 0;
+}
+
+.dialogsChat {
+  flex: 1 1;
+}
+
+@media (min-width: 769px) {
+  .dialogsChat {
+    flex-basis: 70%;
+  }
+}
+
+.dialogsWrapper.dialogChosen .dialogsChat {
+  display: flex;
+}
+
+.toggleIcon {
+  display: inline-block;
+  transform: scale(1.2);
 }
