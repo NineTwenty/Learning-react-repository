@@ -4,15 +4,26 @@ import styles from './DialogItem.module.css';
 import { Link } from 'react-router-dom';
 import Avatar from '../../Profile/Avatar/Avatar';
 import { selectUserById } from 'redux/entities';
+import { Spinner } from 'components/common/Spinner';
 
-export const DialogItem = ({ id, time, count, memberId }) => {
+export const DialogItem = ({ id, time, count, memberId, isChosen }) => {
   const user = useSelector(selectUserById(memberId));
+
   if (!user) {
-    return (<div>Loading</div>)
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
   }
+
   const { avatar, firstName } = user;
+
+  const chosenClasses = `${styles.DialogItem} ${styles.DialogItem_chosen}`;
+  const wrapperClasses = isChosen ? chosenClasses : styles.DialogItem;
+
   return (
-    <div className={styles.DialogItem}>
+    <div className={wrapperClasses}>
       <Avatar
         className={styles['DialogItem-Avatar']}
         avatar={avatar}

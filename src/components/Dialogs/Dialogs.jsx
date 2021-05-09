@@ -54,9 +54,10 @@ const Dialogs = ({ dialogs, userId }) => {
       // Return filled Dialogs then
       return dialogs.map((dialog) => {
         const memberId = determinateMember(dialog);
+        const isChosen = currentDialogId === dialog.id;
         return (
           <li key={dialog.id}>
-            <DialogItem {...dialog} memberId={memberId} />
+            <DialogItem {...dialog} isChosen={isChosen} memberId={memberId} />
           </li>
         );
       });
