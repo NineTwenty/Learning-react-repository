@@ -1,5 +1,4 @@
-.dialogWrapper {
-  box-sizing: border-box;
+.DialogItem {
   color: var(--color-text-header);
   position: relative;
   display: flex;
@@ -10,7 +9,7 @@
   align-items: center;
 }
 
-.dialogLink {
+.DialogItem-Link {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -20,33 +19,33 @@
   text-decoration: none;
 }
 
-.dialogAvatar {
+.DialogItem-Avatar {
   height: 3rem;
   flex: 0 0 3rem;
 }
 
-.dialogPreview {
+.DialogItem-Preview {
   flex: 1;
   margin-left: 0.5rem;
 }
 
-.dialogName {
+.DialogItem-Name {
   margin: 0;
   max-height: 1.2rem;
 }
 
-.dialogMessage {
+.DialogItem-Message {
   color: var(--color-text-ui);
   font-size: 0.7rem;
   margin: 0;
 }
 
-.dialogMeta {
+.DialogItem-Meta {
   font-size: 0.6rem;
   flex: 0 0 2.5em;
 }
 
-.dialogCount {
+.DialogItem-Count {
   display: block;
   height: 1.5em;
   width: 1.5em;
@@ -56,7 +55,7 @@
   color: var(--color-background);
 }
 
-.dialogPassed {
+.DialogItem-Passed {
   padding: 1rem 0;
 
   color: var(--color-primary);

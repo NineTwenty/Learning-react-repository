@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchDialogs, selectDialogById } from 'redux/entities';
 import styles from './Dialogs.module.css';
 
-import Dialog from './DialogItem/DialogItem';
+import { DialogItem } from './DialogItem/DialogItem';
 import Chat from './Chat/Chat';
 import ChatHeader from './Chat/ChatHeader/ChatHeader';
 import Messages from './Chat/Messages/Messages';
@@ -54,7 +54,11 @@ const Dialogs = ({ dialogs, userId }) => {
       // Return filled Dialogs then
       return dialogs.map((dialog) => {
         const memberId = determinateMember(dialog);
-        return <Dialog key={dialog.id} {...dialog} memberId={memberId} />;
+        return (
+          <li key={dialog.id}>
+            <DialogItem {...dialog} memberId={memberId} />
+          </li>
+        );
       });
     }
   };
