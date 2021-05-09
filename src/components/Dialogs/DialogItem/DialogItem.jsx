@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import s from './Dialog.module.css';
+import s from './DialogItem.module.css';
 import { Link } from 'react-router-dom';
 import Avatar from '../../Profile/Avatar/Avatar';
 import { selectUserById } from 'redux/entities';

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchDialogs, selectDialogById } from 'redux/entities';
 import styles from './Dialogs.module.css';
 
-import Dialog from './Dialog/Dialog';
+import Dialog from './DialogItem/DialogItem';
 import Chat from './Chat/Chat';
 import ChatHeader from './Chat/ChatHeader/ChatHeader';
 import Messages from './Chat/Messages/Messages';
