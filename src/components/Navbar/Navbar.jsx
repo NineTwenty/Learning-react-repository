@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import style from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
 
@@ -9,24 +9,22 @@ export const Navbar = ({
 }) => {
   const isOpen = isSideNavForceOpen ? style.isOpen : '';
 
+  const selfRef = useRef(null);
+
   // Close on click outside navbar
   useEffect(() => {
     const menuBtn = menuBtnRef.current;
-    const menuBtnChild = menuBtn.firstElementChild;
-
-    // Check if value is match any navbar's css class
-    const isInStyles = (btnClass) =>
-      Object.values(style).some((className) => className === btnClass);
 
     // Click event handler
     const closeOnOutsideClick = ({ target }) => {
       // Check if it's not the toggle button
-      if (target !== menuBtn || target !== menuBtnChild) {
-        // Take first class
-        const mainClass = target.classList[0];
-
+      if (menuBtn && !menuBtn.contains(target)) {
         // Check if navbar is open & target is part of navbar
-        if (isSideNavForceOpen && !isInStyles(mainClass)) {
+        if (
+          isSideNavForceOpen &&
+          selfRef.current &&
+          !selfRef.current.contains(target)
+        ) {
           // Close navbar
           setSideNavForceOpen(false);
         }
@@ -40,7 +38,7 @@ export const Navbar = ({
 
   // Render
   return (
-    <nav className={`${style.nav} ${isOpen}`}>
+    <nav ref={selfRef} className={`${style.nav} ${isOpen}`}>
       <NavLink
         to='/dialogs'
         className={style.navLink}
