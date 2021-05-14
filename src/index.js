@@ -20,7 +20,7 @@ const explicitRender = () => {
     <React.StrictMode>
       <BrowserRouter>
         <Provider store={store}>
-          <App {...store.getState()} dispatch={store.dispatch.bind(store)} />
+          <App />
         </Provider>
       </BrowserRouter>
     </React.StrictMode>,
