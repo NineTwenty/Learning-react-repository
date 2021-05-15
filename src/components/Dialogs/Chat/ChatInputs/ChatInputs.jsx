@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ChatImputs.module.css';
 import { useParams } from 'react-router-dom';
 
-const ChatImputs = (props) => {
+const ChatInputs = (props) => {
   // { dispatch, textareaState: {text} }
   // const { id } = useParams();
 
@@ -33,4 +33,4 @@ const ChatImputs = (props) => {
   );
 };
 
-export default ChatImputs;
+export default ChatInputs;
