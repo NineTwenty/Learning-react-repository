@@ -53,7 +53,7 @@ export const postsSliceName = postsSlice.name;
 
 // Actions
 
-const actions = postsSlice.actions;
+// const actions = postsSlice.actions;
 
 // Thunks
 

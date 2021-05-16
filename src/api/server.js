@@ -181,12 +181,12 @@ export function makeServer({ environment = 'development' } = {}) {
           unread: true,
         });
       }
-      function handlePost() {
-        return handleWithDefaultValues('posts', {
-          postText: faker.lorem.sentences(),
-          views: 0,
-        });
-      }
+      // function handlePost() {
+      //   return handleWithDefaultValues('posts', {
+      //     postText: faker.lorem.sentences(),
+      //     views: 0,
+      //   });
+      // }
 
       this.namespace = 'api';
 

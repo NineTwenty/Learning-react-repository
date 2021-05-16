@@ -14,6 +14,7 @@ export const Post = ({ id }) => {
         <img
           className={style.avatar}
           src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Roman_P.svg/100px-Roman_P.svg.png'
+          alt=''
         ></img>
         <div className={style.title}>
           <h6 className={style.name}>Author Name</h6>
