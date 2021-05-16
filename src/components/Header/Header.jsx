@@ -10,10 +10,12 @@ const Header = ({ isSideNavForceOpen, setSideNavForceOpen, menuBtnRef }) => {
         alt='logo'
       ></img>
       <HamburgerButton
-        menuBtnRef={menuBtnRef}
-        isSideNavForceOpen={isSideNavForceOpen}
-        setSideNavForceOpen={setSideNavForceOpen}
-      />
+        ref={menuBtnRef}
+        isOpen={isSideNavForceOpen}
+        onClick={() => setSideNavForceOpen(!isSideNavForceOpen)}
+      >
+        Menu
+      </HamburgerButton>
     </header>
   );
 };

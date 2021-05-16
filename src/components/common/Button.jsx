@@ -1,14 +1,19 @@
 import React from 'react';
 import styles from './Button.module.css';
 
-const Button = ({ type, children, ...rest }) => {
+const Button = ({ className, type, children, ...rest }, ref) => {
   return (
     <>
-      <button className={styles.button} type={type} {...rest}>
+      <button
+        className={`${styles.button} ${className}`}
+        type={type}
+        ref={ref}
+        {...rest}
+      >
         {children}
       </button>
     </>
   );
 };
 
-export default Button;
+export default React.forwardRef(Button);

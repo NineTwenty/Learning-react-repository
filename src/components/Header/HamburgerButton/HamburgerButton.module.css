@@ -1,15 +1,8 @@
-.hamButton {
-  border: none;
-  background: none;
-  color: var(--color-text-ui);
+.hamburgerButton_Icon {
+  display: inline-block;
+  transform: scale(1.2);
 }
 
-.hamButton:focus {
-  outline: none;
-}
-
-.hamButton:focus > span,
-.isActive > span {
-  transition: color 0.5s ease;
-  color: var(--color-primary);
+.hamburgerButton_Icon_withMargin {
+  margin-right: 1ch;
 }

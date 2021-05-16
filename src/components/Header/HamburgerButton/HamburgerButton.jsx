@@ -1,23 +1,47 @@
+import Button from 'components/common/Button';
 import React from 'react';
-import style from './HamburgerButton.module.css';
+import styles from './HamburgerButton.module.css';
 
-export const HamburgerButton = ({
-  isSideNavForceOpen,
-  setSideNavForceOpen,
-  menuBtnRef,
-}) => {
-  const isActive = isSideNavForceOpen ? style.isActive : '';
+const component = (
+  { isOpen, onClick, children, iconType = 'hamburger', ...rest },
+  ref
+) => {
+  const iconsSets = {
+    arrows: {
+      close: '🢀',
+      open: '🢂',
+    },
+    hamburger: {
+      close: '☰',
+      open: '☰',
+    },
+  };
 
-  // Toggle open/close sideNav flag
-  const onClick = () => setSideNavForceOpen(!isSideNavForceOpen);
+  // Choose icon to show
+  const icon = isOpen ? iconsSets[iconType].close : iconsSets[iconType].open;
 
   return (
-    <button
-      ref={menuBtnRef}
+    <Button
       onClick={onClick}
-      className={`${style.hamButton} ${isActive}`}
+      type='button'
+      aria-label={'hamburger button'}
+      aria-expanded={isOpen}
+      ref={ref}
+      {...rest}
     >
-      <span aria-hidden='true'>☰</span> Menu
-    </button>
+      <span
+        aria-hidden='true'
+        className={`${styles['hamburgerButton_Icon']} 
+          ${children ? styles['hamburgerButton_Icon_withMargin'] : ''}`}
+      >
+        {icon}
+      </span>
+      {children}
+    </Button>
   );
 };
+
+// Workaround to save name in devtools & named import
+component.displayName = 'HamburgerButton';
+
+export const HamburgerButton = React.forwardRef(component);
