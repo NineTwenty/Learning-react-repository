@@ -6,6 +6,7 @@ import {
   createLoadingReducers,
 } from 'redux/utils';
 import { addUsers } from './usersSlice';
+import { selectCurrentUserId } from '../';
 
 const sliceName = 'dialogs';
 
@@ -88,3 +89,15 @@ const { selectIds, selectById, selectAll } = selectors;
 export const selectDialogs = (state) => selectAll(state);
 export const selectDialogsIds = (state) => selectIds(state);
 export const selectDialogById = (id) => (state) => selectById(state, id);
+export const selectDialogMemberId = (dialogId) => (state) => {
+  // Get current user
+  const userId = selectCurrentUserId(state);
+  // Get dialog
+  const dialog = selectDialogById(dialogId)(state);
+  // If dialog defined find member which is not current user
+  const memberId = dialog
+    ? dialog.members.find((member) => member !== userId)
+    : undefined;
+
+  return memberId;
+};
