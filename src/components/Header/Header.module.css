@@ -1,11 +1,13 @@
 .header {
   position: sticky;
   top: 0;
-  background-color: navy;
   display: flex;
   justify-content: space-between;
   height: 5vh;
   z-index: 10;
+
+  background-color: var(--color-background);
+  box-shadow: 0px 0px 0.7em 0px rgba(32, 16, 16, 0.1);
 }
 
 .header img {
@@ -13,5 +15,4 @@
 }
 
 .headerAuthButton {
-
 }
