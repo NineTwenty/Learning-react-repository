@@ -1,38 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchDialogs, selectDialogById } from 'redux/entities';
+import { useDispatch } from 'react-redux';
+import { fetchDialogs } from 'redux/entities';
 import styles from './Dialogs.module.css';
 
 import { DialogItem } from './DialogItem/DialogItem';
 import Chat from './Chat/Chat';
-import ChatHeader from './Chat/ChatHeader/ChatHeader';
-import Messages from './Chat/Messages/Messages';
-import ChatInputs from './Chat/ChatInputs/ChatInputs';
 import { Spinner } from 'components/common/Spinner';
-import Button from 'components/common/Button';
-
-// Dialogs sidenav control component to use in childrens
-const DialogsHamburgerButton = ({ isOpen, toggleState, label }) => {
-  return (
-    <Button
-      onClick={toggleState}
-      type='button'
-      aria-label={label}
-      aria-expanded={isOpen}
-    >
-      <span className={styles.toggleIcon}>{isOpen ? '🢀' : '🢂'}</span>
-    </Button>
-  );
-};
+import { HamburgerButton } from 'components/Header/HamburgerButton/HamburgerButton';
 
 const Dialogs = ({ dialogs, userId }) => {
   const { id: currentDialogId } = useParams();
   const isDialogChosen = !!currentDialogId;
   const isDialogsLoaded = dialogs && dialogs.length;
-
-  const currentDialog = useSelector(selectDialogById(currentDialogId));
-  const messagesIds = currentDialog && currentDialog.messages;
 
   const dispatch = useDispatch();
 
@@ -46,18 +26,13 @@ const Dialogs = ({ dialogs, userId }) => {
   }, [dispatch]);
 
   const populateDialogs = (dialogs) => {
-    // Func to find correct members for every dialog
-    const determinateMember = (dialog) =>
-      dialog.members.find((member) => member !== userId);
-
     if (isDialogsLoaded) {
       // Return filled Dialogs then
       return dialogs.map((dialog) => {
-        const memberId = determinateMember(dialog);
         const isChosen = currentDialogId === dialog.id;
         return (
           <li key={dialog.id}>
-            <DialogItem {...dialog} isChosen={isChosen} memberId={memberId} />
+            <DialogItem {...dialog} isChosen={isChosen} />
           </li>
         );
       });
@@ -82,6 +57,17 @@ const Dialogs = ({ dialogs, userId }) => {
     }
   };
 
+  const DialogsControlBtn = () => {
+    return (
+      <HamburgerButton
+        isOpen={isDialogsListOpen}
+        onClick={toggleDialogsList}
+        iconType='arrows'
+        aria-label='toggle dialogs list'
+      />
+    );
+  };
+
   // Render
   return (
     <div className={wrapperClasses}>
@@ -89,14 +75,8 @@ const Dialogs = ({ dialogs, userId }) => {
         <header className={styles.dialogsHeader}>
           <h2>Dialogs</h2>
           {
-            // Show toggle here only if list is open & dialog is chosen
-            isDialogChosen && isDialogsListOpen && (
-              <DialogsHamburgerButton
-                isOpen={isDialogsListOpen}
-                toggleState={toggleDialogsList}
-                label='toggle dialogs list'
-              />
-            )
+            // Show button here only if list is open & dialog is chosen
+            isDialogChosen && isDialogsListOpen && <DialogsControlBtn />
           }
         </header>
         <ul className={styles.dialogsListOverflowContainer}>
@@ -105,27 +85,13 @@ const Dialogs = ({ dialogs, userId }) => {
       </div>
 
       {isDialogChosen && (
-        <Chat className={styles.dialogsChat}>
-          <ChatHeader>
-            {
-              // Show toggle here only if list is closed
-              // so the button in the dialogs list is not visible
-              !isDialogsListOpen && (
-                <DialogsHamburgerButton
-                  isOpen={isDialogsListOpen}
-                  toggleState={toggleDialogsList}
-                  label='toggle dialogs list'
-                />
-              )
-            }
-          </ChatHeader>
-          <Messages
-            dialogId={currentDialogId}
-            messagesIds={messagesIds}
-            userId={userId}
-          />
-          <ChatInputs />
-        </Chat>
+        <Chat
+          className={styles.dialogsChat}
+          dialogId={currentDialogId}
+          userId={userId}
+          isDialogsListOpen={isDialogsListOpen}
+          dialogsControlBtn={DialogsControlBtn}
+        />
       )}
     </div>
   );

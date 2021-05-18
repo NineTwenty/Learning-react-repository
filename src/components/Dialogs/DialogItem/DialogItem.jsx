@@ -3,10 +3,11 @@ import { useSelector } from 'react-redux';
 import styles from './DialogItem.module.css';
 import { Link } from 'react-router-dom';
 import Avatar from '../../Profile/Avatar/Avatar';
-import { selectUserById } from 'redux/entities';
+import { selectDialogMemberId, selectUserById } from 'redux/entities';
 import { Spinner } from 'components/common/Spinner';
 
-export const DialogItem = ({ id, time, count, memberId, isChosen }) => {
+export const DialogItem = ({ id, time, count, isChosen }) => {
+  const memberId = useSelector(selectDialogMemberId(id));
   const user = useSelector(selectUserById(memberId));
 
   if (!user) {

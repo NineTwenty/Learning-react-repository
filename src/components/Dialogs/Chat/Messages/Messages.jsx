@@ -6,8 +6,9 @@ import {
   selectLoadedMessagesByIds,
 } from 'redux/entities/messagesSlice';
 import MessageItem from './MessageItem/MessageItem';
+import { selectDialogById } from 'redux/entities';
 
-const Messages = ({ messagesIds, dialogId, userId }) => {
+const Messages = ({ dialogId, userId }) => {
   const [page] = useState(1);
   const dispatch = useDispatch();
 
@@ -15,6 +16,9 @@ const Messages = ({ messagesIds, dialogId, userId }) => {
   useEffect(() => {
     dispatch(fetchMessages(page, dialogId));
   }, [dispatch, page, dialogId]);
+
+  // Select dialog's messagesIds
+  const { messages: messagesIds } = useSelector(selectDialogById(dialogId));
 
   // Select all currently available messages
   const messages = useSelector((state) =>
