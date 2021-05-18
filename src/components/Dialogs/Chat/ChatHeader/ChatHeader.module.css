@@ -1,5 +1,14 @@
-.chatHeaderWrapper {
+.Wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: var(--padding-primary);
+}
+
+.ButtonBox {
+  width: 10%;
+}
+
+.MemberName {
+  margin: 0;
 }
