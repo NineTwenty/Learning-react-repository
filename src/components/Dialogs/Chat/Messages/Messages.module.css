@@ -1,3 +1,4 @@
 .messagesWrapper {
   overflow-y: auto;
+  background: var(--color-secondary);
 }
