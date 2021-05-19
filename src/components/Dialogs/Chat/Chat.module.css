@@ -1,5 +1,4 @@
 .chatWrapper {
-  background: var(--color-secondary);
   justify-content: space-between;
   flex-flow: column;
 
