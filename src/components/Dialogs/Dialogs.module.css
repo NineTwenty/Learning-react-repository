@@ -85,8 +85,3 @@
 .dialogsWrapper.dialogChosen .dialogsChat {
   display: flex;
 }
-
-.toggleIcon {
-  display: inline-block;
-  transform: scale(1.2);
-}
