@@ -6,7 +6,7 @@ const ChatInputs = (props) => {
   return (
     <div className={styles.chatImputsWrapper}>
       <form action=''>
-        <textarea name='Message' id='' cols='20' rows='3' />
+        <textarea name='message' id='' cols='20' rows='3' />
         <Button type='submit'>Send</Button>
       </form>
     </div>
