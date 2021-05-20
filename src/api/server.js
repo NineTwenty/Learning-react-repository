@@ -237,7 +237,15 @@ export function makeServer({ environment = 'development' } = {}) {
 
         return sortedMessages.slice(start, end);
       });
-      this.post('/messages', handleMessage());
+      this.post('/messages', (schema, request) => {
+        const userId = authenticateUser(request);
+        const message = JSON.parse(request.requestBody);
+
+        if (message && message.text) {
+          message.authorId = userId;
+          return schema.messages.create(message);
+        }
+      });
 
       // ==================
       // 4.4 Posts
