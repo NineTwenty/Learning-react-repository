@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './Messages.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -9,6 +9,7 @@ import MessageItem from './MessageItem/MessageItem';
 import { selectDialogById } from 'redux/entities';
 
 const Messages = ({ dialogId, userId }) => {
+  const scrollAnchorRef = useRef();
   const [page] = useState(1);
   const dispatch = useDispatch();
 
@@ -41,6 +42,7 @@ const Messages = ({ dialogId, userId }) => {
   return (
     <div className={styles.messagesWrapper}>
       {messages ? populateMessages(messages) : null}
+      <div ref={scrollAnchorRef} className={styles.scrollAnchor}></div>
     </div>
   );
 };
