@@ -1,18 +1,18 @@
-.avatarWrapper {
+.Wrapper {
   position: relative;
 }
 
-.avatarImg {
+.Image {
   border-radius: 15%;
 }
 
-.avatarStatus {
+.Status {
   display: block;
   position: absolute;
   background: none;
   border-radius: 50%;  
 }
 
-.avatarStatus.online{
+.Status.online{
   background: greenyellow;
 }
