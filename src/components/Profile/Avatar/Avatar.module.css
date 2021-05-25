@@ -2,8 +2,24 @@
   position: relative;
 }
 
+.Wrapper_size_small {
+  height: 2rem;
+  width: 2rem;
+}
+
+.Wrapper_size_medium {
+  height: 3rem;
+  width: 3rem;
+}
+
+.Wrapper_size_large {
+  height: 4rem;
+  width: 4rem;
+}
+
 .Image {
   border-radius: 15%;
+  width: 100%;
 }
 
 .Status {
