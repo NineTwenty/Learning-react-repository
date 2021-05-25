@@ -18,6 +18,7 @@ const MessageItem = ({ text, id, authorId, positionLeft }) => {
       <div className={wrapperClasses}>
         <Avatar
           className={styles.messageItemAvatar}
+          size='small'
           avatar={avatar}
           name={username}
           key={id}
