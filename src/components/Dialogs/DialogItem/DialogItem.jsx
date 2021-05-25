@@ -26,7 +26,7 @@ export const DialogItem = ({ id, time, count, isChosen }) => {
   return (
     <div className={wrapperClasses}>
       <Avatar
-        className={styles['DialogItem-Avatar']}
+        size='medium'
         avatar={avatar}
         name={firstName}
       />

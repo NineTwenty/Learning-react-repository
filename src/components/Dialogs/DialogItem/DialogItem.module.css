@@ -28,11 +28,6 @@
   text-decoration: none;
 }
 
-.DialogItem-Avatar {
-  height: 3rem;
-  flex: 0 0 3rem;
-}
-
 .DialogItem-Preview {
   flex: 1;
   margin-left: 0.5rem;
