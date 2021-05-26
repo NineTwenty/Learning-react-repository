@@ -32,6 +32,16 @@ export {
   getIsLoadingPostStatus,
 } from './postsSlice';
 
+// Messages
+export {
+  fetchMessages,
+  submitMessage,
+  selectMessages,
+  selectMessagesIds,
+  selectMessageById,
+  selectLoadedMessagesByIds,
+} from './messagesSlice';
+
 // Registration
 
 reducerRegistry.register(entitiesSliceName, entitiesReducer);
