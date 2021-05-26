@@ -1,7 +1,7 @@
 import Button from 'components/common/Button';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { submitMessage } from 'redux/entities/messagesSlice';
+import { submitMessage } from 'redux/entities';
 import styles from './ChatImputs.module.css';
 
 const ChatInputs = (props) => {

@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from './Messages.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  selectDialogById,
   fetchMessages,
   selectLoadedMessagesByIds,
-} from 'redux/entities/messagesSlice';
+} from 'redux/entities';
 import MessageItem from './MessageItem/MessageItem';
-import { selectDialogById } from 'redux/entities';
 
 const Messages = ({ dialogId, userId }) => {
   const scrollAnchorRef = useRef();
