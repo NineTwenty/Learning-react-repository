@@ -3,3 +3,7 @@
   background: var(--color-secondary);
   height: 100%;
 }
+
+.scrollAnchor {
+  height: var(--padding-primary);
+}
