@@ -10,6 +10,7 @@ import { selectDialogById } from 'redux/entities';
 
 const Messages = ({ dialogId, userId }) => {
   const scrollAnchorRef = useRef();
+  const [isScrolledByUser, setIsScrolledByUser] = useState(false);
   const [page] = useState(1);
   const dispatch = useDispatch();
 
@@ -25,6 +26,31 @@ const Messages = ({ dialogId, userId }) => {
   const messages = useSelector((state) =>
     selectLoadedMessagesByIds(state, messagesIds)
   );
+
+  // Autoscroll to last message
+  useEffect(() => {
+    // Don't scroll if user has scrolled up to see previous messages
+    if (!isScrolledByUser) {
+      scrollAnchorRef.current.scrollIntoView();
+    }
+  });
+
+  // Setup IntersectionObserver for user scroll detection
+  useEffect(() => {
+    const options = {
+      root: scrollAnchorRef.current.parentElement,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      // Use intersection value as scrolling state
+      setIsScrolledByUser(!entries[0].isIntersecting);
+    }, options);
+
+    // Use empty div under messages as target
+    observer.observe(scrollAnchorRef.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   const populateMessages = (messages) =>
     messages.map(({ text, id, author }) => {
