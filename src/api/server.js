@@ -342,12 +342,12 @@ export function makeServer({ environment = 'development' } = {}) {
       server.create('dialog', {
         count: 16,
         time: '1min',
-        memberIds: [1, 4],
+        memberIds: ['1', '4'],
       });
       server.create('dialog', {
         count: 13,
         time: '4min',
-        memberIds: [2, 4],
+        memberIds: ['2', '4'],
       });
 
       // ==================
@@ -355,112 +355,112 @@ export function makeServer({ environment = 'development' } = {}) {
       // ==================
 
       server.create('message', {
-        authorId: 1,
-        dialogId: 1,
+        authorId: '1',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 1,
-        dialogId: 1,
+        authorId: '1',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 4,
-        dialogId: 1,
+        authorId: '4',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 1,
-        dialogId: 1,
+        authorId: '1',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 4,
-        dialogId: 1,
+        authorId: '4',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 1,
-        dialogId: 1,
+        authorId: '1',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 4,
-        dialogId: 1,
+        authorId: '4',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 1,
-        dialogId: 1,
+        authorId: '1',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 4,
-        dialogId: 1,
+        authorId: '4',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 1,
-        dialogId: 1,
+        authorId: '1',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 4,
-        dialogId: 1,
+        authorId: '4',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 1,
-        dialogId: 1,
+        authorId: '1',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 4,
-        dialogId: 1,
+        authorId: '4',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 1,
-        dialogId: 1,
+        authorId: '1',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 1,
-        dialogId: 1,
+        authorId: '1',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 4,
-        dialogId: 1,
+        authorId: '4',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 1,
-        dialogId: 1,
+        authorId: '1',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 4,
-        dialogId: 1,
+        authorId: '4',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 1,
-        dialogId: 1,
+        authorId: '1',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 4,
-        dialogId: 1,
+        authorId: '4',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 1,
-        dialogId: 1,
+        authorId: '1',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 4,
-        dialogId: 1,
+        authorId: '4',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 1,
-        dialogId: 1,
+        authorId: '1',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 4,
-        dialogId: 1,
+        authorId: '4',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 1,
-        dialogId: 1,
+        authorId: '1',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 4,
-        dialogId: 1,
+        authorId: '4',
+        dialogId: '1',
       });
       server.create('message', {
-        authorId: 1,
-        dialogId: 1,
+        authorId: '1',
+        dialogId: '1',
       });
 
       // ==================
