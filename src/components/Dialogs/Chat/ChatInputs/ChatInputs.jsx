@@ -1,49 +1,68 @@
+import React from 'react';
 import Button from 'components/common/Button';
-import React, { useState } from 'react';
+import { TextAreaField } from 'components/common/TextAreaField';
+import { Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { fetchDialogs, submitMessage } from 'redux/entities';
 import styles from './ChatImputs.module.css';
 
 const ChatInputs = (props) => {
-  const [value, setValue] = useState('');
   const dispatch = useDispatch();
 
-  const onChange = (event) => {
-    setValue(event.target.value);
+  const validate = (values) => {
+    const errors = {};
+
+    if (!values.text) {
+      errors.text = 'Required';
+    }
+
+    return errors;
   };
 
-  const onSubmit = (event) => {
-    event.preventDefault();
+  const onSubmit = (values, actions) => {
+    const { text } = values;
 
     // Create message
     const message = {
       created: Date.now(),
-      text: value,
+      text,
       unread: true,
       dialogId: props.dialogId,
     };
 
-    // Clean textarea
-    setValue('');
-
     // Submit message
     dispatch(submitMessage(message));
-    dispatch(fetchDialogs())
+    dispatch(fetchDialogs());
+
+    actions.setSubmitting(false);
+
+    // Clear form
+    actions.resetForm();
   };
 
   return (
     <div className={styles.chatImputsWrapper}>
-      <form action='' onSubmit={onSubmit}>
-        <textarea
-          onChange={onChange}
-          value={value}
-          name='message'
-          id=''
-          cols='20'
-          rows='3'
-        />
-        <Button type='submit'>Send</Button>
-      </form>
+      <Formik
+        initialValues={{
+          text: '',
+        }}
+        onSubmit={onSubmit}
+        validate={validate}
+      >
+        {(props) => (
+          <Form>
+            <TextAreaField
+              name='text'
+              onChange={props.handleChange}
+              onBlur={props.handleBlur}
+              value={props.values.text}
+              cols='20'
+              rows='3'
+            />
+            <Button type='submit'>Send</Button>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };
