@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Button from 'components/common/Button';
 import { TextAreaField } from 'components/common/TextAreaField';
 import { Form, Formik } from 'formik';
@@ -8,6 +8,7 @@ import styles from './ChatInputs.module.css';
 
 const ChatInputs = (props) => {
   const dispatch = useDispatch();
+  const formRef = useRef();
 
   const validate = (values) => {
     const errors = {};
@@ -48,6 +49,7 @@ const ChatInputs = (props) => {
         }}
         onSubmit={onSubmit}
         validate={validate}
+        innerRef={formRef}
       >
         {(props) => (
           <Form className={styles.Form}>
