@@ -41,6 +41,13 @@ const ChatInputs = (props) => {
     actions.resetForm();
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      formRef.current.handleSubmit();
+    }
+  };
+
   return (
     <div className={styles.Wrapper}>
       <Formik
@@ -58,6 +65,7 @@ const ChatInputs = (props) => {
               name='text'
               onChange={props.handleChange}
               onBlur={props.handleBlur}
+              onKeyPress={handleKeyPress}
               value={props.values.text}
               cols='20'
               rows='3'
