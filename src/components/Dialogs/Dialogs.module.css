@@ -59,6 +59,7 @@
 
 .dialogsList_hidden {
   position: absolute;
+  height: min-content;
   transform: translateX(-200%);
 }
 
