@@ -1,3 +1,18 @@
-.chatInputsWrapper {
+.Wrapper {
+  padding: var(--padding-primary);
+}
 
+.Form {
+  display: flex;
+}
+
+.TextArea {
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--border-radius-small);
+  margin-right: var(--padding-primary);
+  padding: 0.4em;
+}
+
+.TextArea:focus {
+  border: 1px solid var(--color-primary)
 }

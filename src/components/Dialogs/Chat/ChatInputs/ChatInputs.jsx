@@ -41,7 +41,7 @@ const ChatInputs = (props) => {
   };
 
   return (
-    <div className={styles.chatInputsWrapper}>
+    <div className={styles.Wrapper}>
       <Formik
         initialValues={{
           text: '',
@@ -50,8 +50,9 @@ const ChatInputs = (props) => {
         validate={validate}
       >
         {(props) => (
-          <Form>
+          <Form className={styles.Form}>
             <TextAreaField
+              className={styles.TextArea}
               name='text'
               onChange={props.handleChange}
               onBlur={props.handleBlur}
