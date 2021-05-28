@@ -63,8 +63,6 @@ const ChatInputs = (props) => {
             <TextAreaField
               className={styles.TextArea}
               name='text'
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
               onKeyPress={handleKeyPress}
               value={props.values.text}
               cols='20'
