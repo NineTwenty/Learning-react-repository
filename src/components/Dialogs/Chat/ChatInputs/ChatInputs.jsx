@@ -4,7 +4,7 @@ import { TextAreaField } from 'components/common/TextAreaField';
 import { Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { fetchDialogs, submitMessage } from 'redux/entities';
-import styles from './ChatImputs.module.css';
+import styles from './ChatInputs.module.css';
 
 const ChatInputs = (props) => {
   const dispatch = useDispatch();
