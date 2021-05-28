@@ -41,7 +41,7 @@ const ChatInputs = (props) => {
   };
 
   return (
-    <div className={styles.chatImputsWrapper}>
+    <div className={styles.chatInputsWrapper}>
       <Formik
         initialValues={{
           text: '',
