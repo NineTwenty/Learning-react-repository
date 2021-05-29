@@ -22,7 +22,7 @@
   position: absolute;
   z-index: 1;
   transform: translateX(0);
-  transition: transform .6s cubic-bezier(0,.77,.72,1.03);
+  transition: transform .2s cubic-bezier(0,.77,.72,1.03);
 
   display: flex;
   flex-flow: column;
@@ -60,7 +60,7 @@
 .dialogsList_hidden {
   position: absolute;
   height: min-content;
-  transform: translateX(-200%);
+  transform: translateX(-900%);
 }
 
 .dialogsHeader {
