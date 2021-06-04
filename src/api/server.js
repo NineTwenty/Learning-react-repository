@@ -229,7 +229,7 @@ export function makeServer({ environment = 'development' } = {}) {
         // Take messages from dialog
         const { messages } = schema.dialogs.find(dialogId);
         // Sort newest first
-        const sortedMessages = messages.sort((a, b) => b.created - a.created);
+        const sortedMessages = messages.sort((a, b) => b.id - a.id);
 
         // Pagination
         const start = (page - 1) * limit;
