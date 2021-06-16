@@ -41,6 +41,7 @@ const messagesSlice = createSlice({
     updateMany: adapter.updateMany,
     upsertOne: adapter.upsertOne,
     upsertMany: adapter.upsertMany,
+    removeAll: adapter.removeAll,
   },
   extraReducers: (builder) => {
     // Add messages on successful get request
@@ -59,6 +60,7 @@ export const messagesSliceName = messagesSlice.name;
 // Actions
 
 export const addMessages = messagesSlice.actions.addMany;
+export const clearMessages = () => messagesSlice.actions.removeAll();
 
 // Thunks
 

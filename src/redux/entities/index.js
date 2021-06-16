@@ -40,6 +40,7 @@ export {
   selectMessagesIds,
   selectMessageById,
   selectLoadedMessagesByIds,
+  clearMessages
 } from './messagesSlice';
 
 // Registration
