@@ -1,0 +1,6 @@
+.topSentinel {
+  height: calc(var(--padding-primary) / 3);
+}
+.bottomSentinel {
+  height: var(--padding-primary);
+}
