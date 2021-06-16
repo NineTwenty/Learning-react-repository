@@ -1,56 +1,23 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import styles from './Messages.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  clearMessages,
   selectDialogById,
   fetchMessages,
   selectLoadedMessagesByIds,
 } from 'redux/entities';
 import MessageItem from './MessageItem/MessageItem';
+import InfiniteScrollReverse from 'components/common/InfiniteScrollReverse/InfiniteScrollReverse';
 
 const Messages = ({ dialogId, userId }) => {
-  const scrollAnchorRef = useRef();
-  const [isScrolledByUser, setIsScrolledByUser] = useState(false);
-  const [page] = useState(1);
   const dispatch = useDispatch();
 
-  // Fetch messages
+  // Clear messages on dialog or page change
   useEffect(() => {
-    dispatch(fetchMessages(page, dialogId));
-  }, [dispatch, page, dialogId]);
-
-  // Select dialog's messagesIds
-  const { messages: messagesIds } = useSelector(selectDialogById(dialogId));
-
-  // Select all currently available messages
-  const messages = useSelector((state) =>
-    selectLoadedMessagesByIds(state, messagesIds)
-  );
-
-  // Autoscroll to last message
-  useEffect(() => {
-    // Don't scroll if user has scrolled up to see previous messages
-    if (!isScrolledByUser) {
-      scrollAnchorRef.current.scrollIntoView();
-    }
-  });
-
-  // Setup IntersectionObserver for user scroll detection
-  useEffect(() => {
-    const options = {
-      root: scrollAnchorRef.current.parentElement,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      // Use intersection value as scrolling state
-      setIsScrolledByUser(!entries[0].isIntersecting);
-    }, options);
-
-    // Use empty div under messages as target
-    observer.observe(scrollAnchorRef.current);
-
-    return () => observer.disconnect();
-  }, []);
+    dispatch(clearMessages());
+    return () => dispatch(clearMessages());
+  }, [dispatch, dialogId]);
 
   const populateMessages = (messages) =>
     messages.map(({ text, id, author }) => {
@@ -65,12 +32,34 @@ const Messages = ({ dialogId, userId }) => {
       );
     });
 
+  const { messages: messagesIds } =
+    useSelector(selectDialogById(dialogId)) || {};
+
+  // Select all currently available messages
+  const messages = useSelector((state) =>
+    selectLoadedMessagesByIds(state, messagesIds)
+  );
+
+  const loadMore = useCallback(
+    (page) => {
+      dispatch(fetchMessages(page, dialogId));
+    },
+    [dispatch, dialogId]
+  );
+
+  const hasMore = messages ? messagesIds.length > messages.length : false;
+
   return (
     <div className={styles.messagesWrapper}>
-      {messages ? populateMessages(messages) : null}
-      <div ref={scrollAnchorRef} className={styles.scrollAnchor}></div>
+      <InfiniteScrollReverse
+        hasMore={hasMore}
+        loadMore={loadMore}
+        key={dialogId}
+      >
+        {messages ? populateMessages(messages) : null}
+      </InfiniteScrollReverse>
     </div>
   );
 };
 
-export default Messages;
+export default React.memo(Messages);

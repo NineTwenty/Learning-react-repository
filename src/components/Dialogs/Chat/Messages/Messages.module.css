@@ -2,7 +2,7 @@
   overflow-y: auto;
   background: var(--color-secondary);
   height: 100%;
-  padding: var(--padding-primary);
+  padding: 0 var(--padding-primary);
   padding-bottom: 0;
 }
 
