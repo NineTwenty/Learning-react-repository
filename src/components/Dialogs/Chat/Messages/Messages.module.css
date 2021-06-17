@@ -5,7 +5,3 @@
   padding: 0 var(--padding-primary);
   padding-bottom: 0;
 }
-
-.scrollAnchor {
-  height: var(--padding-primary);
-}
