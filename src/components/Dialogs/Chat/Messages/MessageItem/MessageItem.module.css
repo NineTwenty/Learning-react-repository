@@ -1,7 +1,7 @@
 .messageItemWrapper {
   font-size: 0.8rem;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   flex-wrap: nowrap;
   align-items: flex-start;
   padding: .4rem;
@@ -26,6 +26,6 @@
   box-shadow: .3em .3em .4em rgb(230, 233, 238);
 }
 
-.messageItemWrapper_positionLeft {
-  flex-direction: row;
+.isMine {
+  flex-direction: row-reverse;
 }
