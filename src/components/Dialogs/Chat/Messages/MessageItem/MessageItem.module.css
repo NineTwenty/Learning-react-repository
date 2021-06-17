@@ -23,7 +23,13 @@
   background: var(--color-background);
   border-radius: .4em;
   padding: 1em;
-  box-shadow: .3em .3em .4em rgb(230, 233, 238);
+  box-shadow: 0em 0.1em 0.2em var(--color-shadow-light);
+}
+
+.isMine .messageItemText {
+  background: var(--color-primary);
+  color: var(--color-text-light);
+  box-shadow: 0em 0.1em 0.2em var(--color-shadow-blue);
 }
 
 .isMine {

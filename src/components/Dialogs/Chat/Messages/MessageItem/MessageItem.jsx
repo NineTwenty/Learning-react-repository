@@ -7,7 +7,7 @@ import { Spinner } from 'components/common/Spinner';
 
 const MessageItem = ({ text, id, authorId, isMine }) => {
   const wrapperClasses = `${styles.messageItemWrapper} ${
-    isMine ? styles.messageItemWrapper_positionLeft : ''
+    isMine ? styles.isMine : ''
   }`;
 
   const author = useSelector(selectUserById(authorId));
