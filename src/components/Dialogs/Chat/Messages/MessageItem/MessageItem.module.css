@@ -7,6 +7,17 @@
   padding: .4rem;
 }
 
+.messageItemWrapper::after {
+  content: '';
+  min-width: 2em;
+}
+
+@media (min-width: 430px) {
+  .messageItemWrapper::after {
+    min-width: 4.6em;
+  }
+}
+
 .messageItemAvatar {
   display: none;
   flex-shrink: 0;
