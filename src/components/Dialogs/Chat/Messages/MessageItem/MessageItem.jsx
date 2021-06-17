@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 import { selectUserById } from 'redux/entities';
 import { Spinner } from 'components/common/Spinner';
 
-const MessageItem = ({ text, id, authorId, positionLeft }) => {
+const MessageItem = ({ text, id, authorId, isMine }) => {
   const wrapperClasses = `${styles.messageItemWrapper} ${
-    positionLeft ? styles.messageItemWrapper_positionLeft : ''
+    isMine ? styles.messageItemWrapper_positionLeft : ''
   }`;
 
   const author = useSelector(selectUserById(authorId));

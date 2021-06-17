@@ -27,7 +27,7 @@ const Messages = ({ dialogId, userId }) => {
           id={id}
           text={text}
           authorId={author}
-          positionLeft={userId === author}
+          isMine={userId === author}
         />
       );
     });
