@@ -1,6 +1,12 @@
+.wrapper {
+position: relative;
+}
+
 .topSentinel {
   height: calc(var(--padding-primary) / 3);
+  position: absolute;
 }
+
 .bottomSentinel {
   height: var(--padding-primary);
 }

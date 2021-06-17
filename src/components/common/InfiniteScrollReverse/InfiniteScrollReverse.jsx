@@ -201,7 +201,7 @@ export const InfiniteScrollReverse = (props) => {
   }, [isInitialized]);
 
   return (
-    <div ref={rootRef}>
+    <div ref={rootRef} className={styles.wrapper}>
       <div ref={topRef} className={styles.topSentinel} />
       {children}
       <div ref={bottomRef} className={styles.bottomSentinel} />
