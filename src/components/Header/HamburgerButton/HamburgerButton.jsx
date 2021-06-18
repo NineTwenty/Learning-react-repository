@@ -8,8 +8,8 @@ const component = (
 ) => {
   const iconsSets = {
     arrows: {
-      close: '🢀',
-      open: '🢂',
+      close: '<',
+      open: '>',
     },
     hamburger: {
       close: '☰',
