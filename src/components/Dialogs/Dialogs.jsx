@@ -45,7 +45,9 @@ const Dialogs = ({ dialogs, userId }) => {
   }`;
 
   // Setup state for dialogs list control
-  const [isDialogsListOpen, setIsDialogsListOpen] = useState(true);
+  const [isDialogsListOpen, setIsDialogsListOpen] = useState(
+    isDialogChosen ? false : true
+  );
   const dialogsClasses = `${styles.dialogsList} ${
     isDialogsListOpen ? '' : styles.dialogsList_hidden
   }`;
