@@ -21,7 +21,11 @@
 .messageItemAvatar {
   display: none;
   flex-shrink: 0;
-  margin: 0 1em;
+  margin: 0 1em 0 0;
+}
+
+.isMine > .messageItemAvatar {
+  margin: 0 0 0 1em;
 }
 
 @media (min-width: 530px) {
