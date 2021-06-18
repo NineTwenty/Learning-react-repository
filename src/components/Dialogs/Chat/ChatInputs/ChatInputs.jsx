@@ -68,7 +68,9 @@ const ChatInputs = (props) => {
               cols='20'
               rows='3'
             />
-            <Button type='submit'>Send</Button>
+            <Button type='submit'>
+              <span className={styles.SubmitButtonText}>SEND</span>
+            </Button>
           </Form>
         )}
       </Formik>

@@ -16,3 +16,7 @@
 .TextArea:focus {
   border: 1px solid var(--color-primary)
 }
+
+.SubmitButtonText {
+  font-weight: bold;
+}
