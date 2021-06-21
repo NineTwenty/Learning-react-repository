@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import styles from './Messages.module.css';
+import styles from './ChatBox.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   clearMessages,
@@ -10,7 +10,7 @@ import {
 import MessageItem from '../MessageItem/MessageItem';
 import InfiniteScrollReverse from 'components/common/InfiniteScrollReverse/InfiniteScrollReverse';
 
-const Messages = ({ dialogId, userId }) => {
+const ChatBox = ({ dialogId, userId }) => {
   const dispatch = useDispatch();
 
   // Clear messages on dialog or page change
@@ -50,7 +50,7 @@ const Messages = ({ dialogId, userId }) => {
   const hasMore = messages ? messagesIds.length > messages.length : false;
 
   return (
-    <div className={styles.messagesWrapper}>
+    <div className={styles.ChatBox}>
       <InfiniteScrollReverse
         hasMore={hasMore}
         loadMore={loadMore}
@@ -62,4 +62,4 @@ const Messages = ({ dialogId, userId }) => {
   );
 };
 
-export default React.memo(Messages);
+export default React.memo(ChatBox);

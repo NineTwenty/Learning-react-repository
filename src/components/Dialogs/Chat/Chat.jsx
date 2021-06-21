@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Chat.module.css';
 import ChatHeader from '../ChatHeader/ChatHeader';
-import Messages from '../Messages/Messages';
+import ChatBox from '../ChatBox/ChatBox';
 import ChatInputs from '../ChatInputs/ChatInputs';
 import { useSelector } from 'react-redux';
 import { selectDialogMemberId, selectUserById } from 'redux/entities';
@@ -36,7 +36,7 @@ const Chat = ({
               !isDialogsListOpen && <DialogsControlBtn />
             }
           </ChatHeader>
-          <Messages {...{ dialogId, userId }} />
+          <ChatBox {...{ dialogId, userId }} />
           <ChatInputs dialogId={dialogId} />
         </>
       )}

@@ -1,4 +1,4 @@
-.messagesWrapper {
+.ChatBox {
   overflow-y: auto;
   background: var(--color-secondary);
   height: 100%;
