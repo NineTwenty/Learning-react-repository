@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './Chat.module.css';
-import ChatHeader from './ChatHeader/ChatHeader';
-import Messages from './Messages/Messages';
-import ChatInputs from './ChatInputs/ChatInputs';
+import ChatHeader from '../ChatHeader/ChatHeader';
+import Messages from '../Messages/Messages';
+import ChatInputs from '../ChatInputs/ChatInputs';
 import { useSelector } from 'react-redux';
 import { selectDialogMemberId, selectUserById } from 'redux/entities';
 

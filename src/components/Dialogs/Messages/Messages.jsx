@@ -7,7 +7,7 @@ import {
   fetchMessages,
   selectLoadedMessagesByIds,
 } from 'redux/entities';
-import MessageItem from './MessageItem/MessageItem';
+import MessageItem from '../MessageItem/MessageItem';
 import InfiniteScrollReverse from 'components/common/InfiniteScrollReverse/InfiniteScrollReverse';
 
 const Messages = ({ dialogId, userId }) => {
