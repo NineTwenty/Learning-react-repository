@@ -59,6 +59,11 @@ const Dialogs = ({ dialogs, userId }) => {
     }
   };
 
+  // Autoclose list after dialog change
+  useEffect(() => {
+    if (currentDialogId) setIsDialogsListOpen(false);
+  }, [currentDialogId]);
+
   const DialogsControlBtn = () => {
     return (
       <HamburgerButton
