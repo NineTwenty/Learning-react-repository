@@ -5,6 +5,10 @@
   padding: var(--padding-primary);
 }
 
+.ButtonBox {
+  min-width: 10%;
+}
+
 .MemberName {
   margin: 0;
 }
