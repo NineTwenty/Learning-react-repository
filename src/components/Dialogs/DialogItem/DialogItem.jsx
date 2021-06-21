@@ -30,15 +30,15 @@ export const DialogItem = ({ id, time, count, isChosen }) => {
         avatar={avatar}
         name={firstName}
       />
-      <div className={styles['Preview']}>
-        <h5 className={styles['Name']}>{firstName}</h5>
-        <p className={styles['Message']}></p>
+      <div className={styles.Preview}>
+        <h5 className={styles.Name}>{firstName}</h5>
+        <p className={styles.Message}></p>
       </div>
-      <div className={styles['Meta']}>
-        <span className={styles['Count']}>{count}</span>
-        <span className={styles['Passed']}>{time}</span>
+      <div className={styles.Meta}>
+        <span className={styles.Count}>{count}</span>
+        <span className={styles.Passed}>{time}</span>
       </div>
-      <Link to={`/dialogs/${id}`} className={styles['Link']} />
+      <Link to={`/dialogs/${id}`} className={styles.Link} />
     </div>
   );
 };
