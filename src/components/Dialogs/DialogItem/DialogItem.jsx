@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styles from './DialogItem.module.css';
 import { Link } from 'react-router-dom';
-import Avatar from '../../Profile/Avatar/Avatar';
+import Avatar from '../../common/Avatar/Avatar';
 import { selectDialogMemberId, selectUserById } from 'redux/entities';
 import { Spinner } from 'components/common/Spinner';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './MessageItem.module.css';
-import Avatar from '../../Profile/Avatar/Avatar';
+import Avatar from '../../common/Avatar/Avatar';
 import { useSelector } from 'react-redux';
 import { selectUserById } from 'redux/entities';
 import { Spinner } from 'components/common/Spinner';
