@@ -274,7 +274,7 @@ export function makeServer({ environment = 'development' } = {}) {
       function createJWT(user) {
         const { id: userId } = user;
         const jwt = require('jsonwebtoken');
-        return jwt.sign({ userId }, secret, { expiresIn: '15m' });
+        return jwt.sign({ userId }, secret, { expiresIn: '100m' });
       }
 
       function verifyJWT(authHeader) {
