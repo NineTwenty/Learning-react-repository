@@ -18,7 +18,7 @@
   background: var(--color-secondary);
 }
 
-.DialogItem-Link {
+.Link {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -28,28 +28,28 @@
   text-decoration: none;
 }
 
-.DialogItem-Preview {
+.Preview {
   flex: 1;
   margin-left: 0.5rem;
 }
 
-.DialogItem-Name {
+.Name {
   margin: 0;
   max-height: 1.2rem;
 }
 
-.DialogItem-Message {
+.Message {
   color: var(--color-text-ui);
   font-size: 0.7rem;
   margin: 0;
 }
 
-.DialogItem-Meta {
+.Meta {
   font-size: 0.6rem;
   flex: 0 0 2.5em;
 }
 
-.DialogItem-Count {
+.Count {
   display: block;
   height: 1.5em;
   width: 1.5em;
@@ -59,7 +59,7 @@
   color: var(--color-background);
 }
 
-.DialogItem-Passed {
+.Passed {
   padding: 1rem 0;
 
   color: var(--color-primary);
