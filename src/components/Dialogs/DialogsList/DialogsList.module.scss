@@ -1,4 +1,4 @@
-.dialogsList {
+.Wrapper {
   position: absolute;
   z-index: 1;
   transform: translateX(0);
@@ -30,14 +30,14 @@
   }
 }
 
-.dialogsListOverflowContainer {
+.List {
   overflow-y: auto;
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
 
-.dialogsHeader {
+.Header {
   margin: var(--padding-primary);
   display: flex;
   justify-content: space-between;
