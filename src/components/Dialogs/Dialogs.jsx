@@ -8,6 +8,7 @@ import { DialogItem } from './DialogItem/DialogItem';
 import Chat from './Chat/Chat';
 import { Spinner } from 'components/common/Spinner';
 import { HamburgerButton } from 'components/Header/HamburgerButton/HamburgerButton';
+import { DialogsList } from './DialogsList/DIalogsList';
 
 const Dialogs = ({ dialogs, userId }) => {
   const { id: currentDialogId } = useParams();
@@ -48,9 +49,6 @@ const Dialogs = ({ dialogs, userId }) => {
   const [isDialogsListOpen, setIsDialogsListOpen] = useState(
     isDialogChosen ? false : true
   );
-  const dialogsClasses = `${styles.dialogsList} ${
-    isDialogsListOpen ? '' : styles.dialogsList_hidden
-  }`;
 
   // Toggle visibility of dialogs list
   const toggleDialogsList = () => {
@@ -78,18 +76,9 @@ const Dialogs = ({ dialogs, userId }) => {
   // Render
   return (
     <div className={wrapperClasses}>
-      <div role='navigation' className={dialogsClasses}>
-        <header className={styles.dialogsHeader}>
-          <h2>Dialogs</h2>
-          {
-            // Show button here only if list is open & dialog is chosen
-            isDialogChosen && isDialogsListOpen && <DialogsControlBtn />
-          }
-        </header>
-        <ul className={styles.dialogsListOverflowContainer}>
-          {isDialogsLoaded ? populateDialogs(dialogs) : <Spinner />}
-        </ul>
-      </div>
+      <DialogsList isOpen={isDialogsListOpen} className={styles.dialogsList}>
+        {isDialogsLoaded ? populateDialogs(dialogs) : <Spinner />}
+      </DialogsList>
 
       {isDialogChosen && (
         <Chat

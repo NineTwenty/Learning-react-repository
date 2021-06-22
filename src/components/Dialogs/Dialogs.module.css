@@ -18,59 +18,8 @@
   }
 }
 
-.dialogsList {
-  position: absolute;
-  z-index: 1;
-  transform: translateX(0);
-  transition: transform .2s cubic-bezier(0,.77,.72,1.03);
-
-  display: flex;
-  flex-flow: column;
-  flex: 1 1;
-  width: 100%;
-  min-height: 0;
-  height: 95vh;
-
-  background: var(--color-background);
-}
-
-@media (min-width: 769px) {
-  .dialogsList {
-    transition: none;
-    
-    flex-basis: 30%;
-    height: 100%;
-    position: static;
-
-    background: none;
-  }
-}
-
 .dialogsWrapper.dialogChosen .dialogsList {
   width: auto;
-}
-
-.dialogsListOverflowContainer {
-  overflow-y: auto;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-.dialogsList_hidden {
-  position: absolute;
-  height: min-content;
-  transform: translateX(-900%);
-}
-
-.dialogsHeader {
-  margin: var(--padding-primary);
-  display: flex;
-  justify-content: space-between;
-}
-
-.dialogsHeader > h2 {
-  margin: 0;
 }
 
 .dialogsChat {
