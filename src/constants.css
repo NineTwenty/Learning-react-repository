@@ -16,4 +16,9 @@
   /* Sizes */
   --border-radius-small: 0.5em;
   --padding-primary: 1em;
+
+  /* Fonts */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
 }
