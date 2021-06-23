@@ -2,18 +2,18 @@
   min-width: 5em;
   min-height: 2.6em;
   padding: 0.6em 1em;
-  
+
   border: none;
   border-radius: 0.3em;
-  
+
   background: var(--color-primary);
   color: var(--color-background);
-  
+
   cursor: pointer;
   white-space: nowrap;
-}
 
-.button:focus {
-  background: var(--color-focus);
-  outline: none;
+  &:focus {
+    background: var(--color-focus);
+    outline: none;
+  }
 }
