@@ -2,6 +2,7 @@
 
 body {
   background: #fafafb;
+  color: var(--color-text-headers);
   margin: 0;
   font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
