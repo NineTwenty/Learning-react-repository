@@ -10,7 +10,7 @@ const ChatHeader = ({ children, member }) => {
     <div className={styles.Wrapper}>
       <div className={styles.ButtonBox}>{children}</div>
       <h4 className={styles.MemberName}>{fullname}</h4>
-      <Avatar {...{ avatar, name: fullname }} />
+      <Avatar size='small' {...{ avatar, name: fullname }} />
     </div>
   );
 };
