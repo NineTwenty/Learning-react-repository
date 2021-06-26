@@ -1,19 +1,67 @@
 .button {
-  min-width: 5em;
-  min-height: 2.6em;
-  padding: 0.6em 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: var(--padding-primary);
 
   border: none;
-  border-radius: 0.3em;
-
-  background: var(--color-primary);
-  color: var(--color-background);
+  background: none;
+  color: var(--color-text-unfocused);
 
   cursor: pointer;
   white-space: nowrap;
 
+  &:hover,
   &:focus {
-    background: var(--color-focus);
-    outline: none;
+    color: var(--color-text-ui);
+    background: none;
+  }
+
+  // Minimalistic without any background
+  &_borderless {
+    padding: 0.2em;
+
+    border-radius: 0;
+    border-bottom: 0.08em solid transparent;
+
+    &:hover,
+    &:focus {
+      border-bottom: 0.08em solid var(--color-border-light);
+    }
+  }
+
+  &_default,
+  &_light {
+    border-radius: 0.3em;
+  }
+
+  // Light with border
+  &_light {
+    border: 0.08em solid var(--color-border-light);
+
+    &:hover,
+    &:focus {
+      background: var(--color-border-light);
+    }
+
+    &:focus {
+      border: 0.08em solid var(--color-border-dark);
+    }
+  }
+
+  // Unspecified style type
+  &_default {
+    border: 0.08em solid var(--color-primary);
+
+    background: var(--color-primary);
+    color: var(--color-text-light);
+
+    &:hover,
+    &:focus {
+      color: var(--color-text-light);
+      background: var(--color-focus);
+      border: 0.08em solid var(--color-focus);
+    }
   }
 }
