@@ -4,7 +4,14 @@ import styles from './HamburgerButton.module.css';
 import { Icon } from 'components/common/Icon/Icon';
 
 const component = (
-  { isOpen, onClick, children, iconType = 'hamburger', ...rest },
+  {
+    isOpen,
+    onClick,
+    children,
+    iconType = 'hamburger',
+    styleType,
+    ...rest
+  },
   ref
 ) => {
   const iconsSets = {
@@ -28,6 +35,7 @@ const component = (
       onClick={onClick}
       type='button'
       aria-label={'hamburger button'}
+      styleType={styleType}
       aria-expanded={isOpen}
       ref={ref}
       {...rest}
