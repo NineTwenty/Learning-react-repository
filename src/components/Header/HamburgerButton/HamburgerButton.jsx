@@ -1,6 +1,7 @@
 import Button from 'components/common/Button';
 import React from 'react';
 import styles from './HamburgerButton.module.css';
+import { Icon } from 'components/common/Icon/Icon';
 
 const component = (
   { isOpen, onClick, children, iconType = 'hamburger', ...rest },
@@ -8,17 +9,19 @@ const component = (
 ) => {
   const iconsSets = {
     arrows: {
-      close: '<',
-      open: '>',
+      closed: 'chevronRight',
+      open: 'chevronLeft',
     },
     hamburger: {
-      close: '☰',
-      open: '☰',
+      closed: 'menu',
+      open: 'menuOpen',
     },
   };
 
   // Choose icon to show
-  const icon = isOpen ? iconsSets[iconType].close : iconsSets[iconType].open;
+  const icon = isOpen ? iconsSets[iconType].open : iconsSets[iconType].closed;
+
+  const iconColor = styleType ? 'black' : 'white';
 
   return (
     <Button
@@ -29,13 +32,7 @@ const component = (
       ref={ref}
       {...rest}
     >
-      <span
-        aria-hidden='true'
-        className={`${styles['hamburgerButton_Icon']} 
-          ${children ? styles['hamburgerButton_Icon_withMargin'] : ''}`}
-      >
-        {icon}
-      </span>
+      <Icon type={icon} color={iconColor} />
       {children}
     </Button>
   );
