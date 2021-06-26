@@ -40,7 +40,8 @@
 .Header {
   height: calc(2em + (var(--padding-primary) * 2));
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 
   > h2 {
     margin: 0;
