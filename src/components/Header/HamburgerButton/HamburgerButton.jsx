@@ -1,6 +1,5 @@
 import Button from 'components/common/Button';
 import React from 'react';
-import styles from './HamburgerButton.module.css';
 import { Icon } from 'components/common/Icon/Icon';
 
 const component = (
