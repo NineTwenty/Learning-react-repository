@@ -6,6 +6,7 @@
 
   box-shadow: 0 0 0.7em rgba(32, 16, 16, 0.2);
   clip-path: inset(0 0 -2em 0);
+  height: calc(2em + (var(--padding-primary) * 2));
 }
 
 .ButtonBox {
