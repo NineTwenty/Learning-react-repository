@@ -38,7 +38,7 @@
 }
 
 .Header {
-  margin: var(--padding-primary);
+  height: calc(2em + (var(--padding-primary) * 2));
   display: flex;
   justify-content: space-between;
 
