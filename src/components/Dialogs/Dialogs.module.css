@@ -1,4 +1,5 @@
 .dialogsWrapper {
+  position: relative;
   display: flex;
   flex-flow: column;
   height: 95vh;
@@ -34,4 +35,11 @@
 
 .dialogsWrapper.dialogChosen .dialogsChat {
   display: flex;
+}
+
+.ControlButton {
+  position: absolute;
+  z-index: 2;
+  top: calc(var(--padding-primary) - 0.3em);
+  left: calc(var(--padding-primary) - 0.4em);
 }

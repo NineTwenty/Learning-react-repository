@@ -6,13 +6,7 @@ import ChatInputs from '../ChatInputs/ChatInputs';
 import { useSelector } from 'react-redux';
 import { selectDialogMemberId, selectUserById } from 'redux/entities';
 
-const Chat = ({
-  className,
-  dialogId,
-  userId,
-  dialogsControlBtn,
-  isDialogsListOpen,
-}) => {
+const Chat = ({ className, dialogId, userId }) => {
   const memberId = useSelector(selectDialogMemberId(dialogId));
   const member = useSelector(selectUserById(memberId));
 
@@ -22,20 +16,11 @@ const Chat = ({
     ? `${className} ${styles.chatWrapper}`
     : styles.chatWrapper;
 
-  // Capitalize for jsx
-  const DialogsControlBtn = dialogsControlBtn;
-
   return (
     <div className={classes}>
       {isLoaded && (
         <>
-          <ChatHeader member={member}>
-            {
-              // Show toggle here only if list is closed
-              // and there's no other visible button
-              !isDialogsListOpen && <DialogsControlBtn />
-            }
-          </ChatHeader>
+          <ChatHeader member={member} />
           <ChatBox {...{ dialogId, userId }} />
           <ChatInputs dialogId={dialogId} />
         </>

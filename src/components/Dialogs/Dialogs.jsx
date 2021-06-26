@@ -62,20 +62,20 @@ const Dialogs = ({ dialogs, userId }) => {
     if (currentDialogId) setIsDialogsListOpen(false);
   }, [currentDialogId]);
 
-  const DialogsControlBtn = () => {
-    return (
-      <HamburgerButton
-        isOpen={isDialogsListOpen}
-        onClick={toggleDialogsList}
-        iconType='arrows'
-        aria-label='toggle dialogs list'
-      />
-    );
-  };
-
   // Render
   return (
     <div className={wrapperClasses}>
+      {isDialogChosen && (
+        <HamburgerButton
+          className={styles.ControlButton}
+          isOpen={isDialogsListOpen}
+          onClick={toggleDialogsList}
+          iconType='hamburger'
+          styleType='borderless'
+          aria-label='toggle dialogs list'
+        />
+      )}
+
       <DialogsList isOpen={isDialogsListOpen} className={styles.dialogsList}>
         {isDialogsLoaded ? populateDialogs(dialogs) : <Spinner />}
       </DialogsList>
@@ -85,8 +85,6 @@ const Dialogs = ({ dialogs, userId }) => {
           className={styles.dialogsChat}
           dialogId={currentDialogId}
           userId={userId}
-          isDialogsListOpen={isDialogsListOpen}
-          dialogsControlBtn={DialogsControlBtn}
         />
       )}
     </div>
