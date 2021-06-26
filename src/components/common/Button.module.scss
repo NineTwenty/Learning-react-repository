@@ -18,6 +18,19 @@
     background: none;
   }
 
+  // For possible icons
+  & > svg {
+    fill: var(--color-text-unfocused);
+  }
+
+  &:hover > svg {
+    fill: var(--color-text-ui);
+  }
+
+  &:focus > svg {
+    fill: var(--color-text-headers);
+  }
+
   // Minimalistic without any background
   &_borderless {
     padding: 0.2em;
@@ -62,6 +75,13 @@
       color: var(--color-text-light);
       background: var(--color-focus);
       border: 0.08em solid var(--color-focus);
+    }
+
+    // For possible icons
+    & > svg,
+    &:hover > svg,
+    &:focus > svg {
+      fill: var(--color-text-light);
     }
   }
 }
