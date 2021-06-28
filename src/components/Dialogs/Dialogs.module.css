@@ -39,7 +39,7 @@
 
 .ControlButton {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   top: calc(var(--padding-primary) - 0.3em);
   left: calc(var(--padding-primary) - 0.4em);
 }
