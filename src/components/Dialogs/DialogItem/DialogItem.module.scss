@@ -13,8 +13,23 @@
     outline: var(--color-primary) solid 0.5px;
   }
 
+  // Active state indicator
+  $indicator-width: 0.11em;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0.5em - $indicator-width / 2;
+
+    height: 80%;
+    width: $indicator-width;
+
+    border-radius: var(--border-radius-small);
+  }
+
   &_chosen {
-    background: var(--color-secondary);
+    &::before {
+      background: var(--color-primary);
+    }
   }
 }
 
