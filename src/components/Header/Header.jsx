@@ -11,6 +11,7 @@ const Header = ({ isSideNavForceOpen, setSideNavForceOpen, menuBtnRef }) => {
       ></img>
       <HamburgerButton
         ref={menuBtnRef}
+        styleType={'borderless'}
         isOpen={isSideNavForceOpen}
         onClick={() => setSideNavForceOpen(!isSideNavForceOpen)}
       >
