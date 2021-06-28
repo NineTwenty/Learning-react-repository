@@ -6,11 +6,10 @@
   max-height: 5rem;
   min-width: 14rem;
   padding: 1rem;
-  margin: 1px 0px 1px 1px;
   align-items: center;
 
   &:focus-within {
-    outline: var(--color-primary) solid 0.5px;
+    background: var(--color-secondary);
   }
 
   // Active state indicator
