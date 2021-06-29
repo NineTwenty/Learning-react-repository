@@ -15,7 +15,7 @@
     margin: var(--padding-primary) auto;
     border-radius: var(--border-radius-small);
 
-    box-shadow: -3px 3px 16px -4px #dde5eb;
+    box-shadow: 0 0.25em 0.5em var(--color-shadow-light);
   }
 }
 
