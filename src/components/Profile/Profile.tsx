@@ -20,7 +20,7 @@ const Profile = (props) => {
       </div>
       <Route path={`${url}/posts`}>
         <div className={style.aside}></div>
-        <PostWall className={style.postwall} />
+        <PostWall />
       </Route>
       <Redirect exact from={url} to={`${url}/posts`} />
     </main>
