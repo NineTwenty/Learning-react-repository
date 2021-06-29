@@ -34,10 +34,10 @@ export const DialogItem = ({ id, time, count, isChosen }) => {
         <h5 className={styles.Name}>{firstName}</h5>
         <p className={styles.Message}></p>
       </div>
-      <div className={styles.Meta}>
+      {/* <div className={styles.Meta}>
         <span className={styles.Count}>{count}</span>
         <span className={styles.Passed}>{time}</span>
-      </div>
+      </div> */}
       <Link to={`/dialogs/${id}`} className={styles.Link} />
     </div>
   );
