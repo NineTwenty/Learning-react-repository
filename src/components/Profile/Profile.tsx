@@ -5,7 +5,7 @@ import { Tabs } from '../common/Tabs';
 import { Tab } from '../common/Tab';
 import { Route, useRouteMatch, Redirect } from 'react-router-dom';
 
-const Profile = (props) => {
+const Profile = () => {
   const { url } = useRouteMatch();
   return (
     <main className={style.grid}>
