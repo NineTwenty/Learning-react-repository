@@ -18,10 +18,12 @@ const Profile = () => {
           <Tab value={'Photos'} route={'photos'} />
         </Tabs>
       </div>
-      <Route path={`${url}/posts`}>
-        <div className={style.aside}></div>
-        <PostWall />
-      </Route>
+      <div className={style.Content}>
+        <Route path={`${url}/posts`}>
+          <div className={style.Aside}></div>
+          <PostWall className={style.Postwall}/>
+        </Route>
+      </div>
       <Redirect exact from={url} to={`${url}/posts`} />
     </main>
   );
