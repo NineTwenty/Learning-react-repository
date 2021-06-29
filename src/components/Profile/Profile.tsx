@@ -8,7 +8,7 @@ import { Route, useRouteMatch, Redirect } from 'react-router-dom';
 const Profile = () => {
   const { url } = useRouteMatch();
   return (
-    <main className={style.grid}>
+    <main className={style.Wrapper}>
       <div className={style.picture}></div>
       <div className={style.tabs}>
         <Tabs>
