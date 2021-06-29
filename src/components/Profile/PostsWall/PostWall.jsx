@@ -9,8 +9,9 @@ import {
 } from 'redux/entities';
 import { List } from 'components/common/List';
 import { useSelector, useDispatch } from 'react-redux';
+import cx from 'classnames';
 
-const PostWall = () => {
+const PostWall = ({ className }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,8 +26,10 @@ const PostWall = () => {
 
   const posts = postsIds.map((id) => <Post id={id} key={id} />).reverse();
 
+  const classes = cx(style.postWall, { [className]: className });
+
   return (
-    <div className={style.postWall}>
+    <div className={classes}>
       <PostingForm header='Create Post' onSubmit={submitPost} />
       <List>{posts}</List>
     </div>
