@@ -68,7 +68,7 @@ const App = () => {
           <Login loggedIn={loggedIn} />
         </Route>
         <Route>
-          <div className='app-wrapper'>
+          <div>
             <Header
               menuBtnRef={menuBtnRef}
               isSideNavForceOpen={isSideNavForceOpen}
@@ -79,7 +79,7 @@ const App = () => {
               isSideNavForceOpen={isSideNavForceOpen}
               setSideNavForceOpen={setSideNavForceOpen}
             />
-            <div className='app-wrapper-content'>
+            <div>
               <Switch>
                 <PrivateRoute path='/dialogs/:id?'>
                   <DialogsContainer />
