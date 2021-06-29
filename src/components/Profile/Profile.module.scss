@@ -4,6 +4,11 @@
   gap: 1em;
   margin: 0 auto;
   padding: var(--padding-primary);
+
+  @media (min-width: 769px) {
+    width: 100ch;
+    max-width: 90vw;
+  }
 }
 
 .picture {
