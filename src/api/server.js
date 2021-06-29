@@ -338,6 +338,7 @@ export function makeServer({ environment = 'development' } = {}) {
         password: 'admin',
       });
       server.create('user');
+      server.createList('user', 20);
 
       // ==================
       // 5.2 Dialogs
