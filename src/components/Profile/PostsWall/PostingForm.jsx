@@ -6,6 +6,7 @@ import SubmitField from 'components/common/SubmitField';
 import { Separator } from 'components/common/Separator/Separator';
 import { useDispatch, useSelector } from 'react-redux';
 import { getIsLoadingPostStatus } from 'redux/entities';
+import { Wrapper } from 'components/common/Wrapper/Wrapper';
 
 const validate = (values) => {
   if (!values.postText) {
@@ -20,7 +21,7 @@ const PostingForm = ({ header, onSubmit }) => {
   const isLoading = useSelector(getIsLoadingPostStatus);
 
   return (
-    <div className={style.wrapper}>
+    <Wrapper className={style.wrapper}>
       <h3 className={style.header}>{header}</h3>
       <Separator />
       <Formik
@@ -38,7 +39,7 @@ const PostingForm = ({ header, onSubmit }) => {
           </div>
         </Form>
       </Formik>
-    </div >
+    </Wrapper >
   );
 };
 
