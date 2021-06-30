@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './List.module.css';
+import { Wrapper } from '../Wrapper/Wrapper';
 
 export const List = ({ children }) => {
   // Wrap children elements in li tag
@@ -8,8 +9,8 @@ export const List = ({ children }) => {
   ));
 
   return (
-    <div className={style.wrapper}>
+    <Wrapper className={style.wrapper}>
       <ul className={style.list}>{listElements}</ul>
-    </div>
+    </Wrapper>
   );
 };
