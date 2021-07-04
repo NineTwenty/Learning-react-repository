@@ -54,6 +54,7 @@ export const usersSliceName = usersSlice.name;
 
 // Exported actions
 
+export const addUser = usersSlice.actions.addOne
 export const addUsers = usersSlice.actions.addMany
 
 // Thunks

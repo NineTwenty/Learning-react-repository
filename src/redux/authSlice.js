@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { api } from '../api/API';
+import { addUser } from './entities/usersSlice';
 import {
   createLoadingActions,
   createLoadingMatchers,
@@ -112,6 +113,7 @@ export const authorizationRequest = () => async (dispatch) => {
 
       if (user) {
         dispatch(authorizationActions.success(user));
+        dispatch(addUser(user));
       }
     } catch (err) {
       // Remove token due to failed authorization
