@@ -1,0 +1,9 @@
+$row-count: 2;
+
+.Wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8em, 1fr));
+  gap: var(--padding-primary);
+
+  width: 100%;
+}
