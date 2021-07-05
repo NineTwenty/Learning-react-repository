@@ -89,8 +89,10 @@ export function makeServer({ environment = 'development' } = {}) {
         friends: () => {
           const arr = Array(Math.round(Math.random() * 15));
           const makeFriends = () => Math.round(1 + Math.random() * (21 - 1));
+          const onlyUnique = (value, index, self) =>
+            self.indexOf(value) === index;
 
-          return Array.from(arr, makeFriends);
+          return Array.from(arr, makeFriends).filter(onlyUnique);
         },
         music: [],
         images: (id) => {
