@@ -33,7 +33,7 @@
     height: 30vh;
     background: lightskyblue;
 
-    @media (min-width: 769px) {
+    @media (min-width: 782px) {
       grid-column: 1 / 2;
     }
   }
@@ -42,7 +42,7 @@
     grid-column: 1 / 3;
     width: 100%;
 
-    @media (min-width: 769px) {
+    @media (min-width: 782px) {
       grid-column: 2 / 3;
     }
   }
