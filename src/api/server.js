@@ -93,6 +93,25 @@ export function makeServer({ environment = 'development' } = {}) {
           return Array.from(arr, makeFriends);
         },
         music: [],
+        images: (id) => {
+          const images = [
+            `https://picsum.photos/1280/920?random=${Math.random()}`,
+            `https://picsum.photos/947?random=${Math.random()}`,
+            `https://picsum.photos/700/1280?random=${Math.random()}`,
+            `https://picsum.photos/1280?random=${Math.random()}`,
+            `https://picsum.photos/1280/590?random=${Math.random()}`,
+            `https://picsum.photos/700/1280?random=${Math.random()}`,
+            `https://picsum.photos/1280/329?random=${Math.random()}`,
+            `https://picsum.photos/560?random=${Math.random()}`,
+            `https://picsum.photos/947?random=${Math.random()}`,
+            `https://picsum.photos/1280/329?random=${Math.random()}`,
+          ];
+
+          return images.map((src, i) => ({
+            src,
+            id: Date.now() / id / i,
+          }));
+        },
       }),
 
       dialog: Factory.extend({
