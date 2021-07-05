@@ -3,10 +3,25 @@ import style from './Profile.module.scss';
 import PostWall from './PostsWall/PostWall';
 import { Tabs } from '../common/Tabs';
 import { Tab } from '../common/Tab';
+import { Card } from 'components/common/Card/Card';
+import { Gallery } from 'components/common/Gallery/Gallery';
+import { CroppedImage } from 'components/common/CroppedImage/CroppedImage';
 import { Route, useRouteMatch, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUserById } from 'redux/entities';
+import { selectCurrentUserId } from '../../redux';
 
 const Profile = () => {
   const { url } = useRouteMatch();
+  const currentUserId = useSelector(selectCurrentUserId);
+  const currentUser = useSelector(selectUserById(currentUserId));
+
+  const images = currentUser ? currentUser.images : [];
+
+  const croppedImages = Array.isArray(images)
+    ? images.map(({ src, id }) => <CroppedImage key={id} src={src} alt='' />)
+    : images;
+
   return (
     <main className={style.Wrapper}>
       <div className={style.picture}></div>
@@ -20,8 +35,12 @@ const Profile = () => {
       </div>
       <div className={style.Content}>
         <Route path={`${url}/posts`}>
-          <div className={style.Aside}></div>
-          <PostWall className={style.Postwall}/>
+          <div className={style.Aside}>
+            <Card className={style.Card} header={'Photos'}>
+              <Gallery limit={6}>{croppedImages}</Gallery>
+            </Card>
+          </div>
+          <PostWall className={style.Postwall} />
         </Route>
       </div>
       <Redirect exact from={url} to={`${url}/posts`} />
