@@ -2,8 +2,12 @@ $row-count: 2;
 
 .Wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(max(30%, 6em), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(max(10%, 6em), 1fr));
   gap: var(--padding-primary);
 
   width: 100%;
+
+  @media (min-width: 782px) {
+    grid-template-columns: repeat(auto-fit, minmax(max(30%, 4.5em), 1fr));
+  }
 }
