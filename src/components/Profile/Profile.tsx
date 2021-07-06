@@ -10,6 +10,7 @@ import { Route, useRouteMatch, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUserById } from 'redux/entities';
 import { selectCurrentUserId } from '../../redux';
+import { FriendsGallery } from './FriendsGallery/FriendsGallery';
 
 const Profile = () => {
   const { url } = useRouteMatch();
@@ -36,6 +37,9 @@ const Profile = () => {
       <div className={style.Content}>
         <Route path={`${url}/posts`}>
           <div className={style.Aside}>
+            <Card className={style.Card} header={'Friends'}>
+              <FriendsGallery />
+            </Card>
             <Card className={style.Card} header={'Photos'}>
               <Gallery limit={6}>{croppedImages}</Gallery>
             </Card>
