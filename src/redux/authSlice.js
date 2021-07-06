@@ -112,8 +112,8 @@ export const authorizationRequest = () => async (dispatch) => {
       const { user } = await api.get('auth/me');
 
       if (user) {
-        dispatch(authorizationActions.success(user));
         dispatch(addUser(user));
+        dispatch(authorizationActions.success(user));
       }
     } catch (err) {
       // Remove token due to failed authorization
