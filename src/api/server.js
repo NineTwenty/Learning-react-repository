@@ -85,7 +85,7 @@ export function makeServer({ environment = 'development' } = {}) {
         bithDate: faker.date.between('January 1, 1950', 'January 1, 2010'),
         online: false,
         lastOnlineTime: faker.date.recent,
-        avatar: () => `https://picsum.photos/48?random=${Math.random()}`,
+        avatar: () => `https://picsum.photos/200?random=${Math.random()}`,
         friends: () => {
           const arr = Array(Math.round(Math.random() * 15));
           const makeFriends = () => Math.round(1 + Math.random() * (21 - 1));
