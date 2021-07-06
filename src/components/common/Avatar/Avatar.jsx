@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Avatar.module.css';
 
-const Avatar = ({ className, avatar, name, size = 'medium' }) => {
+const Avatar = ({ className = '', avatar, name, size = 'medium' }) => {
   const sizeMod = styles[`Wrapper_size_${size}`];
   return (
     <div className={`${className} ${styles.Wrapper} ${sizeMod}`}>
