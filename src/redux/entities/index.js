@@ -21,6 +21,7 @@ export {
   submitUser,
   selectUserById,
   selectUsersIds,
+  selectUsersByIds,
 } from './usersSlice';
 
 // Posts

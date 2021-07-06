@@ -83,7 +83,12 @@ export const submitUser = (newUser) => async (dispatch) => {
 
 const selectors = adapter.getSelectors((state) => state.entities[sliceName]);
 
-const { selectIds, selectById } = selectors;
+const { selectIds, selectById, selectEntities } = selectors;
 
 export const selectUsersIds = (state) => selectIds(state);
 export const selectUserById = (id) => (state) => selectById(state, id);
+export const selectUsersByIds = (ids) => (state) => {
+  const entities = selectEntities(state);
+
+  return ids.map((id) => entities[id]).filter(Boolean);
+};
