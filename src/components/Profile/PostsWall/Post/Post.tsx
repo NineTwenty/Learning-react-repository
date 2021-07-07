@@ -5,6 +5,7 @@ import { selectPostById } from 'redux/entities';
 import { Separator } from 'components/common/Separator';
 import Button from 'components/common/Button';
 import { Post as PostType } from 'common/entities.types';
+import Avatar from 'components/common/Avatar/Avatar';
 
 type PostProps = {
   id: string;
@@ -16,11 +17,10 @@ export const Post = ({ id }: PostProps) => {
   return (
     <div className={style.post}>
       <div className={style.header}>
-        <img
-          className={style.avatar}
-          src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Roman_P.svg/100px-Roman_P.svg.png'
-          alt=''
-        ></img>
+        <Avatar
+          avatar='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Roman_P.svg/100px-Roman_P.svg.png'
+          name=''
+        />
         <div className={style.title}>
           <h6 className={style.name}>Author Name</h6>
           <span className={style.time}>Time has passed</span>
