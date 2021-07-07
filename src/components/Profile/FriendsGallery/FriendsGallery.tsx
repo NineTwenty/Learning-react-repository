@@ -1,8 +1,8 @@
 import styles from './FriendsGallery.module.scss';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCurrentUserId } from '../../../redux';
-import { fetchUsers, selectUserById, selectUsersByIds } from 'redux/entities';
+import { useCurrentUser } from 'contexts/current-user-context';
+import { fetchUsers, selectUsersByIds } from 'redux/entities';
 import Avatar from 'components/common/Avatar/Avatar';
 import { Gallery } from 'components/common/Gallery/Gallery';
 
@@ -18,8 +18,7 @@ export const FriendsGallery = ({ classname }: FriendsGalleryProps) => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  const currentUserId = useSelector(selectCurrentUserId);
-  const currentUser = useSelector(selectUserById(currentUserId));
+  const currentUser = useCurrentUser();
 
   // Get friends
   const friendsIds = currentUser?.friends || [];
