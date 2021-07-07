@@ -15,9 +15,9 @@ export type User = {
 };
 
 export type Image = {
-  src: string,
+  src: string;
   id: number;
-}
+};
 
 export type Post = {
   views: number;
