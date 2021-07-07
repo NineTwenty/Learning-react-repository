@@ -25,11 +25,3 @@ export const getAgent = () =>
     .use(prefix)
     // set Headers property
     .set('Authorization', getAuthString()); // keep token actual every call
-
-export function handleFetchResult(body, endpointName) {
-  if (body[endpointName]) {
-    return body[endpointName];
-  } else {
-    throw Error(`Request error: ${endpointName}`);
-  }
-}
