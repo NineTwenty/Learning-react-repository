@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Post.module.css';
 import { useSelector } from 'react-redux';
-import { selectPostById } from 'redux/entities';
+import { selectPostById, selectUserById } from 'redux/entities';
 import { Separator } from 'components/common/Separator';
 import Button from 'components/common/Button';
 import { Post as PostType } from 'common/entities.types';
@@ -13,16 +13,16 @@ type PostProps = {
 
 export const Post = ({ id }: PostProps) => {
   const post = useSelector(selectPostById(id)) as PostType;
+  const author = useSelector(selectUserById(post.author));
+
+  const fullName = `${author.firstName} ${author.lastName}`;
 
   return (
     <div className={style.post}>
       <div className={style.header}>
-        <Avatar
-          avatar='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Roman_P.svg/100px-Roman_P.svg.png'
-          name=''
-        />
+        <Avatar avatar={author.avatar} name={fullName} />
         <div className={style.title}>
-          <h6 className={style.name}>Author Name</h6>
+          <h6 className={style.name}>{fullName}</h6>
           <span className={style.time}>Time has passed</span>
         </div>
         <Button>Delete</Button>
