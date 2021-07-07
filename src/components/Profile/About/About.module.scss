@@ -1,0 +1,19 @@
+.Wrapper {
+  padding: var(--padding-primary);
+}
+
+.Heading {
+  text-align: center;
+}
+
+.List {
+  list-style: none;
+
+  li {
+    margin: var(--padding-primary);
+  }
+}
+
+.Field {
+  font-weight: 600;
+}
