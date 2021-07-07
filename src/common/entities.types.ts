@@ -4,7 +4,7 @@ export type User = {
   email: string;
   addres: string;
   phoneNumber: string;
-  bithDate: string;
+  birthDate: string;
   online: boolean;
   lastOnlineTime: string;
   avatar: string;

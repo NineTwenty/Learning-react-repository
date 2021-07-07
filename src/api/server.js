@@ -87,7 +87,7 @@ export function makeServer({ environment = 'development' } = {}) {
         email: faker.internet.exampleEmail,
         addres: faker.address.country,
         phoneNumber: faker.phone.phoneNumber,
-        bithDate: faker.date.between('January 1, 1950', 'January 1, 2010'),
+        birthDate: faker.date.between('January 1, 1950', 'January 1, 2010'),
         online: false,
         lastOnlineTime: faker.date.recent,
         avatar: () => `https://picsum.photos/200?random=${Math.random()}`,
