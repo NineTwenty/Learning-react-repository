@@ -1,15 +1,15 @@
-// @ts-nocheck
-import { createAction } from '@reduxjs/toolkit';
+import { AnyAction, createAction } from '@reduxjs/toolkit';
+import { StatusState } from './utils.types';
 
 /**
- *
- * @param {string} entityName
- * @param {string} actionName
- * @returns {{ request: function, success: function, failure: function}} Actions created with createAction
+ * Utility for generating set of action creators for part of 
+ * the state responsible for loading
  */
-
-export const createLoadingActions = (entityName, actionName) => {
-  const isNotString = (type) => typeof type !== 'string';
+export const createLoadingActions = <T>(
+  entityName: string,
+  actionName: string
+) => {
+  const isNotString = (type: string) => typeof type !== 'string';
 
   if (isNotString(entityName) || isNotString(actionName)) {
     throw new Error(
@@ -17,22 +17,25 @@ export const createLoadingActions = (entityName, actionName) => {
     );
   }
 
-  // Create object with actions
-  return ['request', 'success', 'failure'].reduce((obj, status) => {
-    // Assign new action to corresponding object key
-    obj[status] = createAction(`${entityName}/${actionName}/${status}`);
-    return obj;
-  }, {});
+  return {
+    request: createAction(`${entityName}/${actionName}/request`),
+    success: createAction<T>(`${entityName}/${actionName}/success`),
+    failure: createAction(`${entityName}/${actionName}/failure`),
+  };
 };
 
-export const createLoadingReducers = () => {
-  const handleRequestStart = (state, action) => {
+/**
+ * Create set of reducers for handling change of loading state
+ */
+
+export const createLoadingReducers = <T extends StatusState>() => {
+  const handleRequestStart = (state: T, action: AnyAction) => {
     if (state.status === 'idle') {
       return { ...state, status: 'pending' };
     }
   };
 
-  const handleRequestEnd = (state, action) => {
+  const handleRequestEnd = (state: T, action: AnyAction) => {
     if (state.status === 'pending') {
       return { ...state, status: 'idle' };
     }
@@ -41,10 +44,14 @@ export const createLoadingReducers = () => {
   return { handleRequestStart, handleRequestEnd };
 };
 
-export const createLoadingMatchers = (entityName) => {
-  const isStartOfRequest = ({ type }) =>
+/**
+ * Create matchers for redux-toolkit `builder`
+ */
+
+export const createLoadingMatchers = (entityName: string) => {
+  const isStartOfRequest = ({ type }: AnyAction) =>
     type.startsWith(entityName) && type.endsWith('/request');
-  const isEndOfRequest = ({ type }) =>
+  const isEndOfRequest = ({ type }: AnyAction) =>
     type.startsWith(entityName) &&
     (type.endsWith('/success') || type.endsWith('/failure'));
 
