@@ -18,3 +18,10 @@ export type Image = {
   src: string,
   id: number;
 }
+
+export type Post = {
+  views: number;
+  postText: string;
+  id: string;
+  author: string;
+};
