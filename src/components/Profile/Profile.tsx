@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { selectUserById } from 'redux/entities';
 import { selectCurrentUserId } from '../../redux';
 import { FriendsGallery } from './FriendsGallery/FriendsGallery';
+import { Wrapper } from 'components/common/Wrapper/Wrapper';
 
 const Profile = () => {
   const { url } = useRouteMatch();
@@ -46,6 +47,11 @@ const Profile = () => {
           </div>
           <PostWall className={style.Postwall} />
         </div>
+      </Route>
+      <Route path={`${url}/photos`}>
+        <Wrapper className={style.Photos}>
+          <Gallery>{croppedImages}</Gallery>
+        </Wrapper>
       </Route>
       <Redirect exact from={url} to={`${url}/posts`} />
     </main>
