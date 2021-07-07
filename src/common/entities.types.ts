@@ -2,7 +2,7 @@ export type User = {
   firstName: string;
   lastName: string;
   email: string;
-  addres: string;
+  address: string;
   phoneNumber: string;
   birthDate: string;
   online: boolean;
