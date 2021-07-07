@@ -1,4 +1,9 @@
+import { Reducer } from 'redux';
+
 class ReducerRegistry {
+  _emitChange: null | Function;
+  _reducers: { [key: string]: Reducer };
+  
   constructor() {
     this._emitChange = null;
     this._reducers = {};
@@ -8,14 +13,14 @@ class ReducerRegistry {
     return { ...this._reducers };
   }
 
-  register(name, reducer) {
+  register(name: string, reducer: Reducer) {
     this._reducers = { ...this._reducers, [name]: reducer };
     if (this._emitChange) {
       this._emitChange(this.getReducers());
     }
   }
 
-  setChangeListener(listener) {
+  setChangeListener(listener: Function) {
     this._emitChange = listener;
   }
 }
