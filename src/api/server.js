@@ -295,6 +295,7 @@ export function makeServer({ environment = 'development' } = {}) {
         const post = JSON.parse(request.requestBody);
         if (post && post.postText) {
           post.authorId = userId;
+          post.views = 0;
           return schema.posts.create(post);
         }
       });
