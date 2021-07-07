@@ -86,7 +86,7 @@ export function makeServer({ environment = 'development' } = {}) {
         lastName: faker.name.lastName,
         email: faker.internet.exampleEmail,
         addres: faker.address.country,
-        phoneNumber: faker.phone.phoneNumber,
+        phoneNumber: faker.phone.phoneNumber.bind(null,'+(###) ###-####'),
         birthDate: faker.date.between('January 1, 1950', 'January 1, 2010'),
         online: false,
         lastOnlineTime: faker.date.recent,
