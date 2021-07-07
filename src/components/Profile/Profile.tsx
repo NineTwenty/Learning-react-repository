@@ -48,6 +48,11 @@ const Profile = () => {
           <PostWall className={style.Postwall} />
         </div>
       </Route>
+      <Route path={`${url}/friends`}>
+        <Wrapper className={style.Friends}>
+          <FriendsGallery />
+        </Wrapper>
+      </Route>
       <Route path={`${url}/photos`}>
         <Wrapper className={style.Photos}>
           <Gallery>{croppedImages}</Gallery>
