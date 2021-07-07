@@ -4,9 +4,14 @@ import { useSelector } from 'react-redux';
 import { selectPostById } from 'redux/entities';
 import { Separator } from 'components/common/Separator';
 import Button from 'components/common/Button';
+import { Post as PostType } from 'common/entities.types';
 
-export const Post = ({ id }) => {
-  const post = useSelector(selectPostById(id));
+type PostProps = {
+  id: string;
+};
+
+export const Post = ({ id }: PostProps) => {
+  const post = useSelector(selectPostById(id)) as PostType;
 
   return (
     <div className={style.post}>
