@@ -2,7 +2,7 @@ import agent from 'superagent';
 
 // Generation of URL with prefix part
 const API_PREFIX = '/api/';
-const prefix = (request) => {
+const prefix = (request: agent.SuperAgentRequest) => {
   request.url = `${API_PREFIX}${request.url}`;
   return request;
 };
