@@ -31,7 +31,7 @@ const Profile = () => {
         <Tabs>
           <Tab value={'Posts'} route={'posts'} />
           <Tab value={'About'} route={'about'} />
-          <Tab value={'Friend'} route={'friend'} />
+          <Tab value={'Friends'} route={'friends'} />
           <Tab value={'Photos'} route={'photos'} />
         </Tabs>
       </div>
