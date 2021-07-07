@@ -12,6 +12,7 @@ import { selectUserById } from 'redux/entities';
 import { selectCurrentUserId } from '../../redux';
 import { FriendsGallery } from './FriendsGallery/FriendsGallery';
 import { Wrapper } from 'components/common/Wrapper/Wrapper';
+import { About } from './About/About'
 
 const Profile = () => {
   const { url } = useRouteMatch();
@@ -47,6 +48,9 @@ const Profile = () => {
           </div>
           <PostWall className={style.Postwall} />
         </div>
+      </Route>
+      <Route path={`${url}/about`}>
+        <About />
       </Route>
       <Route path={`${url}/friends`}>
         <Wrapper className={style.Friends}>
