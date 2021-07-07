@@ -34,8 +34,8 @@ const Profile = () => {
           <Tab value={'Photos'} route={'photos'} />
         </Tabs>
       </div>
-      <div className={style.Content}>
-        <Route path={`${url}/posts`}>
+      <Route path={`${url}/posts`}>
+        <div className={style.Content}>
           <div className={style.Aside}>
             <Card className={style.Card} header={'Friends'}>
               <FriendsGallery />
@@ -45,8 +45,8 @@ const Profile = () => {
             </Card>
           </div>
           <PostWall className={style.Postwall} />
-        </Route>
-      </div>
+        </div>
+      </Route>
       <Redirect exact from={url} to={`${url}/posts`} />
     </main>
   );
