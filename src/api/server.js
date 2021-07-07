@@ -77,6 +77,11 @@ export function makeServer({ environment = 'development' } = {}) {
 
     factories: {
       user: Factory.extend({
+        afterCreate: (user) => {
+          user.update({
+            friends: user.friends.filter((id) => user.id !== id),
+          });
+        },
         firstName: faker.name.firstName,
         lastName: faker.name.lastName,
         email: faker.internet.exampleEmail,
@@ -88,7 +93,8 @@ export function makeServer({ environment = 'development' } = {}) {
         avatar: () => `https://picsum.photos/200?random=${Math.random()}`,
         friends: () => {
           const arr = Array(Math.round(Math.random() * 15));
-          const makeFriends = () => Math.round(1 + Math.random() * (21 - 1));
+          const makeFriends = () =>
+            `${Math.round(1 + Math.random() * (21 - 1))}`;
           const onlyUnique = (value, index, self) =>
             self.indexOf(value) === index;
 
