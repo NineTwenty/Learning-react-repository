@@ -17,6 +17,7 @@ import {
   selectLoggedInStatus,
 } from './redux';
 import { SplashScreen } from 'components/SplashScreen/SplashScreen';
+import { CurrentUserProvider } from 'contexts/current-user-context';
 
 function PrivateRoute({ children, ...rest }) {
   const loggedIn = useSelector(selectLoggedInStatus);
@@ -68,38 +69,40 @@ const App = () => {
           <Login loggedIn={loggedIn} />
         </Route>
         <Route>
-          <div>
-            <Header
-              menuBtnRef={menuBtnRef}
-              isSideNavForceOpen={isSideNavForceOpen}
-              setSideNavForceOpen={setSideNavForceOpen}
-            />
-            <Navbar
-              menuBtnRef={menuBtnRef}
-              isSideNavForceOpen={isSideNavForceOpen}
-              setSideNavForceOpen={setSideNavForceOpen}
-            />
+          <CurrentUserProvider>
             <div>
-              <Switch>
-                <PrivateRoute path='/dialogs/:id?'>
-                  <DialogsContainer />
-                </PrivateRoute>
-                <PrivateRoute path='/profile'>
-                  <Profile />
-                </PrivateRoute>
-                <PrivateRoute path='/news'>
-                  <News />
-                </PrivateRoute>
-                <PrivateRoute path='/music'>
-                  <Music />
-                </PrivateRoute>
-                <PrivateRoute path='/settings'>
-                  <Settings />
-                </PrivateRoute>
-                <Redirect exact path='/' to='/login' />
-              </Switch>
+              <Header
+                menuBtnRef={menuBtnRef}
+                isSideNavForceOpen={isSideNavForceOpen}
+                setSideNavForceOpen={setSideNavForceOpen}
+              />
+              <Navbar
+                menuBtnRef={menuBtnRef}
+                isSideNavForceOpen={isSideNavForceOpen}
+                setSideNavForceOpen={setSideNavForceOpen}
+              />
+              <div>
+                <Switch>
+                  <PrivateRoute path='/dialogs/:id?'>
+                    <DialogsContainer />
+                  </PrivateRoute>
+                  <PrivateRoute path='/profile'>
+                    <Profile />
+                  </PrivateRoute>
+                  <PrivateRoute path='/news'>
+                    <News />
+                  </PrivateRoute>
+                  <PrivateRoute path='/music'>
+                    <Music />
+                  </PrivateRoute>
+                  <PrivateRoute path='/settings'>
+                    <Settings />
+                  </PrivateRoute>
+                  <Redirect exact path='/' to='/login' />
+                </Switch>
+              </div>
             </div>
-          </div>
+          </CurrentUserProvider>
         </Route>
       </Switch>
     </>
