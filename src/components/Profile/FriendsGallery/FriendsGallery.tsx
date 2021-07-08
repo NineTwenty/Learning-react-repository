@@ -24,7 +24,11 @@ export const FriendsGallery = ({ classname }: FriendsGalleryProps) => {
   const friendsIds = currentUser?.friends || [];
   const friends = useSelector(selectUsersByIds(friendsIds));
 
-  const friendsCards = friends.map((friend: any) => {
+  const friendsCards = friends.map((friend) => {
+    if (!friend) {
+      return null;
+    }
+
     return (
       <div key={friend.id}>
         <Avatar
