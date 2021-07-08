@@ -15,6 +15,10 @@ export const Post = ({ id }: PostProps) => {
   const post = useSelector(selectPostById(id)) as PostType;
   const author = useSelector(selectUserById(post.author));
 
+  if (!author || !post) {
+    return null;
+  }
+
   const fullName = `${author.firstName} ${author.lastName}`;
 
   return (
