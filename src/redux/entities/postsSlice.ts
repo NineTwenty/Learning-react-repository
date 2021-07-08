@@ -1,4 +1,6 @@
-import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { Post } from 'common/entities.types';
+import { StatusState } from 'redux/utils/utils.types';
+import { createEntityAdapter, createSlice, EntityId } from '@reduxjs/toolkit';
 import { api } from 'api/API';
 import {
   createLoadingActions,
@@ -8,18 +10,24 @@ import {
 
 const sliceName = 'posts';
 
+// Adapter
+const adapter = createEntityAdapter<Post>();
+
+// Initial state
+const initialState = adapter.getInitialState<StatusState>({ status: 'idle' });
+
+// State type
+export type PostsState = typeof initialState;
+
 // Loading reducers
-const { handleRequestStart, handleRequestEnd } = createLoadingReducers();
+const { handleRequestStart, handleRequestEnd } =
+  createLoadingReducers<PostsState>();
+
 // Loading matchers
 const { isStartOfRequest, isEndOfRequest } = createLoadingMatchers(sliceName);
 
-// Adapter
-const adapter = createEntityAdapter();
-
-const initialState = adapter.getInitialState({ status: 'idle' });
-
-const getRequest = createLoadingActions(sliceName, 'get');
-const submitRequest = createLoadingActions(sliceName, 'submit');
+const getRequest = createLoadingActions<Post[]>(sliceName, 'get');
+const submitRequest = createLoadingActions<Post>(sliceName, 'submit');
 
 // Slice
 
@@ -50,24 +58,19 @@ const postsSlice = createSlice({
 export const postsReducer = postsSlice.reducer;
 export const postsSliceName = postsSlice.name;
 
-
-// Actions
-
-// const actions = postsSlice.actions;
-
 // Thunks
 
-export const fetchPosts = () => async (dispatch) => {
+export const fetchPosts = () => async (dispatch: any) => {
   dispatch(getRequest.request());
   try {
     const { posts } = await api.get('posts');
     dispatch(getRequest.success(posts));
   } catch (error) {
-    dispatch(getRequest.failure(error));
+    dispatch(getRequest.failure());
   }
 };
 
-export const submitPost = (newPost) => async (dispatch) => {
+export const submitPost = (newPost: Post) => async (dispatch: any) => {
   dispatch(submitRequest.request());
   try {
     const { post } = await api.post('posts', newPost);
@@ -79,12 +82,15 @@ export const submitPost = (newPost) => async (dispatch) => {
 
 // Selectors
 
-const selectors = adapter.getSelectors((state) => state.entities[sliceName]);
+const selectors = adapter.getSelectors(
+  (state: any): PostsState => state.entities[sliceName]
+);
 
 const { selectIds, selectById } = selectors;
 
-export const getIsLoadingPostStatus = (state) =>
+export const getIsLoadingPostStatus = (state: any) =>
   state.entities[sliceName].status !== 'idle';
 
-export const selectPostsIds = (state) => selectIds(state);
-export const selectPostById = (id) => (state) => selectById(state, id);
+export const selectPostsIds = (state: PostsState) => selectIds(state);
+export const selectPostById = (id: EntityId) => (state: PostsState) =>
+  selectById(state, id);
