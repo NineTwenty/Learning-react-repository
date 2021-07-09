@@ -1,11 +1,31 @@
-import { AnyAction, createAction } from '@reduxjs/toolkit';
+import {
+  ActionCreatorWithoutPayload,
+  ActionCreatorWithPayload,
+  AnyAction,
+  createAction,
+} from '@reduxjs/toolkit';
 import { StatusState } from './utils.types';
 
+type CreateLoadingActions = {
+  (entityName: string, actionName: string): {
+    request: ActionCreatorWithoutPayload;
+    success: ActionCreatorWithoutPayload;
+    failure: ActionCreatorWithoutPayload;
+  };
+  <T>(entityName: string, actionName: string): {
+    request: ActionCreatorWithoutPayload;
+    success: ActionCreatorWithPayload<T>;
+    failure: ActionCreatorWithoutPayload;
+  };
+};
+
 /**
- * Utility for generating set of action creators for part of 
- * the state responsible for loading
+ * Utility for generating set of action creators for part of
+ * the state responsible for loading.
+ * Can be provided with generic `type` for corresponding
+ * payload of succes action.
  */
-export const createLoadingActions = <T>(
+export const createLoadingActions: CreateLoadingActions = (
   entityName: string,
   actionName: string
 ) => {
@@ -19,7 +39,7 @@ export const createLoadingActions = <T>(
 
   return {
     request: createAction(`${entityName}/${actionName}/request`),
-    success: createAction<T>(`${entityName}/${actionName}/success`),
+    success: createAction(`${entityName}/${actionName}/success`),
     failure: createAction(`${entityName}/${actionName}/failure`),
   };
 };
