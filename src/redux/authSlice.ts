@@ -44,7 +44,7 @@ const { handleRequestStart, handleRequestEnd } = createLoadingReducers();
 const authSlice = createSlice({
   name: sliceName,
   initialState: {
-    user: null,
+    userId: null,
     loggedIn: false,
     status: 'idle',
   },
@@ -52,7 +52,7 @@ const authSlice = createSlice({
     // authorizationRequest passed authorization
     builder.addCase(authorizationActions.success, (state, action) => {
       if (state.status === 'pending') {
-        state.user = action.payload;
+        state.userId = action.payload;
         state.loggedIn = true;
       }
     });
@@ -63,7 +63,7 @@ const authSlice = createSlice({
 
     // Logout handler
     builder.addMatcher(isLogout, (state, action) => {
-      state.user = null;
+      state.userId = null;
       state.loggedIn = false;
     });
 
@@ -114,7 +114,7 @@ export const authorizationRequest = () => async (dispatch) => {
 
       if (user) {
         dispatch(addUser(user));
-        dispatch(authorizationActions.success(user));
+        dispatch(authorizationActions.success(user.id));
       }
     } catch (err) {
       // Remove token due to failed authorization
@@ -146,8 +146,4 @@ export const submitLoginForm = ({ login, password }) => async (dispatch) => {
 // Selectors
 
 export const selectLoggedInStatus = (state) => state[sliceName].loggedIn;
-export const selectCurrentUserId = (state) => {
-  if (state[sliceName].user) {
-    return state[sliceName].user.id;
-  }
-};
+export const selectCurrentUserId = (state) => state[sliceName].userId;
