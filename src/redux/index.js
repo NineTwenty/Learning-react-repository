@@ -1,16 +1,9 @@
-import {
-  appReducer,
-  appSliceName,
-  initialization,
-  selectIsAppInitialized,
-} from './appSlice';
-import { authSliceName, authReducer } from './authSlice';
-import reducerRegistry from './reducerRegistery';
-
 // Re-export
 
 // Auth
 export {
+  authSliceName,
+  authReducer,
   logout,
   submitLoginForm,
   authorizationRequest,
@@ -19,9 +12,9 @@ export {
 } from './authSlice';
 
 // App
-export { initialization, selectIsAppInitialized };
-
-// Registration
-
-reducerRegistry.register(appSliceName, appReducer);
-reducerRegistry.register(authSliceName, authReducer);
+export {
+  appReducer,
+  appSliceName,
+  initialization,
+  selectIsAppInitialized,
+} from './appSlice';

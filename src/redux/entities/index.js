@@ -1,7 +1,7 @@
-import reducerRegistry from 'redux/reducerRegistery';
-import { entitiesReducer, entitiesSliceName } from './entitiesSlice';
-
 // Re-export
+
+// Entities
+export { entitiesReducer, entitiesSliceName } from './entitiesSlice';
 
 // Dialogs
 export {
@@ -43,7 +43,3 @@ export {
   selectLoadedMessagesByIds,
   clearMessages
 } from './messagesSlice';
-
-// Registration
-
-reducerRegistry.register(entitiesSliceName, entitiesReducer);
