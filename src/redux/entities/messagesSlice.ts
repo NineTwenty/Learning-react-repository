@@ -103,9 +103,8 @@ export const submitMessage =
 
 const selectSlice = (state: RootState) => state.entities[sliceName];
 
-const selectors = adapter.getSelectors(selectSlice);
-
-const { selectIds, selectById, selectAll } = selectors;
+const { selectIds, selectById, selectAll, selectEntities } =
+  adapter.getSelectors(selectSlice);
 
 export const selectMessages = (state: RootState) => selectAll(state);
 export const selectMessagesIds = (state: RootState) => selectIds(state);
@@ -113,12 +112,12 @@ export const selectMessageById = (id: EntityId) => (state: RootState) =>
   selectById(state, id);
 export const selectLoadedMessagesByIds = createSelector(
   [
-    selectSlice,
+    selectEntities,
     (_: unknown, props: EntityId[]) => {
       return props;
     },
   ],
-  ({ entities }, ids) => {
+  (entities, ids) => {
     if (ids) {
       // Make array of loaded messages
       return ids.reduce((acc: Message[], id) => {
