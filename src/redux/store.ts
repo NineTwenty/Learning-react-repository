@@ -13,6 +13,7 @@ const rootReducer = combineReducers({
 
 const store = configureStore({
   reducer: rootReducer,
+  // @ts-expect-error
   middleware: [logoutMiddleware, ...getDefaultMiddleware()],
 });
 
