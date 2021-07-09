@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { api } from 'api/API';
 import {
@@ -6,7 +7,7 @@ import {
   createLoadingReducers,
 } from 'redux/utils';
 import { addUsers } from './usersSlice';
-import { selectCurrentUserId } from '../';
+import { selectCurrentUserId } from '..';
 
 const sliceName = 'dialogs';
 
