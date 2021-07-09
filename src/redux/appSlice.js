@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { authorizationRequest } from './';
+import { authorizationRequest } from './authSlice';
 
 const sliceName = 'app';
 

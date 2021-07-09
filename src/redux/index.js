@@ -1,4 +1,9 @@
-import { appReducer, appSliceName } from './appSlice';
+import {
+  appReducer,
+  appSliceName,
+  initialization,
+  selectIsAppInitialized,
+} from './appSlice';
 import { authSliceName, authReducer } from './authSlice';
 import reducerRegistry from './reducerRegistery';
 
@@ -14,7 +19,7 @@ export {
 } from './authSlice';
 
 // App
-export { initialization, selectIsAppInitialized } from './appSlice';
+export { initialization, selectIsAppInitialized };
 
 // Registration
 
