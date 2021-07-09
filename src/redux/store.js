@@ -1,19 +1,19 @@
 import { combineReducers } from 'redux';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import reducerRegistry from './reducerRegistery';
 import { logoutMiddleware } from './middleware/logoutMiddleware';
+import { entitiesReducer } from './entities/entitiesSlice';
+import { appReducer } from './appSlice';
+import { authReducer } from './authSlice';
 
-let reducers = reducerRegistry.getReducers();
-
-reducers = !reducers.keys ? () => {} : combineReducers(reducers);
-
-const store = configureStore({
-  reducer: reducers,
-  middleware: [logoutMiddleware, ...getDefaultMiddleware()]
+const rootReducer = combineReducers({
+  app: appReducer,
+  auth: authReducer,
+  entities: entitiesReducer,
 });
 
-reducerRegistry.setChangeListener((reducers) =>
-  store.replaceReducer(combineReducers(reducers))
-);
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: [logoutMiddleware, ...getDefaultMiddleware()],
+});
 
 export default store;
