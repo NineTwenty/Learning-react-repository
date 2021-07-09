@@ -1,31 +1,41 @@
-// @ts-nocheck
 import {
   createEntityAdapter,
   createSelector,
   createSlice,
+  EntityId,
 } from '@reduxjs/toolkit';
 import { api } from 'api/API';
+import { Message } from 'common/entities.types';
+import { AppDispatch, RootState } from 'redux/store';
 import {
   createLoadingActions,
   createLoadingMatchers,
   createLoadingReducers,
 } from 'redux/utils';
+import { StatusState } from 'redux/utils/utils.types';
 
 const sliceName = 'messages';
 
 // Adapter
-const adapter = createEntityAdapter();
+const adapter = createEntityAdapter<Message>();
 
-const initialState = adapter.getInitialState({ status: 'idle' });
+// Initital state
+const initialState = adapter.getInitialState<StatusState>({ status: 'idle' });
+
+// State type
+type MessagesState = typeof initialState;
 
 // Setup loading parts
 // Loading reducers
-const { handleRequestStart, handleRequestEnd } = createLoadingReducers();
+const { handleRequestStart, handleRequestEnd } =
+  createLoadingReducers<MessagesState>();
+
 // Loading matchers
 const { isStartOfRequest, isEndOfRequest } = createLoadingMatchers(sliceName);
+
 // Loading actions
-const getRequest = createLoadingActions(sliceName, 'get');
-const submitRequest = createLoadingActions(sliceName, 'submit');
+const getRequest = createLoadingActions<Message[]>(sliceName, 'get');
+const submitRequest = createLoadingActions<Message>(sliceName, 'submit');
 
 // Slice
 
@@ -65,50 +75,53 @@ export const clearMessages = () => messagesSlice.actions.removeAll();
 
 // Thunks
 
-export const fetchMessages = (page, dialogId) => async (dispatch) => {
-  dispatch(getRequest.request());
-  try {
-    const { messages } = await api.get(
-      `messages?page=${page}&limit=10&dialogId=${dialogId}`
-    );
-    dispatch(getRequest.success(messages));
-  } catch (error) {
-    dispatch(getRequest.failure(error));
-  }
-};
+export const fetchMessages =
+  (page: number, dialogId: EntityId) => async (dispatch: AppDispatch) => {
+    dispatch(getRequest.request());
+    try {
+      const { messages } = await api.get(
+        `messages?page=${page}&limit=10&dialogId=${dialogId}`
+      );
+      dispatch(getRequest.success(messages));
+    } catch (error) {
+      dispatch(getRequest.failure());
+    }
+  };
 
-export const submitMessage = (newMessage) => async (dispatch) => {
-  dispatch(submitRequest.request());
-  try {
-    const { message } = await api.post('messages', newMessage);
-    dispatch(submitRequest.success(message));
-  } catch (error) {
-    dispatch(submitRequest.failure());
-  }
-};
+export const submitMessage =
+  (newMessage: Partial<Message>) => async (dispatch: AppDispatch) => {
+    dispatch(submitRequest.request());
+    try {
+      const { message } = await api.post('messages', newMessage);
+      dispatch(submitRequest.success(message));
+    } catch (error) {
+      dispatch(submitRequest.failure());
+    }
+  };
 
 // Selectors
 
-const selectSlice = (state) => state.entities[sliceName];
+const selectSlice = (state: RootState) => state.entities[sliceName];
 
 const selectors = adapter.getSelectors(selectSlice);
 
 const { selectIds, selectById, selectAll } = selectors;
 
-export const selectMessages = (state) => selectAll(state);
-export const selectMessagesIds = (state) => selectIds(state);
-export const selectMessageById = (id) => (state) => selectById(state, id);
+export const selectMessages = (state: RootState) => selectAll(state);
+export const selectMessagesIds = (state: RootState) => selectIds(state);
+export const selectMessageById = (id: EntityId) => (state: RootState) =>
+  selectById(state, id);
 export const selectLoadedMessagesByIds = createSelector(
   [
     selectSlice,
-    (_, props) => {
+    (_: unknown, props: EntityId[]) => {
       return props;
     },
   ],
   ({ entities }, ids) => {
     if (ids) {
       // Make array of loaded messages
-      return ids.reduce((acc, id) => {
+      return ids.reduce((acc: Message[], id) => {
         const message = entities[id];
 
         // Filter out not loaded messages
