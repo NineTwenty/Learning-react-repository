@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { logoutMiddleware } from './middleware/logoutMiddleware';
-import { entitiesReducer } from './entities/entitiesSlice';
-import { appReducer } from './appSlice';
-import { authReducer } from './authSlice';
+import { entitiesReducer } from './entities';
+import { appReducer } from '.';
+import { authReducer } from '.';
 
 const rootReducer = combineReducers({
   app: appReducer,
