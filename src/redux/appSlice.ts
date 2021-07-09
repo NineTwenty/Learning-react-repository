@@ -1,6 +1,6 @@
-// @ts-nocheck
 import { createSlice } from '@reduxjs/toolkit';
 import { authorizationRequest } from './authSlice';
+import { AppDispatch, RootState } from './store';
 
 const sliceName = 'app';
 
@@ -19,15 +19,25 @@ const initializationFinished = () => ({
   type: INITIALIZATION_FINISH,
 });
 
+// State type
+type AppState = {
+  isInitialized: boolean;
+};
+
+// Initital state
+
+const initialState: AppState = {
+  isInitialized: false,
+};
+
 // Slice
 
 const appSlice = createSlice({
   name: sliceName,
-  initialState: {
-    isInitialized: false,
-  },
+  initialState,
+  reducers: {},
   extraReducers: {
-    [INITIALIZATION_FINISH]: (state, action) => {
+    [INITIALIZATION_FINISH]: (state) => {
       state.isInitialized = true;
     },
   },
@@ -39,12 +49,12 @@ export const appSliceName = appSlice.name;
 
 // Thunks
 
-export const initialization = () => async (dispatch) => {
+export const initialization = () => async (dispatch: AppDispatch) => {
   dispatch(initializationStarted());
 
   try {
-      // Authorization request in case the JWT is present in localStorage
-    await dispatch(authorizationRequest());
+    // Authorization request in case the JWT is present in localStorage
+    await authorizationRequest()(dispatch);
   } finally {
     dispatch(initializationFinished());
   }
@@ -52,4 +62,4 @@ export const initialization = () => async (dispatch) => {
 
 // Selectors
 
-export const selectIsAppInitialized = (state) => state[sliceName].isInitialized;
+export const selectIsAppInitialized = (state: RootState) => state[sliceName].isInitialized;
