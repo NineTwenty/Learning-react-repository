@@ -12,8 +12,19 @@ type CurrentUserProviderProps = {
 };
 
 export const CurrentUserProvider = ({ children }: CurrentUserProviderProps) => {
+  const assignError = new Error(
+    'Attempt to assign value while user not authorized'
+  );
+
+  // Get user id
   const id = useSelector(selectCurrentUserId);
-  const currentUser = useSelector(selectUserById(id)) as User | undefined;
+
+  if (!id) throw assignError;
+
+  // Get user
+  const currentUser = useSelector(selectUserById(id));
+
+  if (!currentUser) throw assignError;
 
   return (
     <currentUserContext.Provider value={currentUser}>
