@@ -1,12 +1,13 @@
-// @ts-nocheck
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, EntityId } from '@reduxjs/toolkit';
 import { api } from '../api/API';
 import { addUser } from './entities/usersSlice';
+import { AppDispatch, RootState } from './store';
 import {
   createLoadingActions,
   createLoadingMatchers,
   createLoadingReducers,
 } from './utils';
+import { StatusState } from './utils/utils.types';
 
 // Slice name
 
@@ -30,24 +31,40 @@ export const logout = () => ({
   type: LOGOUT,
 });
 
+// State type
+
+type AuthState = {
+  userId: EntityId | null;
+  loggedIn: boolean;
+} & StatusState;
+
+// Initial state
+
+const initialState: AuthState = {
+  userId: null,
+  loggedIn: false,
+  status: 'idle',
+};
+
 const loginActions = { loginStarted, loginCompleted };
-const authorizationActions = createLoadingActions(sliceName, 'authorization');
+const authorizationActions = createLoadingActions<EntityId>(
+  sliceName,
+  'authorization'
+);
 const authenticationActions = createLoadingActions(sliceName, 'authentication');
 
 // Loading reducer setup
 
 const { isStartOfRequest, isEndOfRequest } = createLoadingMatchers(sliceName);
-const { handleRequestStart, handleRequestEnd } = createLoadingReducers();
+const { handleRequestStart, handleRequestEnd } =
+  createLoadingReducers<AuthState>();
 
 // Slice
 
 const authSlice = createSlice({
   name: sliceName,
-  initialState: {
-    userId: null,
-    loggedIn: false,
-    status: 'idle',
-  },
+  initialState,
+  reducers: {},
   extraReducers: (builder) => {
     // authorizationRequest passed authorization
     builder.addCase(authorizationActions.success, (state, action) => {
@@ -58,11 +75,11 @@ const authSlice = createSlice({
     });
 
     // Logout matcher
-    const isLogout = ({ type }) =>
-      type === LOGOUT || type === authorizationActions.failure;
+    const isLogout = ({ type }: { type: string }) =>
+      type === LOGOUT || type === authorizationActions.failure.toString();
 
     // Logout handler
-    builder.addMatcher(isLogout, (state, action) => {
+    builder.addMatcher(isLogout, (state) => {
       state.userId = null;
       state.loggedIn = false;
     });
@@ -79,29 +96,30 @@ export const authSliceName = authSlice.name;
 // Thunks
 
 // Authentication
-const authenticationRequest = (login, password) => async (dispatch) => {
-  dispatch(authenticationActions.request());
+const authenticationRequest =
+  (login: string, password: string) => async (dispatch: AppDispatch) => {
+    dispatch(authenticationActions.request());
 
-  try {
-    // Login request
-    const { body } = await api.post('auth/login', { login, password });
-    const { token } = body;
+    try {
+      // Login request
+      const { body } = await api.post('auth/login', { login, password });
+      const { token } = body;
 
-    if (token) {
-      // Set token
-      localStorage.setItem('token', token);
+      if (token) {
+        // Set token
+        localStorage.setItem('token', token);
 
-      dispatch(authenticationActions.success());
+        dispatch(authenticationActions.success());
+      }
+    } catch (err) {
+      dispatch(authenticationActions.failure());
+      // Rethrow to login form
+      throw err;
     }
-  } catch (err) {
-    dispatch(authenticationActions.failure(err.response.body));
-    // Rethrow to login form
-    throw err;
-  }
-};
+  };
 
 // Authorization
-export const authorizationRequest = () => async (dispatch) => {
+export const authorizationRequest = () => async (dispatch: AppDispatch) => {
   const token = localStorage.getItem('token');
 
   // Check if there is token
@@ -120,30 +138,45 @@ export const authorizationRequest = () => async (dispatch) => {
       // Remove token due to failed authorization
       localStorage.removeItem('token');
 
-      dispatch(authorizationActions.failure(err.response.body));
+      dispatch(authorizationActions.failure());
     }
   }
 };
 
 // onSubmit thunk for loginForm
-export const submitLoginForm = ({ login, password }) => async (dispatch) => {
-  dispatch(loginActions.loginStarted());
+export const submitLoginForm =
+  ({
+    login,
+    password,
+  }: {
+    login: string;
+    password: string;
+    rememberMe: boolean;
+  }) =>
+  async (dispatch: AppDispatch) => {
+    dispatch(loginActions.loginStarted());
 
-  try {
-    // Authentication
-    await dispatch(authenticationRequest(login, password));
+    try {
+      // Authentication
+      // @ts-expect-error
+      // Error triggered by incorrect loggoutMiddleware typing
+      await dispatch(authenticationRequest(login, password));
 
-    // Authorization
-    await dispatch(authorizationRequest());
-  } catch (err) {
-    // Return error to form
-    return { payload: err.response.body };
-  } finally {
-    dispatch(loginActions.loginCompleted());
-  }
-};
+      // Authorization
+      // @ts-expect-error
+      // Error triggered by incorrect loggoutMiddleware typing
+      await dispatch(authorizationRequest());
+    } catch (err) {
+      // Return error to form
+      return { payload: err.response.body };
+    } finally {
+      dispatch(loginActions.loginCompleted());
+    }
+  };
 
 // Selectors
 
-export const selectLoggedInStatus = (state) => state[sliceName].loggedIn;
-export const selectCurrentUserId = (state) => state[sliceName].userId;
+export const selectLoggedInStatus = (state: RootState) =>
+  state[sliceName].loggedIn;
+export const selectCurrentUserId = (state: RootState) =>
+  state[sliceName].userId;
