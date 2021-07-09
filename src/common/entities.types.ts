@@ -1,3 +1,5 @@
+import { EntityId } from '@reduxjs/toolkit';
+
 export type User = {
   firstName: string;
   lastName: string;
@@ -24,4 +26,12 @@ export type Post = {
   postText: string;
   id: string;
   author: string;
+};
+
+export type Dialog = {
+  id: EntityId;
+  count: number | null;
+  time: string | null;
+  messages: EntityId[];
+  members: EntityId[];
 };
