@@ -35,3 +35,12 @@ export type Dialog = {
   messages: EntityId[];
   members: EntityId[];
 };
+
+export type Message = {
+  id: EntityId,
+  created: number,
+  unread: boolean,
+  text: string,
+  author: EntityId,
+  dialog: EntityId
+}
