@@ -1,4 +1,5 @@
 import { Post } from 'common/entities.types';
+import { RootState } from 'redux/store';
 import { StatusState } from 'redux/utils/utils.types';
 import { createEntityAdapter, createSlice, EntityId } from '@reduxjs/toolkit';
 import { api } from 'api/API';
@@ -83,14 +84,14 @@ export const submitPost = (newPost: Post) => async (dispatch: any) => {
 // Selectors
 
 const selectors = adapter.getSelectors(
-  (state: any): PostsState => state.entities[sliceName]
+  (state: RootState): PostsState => state.entities[sliceName]
 );
 
 const { selectIds, selectById } = selectors;
 
-export const getIsLoadingPostStatus = (state: any) =>
+export const getIsLoadingPostStatus = (state: RootState) =>
   state.entities[sliceName].status !== 'idle';
 
-export const selectPostsIds = (state: PostsState) => selectIds(state);
-export const selectPostById = (id: EntityId) => (state: PostsState) =>
+export const selectPostsIds = (state: RootState) => selectIds(state);
+export const selectPostById = (id: EntityId) => (state: RootState) =>
   selectById(state, id);
