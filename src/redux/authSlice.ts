@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createSlice } from '@reduxjs/toolkit';
 import { api } from '../api/API';
 import { addUser } from './entities/usersSlice';
