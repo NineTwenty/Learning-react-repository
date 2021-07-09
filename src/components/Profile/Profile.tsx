@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './Profile.module.scss';
+import { useCurrentUser } from 'contexts/current-user-context';
 import PostWall from './PostsWall/PostWall';
 import { Tabs } from '../common/Tabs';
 import { Tab } from '../common/Tab';
@@ -7,17 +8,13 @@ import { Card } from 'components/common/Card/Card';
 import { Gallery } from 'components/common/Gallery/Gallery';
 import { CroppedImage } from 'components/common/CroppedImage/CroppedImage';
 import { Route, useRouteMatch, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectUserById } from 'redux/entities';
-import { selectCurrentUserId } from '../../redux';
 import { FriendsGallery } from './FriendsGallery/FriendsGallery';
 import { Wrapper } from 'components/common/Wrapper/Wrapper';
 import { About } from './About/About'
 
 const Profile = () => {
   const { url } = useRouteMatch();
-  const currentUserId = useSelector(selectCurrentUserId);
-  const currentUser = useSelector(selectUserById(currentUserId));
+  const currentUser = useCurrentUser()
 
   const images = currentUser ? currentUser.images : [];
 
