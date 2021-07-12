@@ -68,7 +68,7 @@ const App = () => {
         <Route path={'/login'}>
           <Login loggedIn={loggedIn} />
         </Route>
-        <Route>
+        <PrivateRoute path={'/'}>
           <CurrentUserProvider>
             <div>
               <Header
@@ -98,12 +98,12 @@ const App = () => {
                   <PrivateRoute path='/settings'>
                     <Settings />
                   </PrivateRoute>
-                  <Redirect exact path='/' to='/login' />
+                  <Redirect exact from='/' to='/profile/posts' />
                 </Switch>
               </div>
             </div>
           </CurrentUserProvider>
-        </Route>
+        </PrivateRoute>
       </Switch>
     </>
   );
