@@ -58,8 +58,10 @@ const Dialogs = ({ dialogs, userId }) => {
   };
 
   // Autoclose list after dialog change
+  // Autoopen after dialog unselecting
+  // (As example by clicking link to Dialogs page, while already here)
   useEffect(() => {
-    if (currentDialogId) setIsDialogsListOpen(false);
+    setIsDialogsListOpen(!currentDialogId);
   }, [currentDialogId]);
 
   // Render
