@@ -6,10 +6,12 @@ import {
   createLoadingMatchers,
   createLoadingReducers,
 } from 'redux/utils';
-import { addUsers } from './usersSlice';
+import { addUsers } from './';
 import { selectCurrentUserId } from '..';
 import { AppDispatch, RootState } from 'redux/store';
 import { StatusState } from 'redux/utils/utils.types';
+import { isTokenExpireResponse } from 'api/APIUtils';
+import { logout } from 'redux/common/actions';
 
 const sliceName = 'dialogs';
 
@@ -75,7 +77,10 @@ export const fetchDialogs = () => async (dispatch: AppDispatch) => {
     dispatch(getRequest.success(dialogs));
     dispatch(addUsers(users));
   } catch (error) {
-    dispatch(getRequest.failure());
+    if (isTokenExpireResponse(error)) {
+      dispatch(getRequest.failure());
+      dispatch(logout());
+    }
   }
 };
 
@@ -86,7 +91,10 @@ export const submitDialog =
       const { dialog } = await api.post('dialogs', newDialog);
       dispatch(submitRequest.success(dialog));
     } catch (error) {
-      dispatch(submitRequest.failure());
+      if (isTokenExpireResponse(error)) {
+        dispatch(submitRequest.failure());
+        dispatch(logout());
+      }
     }
   };
 

@@ -3,11 +3,13 @@ import { RootState } from 'redux/store';
 import { StatusState } from 'redux/utils/utils.types';
 import { createEntityAdapter, createSlice, EntityId } from '@reduxjs/toolkit';
 import { api } from 'api/API';
+import { isTokenExpireResponse } from 'api/APIUtils';
 import {
   createLoadingActions,
   createLoadingMatchers,
   createLoadingReducers,
 } from 'redux/utils';
+import { logout } from 'redux/common/actions';
 
 const sliceName = 'posts';
 
@@ -67,7 +69,10 @@ export const fetchPosts = () => async (dispatch: any) => {
     const { posts } = await api.get('posts');
     dispatch(getRequest.success(posts));
   } catch (error) {
-    dispatch(getRequest.failure());
+    if (isTokenExpireResponse(error)) {
+      dispatch(getRequest.failure());
+      dispatch(logout());
+    }
   }
 };
 
@@ -77,7 +82,10 @@ export const submitPost = (newPost: Post) => async (dispatch: any) => {
     const { post } = await api.post('posts', newPost);
     dispatch(submitRequest.success(post));
   } catch (error) {
-    dispatch(submitRequest.failure());
+    if (isTokenExpireResponse(error)) {
+      dispatch(submitRequest.failure());
+      dispatch(logout());
+    }
   }
 };
 

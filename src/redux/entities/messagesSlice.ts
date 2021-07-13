@@ -5,7 +5,9 @@ import {
   EntityId,
 } from '@reduxjs/toolkit';
 import { api } from 'api/API';
+import { isTokenExpireResponse } from 'api/APIUtils';
 import { Message } from 'common/entities.types';
+import { logout } from 'redux/common/actions';
 import { AppDispatch, RootState } from 'redux/store';
 import {
   createLoadingActions,
@@ -84,7 +86,10 @@ export const fetchMessages =
       );
       dispatch(getRequest.success(messages));
     } catch (error) {
-      dispatch(getRequest.failure());
+      if (isTokenExpireResponse(error)) {
+        dispatch(getRequest.failure());
+        dispatch(logout());
+      }
     }
   };
 
@@ -95,7 +100,10 @@ export const submitMessage =
       const { message } = await api.post('messages', newMessage);
       dispatch(submitRequest.success(message));
     } catch (error) {
-      dispatch(submitRequest.failure());
+      if (isTokenExpireResponse(error)) {
+        dispatch(submitRequest.failure());
+        dispatch(logout());
+      }
     }
   };
 

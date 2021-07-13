@@ -1,5 +1,6 @@
 import { createEntityAdapter, createSlice, EntityId } from '@reduxjs/toolkit';
 import { api } from 'api/API';
+import { isTokenExpireResponse } from 'api/APIUtils';
 import { RootState } from 'redux/store';
 import { User } from 'common/entities.types';
 import {
@@ -73,7 +74,10 @@ export const fetchUsers = () => async (dispatch: any) => {
     const { users } = await api.get('users');
     dispatch(getRequest.success(users));
   } catch (error) {
-    dispatch(getRequest.failure());
+    if (isTokenExpireResponse(error)) {
+      dispatch(getRequest.failure());
+      dispatch(logout());
+    }
   }
 };
 
@@ -83,7 +87,10 @@ export const submitUser = (newUser: User) => async (dispatch: any) => {
     const { user } = await api.post('users', newUser);
     dispatch(submitRequest.success(user));
   } catch (error) {
-    dispatch(submitRequest.failure());
+    if (isTokenExpireResponse(error)) {
+      dispatch(submitRequest.failure());
+      dispatch(logout());
+    }
   }
 };
 
