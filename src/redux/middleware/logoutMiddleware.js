@@ -1,4 +1,4 @@
-import { logout } from '../';
+import { logout } from '../common/actions';
 
 // Middleware to intercept and react on
 // failure actions with error api response as payload

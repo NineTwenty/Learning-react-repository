@@ -1,5 +1,6 @@
 import { createSlice, EntityId } from '@reduxjs/toolkit';
 import { api } from '../api/API';
+import { LOGOUT } from './common/actions';
 import { addUser } from './entities/usersSlice';
 import { AppDispatch, RootState } from './store';
 import {
@@ -17,7 +18,6 @@ const sliceName = 'auth';
 
 const LOGIN_STARTED = `${sliceName}/login/started`;
 const LOGIN_COMPLETED = `${sliceName}/login/completed`;
-const LOGOUT = `${sliceName}/logout`;
 
 // Action creators
 
@@ -26,9 +26,6 @@ const loginStarted = () => ({
 });
 const loginCompleted = () => ({
   type: LOGIN_COMPLETED,
-});
-export const logout = () => ({
-  type: LOGOUT,
 });
 
 // State type

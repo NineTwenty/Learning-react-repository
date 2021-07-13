@@ -4,7 +4,6 @@
 export {
   authSliceName,
   authReducer,
-  logout,
   submitLoginForm,
   authorizationRequest,
   selectLoggedInStatus,

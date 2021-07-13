@@ -8,6 +8,7 @@ import {
   createLoadingReducers,
 } from 'redux/utils';
 import { StatusState } from 'redux/utils/utils.types';
+import { logout } from 'redux/common/actions';
 
 const sliceName = 'users';
 
