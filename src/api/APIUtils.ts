@@ -25,3 +25,7 @@ export const getAgent = () =>
     .use(prefix)
     // set Headers property
     .set('Authorization', getAuthString()); // keep token actual every call
+
+export const isTokenExpireResponse = (error: agent.ResponseError) => {
+  return error?.response?.body.message === 'jwt expired';
+};
