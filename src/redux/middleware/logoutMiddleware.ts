@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { logout } from '../common/actions';
 
 // Middleware to intercept and react on
