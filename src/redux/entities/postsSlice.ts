@@ -1,5 +1,5 @@
 import { Post } from 'common/entities.types';
-import { RootState } from 'redux/store';
+import { AppDispatch, RootState } from 'redux/store';
 import { StatusState } from 'redux/utils/utils.types';
 import { createEntityAdapter, createSlice, EntityId } from '@reduxjs/toolkit';
 import { api } from 'api/API';
@@ -63,7 +63,7 @@ export const postsSliceName = postsSlice.name;
 
 // Thunks
 
-export const fetchPosts = () => async (dispatch: any) => {
+export const fetchPosts = () => async (dispatch: AppDispatch) => {
   dispatch(getRequest.request());
   try {
     const { posts } = await api.get('posts');
@@ -76,7 +76,7 @@ export const fetchPosts = () => async (dispatch: any) => {
   }
 };
 
-export const submitPost = (newPost: Post) => async (dispatch: any) => {
+export const submitPost = (newPost: Post) => async (dispatch: AppDispatch) => {
   dispatch(submitRequest.request());
   try {
     const { post } = await api.post('posts', newPost);
