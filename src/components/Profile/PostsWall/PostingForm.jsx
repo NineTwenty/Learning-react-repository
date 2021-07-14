@@ -16,7 +16,10 @@ const validate = (values) => {
 
 const PostingForm = ({ header, onSubmit }) => {
   const dispatch = useDispatch();
-  const dispatchOnSubmit = (posts) => dispatch(onSubmit(posts))
+  const dispatchOnSubmit = async (posts, formikBag) => {
+    await dispatch(onSubmit(posts));
+    formikBag.resetForm();
+  };
 
   const isLoading = useSelector(getIsLoadingPostStatus);
 
