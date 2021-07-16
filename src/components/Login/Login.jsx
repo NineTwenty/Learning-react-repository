@@ -12,16 +12,13 @@ const Login = ({ loggedIn }) => {
   if (loggedIn) return <Redirect to={referrer} />;
 
   return (
-    <div className={style.login}>
-      <div className={style.background}></div>
-      <div className={style.content}>
-        <div className={style.carousel}></div>
-        <div className={style.form}>
+    <div className={style.Wrapper}>
+        <div className={style.Meta}></div>
+        <div className={style.Form}>
           <h1>Sign in</h1>
           <p>Enter your login or email address and password to sign in.</p>
           <LoginForm loggedIn={loggedIn} />
         </div>
-      </div>
     </div>
   );
 };
