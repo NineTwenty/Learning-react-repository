@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './Login.module.css';
+import style from './Login.module.scss';
 import LoginForm from './LoginForm';
 import { Redirect, useLocation } from 'react-router-dom';
 
