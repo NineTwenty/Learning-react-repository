@@ -1,26 +1,17 @@
 import React from 'react';
 import style from './Profile.module.scss';
-import { useCurrentUser } from 'contexts/current-user-context';
 import PostWall from './PostsWall/PostWall';
 import { Tabs } from '../common/Tabs';
 import { Tab } from '../common/Tab';
 import { Card } from 'components/common/Card/Card';
-import { Gallery } from 'components/common/Gallery/Gallery';
-import { CroppedImage } from 'components/common/CroppedImage/CroppedImage';
 import { Route, useRouteMatch, Redirect } from 'react-router-dom';
 import { FriendsGallery } from './FriendsGallery/FriendsGallery';
 import { Wrapper } from 'components/common/Wrapper/Wrapper';
-import { About } from './About/About'
+import { About } from './About/About';
+import { ImagesGallery } from './ImagesGallery/ImagesGallery';
 
 const Profile = () => {
   const { url } = useRouteMatch();
-  const currentUser = useCurrentUser()
-
-  const images = currentUser ? currentUser.images : [];
-
-  const croppedImages = Array.isArray(images)
-    ? images.map(({ src, id }) => <CroppedImage key={id} src={src} alt='' />)
-    : images;
 
   return (
     <main className={style.Wrapper}>
@@ -40,7 +31,7 @@ const Profile = () => {
               <FriendsGallery />
             </Card>
             <Card className={style.Card} header={'Photos'}>
-              <Gallery limit={6}>{croppedImages}</Gallery>
+              <ImagesGallery limit={6} />
             </Card>
           </div>
           <PostWall className={style.Postwall} />
@@ -56,7 +47,7 @@ const Profile = () => {
       </Route>
       <Route path={`${url}/photos`}>
         <Wrapper className={style.Photos}>
-          <Gallery>{croppedImages}</Gallery>
+          <ImagesGallery/>
         </Wrapper>
       </Route>
       <Redirect exact from={url} to={`${url}/posts`} />
