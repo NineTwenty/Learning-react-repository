@@ -1,10 +1,10 @@
 import styles from './FriendsGallery.module.scss';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useCurrentUser } from 'contexts/current-user-context';
-import { fetchUsers, selectUsersByIds } from 'redux/entities';
+import { fetchUsers, selectUserById, selectUsersByIds } from 'redux/entities';
 import Avatar from 'components/common/Avatar/Avatar';
 import { Gallery } from 'components/common/Gallery/Gallery';
+import { Link, useRouteMatch } from 'react-router-dom';
 
 type FriendsGalleryProps = {
   classname?: string;
@@ -18,10 +18,17 @@ export const FriendsGallery = ({ classname }: FriendsGalleryProps) => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  const currentUser = useCurrentUser();
+  // Get routing data
+  const {
+    path,
+    // @ts-expect-error
+    params: { url, id, entity },
+  } = useRouteMatch();
+
+  const user = useSelector(selectUserById(id));
 
   // Get friends
-  const friendsIds = currentUser?.friends || [];
+  const friendsIds = user?.friends || [];
   const friends = useSelector(selectUsersByIds(friendsIds));
 
   const friendsCards = friends.map((friend) => {
