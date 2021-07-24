@@ -1,8 +1,11 @@
 import cx from 'classnames';
 import styles from './About.module.scss';
 import { Wrapper } from 'components/common/Wrapper/Wrapper';
-import { useCurrentUser } from 'contexts/current-user-context';
 import { Separator } from 'components/common/Separator';
+import { useSelector } from 'react-redux';
+import { selectUserById } from 'redux/entities';
+import { Spinner } from 'components/common/Spinner';
+import { useParams } from 'react-router-dom';
 
 type AboutProps = {
   classname?: string;
@@ -10,7 +13,14 @@ type AboutProps = {
 
 export const About = ({ classname }: AboutProps) => {
   const classes = cx(styles.Wrapper, { classname });
-  const currentUser = useCurrentUser();
+  // @ts-expect-error
+  const { id } = useParams();
+
+  const currentUser = useSelector(selectUserById(id));
+
+  if (!currentUser) {
+    return <Spinner />;
+  }
 
   const birthDate = new Date(
     Date.parse(currentUser.birthDate)
