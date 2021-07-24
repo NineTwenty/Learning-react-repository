@@ -86,7 +86,7 @@ const App = () => {
                   <PrivateRoute path='/dialogs/:id?'>
                     <DialogsContainer />
                   </PrivateRoute>
-                  <PrivateRoute path='/profile'>
+                  <PrivateRoute path='/profile/:id?'>
                     <Profile />
                   </PrivateRoute>
                   <PrivateRoute path='/news'>
@@ -98,7 +98,7 @@ const App = () => {
                   <PrivateRoute path='/settings'>
                     <Settings />
                   </PrivateRoute>
-                  <Redirect exact from='/' to='/profile/posts' />
+                  <Redirect exact from='/' to='/profile' />
                 </Switch>
               </div>
             </div>
