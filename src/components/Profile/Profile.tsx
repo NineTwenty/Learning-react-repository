@@ -10,6 +10,7 @@ import { FriendsGallery } from './FriendsGallery/FriendsGallery';
 import { Wrapper } from 'components/common/Wrapper/Wrapper';
 import { About } from './About/About';
 import { ImagesGallery } from './ImagesGallery/ImagesGallery';
+import { ProfileHeader } from './ProfileHeader/ProfileHeader';
 
 const Profile = () => {
   const {
@@ -27,7 +28,7 @@ const Profile = () => {
     <Switch>
       <Route path={`${path}/:entity`}>
         <main className={style.Wrapper}>
-          <div className={style.picture}></div>
+          <ProfileHeader/>
           <div className={style.tabs}>
             <Tabs>
               <Tab value={'Posts'} route={`${url}/posts`} />
