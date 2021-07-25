@@ -5,19 +5,19 @@ import Button from '../Button';
 import { Icon } from '../Icon/Icon';
 
 type LightboxProps = {
-  classname?: string;
+  className?: string;
   children: React.ReactNode;
   onClose?: Function;
 };
 
 export const Lightbox = ({
-  classname,
+  className,
   children,
   onClose = () => {},
 }: LightboxProps) => {
   const backgroundRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const classes = cx(styles.Wrapper, { classname });
+  const classes = cx(styles.Wrapper, { [`${className}`]: className });
 
   // Close on click outside
   useEffect(() => {

@@ -22,7 +22,7 @@ export const CroppedImage = ({
   className,
 }: ImageProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const classes = cx(styles.Wrapper, { className });
+  const classes = cx(styles.Wrapper, { [`${className}`]: className });
 
   const onClick = () => setIsOpen(true);
   const onClose = useCallback(() => setIsOpen(false), []);

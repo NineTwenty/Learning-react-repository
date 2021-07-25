@@ -26,7 +26,7 @@ const PostWall = ({ className }) => {
 
   const posts = postsIds.map((id) => <Post id={id} key={id} />).reverse();
 
-  const classes = cx(style.postWall, { [className]: className });
+  const classes = cx(style.postWall, { [`${className}`]: className });
 
   return (
     <div className={classes}>

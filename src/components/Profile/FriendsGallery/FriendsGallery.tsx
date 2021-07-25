@@ -7,10 +7,10 @@ import { Gallery } from 'components/common/Gallery/Gallery';
 import { generatePath, Link, useRouteMatch } from 'react-router-dom';
 
 type FriendsGalleryProps = {
-  classname?: string;
+  className?: string;
 };
 
-export const FriendsGallery = ({ classname }: FriendsGalleryProps) => {
+export const FriendsGallery = ({ className }: FriendsGalleryProps) => {
   const dispatch = useDispatch();
 
   // Fetch all users
@@ -60,7 +60,7 @@ export const FriendsGallery = ({ classname }: FriendsGalleryProps) => {
   });
 
   return (
-    <Gallery className={classname} limit={6}>
+    <Gallery className={className} limit={6}>
       {friendsCards}
     </Gallery>
   );

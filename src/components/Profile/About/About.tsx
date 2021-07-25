@@ -8,11 +8,11 @@ import { Spinner } from 'components/common/Spinner';
 import { useParams } from 'react-router-dom';
 
 type AboutProps = {
-  classname?: string;
+  className?: string;
 };
 
-export const About = ({ classname }: AboutProps) => {
-  const classes = cx(styles.Wrapper, { classname });
+export const About = ({ className }: AboutProps) => {
+  const classes = cx(styles.Wrapper, { [`${className}`]: className });
   // @ts-expect-error
   const { id } = useParams();
 

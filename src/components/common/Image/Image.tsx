@@ -8,7 +8,7 @@ interface ImageProps extends React.HTMLAttributes<HTMLImageElement> {
 }
 
 export const Image = ({ src, alt, className, ...rest }: ImageProps) => {
-  const classes = cx(styles.Image, { className });
+  const classes = cx(styles.Image, { [`${className}`]: className });
 
   return <img className={classes} {...{ src, alt, ...rest }} />;
 };
