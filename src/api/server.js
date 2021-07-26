@@ -21,10 +21,6 @@ import faker from 'faker';
 //  4.4 Posts
 //  4.5 Authentication
 // 5. Seeds
-//  5.1 Users
-//  5.2 Dialogs
-//  5.3 Messages
-//  5.4 Posts
 // ==================
 
 const secret =
@@ -358,153 +354,40 @@ export function makeServer({ environment = 'development' } = {}) {
     // ==================
 
     seeds(server) {
-      // ==================
-      // 5.1 Users
-      // ==================
-
       server.createList('user', 3);
-      server.create('user', {
+
+      const admin = server.create('user', {
         login: 'admin',
         password: 'admin',
       });
-      server.create('user');
-      server.createList('user', 20);
 
-      // ==================
-      // 5.2 Dialogs
-      // ==================
+      server.createList('user', 21);
 
-      server.create('dialog', {
-        count: 16,
-        time: '1min',
-        memberIds: ['1', '4'],
-      });
-      server.create('dialog', {
-        count: 13,
-        time: '4min',
-        memberIds: ['2', '4'],
+      // Create posts for all users
+      server.schema.users.all().models.forEach((user) => {
+        server.createList('post', 2, {
+          author: user,
+          views: 0,
+        });
       });
 
-      // ==================
-      // 5.3 Messages
-      // ==================
-
-      server.create('message', {
-        authorId: '1',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '1',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '4',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '1',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '4',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '1',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '4',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '1',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '4',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '1',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '4',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '1',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '4',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '1',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '1',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '4',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '1',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '4',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '1',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '4',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '1',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '4',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '1',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '4',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '1',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '4',
-        dialogId: '1',
-      });
-      server.create('message', {
-        authorId: '1',
-        dialogId: '1',
-      });
-
-      // ==================
-      // 5.4 Posts
-      // ==================
-
-      server.create('post', {
-        authorId: '4',
-        views: 0,
+      // Create two dialogs for main user
+      [
+        server.create('dialog', {
+          memberIds: [admin.id, `${+admin.id + 1}`],
+        }),
+        server.create('dialog', {
+          memberIds: [admin.id, `${+admin.id + 2}`],
+        }),
+      ].forEach((dialog) => {
+        // Create messages for each
+        server.createList('message', 34, {
+          authorId: () => {
+            // Randomize author
+            return dialog.memberIds[Math.round(Math.random())];
+          },
+          dialog,
+        });
       });
     },
   });
