@@ -117,7 +117,9 @@ export function makeServer({ environment = 'development' } = {}) {
 
           return images.map((src, i) => ({
             src,
-            id: Date.now() / id / i,
+            // if id or i == 0 and generated value is null then regenerate
+            // with explicitly defined numbers
+            id: Date.now() / id / i ?? Date.now() / 99 / 99,
           }));
         },
       }),
