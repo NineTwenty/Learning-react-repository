@@ -131,7 +131,7 @@ export function makeServer({ environment = 'development' } = {}) {
         created: Date.now(),
       }),
       post: Factory.extend({
-        postText: faker.lorem.sentences(),
+        postText: () => faker.lorem.sentences(),
       }),
     },
 
