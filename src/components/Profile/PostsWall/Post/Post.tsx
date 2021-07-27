@@ -13,7 +13,7 @@ type PostProps = {
 
 export const Post = ({ id }: PostProps) => {
   const post = useSelector(selectPostById(id)) as PostType;
-  const author = useSelector(selectUserById(post.author));
+  const author = useSelector(selectUserById(post?.author));
 
   if (!author || !post) {
     return null;

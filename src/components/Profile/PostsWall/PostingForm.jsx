@@ -1,11 +1,12 @@
 import React from 'react';
 import style from './PostingForm.module.css';
+import { useParams } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { TextAreaField } from 'components/common/TextAreaField';
 import SubmitField from 'components/common/SubmitField';
 import { Separator } from 'components/common/Separator/Separator';
 import { useDispatch, useSelector } from 'react-redux';
-import { getIsLoadingPostStatus } from 'redux/entities';
+import { fetchFeed, getIsLoadingPostStatus } from 'redux/entities';
 import { Wrapper } from 'components/common/Wrapper/Wrapper';
 
 const validate = (values) => {
@@ -16,8 +17,15 @@ const validate = (values) => {
 
 const PostingForm = ({ header, onSubmit }) => {
   const dispatch = useDispatch();
+  const { id } = useParams();
+
   const dispatchOnSubmit = async (posts, formikBag) => {
-    await dispatch(onSubmit(posts));
+    const post = { ...posts, feedId: id }
+
+    await dispatch(onSubmit(post));
+    // Update changed feed
+    dispatch(fetchFeed(id))
+
     formikBag.resetForm();
   };
 

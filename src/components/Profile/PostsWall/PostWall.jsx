@@ -1,30 +1,27 @@
 import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import style from './PostWall.module.css';
 import { Post } from './Post/Post';
 import PostingForm from './PostingForm';
-import {
-  fetchPosts,
-  submitPost,
-  selectPostsIds,
-} from 'redux/entities';
+import { submitPost, fetchFeed, selectFeedById } from 'redux/entities';
 import { List } from 'components/common/List';
 import { useSelector, useDispatch } from 'react-redux';
 import cx from 'classnames';
 
 const PostWall = ({ className }) => {
   const dispatch = useDispatch();
+  const { id: feedId } = useParams();
+
+  const feed = useSelector(selectFeedById(feedId));
+  const posts = feed?.posts.map((id) => <Post id={id} key={id} />).reverse();
 
   useEffect(() => {
-    dispatch(fetchPosts());
+    dispatch(fetchFeed(feedId));
     const interval = setInterval(() => {
-      dispatch(fetchPosts());
+      dispatch(fetchFeed(feedId));
     }, 10000);
     return () => clearInterval(interval);
-  }, [dispatch]);
-
-  const postsIds = useSelector(selectPostsIds);
-
-  const posts = postsIds.map((id) => <Post id={id} key={id} />).reverse();
+  }, [dispatch, feedId]);
 
   const classes = cx(style.postWall, { [`${className}`]: className });
 
