@@ -61,6 +61,10 @@ const postsSlice = createSlice({
 export const postsReducer = postsSlice.reducer;
 export const postsSliceName = postsSlice.name;
 
+// Action creators
+
+export const setPosts = postsSlice.actions.setAll;
+
 // Thunks
 
 export const fetchPosts = () => async (dispatch: AppDispatch) => {

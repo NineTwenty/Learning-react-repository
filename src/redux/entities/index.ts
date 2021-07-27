@@ -28,6 +28,7 @@ export {
 export {
   fetchPosts,
   submitPost,
+  setPosts,
   selectPostById,
   selectPostsIds,
   getIsLoadingPostStatus,
