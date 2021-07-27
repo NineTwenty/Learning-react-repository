@@ -14,6 +14,7 @@ export type User = {
   music: [];
   images: Image[];
   id: string;
+  feed: string
 };
 
 export type Image = {
@@ -22,6 +23,7 @@ export type Image = {
 };
 
 export type Post = {
+  feed: string;
   views: number;
   postText: string;
   id: string;
@@ -44,3 +46,8 @@ export type Message = {
   author: EntityId,
   dialog: EntityId
 }
+
+export type Feed = {
+  ownerId: string,
+  posts: string[],
+};

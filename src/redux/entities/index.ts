@@ -44,3 +44,10 @@ export {
   selectLoadedMessagesByIds,
   clearMessages
 } from './messagesSlice';
+
+// Feeds
+export {
+  fetchFeed,
+  selectFeedById,
+  selectIsLoadingFeedStatus
+} from './feedsSlice'
