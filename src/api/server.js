@@ -51,6 +51,7 @@ export function makeServer({ environment = 'development' } = {}) {
         dialogs: hasMany(),
         messages: hasMany(),
         posts: hasMany(),
+        feed: belongsTo(),
       }),
 
       dialog: Model.extend({
@@ -62,8 +63,15 @@ export function makeServer({ environment = 'development' } = {}) {
         author: belongsTo('user'),
         dialog: belongsTo(),
       }),
+
+      feed: Model.extend({
+        owner: belongsTo('user'),
+        posts: hasMany(),
+      }),
+
       post: Model.extend({
         author: belongsTo('user'),
+        feed: belongsTo(),
       }),
     },
 
@@ -347,6 +355,17 @@ export function makeServer({ environment = 'development' } = {}) {
         const userId = authenticateUser(request);
         return schema.users.find(userId);
       });
+
+      // ==================
+      // 4.6 Feeds
+      // ==================
+
+      this.get('/feeds/:id', (schema, request) => {
+        const userId = authenticateUser(request);
+        const { id } = request.params
+
+        return schema.feeds.find(id)
+      });
     },
 
     // ==================
@@ -365,7 +384,12 @@ export function makeServer({ environment = 'development' } = {}) {
 
       // Create posts for all users
       server.schema.users.all().models.forEach((user) => {
+        const feed = server.create('feed', {
+          owner: user,
+        });
+
         server.createList('post', 2, {
+          feed,
           author: user,
           views: 0,
         });
