@@ -1,0 +1,31 @@
+import agent from 'superagent';
+
+// Generation of URL with prefix part
+const API_PREFIX = '/api/';
+const prefix = (request: agent.SuperAgentRequest) => {
+  request.url = `${API_PREFIX}${request.url}`;
+  return request;
+};
+
+const getToken = () => localStorage.getItem('token');
+
+const getAuthString = () => {
+  const token = getToken();
+  if (token) return `Bearer ${token}`;
+
+  return '';
+};
+
+// func to get superagent instance
+export const getAgent = () =>
+  agent
+    .agent()
+    .type('application/json')
+    // Apply URL prefix
+    .use(prefix)
+    // set Headers property
+    .set('Authorization', getAuthString()); // keep token actual every call
+
+export const isTokenExpireResponse = (error: agent.ResponseError) => {
+  return error?.response?.body.message === 'jwt expired';
+};

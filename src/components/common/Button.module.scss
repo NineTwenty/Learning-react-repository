@@ -1,0 +1,87 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: var(--padding-primary);
+
+  border: none;
+  background: none;
+  color: var(--color-text-unfocused);
+
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    color: var(--color-text-ui);
+    background: none;
+  }
+
+  // For possible icons
+  & > svg {
+    fill: var(--color-text-unfocused);
+  }
+
+  &:hover > svg {
+    fill: var(--color-text-ui);
+  }
+
+  &:focus > svg {
+    fill: var(--color-text-headers);
+  }
+
+  // Minimalistic without any background
+  &_borderless {
+    padding: 0.2em;
+
+    border-radius: 0;
+    border-bottom: 0.08em solid transparent;
+
+    &:hover,
+    &:focus {
+      border-bottom: 0.08em solid var(--color-border-light);
+    }
+  }
+
+  &_default,
+  &_light {
+    border-radius: 0.3em;
+  }
+
+  // Light with border
+  &_light {
+    border: 0.08em solid var(--color-border-light);
+
+    &:hover,
+    &:focus {
+      background: var(--color-border-light);
+    }
+
+    &:focus {
+      border: 0.08em solid var(--color-border-dark);
+    }
+  }
+
+  // Unspecified style type
+  &_default {
+    border: 0.08em solid var(--color-primary);
+
+    background: var(--color-primary);
+    color: var(--color-text-light);
+
+    &:hover,
+    &:focus {
+      color: var(--color-text-light);
+      background: var(--color-focus);
+      border: 0.08em solid var(--color-focus);
+    }
+
+    // For possible icons
+    & > svg,
+    &:hover > svg,
+    &:focus > svg {
+      fill: var(--color-text-light);
+    }
+  }
+}

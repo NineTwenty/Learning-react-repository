@@ -1,0 +1,7 @@
+.chatWrapper {
+  justify-content: space-between;
+  flex-flow: column;
+
+  /* fix messages scroll in mobile layout*/
+  min-height: 0;
+}

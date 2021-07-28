@@ -1,4 +1,49 @@
 .nav {
-  grid-area: nav;
-  background-color: cadetblue;
+  position: fixed;
+  top: 5vh;
+  height: 95vh;
+  width: 20vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  transform: translateX(-20vw);
+  transition: transform .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+  background-color: var(--color-background);
+  z-index: 5;
+}
+
+.navLink {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-ui);
+  text-decoration: none;
+  padding: 0.5rem;
+}
+
+.active {
+  color: var(--color-primary);
+  background: var(--color-secondary);
+  border-radius: 4px;
+}
+
+@media (min-width: 1100px) {
+  .nav {
+    padding: var(--padding-primary);
+  }
+
+  .navLink {
+    display: inline;
+    flex: none;
+    text-align: center;
+    padding: var(--padding-primary);
+  }
+}
+
+.isOpen {
+  transform: translateX(0)
 }

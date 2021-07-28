@@ -1,0 +1,20 @@
+.link {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2em;
+  border-radius: 0.5em;
+  text-decoration: none;
+  color: var(--color-text-ui);
+  transition: background-color 0.5s;
+}
+
+.link:hover:not(.active) {
+  color: var(--color-primary);
+}
+
+.active {
+  background: var(--color-primary);
+  color: var(--color-secondary);
+}

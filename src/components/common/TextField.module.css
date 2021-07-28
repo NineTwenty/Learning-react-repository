@@ -1,0 +1,32 @@
+.field {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.field > input {
+  flex: 0 1 100%;
+
+  margin-top: 1em;
+  padding: 1em;
+  
+  border: 0.08em var(--color-border-light) solid;
+  border-radius: 0.8em;
+
+  color: var(--color-text-unfocused);
+}
+
+.field > input:focus {
+  color: var(--color-text-headers);
+  outline: none;
+  border: 0.08em var(--color-primary) solid;
+}
+
+.error {
+  padding-left: 0.6em;
+  color: var(--color-error)
+}
+
+.error:empty {
+  padding: 0;
+}

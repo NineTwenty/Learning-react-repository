@@ -1,0 +1,82 @@
+@use 'sass:math';
+
+.DialogItem {
+  color: var(--color-text-header);
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  max-height: 5rem;
+  min-width: 14rem;
+  padding: 1rem;
+  align-items: center;
+
+  &:focus-within {
+    background: var(--color-secondary);
+  }
+
+  // Active state indicator
+  $indicator-width: 0.11em;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0.5em - math.div($indicator-width, 2);
+
+    height: 80%;
+    width: $indicator-width;
+
+    border-radius: var(--border-radius-small);
+  }
+
+  &_chosen {
+    &::before {
+      background: var(--color-primary);
+    }
+  }
+}
+
+.Link {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.Preview {
+  flex: 1;
+  margin-left: 0.5rem;
+}
+
+.Name {
+  margin: 0;
+  max-height: 1.2rem;
+}
+
+.Message {
+  color: var(--color-text-ui);
+  font-size: 0.7rem;
+  margin: 0;
+}
+
+// .Meta {
+//   font-size: 0.6rem;
+//   flex: 0 0 2.5em;
+// }
+
+// .Count {
+//   display: block;
+//   height: 1.5em;
+//   width: 1.5em;
+
+//   border-radius: 50%;
+//   background: var(--color-primary);
+//   color: var(--color-background);
+// }
+
+// .Passed {
+//   padding: 1rem 0;
+
+//   color: var(--color-primary);
+// }

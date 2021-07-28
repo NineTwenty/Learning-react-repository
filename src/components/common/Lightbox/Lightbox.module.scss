@@ -1,0 +1,36 @@
+.Background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 400px) {
+    padding: 3em;
+  }
+
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.CloseBtn {
+  position: absolute;
+  margin: 1em;
+  top: 0;
+  right: 0;
+  z-index: 11;
+}
+
+.Wrapper {
+  display: flex;
+  align-items: center;
+  height: 90vh;
+
+  @media (min-width: 400px) {
+    height: 70vh;
+  }
+}

@@ -1,0 +1,18 @@
+.wrapper {
+  background: var(--color-background);
+  border-radius: var(--border-radius-small);
+}
+
+.header {
+  color: var(--color-text-headers);
+  margin: 0;
+  padding: var(--padding-primary);
+}
+
+.form {
+  padding: var(--padding-primary);
+}
+
+.submitField {
+  margin-top: var(--padding-primary);
+}

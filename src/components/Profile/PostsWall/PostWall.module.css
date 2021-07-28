@@ -1,0 +1,5 @@
+.postWall {
+  display: grid;
+  gap: var(--padding-primary);
+  height: fit-content;
+}
