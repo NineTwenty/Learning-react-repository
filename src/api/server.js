@@ -86,7 +86,7 @@ export function makeServer({ environment = 'development' } = {}) {
         lastName: faker.name.lastName,
         email: faker.internet.exampleEmail,
         address: faker.address.country,
-        phoneNumber: faker.phone.phoneNumber.bind(null,'+(###) ###-####'),
+        phoneNumber: faker.phone.phoneNumber.bind(null, '+(###) ###-####'),
         birthDate: faker.date.between('January 1, 1950', 'January 1, 2010'),
         online: false,
         lastOnlineTime: faker.date.recent,
@@ -349,9 +349,9 @@ export function makeServer({ environment = 'development' } = {}) {
 
       this.get('/feeds/:id', (schema, request) => {
         const userId = authenticateUser(request);
-        const { id } = request.params
+        const { id } = request.params;
 
-        return schema.feeds.find(id)
+        return schema.feeds.find(id);
       });
     },
 
