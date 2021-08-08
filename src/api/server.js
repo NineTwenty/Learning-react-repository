@@ -52,6 +52,7 @@ export function makeServer({ environment = 'development' } = {}) {
         messages: hasMany(),
         posts: hasMany(),
         feed: belongsTo(),
+        friends: hasMany('user', { inverse: 'friends' }),
       }),
 
       dialog: Model.extend({
@@ -81,11 +82,6 @@ export function makeServer({ environment = 'development' } = {}) {
 
     factories: {
       user: Factory.extend({
-        afterCreate: (user) => {
-          user.update({
-            friends: user.friends.filter((id) => user.id !== id),
-          });
-        },
         firstName: faker.name.firstName,
         lastName: faker.name.lastName,
         email: faker.internet.exampleEmail,
@@ -95,15 +91,6 @@ export function makeServer({ environment = 'development' } = {}) {
         online: false,
         lastOnlineTime: faker.date.recent,
         avatar: () => `https://picsum.photos/200?random=${Math.random()}`,
-        friends: () => {
-          const arr = Array(Math.round(Math.random() * 15));
-          const makeFriends = () =>
-            `${Math.round(1 + Math.random() * (21 - 1))}`;
-          const onlyUnique = (value, index, self) =>
-            self.indexOf(value) === index;
-
-          return Array.from(arr, makeFriends).filter(onlyUnique);
-        },
         music: [],
         images: (id) => {
           const images = [
@@ -373,17 +360,27 @@ export function makeServer({ environment = 'development' } = {}) {
     // ==================
 
     seeds(server) {
-      server.createList('user', 3);
+      server.createList('user', 14).forEach((user, i, userModels) => {
+        // Empty array of random length
+        const emptyArr = Array(Math.round(Math.random() * 10));
+        // Friend id generation func
+        const makeFriends = () =>
+          `${Math.round(1 + Math.random() * (userModels.length - 1))}`;
+        // Filter func
+        const onlyUnique = (value, index, self) =>
+          self.indexOf(value) === index;
 
-      const admin = server.create('user', {
-        login: 'admin',
-        password: 'admin',
-      });
+        // Fill empty array with ids
+        const friendsList = Array.from(emptyArr, makeFriends)
+          // Filter redundant ids
+          .filter(onlyUnique)
+          // Map ids to models
+          .map((id) => userModels[id]);
 
-      server.createList('user', 21);
+        // Update user relationships
+        user.update({ friends: friendsList });
 
-      // Create posts for all users
-      server.schema.users.all().models.forEach((user) => {
+        // Create posts for all users
         const feed = server.create('feed', {
           owner: user,
         });
@@ -393,6 +390,21 @@ export function makeServer({ environment = 'development' } = {}) {
           author: user,
           views: 0,
         });
+      });
+
+      // Remove possible self reference from friends list
+      server.schema.users.all().models.forEach((user) => {
+        user.update(
+          'friendIds',
+          user.friendIds.filter((id) => id !== user.id)
+        );
+      });
+
+      const admin = server.schema.users.all().models[3];
+
+      admin.update({
+        password: 'admin',
+        login: 'admin',
       });
 
       // Create two dialogs for main user
