@@ -8,9 +8,10 @@ import { generatePath, Link, useRouteMatch } from 'react-router-dom';
 
 type FriendsGalleryProps = {
   className?: string;
+  limit?: number;
 };
 
-export const FriendsGallery = ({ className }: FriendsGalleryProps) => {
+export const FriendsGallery = ({ className, limit }: FriendsGalleryProps) => {
   const dispatch = useDispatch();
 
   // Fetch all users
@@ -60,7 +61,7 @@ export const FriendsGallery = ({ className }: FriendsGalleryProps) => {
   });
 
   return (
-    <Gallery className={className} limit={6}>
+    <Gallery className={className} limit={limit}>
       {friendsCards}
     </Gallery>
   );
