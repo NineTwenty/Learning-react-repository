@@ -221,7 +221,6 @@ export function makeServer({ environment = 'development' } = {}) {
 
       this.get('/users');
       this.get('/users/:id');
-      this.post('/users', handleUser());
 
       // ==================
       // 4.2 Dialogs
@@ -233,7 +232,6 @@ export function makeServer({ environment = 'development' } = {}) {
 
         return schema.dialogs.find(dialogIds);
       });
-      this.post('/dialogs', handleDialog());
 
       // ==================
       // 4.3 Messages
