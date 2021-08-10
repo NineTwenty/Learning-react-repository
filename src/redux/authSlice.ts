@@ -155,13 +155,9 @@ export const submitLoginForm =
 
     try {
       // Authentication
-      // @ts-expect-error
-      // Error triggered by incorrect loggoutMiddleware typing
       await dispatch(authenticationRequest(login, password));
 
       // Authorization
-      // @ts-expect-error
-      // Error triggered by incorrect loggoutMiddleware typing
       await dispatch(authorizationRequest());
     } catch (err) {
       // Return error to form
