@@ -1,6 +1,9 @@
 import React from 'react';
 import style from './Post.module.css';
+import { useAppDispatch } from 'hooks/hooks';
 import { useSelector } from 'react-redux';
+import { useCurrentUser } from 'contexts/current-user-context';
+import { deletePost } from 'redux/entities/postsSlice';
 import { selectPostById, selectUserById } from 'redux/entities';
 import { Separator } from 'components/common/Separator';
 import Button from 'components/common/Button';
@@ -12,6 +15,8 @@ type PostProps = {
 };
 
 export const Post = ({ id }: PostProps) => {
+  const dispatch = useAppDispatch();
+  const currentUser = useCurrentUser();
   const post = useSelector(selectPostById(id)) as PostType;
   const author = useSelector(selectUserById(post?.author));
 
@@ -29,7 +34,9 @@ export const Post = ({ id }: PostProps) => {
           <h6 className={style.name}>{fullName}</h6>
           <span className={style.time}>Time has passed</span>
         </div>
-        <Button>Delete</Button>
+        {currentUser.id === post.author && (
+          <Button onClick={() => dispatch(deletePost(id))}>Delete</Button>
+        )}
       </div>
       <p>{post.postText}</p>
       <div className={style.meta}>
