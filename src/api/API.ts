@@ -15,4 +15,12 @@ export const api = {
       return body;
     }
   },
+
+  async delete(url: string) {
+    const { ok, body } = await getAgent().delete(url);
+
+    if (ok) {
+      return body;
+    }
+  },
 };
