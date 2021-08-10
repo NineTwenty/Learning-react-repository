@@ -7,7 +7,6 @@ import { deletePost } from 'redux/entities/postsSlice';
 import { selectPostById, selectUserById } from 'redux/entities';
 import { Separator } from 'components/common/Separator';
 import Button from 'components/common/Button';
-import { Post as PostType } from 'common/entities.types';
 import Avatar from 'components/common/Avatar/Avatar';
 
 type PostProps = {
@@ -17,7 +16,7 @@ type PostProps = {
 export const Post = ({ id }: PostProps) => {
   const dispatch = useAppDispatch();
   const currentUser = useCurrentUser();
-  const post = useSelector(selectPostById(id)) as PostType;
+  const post = useSelector(selectPostById(id));
   const author = useSelector(selectUserById(post?.author));
 
   if (!author || !post) {
