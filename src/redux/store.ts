@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { logoutMiddleware } from './middleware/logoutMiddleware';
 import { entitiesReducer } from './entities';
 import { appReducer } from '.';
@@ -13,7 +13,8 @@ const rootReducer = combineReducers({
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: [logoutMiddleware, ...getDefaultMiddleware()],
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(logoutMiddleware),
 });
 
 export default store;
