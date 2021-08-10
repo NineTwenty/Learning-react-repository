@@ -31,6 +31,7 @@ const { isStartOfRequest, isEndOfRequest } = createLoadingMatchers(sliceName);
 
 const getRequest = createLoadingActions<Post[]>(sliceName, 'get');
 const submitRequest = createLoadingActions<Post>(sliceName, 'submit');
+const deleteRequest = createLoadingActions<EntityId>(sliceName, 'delete');
 
 // Slice
 
@@ -52,6 +53,7 @@ const postsSlice = createSlice({
     // setAll payload of 'success' get action
     builder.addCase(getRequest.success.type, adapter.setAll);
     builder.addCase(submitRequest.success.type, adapter.addOne);
+    builder.addCase(deleteRequest.success.type, adapter.removeOne);
     builder.addMatcher(isStartOfRequest, handleRequestStart);
     builder.addMatcher(isEndOfRequest, handleRequestEnd);
   },
@@ -88,6 +90,19 @@ export const submitPost = (newPost: Post) => async (dispatch: AppDispatch) => {
   } catch (error) {
     if (isTokenExpireResponse(error)) {
       dispatch(submitRequest.failure());
+      dispatch(logout());
+    }
+  }
+};
+
+export const deletePost = (id: string) => async (dispatch: AppDispatch) => {
+  dispatch(deleteRequest.request());
+  try {
+    await api.delete(`posts/${id}`);
+    dispatch(deleteRequest.success(id));
+  } catch (error) {
+    dispatch(deleteRequest.failure());
+    if (isTokenExpireResponse(error)) {
       dispatch(logout());
     }
   }
