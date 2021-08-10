@@ -212,6 +212,18 @@ export function makeServer({ environment = 'development' } = {}) {
           return schema.posts.create(post);
         }
       });
+      this.delete('/posts/:id', (schema, request) => {
+        const userId = authenticateUser(request);
+        const { id } = request.params;
+
+        const post = schema.posts.find(id);
+
+        if (post.authorId === userId) {
+          return post.destroy()
+        }
+
+        return new Response(403)
+      })
 
       // ==================
       // 4.5 Authentication
