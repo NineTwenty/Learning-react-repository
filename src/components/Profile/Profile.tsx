@@ -64,6 +64,9 @@ const Profile = () => {
                 <ImagesGallery />
               </Wrapper>
             </Route>
+            <Route path={`${path}`}>
+              <Redirect to={`${url}/posts`} />
+            </Route>
           </Switch>
         </main>
       </Route>
