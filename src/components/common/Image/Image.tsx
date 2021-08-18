@@ -1,9 +1,7 @@
 import cx from 'classnames';
 import styles from './Image.module.scss';
 
-interface ImageProps extends React.HTMLAttributes<HTMLImageElement> {
-  src: string;
-  alt: string;
+interface ImageProps extends React.ComponentPropsWithoutRef<'img'> {
   className?: string;
 }
 
