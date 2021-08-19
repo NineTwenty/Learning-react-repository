@@ -82,6 +82,11 @@ export function makeServer({ environment = 'development' } = {}) {
 
     factories: {
       user: Factory.extend({
+        afterCreate: (user) => {
+          user.update({
+            fullName: `${user.firstName} ${user.lastName}`,
+          })
+        },
         firstName: faker.name.firstName,
         lastName: faker.name.lastName,
         email: faker.internet.exampleEmail,

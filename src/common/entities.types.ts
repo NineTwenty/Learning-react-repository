@@ -1,6 +1,7 @@
 import { EntityId } from '@reduxjs/toolkit';
 
 export type User = {
+  fullName: string;
   firstName: string;
   lastName: string;
   email: string;
