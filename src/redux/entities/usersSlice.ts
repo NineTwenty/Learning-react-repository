@@ -111,5 +111,5 @@ export const selectUserById = (id: EntityId | undefined) => (state: RootState) =
 export const selectUsersByIds = (ids: EntityId[]) => (state: RootState) => {
   const entities = selectEntities(state);
 
-  return ids.map((id) => entities[id]).filter(Boolean);
+  return ids.map((id) => entities[id]).filter(Boolean) as User[];
 };
