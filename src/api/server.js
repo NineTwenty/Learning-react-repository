@@ -160,6 +160,33 @@ export function makeServer({ environment = 'development' } = {}) {
         return schema.dialogs.find(dialogIds);
       });
 
+      this.post('/dialogs', (schema, request) => {
+        const userId = authenticateUser(request);
+        const { members } = JSON.parse(request.requestBody);
+
+        const user = schema.users.find(userId);
+
+        // Iterate through user's dialogs to find possible duplicate
+        const isExist = !user.dialogs.models.every((dialog) => {
+          // Remove userId from members list
+          const dialogMembers = dialog.memberIds.filter((id) => id !== userId);
+
+          // Check that dialog don't contain same members as provided with request
+          return !dialogMembers.every((id) => members.includes(id));
+        });
+
+        if (isExist) return new Response(409);
+
+        const dialog = {
+          count: 0,
+          time: null,
+          memberIds: [...members, userId],
+          messageIds: [],
+        };
+
+        return schema.dialogs.create(dialog);
+      });
+
       // ==================
       // 4.3 Messages
       // ==================
