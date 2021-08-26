@@ -1,7 +1,11 @@
-import React from 'react';
+import { useState } from 'react';
 import styles from './DialogsList.module.scss';
+import Button from 'components/common/Button';
+import { NewChatDialog } from '../NewChatDialog/NewChatDialog';
 
 export const DialogsList = ({ isOpen, children, className }) => {
+  const [NewChatDialogIsOpen, setNewChatDialogIsOpen] = useState();
+
   const dialogsClasses = `${styles.Wrapper} ${
     isOpen ? '' : styles.Wrapper_hidden
   } ${className}`;
@@ -12,6 +16,21 @@ export const DialogsList = ({ isOpen, children, className }) => {
         <h2>Dialogs</h2>
       </header>
       <ul className={styles.List}>{children}</ul>
+      <Button
+        className={styles.AddButton}
+        onClick={() => {
+          setNewChatDialogIsOpen(true);
+        }}
+      >
+        NEW
+      </Button>
+      {NewChatDialogIsOpen && (
+        <NewChatDialog
+          onClose={() => {
+            setNewChatDialogIsOpen(false);
+          }}
+        />
+      )}
     </div>
   );
 };
