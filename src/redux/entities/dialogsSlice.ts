@@ -85,7 +85,7 @@ export const fetchDialogs = () => async (dispatch: AppDispatch) => {
 };
 
 export const submitDialog =
-  (newDialog: Dialog) => async (dispatch: AppDispatch) => {
+  (newDialog: Pick<Dialog, 'members'>) => async (dispatch: AppDispatch) => {
     dispatch(submitRequest.request());
     try {
       const { dialog } = await api.post('dialogs', newDialog);
