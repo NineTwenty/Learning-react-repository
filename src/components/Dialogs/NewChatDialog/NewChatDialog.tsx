@@ -30,7 +30,7 @@ export const NewChatDialog = ({
 
   const friendsList = friends.map((user) => {
     const createDialog = () => {
-      dispatch(submitDialog({ members: [user.id] }));
+      dispatch(submitDialog(user.id));
     };
 
     return (

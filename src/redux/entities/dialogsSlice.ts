@@ -84,19 +84,22 @@ export const fetchDialogs = () => async (dispatch: AppDispatch) => {
   }
 };
 
-export const submitDialog =
-  (newDialog: Pick<Dialog, 'members'>) => async (dispatch: AppDispatch) => {
-    dispatch(submitRequest.request());
-    try {
-      const { dialog } = await api.post('dialogs', newDialog);
-      dispatch(submitRequest.success(dialog));
-    } catch (error) {
-      if (isTokenExpireResponse(error)) {
-        dispatch(submitRequest.failure());
-        dispatch(logout());
-      }
-    }
+export const submitDialog = (id: EntityId) => async (dispatch: AppDispatch) => {
+  const newDialog: Pick<Dialog, 'members'> = {
+    members: [id],
   };
+
+  dispatch(submitRequest.request());
+  try {
+    const { dialog } = await api.post('dialogs', newDialog);
+    dispatch(submitRequest.success(dialog));
+  } catch (error) {
+    if (isTokenExpireResponse(error)) {
+      dispatch(submitRequest.failure());
+      dispatch(logout());
+    }
+  }
+};
 
 // Selectors
 
