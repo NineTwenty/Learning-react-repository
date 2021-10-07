@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { authorizationRequest } from './authSlice';
 import { AppDispatch, RootState } from './store';
 
@@ -22,12 +22,14 @@ const initializationFinished = () => ({
 // State type
 type AppState = {
   isInitialized: boolean;
+  redirectLink: string | undefined;
 };
 
 // Initital state
 
 const initialState: AppState = {
   isInitialized: false,
+  redirectLink: undefined,
 };
 
 // Slice
@@ -35,7 +37,14 @@ const initialState: AppState = {
 const appSlice = createSlice({
   name: sliceName,
   initialState,
-  reducers: {},
+  reducers: {
+    redirected: (state) => {
+      state.redirectLink = undefined;
+    },
+    redirectTo: (state, action: PayloadAction<string>) => {
+      state.redirectLink = action.payload;
+    }
+  },
   extraReducers: {
     [INITIALIZATION_FINISH]: (state) => {
       state.isInitialized = true;
@@ -46,6 +55,11 @@ const appSlice = createSlice({
 // Registration data
 export const appReducer = appSlice.reducer;
 export const appSliceName = appSlice.name;
+
+// Action creators
+
+export const redirected = appSlice.actions.redirected;
+export const redirectTo = appSlice.actions.redirectTo;
 
 // Thunks
 
@@ -63,3 +77,4 @@ export const initialization = () => async (dispatch: AppDispatch) => {
 // Selectors
 
 export const selectIsAppInitialized = (state: RootState) => state[sliceName].isInitialized;
+export const selectRedirectLink = (state: RootState) => state[sliceName].redirectLink;

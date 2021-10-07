@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import './constants.css';
@@ -13,8 +13,10 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Login from './components/Login/Login';
 import {
   initialization,
+  redirected,
   selectIsAppInitialized,
   selectLoggedInStatus,
+  selectRedirectLink,
 } from './redux';
 import { SplashScreen } from 'components/SplashScreen/SplashScreen';
 import { CurrentUserProvider } from 'contexts/current-user-context';
@@ -44,6 +46,8 @@ function PrivateRoute({ children, ...rest }) {
 const App = () => {
   const loggedIn = useSelector(selectLoggedInStatus);
   const isInitialized = useSelector(selectIsAppInitialized);
+  const redirectLink = useSelector(selectRedirectLink);
+  const location = useLocation();
   const dispatch = useDispatch();
 
   // Initialization
@@ -60,7 +64,16 @@ const App = () => {
   if (!isInitialized) {
     return <SplashScreen />;
   }
- 
+
+  if (redirectLink) {
+    // Prevent early state update & rerender before redirect even happen
+    if (location.pathname === redirectLink) {
+      dispatch(redirected());
+    }
+
+    return <Redirect to={redirectLink} />;
+  }
+
   //Render
   return (
     <>
