@@ -34,9 +34,21 @@
 }
 
 .Name {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;
   height: 25%;
+}
+
+.Buttons {
+  position: absolute;
+  top: var(--padding-primary);
+  left: var(--padding-primary);
+  bottom: var(--padding-primary);
+}
+
+.DialogButton {
+  font-size: 0.8rem;
 }

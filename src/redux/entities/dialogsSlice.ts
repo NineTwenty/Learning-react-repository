@@ -12,6 +12,7 @@ import { AppDispatch, RootState } from 'redux/store';
 import { StatusState } from 'redux/utils/utils.types';
 import { isTokenExpireResponse } from 'api/APIUtils';
 import { logout } from 'redux/common/actions';
+import { redirectTo } from 'redux/appSlice';
 
 const sliceName = 'dialogs';
 
@@ -91,8 +92,10 @@ export const submitDialog = (id: EntityId) => async (dispatch: AppDispatch) => {
 
   dispatch(submitRequest.request());
   try {
-    const { dialog } = await api.post('dialogs', newDialog);
+    const { dialog }: { dialog: Dialog } = await api.post('dialogs', newDialog);
     dispatch(submitRequest.success(dialog));
+    dispatch(redirectTo(`/dialogs/${dialog.id}`));
+    return dialog;
   } catch (error) {
     if (isTokenExpireResponse(error)) {
       dispatch(submitRequest.failure());

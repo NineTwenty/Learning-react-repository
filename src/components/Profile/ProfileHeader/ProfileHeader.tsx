@@ -1,11 +1,12 @@
 import cx from 'classnames';
 import styles from './ProfileHeader.module.scss';
 import { useParams } from 'react-router-dom';
-import { useAppSelector } from 'hooks/hooks';
-import { selectUserById } from 'redux/entities';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { selectUserById, submitDialog } from 'redux/entities';
 import Avatar from 'components/common/Avatar/Avatar';
 import { Image } from 'components/common/Image/Image';
 import { Wrapper } from 'components/common/Wrapper/Wrapper';
+import Button from 'components/common/Button';
 
 type ProfileHeaderProps = {
   className?: string;
@@ -15,6 +16,7 @@ export const ProfileHeader = ({ className }: ProfileHeaderProps) => {
   const classes = cx(styles.Wrapper, { [`${className}`]: className });
   // @ts-expect-error
   const { id } = useParams();
+  const dispatch = useAppDispatch();
 
   const user = useAppSelector(selectUserById(id));
 
@@ -32,7 +34,17 @@ export const ProfileHeader = ({ className }: ProfileHeaderProps) => {
           name={`${user.firstName} ${user.lastName}`}
         />
       </div>
-      <h2 className={styles.Name}>{`${user.firstName} ${user.lastName}`}</h2>
+      <div className={styles.Name}>
+        <h2>{`${user.firstName} ${user.lastName}`}</h2>
+        <div className={styles.Buttons}>
+          <Button
+            onClick={() => dispatch(submitDialog(id))}
+            className={styles.DialogButton}
+          >
+            Message
+          </Button>
+        </div>
+      </div>
     </Wrapper>
   );
 };
