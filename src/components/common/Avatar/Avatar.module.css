@@ -38,9 +38,9 @@
   display: block;
   position: absolute;
   background: none;
-  border-radius: 50%;  
+  border-radius: 50%;
 }
 
-.Status.online{
+.Status.online {
   background: greenyellow;
 }

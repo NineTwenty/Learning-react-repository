@@ -85,7 +85,7 @@ export function makeServer({ environment = 'development' } = {}) {
         afterCreate: (user) => {
           user.update({
             fullName: `${user.firstName} ${user.lastName}`,
-          })
+          });
         },
         firstName: faker.name.firstName,
         lastName: faker.name.lastName,
@@ -251,11 +251,11 @@ export function makeServer({ environment = 'development' } = {}) {
         const post = schema.posts.find(id);
 
         if (post.authorId === userId) {
-          return post.destroy()
+          return post.destroy();
         }
 
-        return new Response(403)
-      })
+        return new Response(403);
+      });
 
       // ==================
       // 4.5 Authentication

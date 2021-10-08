@@ -9,13 +9,22 @@ interface DialogProps extends React.ComponentPropsWithoutRef<'div'> {
   onClose: Function;
 }
 
-export const Dialog = ({ onClose, className, children, ...rest }: DialogProps) => {
+export const Dialog = ({
+  onClose,
+  className,
+  children,
+  ...rest
+}: DialogProps) => {
   const classes = cx(styles.Wrapper, className);
 
   return (
     <Portal>
       <Wrapper className={classes} {...rest}>
-        <Button onClick={onClose} className={styles.Button} styleType='borderless'>
+        <Button
+          onClick={onClose}
+          className={styles.Button}
+          styleType='borderless'
+        >
           <Icon type='close' />
         </Button>
         {children}

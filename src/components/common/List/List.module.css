@@ -1,7 +1,7 @@
 .wrapper {
   background: var(--color-background);
   border-radius: var(--border-radius-small);
-  padding: var(--padding-primary)
+  padding: var(--padding-primary);
 }
 
 .list {

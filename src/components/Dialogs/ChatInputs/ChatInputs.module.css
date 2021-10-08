@@ -14,7 +14,7 @@
 }
 
 .TextArea:focus {
-  border: 1px solid var(--color-primary)
+  border: 1px solid var(--color-primary);
 }
 
 .SubmitButtonText {

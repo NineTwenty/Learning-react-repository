@@ -3,14 +3,7 @@ import React from 'react';
 import { Icon } from 'components/common/Icon/Icon';
 
 const component = (
-  {
-    isOpen,
-    onClick,
-    children,
-    iconType = 'hamburger',
-    styleType,
-    ...rest
-  },
+  { isOpen, onClick, children, iconType = 'hamburger', styleType, ...rest },
   ref
 ) => {
   const iconsSets = {

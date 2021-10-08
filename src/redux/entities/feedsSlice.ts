@@ -58,7 +58,7 @@ export const fetchFeed = (id: string) => async (dispatch: AppDispatch) => {
   dispatch(getRequest.request());
   try {
     const { feed, posts } = await api.get(`feeds/${id}?include=posts`);
-    dispatch(setPosts(posts))
+    dispatch(setPosts(posts));
     dispatch(getRequest.success(feed));
   } catch (error) {
     if (isTokenExpireResponse(error)) {

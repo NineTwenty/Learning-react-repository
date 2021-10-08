@@ -9,7 +9,7 @@
   justify-content: center;
 
   transform: translateX(-20vw);
-  transition: transform .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+  transition: transform 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
 
   background-color: var(--color-background);
   z-index: 5;
@@ -45,5 +45,5 @@
 }
 
 .isOpen {
-  transform: translateX(0)
+  transform: translateX(0);
 }

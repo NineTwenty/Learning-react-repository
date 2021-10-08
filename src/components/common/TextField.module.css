@@ -9,7 +9,7 @@
 
   margin-top: 1em;
   padding: 1em;
-  
+
   border: 0.08em var(--color-border-light) solid;
   border-radius: 0.8em;
 
@@ -24,7 +24,7 @@
 
 .error {
   padding-left: 0.6em;
-  color: var(--color-error)
+  color: var(--color-error);
 }
 
 .error:empty {

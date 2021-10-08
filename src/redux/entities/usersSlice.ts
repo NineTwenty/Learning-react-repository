@@ -102,11 +102,12 @@ const { selectIds, selectById, selectEntities } = adapter.getSelectors(
 
 export const selectUsersIds = (state: RootState) => selectIds(state);
 
-export const selectUserById = (id: EntityId | undefined) => (state: RootState) => {
-  if (id) {
-    return selectById(state, id);
-  }
-};
+export const selectUserById =
+  (id: EntityId | undefined) => (state: RootState) => {
+    if (id) {
+      return selectById(state, id);
+    }
+  };
 
 export const selectUsersByIds = (ids: EntityId[]) => (state: RootState) => {
   const entities = selectEntities(state);

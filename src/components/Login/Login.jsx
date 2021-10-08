@@ -13,12 +13,12 @@ const Login = ({ loggedIn }) => {
 
   return (
     <div className={style.Wrapper}>
-        <div className={style.Meta}></div>
-        <div className={style.Form}>
-          <h1>Sign in</h1>
-          <p>Enter your login or email address and password to sign in.</p>
-          <LoginForm loggedIn={loggedIn} />
-        </div>
+      <div className={style.Meta}></div>
+      <div className={style.Form}>
+        <h1>Sign in</h1>
+        <p>Enter your login or email address and password to sign in.</p>
+        <LoginForm loggedIn={loggedIn} />
+      </div>
     </div>
   );
 };

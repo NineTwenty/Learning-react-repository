@@ -11,20 +11,20 @@ import { Wrapper } from 'components/common/Wrapper/Wrapper';
 
 const validate = (values) => {
   if (!values.postText) {
-    return 'Field is empty'
+    return 'Field is empty';
   }
-}
+};
 
 const PostingForm = ({ header, onSubmit }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
   const dispatchOnSubmit = async (posts, formikBag) => {
-    const post = { ...posts, feedId: id }
+    const post = { ...posts, feedId: id };
 
     await dispatch(onSubmit(post));
     // Update changed feed
-    dispatch(fetchFeed(id))
+    dispatch(fetchFeed(id));
 
     formikBag.resetForm();
   };
@@ -43,14 +43,18 @@ const PostingForm = ({ header, onSubmit }) => {
         validate={validate}
       >
         <Form className={style.form}>
-          <TextAreaField placeholder={'Write something...'} name='postText' disabled={isLoading} />
+          <TextAreaField
+            placeholder={'Write something...'}
+            name='postText'
+            disabled={isLoading}
+          />
           <Separator />
           <div className={style.submitField}>
             <SubmitField buttonText='Post' />
           </div>
         </Form>
       </Formik>
-    </Wrapper >
+    </Wrapper>
   );
 };
 

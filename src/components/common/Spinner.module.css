@@ -1,4 +1,3 @@
-
 .spinnerWrapper {
   display: flex;
   align-items: center;
@@ -17,7 +16,7 @@
 }
 
 .spinner:before {
-  content: "";
+  content: '';
   display: block;
   padding-top: 100%;
 }

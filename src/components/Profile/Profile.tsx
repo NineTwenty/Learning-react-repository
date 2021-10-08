@@ -28,7 +28,7 @@ const Profile = () => {
     <Switch>
       <Route path={`${path}/:entity`}>
         <main className={style.Wrapper}>
-          <ProfileHeader/>
+          <ProfileHeader />
           <div className={style.tabs}>
             <Tabs>
               <Tab value={'Posts'} route={`${url}/posts`} />

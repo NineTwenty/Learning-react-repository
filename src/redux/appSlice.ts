@@ -43,7 +43,7 @@ const appSlice = createSlice({
     },
     redirectTo: (state, action: PayloadAction<string>) => {
       state.redirectLink = action.payload;
-    }
+    },
   },
   extraReducers: {
     [INITIALIZATION_FINISH]: (state) => {
@@ -76,5 +76,7 @@ export const initialization = () => async (dispatch: AppDispatch) => {
 
 // Selectors
 
-export const selectIsAppInitialized = (state: RootState) => state[sliceName].isInitialized;
-export const selectRedirectLink = (state: RootState) => state[sliceName].redirectLink;
+export const selectIsAppInitialized = (state: RootState) =>
+  state[sliceName].isInitialized;
+export const selectRedirectLink = (state: RootState) =>
+  state[sliceName].redirectLink;

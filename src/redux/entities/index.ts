@@ -11,7 +11,7 @@ export {
   selectDialogs,
   selectDialogById,
   selectDialogsIds,
-  selectDialogMemberId
+  selectDialogMemberId,
 } from './dialogsSlice';
 
 // Users
@@ -42,12 +42,12 @@ export {
   selectMessagesIds,
   selectMessageById,
   selectLoadedMessagesByIds,
-  clearMessages
+  clearMessages,
 } from './messagesSlice';
 
 // Feeds
 export {
   fetchFeed,
   selectFeedById,
-  selectIsLoadingFeedStatus
-} from './feedsSlice'
+  selectIsLoadingFeedStatus,
+} from './feedsSlice';

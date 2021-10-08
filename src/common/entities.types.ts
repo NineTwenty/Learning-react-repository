@@ -15,7 +15,7 @@ export type User = {
   music: [];
   images: Image[];
   id: string;
-  feed: string
+  feed: string;
 };
 
 export type Image = {
@@ -40,15 +40,15 @@ export type Dialog = {
 };
 
 export type Message = {
-  id: EntityId,
-  created: number,
-  unread: boolean,
-  text: string,
-  author: EntityId,
-  dialog: EntityId
-}
+  id: EntityId;
+  created: number;
+  unread: boolean;
+  text: string;
+  author: EntityId;
+  dialog: EntityId;
+};
 
 export type Feed = {
-  ownerId: string,
-  posts: string[],
+  ownerId: string;
+  posts: string[];
 };

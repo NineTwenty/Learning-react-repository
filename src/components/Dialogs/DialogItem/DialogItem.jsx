@@ -25,11 +25,7 @@ export const DialogItem = ({ id, time, count, isChosen }) => {
 
   return (
     <div className={wrapperClasses}>
-      <Avatar
-        size='medium'
-        avatar={avatar}
-        name={firstName}
-      />
+      <Avatar size='medium' avatar={avatar} name={firstName} />
       <div className={styles.Preview}>
         <h5 className={styles.Name}>{firstName}</h5>
         <p className={styles.Message}></p>
