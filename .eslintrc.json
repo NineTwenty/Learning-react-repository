@@ -1,0 +1,100 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:import/recommended",
+    "airbnb",
+    "airbnb/hooks"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "no-param-reassign": "warn",
+    "no-console": "warn",
+    "no-debugger": "warn",
+    "no-void": [
+      "error",
+      {
+        "allowAsStatement": true
+      }
+    ],
+    "consistent-return": "off",
+    "arrow-body-style": "off",
+    "react/require-default-props": "off",
+    "react/prop-types": "warn",
+    "import/prefer-default-export": "off",
+    "import/no-cycle": "warn",
+    "import/extensions": "off",
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "assert": "either"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "overrides": [
+    {
+      // Typescript
+      "files": [
+        "**/*.ts?(x)"
+      ],
+      "plugins": [
+        "@typescript-eslint"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "extends": [
+        "plugin:import/typescript",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "airbnb-typescript"
+      ],
+      "rules": {
+        "react/prop-types": "error",
+        "@typescript-eslint/explicit-module-boundary-types": "off"
+      }
+    },
+    {
+      // Tests
+      "files": [
+        "src/**/*.test.[jt]s"
+      ],
+      "extends": [
+        "plugin:jest/recommended",
+        "plugin:jest-dom/recommended",
+        "plugin:testing-library/react"
+      ]
+    },
+    {
+      // Override styling rules & React import
+      "files": [
+        "**/*.[jt]s?(x)"
+      ],
+      "extends": [
+        "plugin:react/jsx-runtime",
+        "prettier"
+      ]
+    }
+  ]
+}

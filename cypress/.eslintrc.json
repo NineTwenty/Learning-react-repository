@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "plugin:cypress/recommended"
+  ],
+  "rules": {
+    "jest/valid-expect": "off",
+    "import/no-extraneous-dependencies": "warn"
+  }
+}
