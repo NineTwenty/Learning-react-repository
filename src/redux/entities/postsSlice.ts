@@ -36,6 +36,8 @@ const deleteRequest = createLoadingActions<EntityId>(sliceName, 'delete');
 // Slice
 
 const postsSlice = createSlice({
+  /* eslint-disable @typescript-eslint/unbound-method */
+
   name: sliceName,
   initialState,
   reducers: {
@@ -57,6 +59,7 @@ const postsSlice = createSlice({
     builder.addMatcher(isStartOfRequest, handleRequestStart);
     builder.addMatcher(isEndOfRequest, handleRequestEnd);
   },
+  /* eslint-enable @typescript-eslint/unbound-method */
 });
 
 // Registration data

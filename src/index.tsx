@@ -1,19 +1,17 @@
 import './index.css';
-import * as serviceWorker from './serviceWorker';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import * as serviceWorker from './serviceWorker';
+
 import store from './redux/store';
 import App from './App';
 
 import { makeServer } from './api/server';
-import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
 
 // Run Mirage mock server
 makeServer();
-
-window.store = store;
 
 const explicitRender = () => {
   ReactDOM.render(
@@ -28,7 +26,7 @@ const explicitRender = () => {
   );
 };
 
-explicitRender(store);
+explicitRender();
 
 store.subscribe(explicitRender);
 

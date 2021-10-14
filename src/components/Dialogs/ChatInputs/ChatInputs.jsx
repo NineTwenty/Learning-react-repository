@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import Button from 'components/common/Button';
 import { TextAreaField } from 'components/common/TextAreaField';
 import { Form, Formik } from 'formik';
@@ -58,13 +58,13 @@ const ChatInputs = (props) => {
         validate={validate}
         innerRef={formRef}
       >
-        {(props) => (
+        {(formikProps) => (
           <Form className={styles.Form}>
             <TextAreaField
               className={styles.TextArea}
               name='text'
               onKeyPress={handleKeyPress}
-              value={props.values.text}
+              value={formikProps.values.text}
               cols='20'
               rows='3'
             />

@@ -1,10 +1,10 @@
-import styles from './FriendsGallery.module.scss';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { generatePath, Link, useRouteMatch } from 'react-router-dom';
 import { fetchUsers, selectUserById, selectUsersByIds } from 'redux/entities';
 import Avatar from 'components/common/Avatar/Avatar';
 import { Gallery } from 'components/common/Gallery/Gallery';
-import { generatePath, Link, useRouteMatch } from 'react-router-dom';
+import styles from './FriendsGallery.module.scss';
 
 type FriendsGalleryProps = {
   className?: string;
@@ -22,9 +22,8 @@ export const FriendsGallery = ({ className, limit }: FriendsGalleryProps) => {
   // Get routing data
   const {
     path,
-    // @ts-expect-error
     params: { url, id, entity },
-  } = useRouteMatch();
+  } = useRouteMatch<{ url: string; id: string; entity: string }>();
 
   const user = useSelector(selectUserById(id));
 
@@ -48,7 +47,7 @@ export const FriendsGallery = ({ className, limit }: FriendsGalleryProps) => {
         aria-label={`To ${friend.firstName} ${friend.lastName} profile`}
       >
         <Avatar
-          size={'fill'}
+          size='fill'
           avatar={friend.avatar}
           name={`${friend.firstName} ${friend.lastName}`}
         />

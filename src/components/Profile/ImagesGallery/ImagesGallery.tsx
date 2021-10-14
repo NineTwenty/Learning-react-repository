@@ -10,15 +10,16 @@ type ImagesGalleryProps = {
 };
 
 export const ImagesGallery = ({ className, limit }: ImagesGalleryProps) => {
-  // @ts-expect-error
-  const { id } = useParams();
+  const { id } = useParams<{ id: string | undefined }>();
 
   const user = useSelector(selectUserById(id));
 
   const images = user ? user.images : [];
 
   const croppedImages = Array.isArray(images)
-    ? images.map(({ src, id }) => <CroppedImage key={id} src={src} alt='' />)
+    ? images.map(({ src, id: imageId }) => (
+        <CroppedImage key={imageId} src={src} alt='' />
+      ))
     : images;
 
   return (

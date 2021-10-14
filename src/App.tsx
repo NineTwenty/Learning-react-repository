@@ -1,16 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import {
+  Route,
+  Switch,
+  Redirect,
+  useLocation,
+  RouteProps,
+} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import './constants.css';
 import Header from 'components/Header/Header';
+import Dialogs from 'components/Dialogs/Dialogs';
 import { Navbar } from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Login from './components/Login/Login';
+import { SplashScreen } from './components/SplashScreen/SplashScreen';
+import { CurrentUserProvider } from './contexts/current-user-context';
 import {
   initialization,
   redirected,
@@ -18,15 +26,13 @@ import {
   selectLoggedInStatus,
   selectRedirectLink,
 } from './redux';
-import { SplashScreen } from 'components/SplashScreen/SplashScreen';
-import { CurrentUserProvider } from 'contexts/current-user-context';
 
-function PrivateRoute({ children, ...rest }) {
+function PrivateRoute({ children, ...rest }: RouteProps) {
   const loggedIn = useSelector(selectLoggedInStatus);
-
+  const { component, render, exact, path, strict, sensitive } = rest;
   return (
     <Route
-      {...rest}
+      {...{ component, render, exact, path, strict, sensitive }}
       render={({ location }) =>
         loggedIn ? (
           children
@@ -43,7 +49,7 @@ function PrivateRoute({ children, ...rest }) {
   );
 }
 
-const App = () => {
+const App = (): JSX.Element => {
   const loggedIn = useSelector(selectLoggedInStatus);
   const isInitialized = useSelector(selectIsAppInitialized);
   const redirectLink = useSelector(selectRedirectLink);
@@ -74,14 +80,14 @@ const App = () => {
     return <Redirect to={redirectLink} />;
   }
 
-  //Render
+  // Render
   return (
     <>
       <Switch>
-        <Route path={'/login'}>
+        <Route path='/login'>
           <Login loggedIn={loggedIn} />
         </Route>
-        <PrivateRoute path={'/'}>
+        <PrivateRoute path='/'>
           <CurrentUserProvider>
             <div>
               <Header
@@ -97,7 +103,7 @@ const App = () => {
               <div>
                 <Switch>
                   <PrivateRoute path='/dialogs/:id?'>
-                    <DialogsContainer />
+                    <Dialogs />
                   </PrivateRoute>
                   <PrivateRoute path='/profile/:id?'>
                     <Profile />

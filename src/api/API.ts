@@ -6,7 +6,7 @@ export const api = {
     return res.data;
   },
 
-  async post<T>(url: string, payload: object) {
+  async post<T>(url: string, payload: Record<string, unknown>) {
     const res = await getInstance().post<T>(url, payload);
     return res.data;
   },

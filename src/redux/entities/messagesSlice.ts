@@ -42,6 +42,7 @@ const submitRequest = createLoadingActions<Message>(sliceName, 'submit');
 // Slice
 
 const messagesSlice = createSlice({
+  /* eslint-disable @typescript-eslint/unbound-method */
   name: sliceName,
   initialState,
   reducers: {
@@ -64,6 +65,7 @@ const messagesSlice = createSlice({
     builder.addMatcher(isStartOfRequest, handleRequestStart);
     builder.addMatcher(isEndOfRequest, handleRequestEnd);
   },
+  /* eslint-enable @typescript-eslint/unbound-method */
 });
 
 // Registration data

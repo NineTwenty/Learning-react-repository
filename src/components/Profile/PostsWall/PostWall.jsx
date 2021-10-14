@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import style from './PostWall.module.css';
-import { Post } from './Post/Post';
-import PostingForm from './PostingForm';
 import { submitPost, fetchFeed, selectFeedById } from 'redux/entities';
 import { List } from 'components/common/List';
 import { useSelector, useDispatch } from 'react-redux';
 import cx from 'classnames';
+import PostingForm from './PostingForm';
+import { Post } from './Post/Post';
+import style from './PostWall.module.css';
 
 const PostWall = ({ className }) => {
   const dispatch = useDispatch();

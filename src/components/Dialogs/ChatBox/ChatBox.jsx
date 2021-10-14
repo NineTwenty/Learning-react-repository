@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect } from 'react';
-import styles from './ChatBox.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   clearMessages,
@@ -7,8 +6,9 @@ import {
   fetchMessages,
   selectLoadedMessagesByIds,
 } from 'redux/entities';
-import MessageItem from '../MessageItem/MessageItem';
 import InfiniteScrollReverse from 'components/common/InfiniteScrollReverse/InfiniteScrollReverse';
+import MessageItem from '../MessageItem/MessageItem';
+import styles from './ChatBox.module.css';
 
 const ChatBox = ({ dialogId, userId }) => {
   const dispatch = useDispatch();

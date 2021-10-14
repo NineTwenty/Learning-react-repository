@@ -1,69 +1,127 @@
-import React, { useEffect, useLayoutEffect, useReducer, useRef } from 'react';
+import { useEffect, useLayoutEffect, useReducer, useRef } from 'react';
 import styles from './InfiniteScrollReverse.module.css';
 
 // Types
-const INITIALIZATION_FINISH = 'INITIALIZATION_FINISH';
-const LOADING_STARTED = 'LOADING_STARTED';
-const LOADING_FINISH = 'LOADING_FINISH';
-const ITEMS_CHANGED = 'ITEMS_CHANGED';
-const BOTTOM_TRIGGERED = 'BOTTOM_TRIGGERED';
+enum TypeKeys {
+  INITIALIZATION_FINISH = 'INITIALIZATION_FINISH',
+  LOADING_STARTED = 'LOADING_STARTED',
+  LOADING_FINISH = 'LOADING_FINISH',
+  ITEMS_CHANGED = 'ITEMS_CHANGED',
+  BOTTOM_TRIGGERED = 'BOTTOM_TRIGGERED',
+}
+
+// Action types
+interface FinishInitializationAction {
+  type: TypeKeys.INITIALIZATION_FINISH;
+}
+
+interface StartLoadingAction {
+  type: TypeKeys.LOADING_STARTED;
+}
+
+interface FinishLoadingAction {
+  type: TypeKeys.LOADING_FINISH;
+  payload: { itemsAmount: number };
+}
+
+interface UpdateItemsAmountAction {
+  type: TypeKeys.ITEMS_CHANGED;
+  payload: { itemsAmount: number };
+}
+
+interface BottomTriggeredAction {
+  type: TypeKeys.BOTTOM_TRIGGERED;
+  payload: { isIntersecting: boolean };
+}
 
 // Action Creators
-const finishInitialization = () => ({ type: INITIALIZATION_FINISH });
-const startLoading = () => ({ type: LOADING_STARTED });
-const finishLoading = (itemsAmount) => ({
-  type: LOADING_FINISH,
-  payload: { itemsAmount },
+const finishInitialization = (): FinishInitializationAction => ({
+  type: TypeKeys.INITIALIZATION_FINISH,
 });
-const updateItemsAmount = (itemsAmount) => ({
-  type: ITEMS_CHANGED,
-  payload: { itemsAmount },
+
+const startLoading = (): StartLoadingAction => ({
+  type: TypeKeys.LOADING_STARTED,
 });
-const bottomTriggered = (isIntersecting) => ({
-  type: BOTTOM_TRIGGERED,
-  payload: { isIntersecting },
+
+const finishLoading = (itemsAmount: number): FinishLoadingAction => ({
+  type: TypeKeys.LOADING_FINISH,
+  payload: {
+    itemsAmount,
+  },
 });
+
+const updateItemsAmount = (itemsAmount: number): UpdateItemsAmountAction => ({
+  type: TypeKeys.ITEMS_CHANGED,
+  payload: {
+    itemsAmount,
+  },
+});
+
+const bottomTriggered = (isIntersecting: boolean): BottomTriggeredAction => ({
+  type: TypeKeys.BOTTOM_TRIGGERED,
+  payload: {
+    isIntersecting,
+  },
+});
+
+interface InfiniteScrollState {
+  isLoading: boolean;
+  isInitialized: boolean;
+  isStickToBottom: boolean;
+  nextPage: number;
+  itemsAmount: number;
+}
+
+type ActionTypes =
+  | FinishInitializationAction
+  | StartLoadingAction
+  | FinishLoadingAction
+  | UpdateItemsAmountAction
+  | BottomTriggeredAction;
 
 // Reducer
-const reducer = (state, action) => {
+const reducer = (state: InfiniteScrollState, action: ActionTypes) => {
   const { isLoading, nextPage, isInitialized } = state;
-  const { itemsAmount } = action.payload || state;
 
   switch (action.type) {
-    case INITIALIZATION_FINISH:
+    case TypeKeys.INITIALIZATION_FINISH:
       return { ...state, isInitialized: true };
 
-    case LOADING_STARTED:
+    case TypeKeys.LOADING_STARTED:
       return isLoading ? state : { ...state, isLoading: true };
 
-    case LOADING_FINISH:
+    case TypeKeys.LOADING_FINISH:
       return isLoading || !isInitialized
         ? {
             ...state,
             isLoading: false,
             nextPage: nextPage + 1,
-            itemsAmount: itemsAmount || 0,
+            itemsAmount: action.payload.itemsAmount,
           }
         : state;
 
-    case ITEMS_CHANGED:
-      return { ...state, itemsAmount: itemsAmount || 0 };
+    case TypeKeys.ITEMS_CHANGED:
+      return { ...state, itemsAmount: action.payload.itemsAmount };
 
-    case BOTTOM_TRIGGERED:
-      const isIntersecting =
-        (action.payload && action.payload.isIntersecting) || false;
-      return { ...state, isStickToBottom: isIntersecting };
+    case TypeKeys.BOTTOM_TRIGGERED:
+      return { ...state, isStickToBottom: action.payload.isIntersecting };
 
     default:
       return state;
   }
 };
 
+interface InfiniteScrollProps {
+  children: React.ReactNode;
+  hasMore: boolean;
+  loadMore: (page: number) => void;
+}
+
 // Component
-export const InfiniteScrollReverse = (props) => {
+const InfiniteScrollReverse = (props: InfiniteScrollProps) => {
   const { children, loadMore, hasMore } = props;
 
-  const initialState = {
+  const initialState: InfiniteScrollState = {
     isLoading: false,
     isInitialized: false,
     isStickToBottom: true,
@@ -77,10 +135,10 @@ export const InfiniteScrollReverse = (props) => {
     state;
 
   // Refs
-  const rootRef = useRef(null);
-  const topRef = useRef(null);
-  const bottomRef = useRef(null);
-  const scrollAnchor = useRef(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const topRef = useRef<HTMLDivElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const scrollAnchor = useRef<Element | undefined>(undefined);
 
   const root = rootRef.current;
   const parent = root ? root.parentElement : undefined;
@@ -116,7 +174,7 @@ export const InfiniteScrollReverse = (props) => {
 
   // Fetch data if in loading state
   useEffect(() => {
-    if (isLoading && topRef.current) {
+    if (isLoading && topRef.current?.nextElementSibling) {
       // Save current top item as anchor
       // for scroll position restore
 
@@ -153,21 +211,21 @@ export const InfiniteScrollReverse = (props) => {
   }, [isLoading, childrenLength, isChildrenChanged]);
 
   // Setup observer
-  const observer = useRef(null);
+  const observer = useRef<IntersectionObserver | undefined>(undefined);
   useEffect(() => {
-    if (observer.current !== null) {
+    if (observer.current) {
       observer.current.disconnect();
     }
 
     // Create observer as final part of initialization
     if (isInitialized) {
       const options = {
-        root: rootRef.current.parentElement,
+        root: rootRef.current?.parentElement,
         margin: '10px',
       };
 
       observer.current = new IntersectionObserver((entries) => {
-        for (const entry of entries) {
+        entries.forEach((entry) => {
           const { isIntersecting } = entry;
           const isTopSentinel = entry.target.classList.contains(
             styles.topSentinel
@@ -183,7 +241,7 @@ export const InfiniteScrollReverse = (props) => {
           if (isBottomSentinel) {
             dispatch(bottomTriggered(isIntersecting));
           }
-        }
+        });
       }, options);
 
       if (topRef.current) {
@@ -195,7 +253,7 @@ export const InfiniteScrollReverse = (props) => {
       }
 
       return () => {
-        observer.current.disconnect();
+        observer.current?.disconnect();
       };
     }
   }, [isInitialized]);

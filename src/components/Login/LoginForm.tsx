@@ -1,15 +1,20 @@
-import React from 'react';
+import { Formik, Form, FormikErrors } from 'formik';
+import { useAppDispatch } from 'hooks/hooks';
 import styles from './LoginForm.module.css';
 import { submitLoginForm } from '../../redux';
-import { Formik, Form } from 'formik';
 import TextField from '../common/TextField';
 import PasswordField from '../common/PasswordField';
 import CheckboxField from '../common/Checkbox';
 import SubmitField from '../common/SubmitField';
-import { connect } from 'react-redux';
 
-const validate = ({ login, password }) => {
-  const error = {};
+interface LoginFormValues {
+  login: string;
+  password: string;
+  rememberMe: boolean;
+}
+
+const validate = ({ login, password }: LoginFormValues) => {
+  const error: FormikErrors<LoginFormValues> = {};
 
   if (!password) {
     error.password = 'Required';
@@ -22,32 +27,34 @@ const validate = ({ login, password }) => {
   return error;
 };
 
-const LoginForm = ({ submitLoginForm, finishLogin }) => {
-  // Async submit with server-side errors handling
-  const onSubmit = ({ login, password }, formUtils) =>
-    submitLoginForm({ login, password })
-      // Wait for any server errors from thunk
-      .then((action) => action.payload)
-      .then((errors) => {
-        if (errors) {
-          // Finish with setting errors to form status
-          formUtils.setStatus({
-            formErrors: [...errors],
-          });
-        }
-      });
+const LoginForm = () => {
+  const dispatch = useAppDispatch();
+
+  const inititalValues: LoginFormValues = {
+    login: '',
+    password: '',
+    rememberMe: false,
+  };
 
   // Render
-
   return (
     <div>
       <Formik
-        initialValues={{
-          login: '',
-          password: '',
-          rememberMe: false,
-        }}
-        onSubmit={onSubmit}
+        initialValues={inititalValues}
+        onSubmit={({ login, password, rememberMe }, formUtils) =>
+          // Async submit with server-side errors handling
+          dispatch(submitLoginForm({ login, password, rememberMe }))
+            // Wait for any server errors from thunk
+            .then((action) => action?.payload)
+            .then((errors) => {
+              if (errors) {
+                // Finish with setting errors to form status
+                formUtils.setStatus({
+                  formErrors: [...errors],
+                });
+              }
+            })
+        }
         validate={validate}
       >
         {() => (
@@ -74,4 +81,4 @@ const LoginForm = ({ submitLoginForm, finishLogin }) => {
   );
 };
 
-export default connect(null, { submitLoginForm })(LoginForm);
+export default LoginForm;

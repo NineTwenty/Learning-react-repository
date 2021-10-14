@@ -1,21 +1,37 @@
 import React from 'react';
-import styles from './Button.module.scss';
 import cx from 'classnames';
+import styles from './Button.module.scss';
 
-const Button = ({ className, type, styleType, children, ...rest }, ref) => {
-  const classes = cx(styles.button, className, {
-    [styles.button_default]: styleType === undefined,
-    [styles.button_light]: styleType === 'light',
-    [styles.button_borderless]: styleType === 'borderless',
-  });
+interface ButtonProps extends React.ComponentPropsWithRef<'button'> {
+  styleType?: 'default' | 'light' | 'borderless';
+}
 
-  return (
-    <>
-      <button className={classes} type={type} ref={ref} {...rest}>
-        {children}
-      </button>
-    </>
-  );
-};
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      className,
+      children,
+      type = 'button',
+      styleType = 'default',
+      onClick,
+    }: ButtonProps,
+    ref
+  ) => {
+    const classes = cx(styles.button, className, {
+      [styles.button_default]: styleType === 'default',
+      [styles.button_light]: styleType === 'light',
+      [styles.button_borderless]: styleType === 'borderless',
+    });
 
-export default React.forwardRef(Button);
+    return (
+      <>
+        {/* eslint-disable-next-line react/button-has-type */}
+        <button className={classes} type={type} ref={ref} onClick={onClick}>
+          {children}
+        </button>
+      </>
+    );
+  }
+);
+
+export default Button;

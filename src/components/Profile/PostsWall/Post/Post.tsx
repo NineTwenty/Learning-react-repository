@@ -1,5 +1,4 @@
 import React from 'react';
-import style from './Post.module.css';
 import { useAppDispatch } from 'hooks/hooks';
 import { useSelector } from 'react-redux';
 import { useCurrentUser } from 'contexts/current-user-context';
@@ -8,6 +7,7 @@ import { selectPostById, selectUserById } from 'redux/entities';
 import { Separator } from 'components/common/Separator';
 import Button from 'components/common/Button';
 import Avatar from 'components/common/Avatar/Avatar';
+import style from './Post.module.css';
 
 type PostProps = {
   id: string;

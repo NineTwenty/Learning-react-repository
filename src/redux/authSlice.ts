@@ -65,6 +65,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    /* eslint-disable no-param-reassign */
     // authorizationRequest passed authorization
     builder.addCase(authorizationActions.success, (state, action) => {
       if (state.status === 'pending') {
@@ -85,6 +86,7 @@ const authSlice = createSlice({
 
     builder.addMatcher(isStartOfRequest, handleRequestStart);
     builder.addMatcher(isEndOfRequest, handleRequestEnd);
+    /* eslint-enable no-param-reassign */
   },
 });
 
@@ -152,7 +154,7 @@ export const submitLoginForm =
     password: string;
     rememberMe: boolean;
   }) =>
-  async (dispatch: AppDispatch) => {
+  async (dispatch: AppDispatch): Promise<{ payload: string[] } | void> => {
     dispatch(loginActions.loginStarted());
 
     try {
@@ -163,8 +165,9 @@ export const submitLoginForm =
       await dispatch(authorizationRequest());
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        // Return error to form
-        return { payload: err.response?.data };
+        if (Array.isArray(err.response?.data))
+          // Return error to form
+          return { payload: err.response?.data as string[] };
       }
     } finally {
       dispatch(loginActions.loginCompleted());

@@ -1,9 +1,8 @@
-import React from 'react';
-import styles from './MessageItem.module.css';
-import Avatar from '../../common/Avatar/Avatar';
 import { useSelector } from 'react-redux';
 import { selectUserById } from 'redux/entities';
 import { Spinner } from 'components/common/Spinner';
+import Avatar from '../../common/Avatar/Avatar';
+import styles from './MessageItem.module.css';
 
 const MessageItem = ({ text, id, authorId, isMine }) => {
   const wrapperClasses = `${styles.messageItemWrapper} ${
@@ -26,13 +25,12 @@ const MessageItem = ({ text, id, authorId, isMine }) => {
         <span className={styles.messageItemText}>{text}</span>
       </div>
     );
-  } else {
-    return (
-      <div className={styles.messageItemWrapper}>
-        <Spinner />
-      </div>
-    );
   }
+  return (
+    <div className={styles.messageItemWrapper}>
+      <Spinner />
+    </div>
+  );
 };
 
 export default MessageItem;

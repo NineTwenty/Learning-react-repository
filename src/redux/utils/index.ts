@@ -1,7 +1,7 @@
 import {
   ActionCreatorWithoutPayload,
   ActionCreatorWithPayload,
-  AnyAction,
+  Action,
   createAction,
 } from '@reduxjs/toolkit';
 import { StatusState } from './utils.types';
@@ -49,13 +49,13 @@ export const createLoadingActions: CreateLoadingActions = (
  */
 
 export const createLoadingReducers = <T extends StatusState>() => {
-  const handleRequestStart = (state: T, action: AnyAction) => {
+  const handleRequestStart = (state: T) => {
     if (state.status === 'idle') {
       return { ...state, status: 'pending' };
     }
   };
 
-  const handleRequestEnd = (state: T, action: AnyAction) => {
+  const handleRequestEnd = (state: T) => {
     if (state.status === 'pending') {
       return { ...state, status: 'idle' };
     }
@@ -69,9 +69,9 @@ export const createLoadingReducers = <T extends StatusState>() => {
  */
 
 export const createLoadingMatchers = (entityName: string) => {
-  const isStartOfRequest = ({ type }: AnyAction) =>
+  const isStartOfRequest = ({ type }: Action<string>) =>
     type.startsWith(entityName) && type.endsWith('/request');
-  const isEndOfRequest = ({ type }: AnyAction) =>
+  const isEndOfRequest = ({ type }: Action<string>) =>
     type.startsWith(entityName) &&
     (type.endsWith('/success') || type.endsWith('/failure'));
 

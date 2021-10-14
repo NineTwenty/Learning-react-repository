@@ -1,13 +1,13 @@
 import React from 'react';
-import style from './Profile.module.scss';
 import { useCurrentUser } from 'contexts/current-user-context';
+import { Card } from 'components/common/Card/Card';
+import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom';
+import { Wrapper } from 'components/common/Wrapper/Wrapper';
+import style from './Profile.module.scss';
 import PostWall from './PostsWall/PostWall';
 import { Tabs } from '../common/Tabs';
 import { Tab } from '../common/Tab';
-import { Card } from 'components/common/Card/Card';
-import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom';
 import { FriendsGallery } from './FriendsGallery/FriendsGallery';
-import { Wrapper } from 'components/common/Wrapper/Wrapper';
 import { About } from './About/About';
 import { ImagesGallery } from './ImagesGallery/ImagesGallery';
 import { ProfileHeader } from './ProfileHeader/ProfileHeader';
@@ -16,9 +16,8 @@ const Profile = () => {
   const {
     url,
     path,
-    // @ts-expect-error
     params: { id },
-  } = useRouteMatch();
+  } = useRouteMatch<{ id: string | undefined }>();
 
   // Define which user profile to show
   const currentUser = useCurrentUser();
@@ -31,20 +30,20 @@ const Profile = () => {
           <ProfileHeader />
           <div className={style.tabs}>
             <Tabs>
-              <Tab value={'Posts'} route={`${url}/posts`} />
-              <Tab value={'About'} route={`${url}/about`} />
-              <Tab value={'Friends'} route={`${url}/friends`} />
-              <Tab value={'Photos'} route={`${url}/photos`} />
+              <Tab value='Posts' route={`${url}/posts`} />
+              <Tab value='About' route={`${url}/about`} />
+              <Tab value='Friends' route={`${url}/friends`} />
+              <Tab value='Photos' route={`${url}/photos`} />
             </Tabs>
           </div>
           <Switch>
             <Route path={`${path}/posts`}>
               <div className={style.Content}>
                 <div className={style.Aside}>
-                  <Card className={style.Card} header={'Friends'}>
+                  <Card className={style.Card} header='Friends'>
                     <FriendsGallery />
                   </Card>
-                  <Card className={style.Card} header={'Photos'}>
+                  <Card className={style.Card} header='Photos'>
                     <ImagesGallery limit={6} />
                   </Card>
                 </div>

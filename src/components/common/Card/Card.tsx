@@ -1,7 +1,7 @@
+import cx from 'classnames';
 import styles from './Card.module.scss';
 import { Separator } from '../Separator';
 import { Wrapper } from '../Wrapper/Wrapper';
-import cx from 'classnames';
 
 type CardProps = {
   children: React.ReactNode;

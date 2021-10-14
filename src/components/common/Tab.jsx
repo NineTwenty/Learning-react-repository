@@ -1,6 +1,5 @@
-import React from 'react';
-import style from './Tab.module.css';
 import { NavLink } from 'react-router-dom';
+import style from './Tab.module.css';
 
 export const Tab = ({ value, route }) => {
   return (

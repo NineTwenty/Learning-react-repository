@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { fetchDialogs } from 'redux/entities';
-import styles from './Dialogs.module.css';
-
-import { DialogItem } from './DialogItem/DialogItem';
-import Chat from './Chat/Chat';
+import { fetchDialogs, selectDialogs } from 'redux/entities';
+import { useAppSelector } from 'hooks/hooks';
+import { Dialog } from 'common/entities.types';
 import { Spinner } from 'components/common/Spinner';
 import { HamburgerButton } from 'components/Header/HamburgerButton/HamburgerButton';
+import { selectCurrentUserId } from '../../redux';
+import { DialogItem } from './DialogItem/DialogItem';
 import { DialogsList } from './DialogsList/DIalogsList';
+import Chat from './Chat/Chat';
+import styles from './Dialogs.module.css';
 
-const Dialogs = ({ dialogs, userId }) => {
-  const { id: currentDialogId } = useParams();
+const Dialogs = () => {
+  const { id: currentDialogId } = useParams<{ id: string }>();
+  const userId = useAppSelector(selectCurrentUserId);
+  const dialogs = useAppSelector(selectDialogs);
   const isDialogChosen = !!currentDialogId;
   const isDialogsLoaded = dialogs && dialogs.length;
 
@@ -26,14 +30,14 @@ const Dialogs = ({ dialogs, userId }) => {
     return () => clearInterval(interval);
   }, [dispatch]);
 
-  const populateDialogs = (dialogs) => {
+  const populateDialogs = (dialogsEntities: Dialog[]) => {
     if (isDialogsLoaded) {
       // Return filled Dialogs then
-      return dialogs.map((dialog) => {
+      return dialogsEntities.map((dialog) => {
         const isChosen = currentDialogId === dialog.id;
         return (
           <li key={dialog.id}>
-            <DialogItem {...dialog} isChosen={isChosen} />
+            <DialogItem id={dialog.id} isChosen={isChosen} />
           </li>
         );
       });
@@ -46,9 +50,7 @@ const Dialogs = ({ dialogs, userId }) => {
   }`;
 
   // Setup state for dialogs list control
-  const [isDialogsListOpen, setIsDialogsListOpen] = useState(
-    isDialogChosen ? false : true
-  );
+  const [isDialogsListOpen, setIsDialogsListOpen] = useState(!isDialogChosen);
 
   // Toggle visibility of dialogs list
   const toggleDialogsList = () => {

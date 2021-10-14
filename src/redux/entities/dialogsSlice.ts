@@ -6,13 +6,13 @@ import {
   createLoadingMatchers,
   createLoadingReducers,
 } from 'redux/utils';
-import { addUsers } from './';
-import { selectCurrentUserId } from '..';
 import { AppDispatch, RootState } from 'redux/store';
 import { StatusState } from 'redux/utils/utils.types';
 import { isTokenExpireResponse } from 'api/APIUtils';
 import { logout } from 'redux/common/actions';
 import { redirectTo } from 'redux/appSlice';
+import { selectCurrentUserId } from '..';
+import { addUsers } from '.';
 
 const sliceName = 'dialogs';
 
@@ -39,6 +39,7 @@ const submitRequest = createLoadingActions<Dialog>(sliceName, 'submit');
 // Slice
 
 const dialogsSlice = createSlice({
+  /* eslint-disable @typescript-eslint/unbound-method */
   name: sliceName,
   initialState,
   reducers: {
@@ -59,6 +60,7 @@ const dialogsSlice = createSlice({
     builder.addMatcher(isStartOfRequest, handleRequestStart);
     builder.addMatcher(isEndOfRequest, handleRequestEnd);
   },
+  /* eslint-enable @typescript-eslint/unbound-method */
 });
 
 // Registration data

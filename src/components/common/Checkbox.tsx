@@ -1,17 +1,16 @@
-import React from 'react';
-import styles from './Checkbox.module.css';
 import { Field } from 'formik';
+import styles from './Checkbox.module.css';
 
-const CheckboxField = ({ name, label, ...rest }) => {
+interface CheckBoxFieldProps {
+  name: string;
+  label: string;
+}
+
+const CheckboxField = ({ name, label }: CheckBoxFieldProps) => {
   return (
     <div>
       <label className={styles.label}>
-        <Field
-          className={styles.checkInput}
-          name={name}
-          type='checkbox'
-          {...rest}
-        />
+        <Field className={styles.checkInput} name={name} type='checkbox' />
         <span className={styles.checkBox} />
         {label}
       </label>

@@ -1,5 +1,4 @@
 import Avatar from 'components/common/Avatar/Avatar';
-import React from 'react';
 import styles from './ChatHeader.module.css';
 
 const ChatHeader = ({ member }) => {

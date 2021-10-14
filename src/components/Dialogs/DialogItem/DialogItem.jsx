@@ -1,12 +1,11 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
-import styles from './DialogItem.module.scss';
 import { Link } from 'react-router-dom';
-import Avatar from '../../common/Avatar/Avatar';
 import { selectDialogMemberId, selectUserById } from 'redux/entities';
 import { Spinner } from 'components/common/Spinner';
+import Avatar from '../../common/Avatar/Avatar';
+import styles from './DialogItem.module.scss';
 
-export const DialogItem = ({ id, time, count, isChosen }) => {
+export const DialogItem = ({ id, isChosen }) => {
   const memberId = useSelector(selectDialogMemberId(id));
   const user = useSelector(selectUserById(memberId));
 
@@ -28,7 +27,7 @@ export const DialogItem = ({ id, time, count, isChosen }) => {
       <Avatar size='medium' avatar={avatar} name={firstName} />
       <div className={styles.Preview}>
         <h5 className={styles.Name}>{firstName}</h5>
-        <p className={styles.Message}></p>
+        <p className={styles.Message} />
       </div>
       {/* <div className={styles.Meta}>
         <span className={styles.Count}>{count}</span>

@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import {
   Server,
   Model,
@@ -8,6 +9,7 @@ import {
   Response,
 } from 'miragejs';
 import faker from 'faker';
+import jwt from 'jsonwebtoken';
 
 // ==================
 // 1. Serializers
@@ -25,6 +27,27 @@ import faker from 'faker';
 
 const secret =
   'B850B9761597B154641D8C3D7768F8AE500FE6BBA5409C1616D0DFC15495F4E5';
+
+function createJWT(user) {
+  const { id: userId } = user;
+  return jwt.sign({ userId }, secret, { expiresIn: '100m' });
+}
+
+function verifyJWT(authHeader) {
+  let token;
+
+  if (authHeader.startsWith('Bearer ')) {
+    token = authHeader.substring(7, authHeader.length);
+  }
+
+  return jwt.verify(token, secret);
+}
+
+function authenticateUser(request) {
+  const { Authorization } = request.requestHeaders;
+  const { userId } = verifyJWT(Authorization);
+  return userId;
+}
 
 export function makeServer({ environment = 'development' } = {}) {
   return new Server({
@@ -193,7 +216,8 @@ export function makeServer({ environment = 'development' } = {}) {
 
       this.get('/messages', (schema, request) => {
         const userId = authenticateUser(request);
-        let { dialogId, limit, page } = request.queryParams;
+        const { dialogId, page } = request.queryParams;
+        let { limit } = request.queryParams;
         limit = limit ? +limit : 10;
 
         const user = schema.users.find(userId);
@@ -261,29 +285,6 @@ export function makeServer({ environment = 'development' } = {}) {
       // 4.5 Authentication
       // ==================
 
-      function createJWT(user) {
-        const { id: userId } = user;
-        const jwt = require('jsonwebtoken');
-        return jwt.sign({ userId }, secret, { expiresIn: '100m' });
-      }
-
-      function verifyJWT(authHeader) {
-        let token;
-
-        if (authHeader.startsWith('Bearer ')) {
-          token = authHeader.substring(7, authHeader.length);
-        }
-
-        const jwt = require('jsonwebtoken');
-        return jwt.verify(token, secret);
-      }
-
-      function authenticateUser(request) {
-        const { Authorization } = request.requestHeaders;
-        const { userId } = verifyJWT(Authorization);
-        return userId;
-      }
-
       this.post('/auth/login', (schema, request) => {
         const errors = [];
         const { login, password } = JSON.parse(request.requestBody);
@@ -312,7 +313,7 @@ export function makeServer({ environment = 'development' } = {}) {
       // ==================
 
       this.get('/feeds/:id', (schema, request) => {
-        const userId = authenticateUser(request);
+        authenticateUser(request);
         const { id } = request.params;
 
         return schema.feeds.find(id);

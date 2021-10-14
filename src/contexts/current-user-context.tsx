@@ -1,6 +1,6 @@
 import { User } from 'common/entities.types';
-import React from 'react';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
+
 import { useSelector } from 'react-redux';
 import { selectUserById } from 'redux/entities';
 import { selectCurrentUserId } from '../redux';

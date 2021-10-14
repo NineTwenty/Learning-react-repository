@@ -1,5 +1,3 @@
-import React from 'react';
-import style from './PostingForm.module.css';
 import { useParams } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { TextAreaField } from 'components/common/TextAreaField';
@@ -8,6 +6,7 @@ import { Separator } from 'components/common/Separator/Separator';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFeed, getIsLoadingPostStatus } from 'redux/entities';
 import { Wrapper } from 'components/common/Wrapper/Wrapper';
+import style from './PostingForm.module.css';
 
 const validate = (values) => {
   if (!values.postText) {
@@ -44,7 +43,7 @@ const PostingForm = ({ header, onSubmit }) => {
       >
         <Form className={style.form}>
           <TextAreaField
-            placeholder={'Write something...'}
+            placeholder='Write something...'
             name='postText'
             disabled={isLoading}
           />

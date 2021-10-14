@@ -1,10 +1,9 @@
-import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectDialogMemberId, selectUserById } from 'redux/entities';
 import styles from './Chat.module.css';
 import ChatHeader from '../ChatHeader/ChatHeader';
 import ChatBox from '../ChatBox/ChatBox';
 import ChatInputs from '../ChatInputs/ChatInputs';
-import { useSelector } from 'react-redux';
-import { selectDialogMemberId, selectUserById } from 'redux/entities';
 
 const Chat = ({ className, dialogId, userId }) => {
   const memberId = useSelector(selectDialogMemberId(dialogId));

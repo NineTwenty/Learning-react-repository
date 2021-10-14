@@ -37,6 +37,7 @@ const initialState: AppState = {
 const appSlice = createSlice({
   name: sliceName,
   initialState,
+  /* eslint-disable no-param-reassign */
   reducers: {
     redirected: (state) => {
       state.redirectLink = undefined;
@@ -50,6 +51,7 @@ const appSlice = createSlice({
       state.isInitialized = true;
     },
   },
+  /* eslint-enable no-param-reassign */
 });
 
 // Registration data
@@ -58,8 +60,8 @@ export const appSliceName = appSlice.name;
 
 // Action creators
 
-export const redirected = appSlice.actions.redirected;
-export const redirectTo = appSlice.actions.redirectTo;
+export const { redirected } = appSlice.actions;
+export const { redirectTo } = appSlice.actions;
 
 // Thunks
 

@@ -1,5 +1,5 @@
-import styles from './Gallery.module.scss';
 import cx from 'classnames';
+import styles from './Gallery.module.scss';
 
 type GalleryProps = {
   children: React.ReactNode;

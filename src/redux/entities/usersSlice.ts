@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice, EntityId } from '@reduxjs/toolkit';
 import { api } from 'api/API';
 import { isTokenExpireResponse } from 'api/APIUtils';
-import { RootState } from 'redux/store';
+import { AppDispatch, RootState } from 'redux/store';
 import { User } from 'common/entities.types';
 import {
   createLoadingActions,
@@ -35,6 +35,7 @@ const submitRequest = createLoadingActions<User>(sliceName, 'submit');
 // Slice
 
 const usersSlice = createSlice({
+  /* eslint-disable @typescript-eslint/unbound-method */
   name: sliceName,
   initialState,
   reducers: {
@@ -49,12 +50,12 @@ const usersSlice = createSlice({
     upsertMany: adapter.upsertMany,
   },
   extraReducers: (builder) => {
-    // setAll payload of 'success' get action
     builder.addCase(getRequest.success, adapter.addMany);
     builder.addCase(submitRequest.success, adapter.addOne);
     builder.addMatcher(isStartOfRequest, handleRequestStart);
     builder.addMatcher(isEndOfRequest, handleRequestEnd);
   },
+  /* eslint-enable @typescript-eslint/unbound-method */
 });
 
 // Registration data
@@ -68,7 +69,7 @@ export const addUsers = usersSlice.actions.addMany;
 
 // Thunks
 
-export const fetchUsers = () => async (dispatch: any) => {
+export const fetchUsers = () => async (dispatch: AppDispatch) => {
   dispatch(getRequest.request());
   try {
     const { users } = await api.get<{ users: User[] }>('users');
@@ -81,7 +82,7 @@ export const fetchUsers = () => async (dispatch: any) => {
   }
 };
 
-export const submitUser = (newUser: User) => async (dispatch: any) => {
+export const submitUser = (newUser: User) => async (dispatch: AppDispatch) => {
   dispatch(submitRequest.request());
   try {
     const { user } = await api.post<{ user: User }>('users', newUser);

@@ -1,8 +1,7 @@
-import React from 'react';
 import styles from './SplashScreen.module.css';
 import { Spinner } from '../common/Spinner';
 
-export const SplashScreen = (props) => {
+export const SplashScreen = () => {
   return (
     <div className={styles.splashScreenWrapper}>
       <div className={styles.splashScreenCentering}>

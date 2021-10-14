@@ -7,7 +7,7 @@ import { Icon } from '../Icon/Icon';
 type LightboxProps = {
   className?: string;
   children: React.ReactNode;
-  onClose?: Function;
+  onClose?: () => void;
 };
 
 export const Lightbox = ({
@@ -17,7 +17,7 @@ export const Lightbox = ({
 }: LightboxProps) => {
   const backgroundRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const classes = cx(styles.Wrapper, { [`${className}`]: className });
+  const classes = cx(styles.Wrapper, { [`${className ?? ''}`]: className });
 
   // Close on click outside
   useEffect(() => {
@@ -39,7 +39,7 @@ export const Lightbox = ({
     <div ref={backgroundRef} className={styles.Background}>
       <Button
         className={styles.CloseBtn}
-        styleType='Borderless'
+        styleType='borderless'
         onClick={onClose}
       >
         <Icon color='white' type='close' />

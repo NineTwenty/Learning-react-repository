@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import styles from './DialogsList.module.scss';
 import Button from 'components/common/Button';
+import styles from './DialogsList.module.scss';
 import { NewChatDialog } from '../NewChatDialog/NewChatDialog';
 
 export const DialogsList = ({ isOpen, children, className }) => {

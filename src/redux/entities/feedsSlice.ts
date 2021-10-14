@@ -10,7 +10,7 @@ import {
   createLoadingReducers,
 } from 'redux/utils';
 import { logout } from 'redux/common/actions';
-import { setPosts } from './';
+import { setPosts } from '.';
 
 const sliceName = 'feeds';
 
@@ -35,6 +35,7 @@ const getRequest = createLoadingActions<Feed>(sliceName, 'get');
 // Slice
 
 const feedsSlice = createSlice({
+  /* eslint-disable @typescript-eslint/unbound-method */
   name: sliceName,
   initialState,
   reducers: {
@@ -46,6 +47,7 @@ const feedsSlice = createSlice({
     builder.addMatcher(isStartOfRequest, handleRequestStart);
     builder.addMatcher(isEndOfRequest, handleRequestEnd);
   },
+  /* eslint-enable @typescript-eslint/unbound-method */
 });
 
 // Registration data

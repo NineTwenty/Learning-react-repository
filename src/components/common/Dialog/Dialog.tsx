@@ -6,20 +6,15 @@ import { Icon } from '../Icon/Icon';
 import Button from '../Button';
 
 interface DialogProps extends React.ComponentPropsWithoutRef<'div'> {
-  onClose: Function;
+  onClose: () => void;
 }
 
-export const Dialog = ({
-  onClose,
-  className,
-  children,
-  ...rest
-}: DialogProps) => {
+export const Dialog = ({ onClose, className, children }: DialogProps) => {
   const classes = cx(styles.Wrapper, className);
 
   return (
     <Portal>
-      <Wrapper className={classes} {...rest}>
+      <Wrapper className={classes}>
         <Button
           onClick={onClose}
           className={styles.Button}

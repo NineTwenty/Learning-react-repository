@@ -1,10 +1,15 @@
-import React from 'react';
 import TextField from './TextField';
 
-const PasswordField = (props) => {
+interface PasswordFieldProps {
+  name: string;
+  label: string;
+  placeholder: string;
+}
+
+const PasswordField = ({ name, label, placeholder }: PasswordFieldProps) => {
   return (
     <>
-      <TextField type='password' {...props} />
+      <TextField type='password' {...{ name, label, placeholder }} />
     </>
   );
 };
