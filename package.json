@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.2.0",
     "@types/faker": "^5.5.7",
     "@types/superagent": "^4.1.12",
+    "axios": "^0.23.0",
     "classnames": "^2.3.1",
     "eslint-plugin-import": "^2.23.4",
     "faker": "^5.0.0",
