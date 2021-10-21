@@ -292,7 +292,7 @@ export function makeServer({ environment = 'development' } = {}) {
         // Authentication
         if (user && user.password === password) {
           const token = createJWT(user);
-          return { body: { token } };
+          return { token };
         }
 
         // Add error

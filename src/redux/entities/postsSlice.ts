@@ -72,7 +72,8 @@ export const setPosts = postsSlice.actions.setAll;
 export const fetchPosts = () => async (dispatch: AppDispatch) => {
   dispatch(getRequest.request());
   try {
-    const { posts } = await api.get('posts');
+    const { posts } = await api.get<{ posts: Post[] }>('posts');
+
     dispatch(getRequest.success(posts));
   } catch (error) {
     if (isTokenExpireResponse(error)) {
@@ -85,7 +86,8 @@ export const fetchPosts = () => async (dispatch: AppDispatch) => {
 export const submitPost = (newPost: Post) => async (dispatch: AppDispatch) => {
   dispatch(submitRequest.request());
   try {
-    const { post } = await api.post('posts', newPost);
+    const { post } = await api.post<{ post: Post }>('posts', newPost);
+
     dispatch(submitRequest.success(post));
   } catch (error) {
     if (isTokenExpireResponse(error)) {

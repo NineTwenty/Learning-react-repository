@@ -1,4 +1,6 @@
 import { createSlice, EntityId } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { User } from 'common/entities.types';
 import { api } from '../api/API';
 import { LOGOUT } from './common/actions';
 import { addUser } from './entities/usersSlice';
@@ -99,8 +101,10 @@ const authenticationRequest =
 
     try {
       // Login request
-      const { body } = await api.post('auth/login', { login, password });
-      const { token } = body;
+      const { token } = await api.post<{ token: string }>('auth/login', {
+        login,
+        password,
+      });
 
       if (token) {
         // Set token
@@ -125,12 +129,10 @@ export const authorizationRequest = () => async (dispatch: AppDispatch) => {
     dispatch(authorizationActions.request());
     try {
       // Fetch current user
-      const { user } = await api.get('auth/me');
+      const { user } = await api.get<{ user: User }>('auth/me');
 
-      if (user) {
-        dispatch(addUser(user));
-        dispatch(authorizationActions.success(user.id));
-      }
+      dispatch(addUser(user));
+      dispatch(authorizationActions.success(user.id));
     } catch (err) {
       // Remove token due to failed authorization
       localStorage.removeItem('token');
@@ -160,8 +162,10 @@ export const submitLoginForm =
       // Authorization
       await dispatch(authorizationRequest());
     } catch (err) {
-      // Return error to form
-      return { payload: err.response.body };
+      if (axios.isAxiosError(err)) {
+        // Return error to form
+        return { payload: err.response?.data };
+      }
     } finally {
       dispatch(loginActions.loginCompleted());
     }

@@ -1,4 +1,4 @@
-import { Feed } from 'common/entities.types';
+import { Feed, Post } from 'common/entities.types';
 import { AppDispatch, RootState } from 'redux/store';
 import { StatusState } from 'redux/utils/utils.types';
 import { createEntityAdapter, createSlice, EntityId } from '@reduxjs/toolkit';
@@ -57,7 +57,10 @@ export const feedsSliceName = feedsSlice.name;
 export const fetchFeed = (id: string) => async (dispatch: AppDispatch) => {
   dispatch(getRequest.request());
   try {
-    const { feed, posts } = await api.get(`feeds/${id}?include=posts`);
+    const { feed, posts } = await api.get<{ feed: Feed; posts: Post[] }>(
+      `feeds/${id}?include=posts`
+    );
+
     dispatch(setPosts(posts));
     dispatch(getRequest.success(feed));
   } catch (error) {

@@ -81,9 +81,10 @@ export const fetchMessages =
   (page: number, dialogId: EntityId) => async (dispatch: AppDispatch) => {
     dispatch(getRequest.request());
     try {
-      const { messages } = await api.get(
+      const { messages } = await api.get<{ messages: Message[] }>(
         `messages?page=${page}&limit=10&dialogId=${dialogId}`
       );
+
       dispatch(getRequest.success(messages));
     } catch (error) {
       if (isTokenExpireResponse(error)) {
@@ -97,7 +98,11 @@ export const submitMessage =
   (newMessage: Partial<Message>) => async (dispatch: AppDispatch) => {
     dispatch(submitRequest.request());
     try {
-      const { message } = await api.post('messages', newMessage);
+      const { message } = await api.post<{ message: Message }>(
+        'messages',
+        newMessage
+      );
+
       dispatch(submitRequest.success(message));
     } catch (error) {
       if (isTokenExpireResponse(error)) {

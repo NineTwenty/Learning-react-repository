@@ -71,7 +71,7 @@ export const addUsers = usersSlice.actions.addMany;
 export const fetchUsers = () => async (dispatch: any) => {
   dispatch(getRequest.request());
   try {
-    const { users } = await api.get('users');
+    const { users } = await api.get<{ users: User[] }>('users');
     dispatch(getRequest.success(users));
   } catch (error) {
     if (isTokenExpireResponse(error)) {
@@ -84,7 +84,7 @@ export const fetchUsers = () => async (dispatch: any) => {
 export const submitUser = (newUser: User) => async (dispatch: any) => {
   dispatch(submitRequest.request());
   try {
-    const { user } = await api.post('users', newUser);
+    const { user } = await api.post<{ user: User }>('users', newUser);
     dispatch(submitRequest.success(user));
   } catch (error) {
     if (isTokenExpireResponse(error)) {

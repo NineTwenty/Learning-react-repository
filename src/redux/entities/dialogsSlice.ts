@@ -1,4 +1,4 @@
-import { Dialog } from 'common/entities.types';
+import { Dialog, User } from 'common/entities.types';
 import { createEntityAdapter, createSlice, EntityId } from '@reduxjs/toolkit';
 import { api } from 'api/API';
 import {
@@ -74,7 +74,11 @@ export const addDialogs = dialogsSlice.actions.addMany;
 export const fetchDialogs = () => async (dispatch: AppDispatch) => {
   dispatch(getRequest.request());
   try {
-    const { dialogs, users } = await api.get('dialogs?include=members');
+    const { dialogs, users } = await api.get<{
+      dialogs: Dialog[];
+      users: User[];
+    }>('dialogs?include=members');
+
     dispatch(getRequest.success(dialogs));
     dispatch(addUsers(users));
   } catch (error) {
@@ -92,7 +96,7 @@ export const submitDialog = (id: EntityId) => async (dispatch: AppDispatch) => {
 
   dispatch(submitRequest.request());
   try {
-    const { dialog }: { dialog: Dialog } = await api.post('dialogs', newDialog);
+    const { dialog } = await api.post<{ dialog: Dialog }>('dialogs', newDialog);
     dispatch(submitRequest.success(dialog));
     dispatch(redirectTo(`/dialogs/${dialog.id}`));
     return dialog;
