@@ -55,7 +55,7 @@ export const Post = ({ id }: PostProps) => {
       </div>
       <p>{post.postText}</p>
       <div className={style.meta}>
-        <span className={style.views}>Views: {post.views}</span>
+        {/* <span className={style.views}>Views: {post.views}</span> */}
       </div>
       <Separator />
     </div>
