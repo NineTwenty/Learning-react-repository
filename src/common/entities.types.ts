@@ -26,6 +26,7 @@ export type Image = {
 export type Post = {
   feed: string;
   views: number;
+  created: number;
   postText: string;
   id: string;
   author: string;

@@ -154,6 +154,7 @@ export function makeServer({ environment = 'development' } = {}) {
         created: Date.now(),
       }),
       post: Factory.extend({
+        created: Date.now(),
         postText: () => faker.lorem.sentences(),
       }),
     },
@@ -265,6 +266,7 @@ export function makeServer({ environment = 'development' } = {}) {
         if (post && post.postText) {
           post.authorId = userId;
           post.views = 0;
+          post.created = Date.now();
           return schema.posts.create(post);
         }
       });
