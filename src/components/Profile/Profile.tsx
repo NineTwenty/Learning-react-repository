@@ -41,7 +41,7 @@ const Profile = () => {
               <div className={style.Content}>
                 <div className={style.Aside}>
                   <Card className={style.Card} header='Friends'>
-                    <FriendsGallery />
+                    <FriendsGallery limit={6} />
                   </Card>
                   <Card className={style.Card} header='Photos'>
                     <ImagesGallery limit={6} />
