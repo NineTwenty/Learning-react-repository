@@ -67,16 +67,22 @@ const App = (): JSX.Element => {
   const [isSideNavForceOpen, setSideNavForceOpen] = useState(false);
   const menuBtnRef = useRef(null);
 
+  // Check if delayed redirect happend & inform state about it
+  useEffect(() => {
+    if (redirectLink) {
+      // Prevent early state update & rerender before redirect even happen
+      if (location.pathname === redirectLink) {
+        dispatch(redirected());
+      }
+    }
+  }, [redirectLink, location.pathname, dispatch]);
+
   if (!isInitialized) {
     return <SplashScreen />;
   }
 
+  // Delayed redirect to stored path
   if (redirectLink) {
-    // Prevent early state update & rerender before redirect even happen
-    if (location.pathname === redirectLink) {
-      dispatch(redirected());
-    }
-
     return <Redirect to={redirectLink} />;
   }
 
