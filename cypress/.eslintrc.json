@@ -1,9 +1,13 @@
 {
   "extends": [
+    "../.eslintrc.json",
     "plugin:cypress/recommended"
   ],
+  "parserOptions": {
+    "project": "cypress/tsconfig.json"
+  },
   "rules": {
-    "jest/valid-expect": "off",
-    "import/no-extraneous-dependencies": "warn"
+    "import/no-extraneous-dependencies": "warn",
+    "@typescript-eslint/no-namespace": "off"
   }
 }
