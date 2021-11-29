@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { selectDialogMemberId, selectUserById } from 'redux/entities';
+import { selectDialogMemberId, selectUserById } from 'data/entities';
 import { Spinner } from 'components/common/Spinner';
 import Avatar from '../../common/Avatar/Avatar';
 import styles from './DialogItem.module.scss';

@@ -11,6 +11,13 @@ import './App.css';
 import './constants.css';
 import Header from 'components/Header/Header';
 import Dialogs from 'components/Dialogs/Dialogs';
+import {
+  initialization,
+  redirected,
+  selectIsAppInitialized,
+  selectLoggedInStatus,
+  selectRedirectLink,
+} from 'data';
 import { Navbar } from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import News from './components/News/News';
@@ -19,13 +26,6 @@ import Settings from './components/Settings/Settings';
 import Login from './components/Login/Login';
 import { SplashScreen } from './components/SplashScreen/SplashScreen';
 import { CurrentUserProvider } from './contexts/current-user-context';
-import {
-  initialization,
-  redirected,
-  selectIsAppInitialized,
-  selectLoggedInStatus,
-  selectRedirectLink,
-} from './redux';
 
 function PrivateRoute({ children, ...rest }: RouteProps) {
   const loggedIn = useSelector(selectLoggedInStatus);

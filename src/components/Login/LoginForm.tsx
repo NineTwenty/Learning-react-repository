@@ -1,7 +1,7 @@
 import { Formik, Form, FormikErrors } from 'formik';
 import { useAppDispatch } from 'hooks/hooks';
+import { submitLoginForm } from 'data';
 import styles from './LoginForm.module.css';
-import { submitLoginForm } from '../../redux';
 import TextField from '../common/TextField';
 import PasswordField from '../common/PasswordField';
 import CheckboxField from '../common/Checkbox';

@@ -7,14 +7,14 @@ import {
 import { api } from 'api/API';
 import { isTokenExpireResponse } from 'api/APIUtils';
 import { Message } from 'common/entities.types';
-import { logout } from 'redux/common/actions';
-import { AppDispatch, RootState } from 'redux/store';
+import { logout } from 'data/common/actions';
+import { AppDispatch, RootState } from 'data/store';
 import {
   createLoadingActions,
   createLoadingMatchers,
   createLoadingReducers,
-} from 'redux/utils';
-import { StatusState } from 'redux/utils/utils.types';
+} from 'data/utils';
+import { StatusState } from 'data/utils/utils.types';
 
 const sliceName = 'messages';
 

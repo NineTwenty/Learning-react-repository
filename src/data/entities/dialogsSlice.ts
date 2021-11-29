@@ -5,13 +5,13 @@ import {
   createLoadingActions,
   createLoadingMatchers,
   createLoadingReducers,
-} from 'redux/utils';
-import { AppDispatch, RootState } from 'redux/store';
-import { StatusState } from 'redux/utils/utils.types';
+} from 'data/utils';
+import { AppDispatch, RootState } from 'data/store';
+import { StatusState } from 'data/utils/utils.types';
 import { isTokenExpireResponse } from 'api/APIUtils';
-import { logout } from 'redux/common/actions';
-import { redirectTo } from 'redux/appSlice';
-import { selectCurrentUserId } from '..';
+import { logout } from 'data/common/actions';
+import { redirectTo } from 'data/appSlice';
+import { selectCurrentUserId } from 'data';
 import { addUsers } from '.';
 
 const sliceName = 'dialogs';

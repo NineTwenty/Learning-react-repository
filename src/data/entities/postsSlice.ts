@@ -1,6 +1,6 @@
 import { Post } from 'common/entities.types';
-import { AppDispatch, RootState } from 'redux/store';
-import { StatusState } from 'redux/utils/utils.types';
+import { AppDispatch, RootState } from 'data/store';
+import { StatusState } from 'data/utils/utils.types';
 import { createEntityAdapter, createSlice, EntityId } from '@reduxjs/toolkit';
 import { api } from 'api/API';
 import { isTokenExpireResponse } from 'api/APIUtils';
@@ -8,8 +8,8 @@ import {
   createLoadingActions,
   createLoadingMatchers,
   createLoadingReducers,
-} from 'redux/utils';
-import { logout } from 'redux/common/actions';
+} from 'data/utils';
+import { logout } from 'data/common/actions';
 
 const sliceName = 'posts';
 

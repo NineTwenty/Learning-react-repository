@@ -5,7 +5,7 @@ import {
   selectDialogById,
   fetchMessages,
   selectLoadedMessagesByIds,
-} from 'redux/entities';
+} from 'data/entities';
 import InfiniteScrollReverse from 'components/common/InfiniteScrollReverse/InfiniteScrollReverse';
 import MessageItem from '../MessageItem/MessageItem';
 import styles from './ChatBox.module.css';

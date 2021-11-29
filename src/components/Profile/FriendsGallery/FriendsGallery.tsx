@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { generatePath, Link, useRouteMatch } from 'react-router-dom';
-import { fetchUsers, selectUserById, selectUsersByIds } from 'redux/entities';
+import { fetchUsers, selectUserById, selectUsersByIds } from 'data/entities';
 import Avatar from 'components/common/Avatar/Avatar';
 import { Gallery } from 'components/common/Gallery/Gallery';
 import styles from './FriendsGallery.module.scss';

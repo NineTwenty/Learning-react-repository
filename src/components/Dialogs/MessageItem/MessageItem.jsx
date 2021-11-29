@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { selectUserById } from 'redux/entities';
+import { selectUserById } from 'data/entities';
 import { Spinner } from 'components/common/Spinner';
 import Avatar from '../../common/Avatar/Avatar';
 import styles from './MessageItem.module.css';

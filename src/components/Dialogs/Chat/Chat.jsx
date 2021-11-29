@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { selectDialogMemberId, selectUserById } from 'redux/entities';
+import { selectDialogMemberId, selectUserById } from 'data/entities';
 import styles from './Chat.module.css';
 import ChatHeader from '../ChatHeader/ChatHeader';
 import ChatBox from '../ChatBox/ChatBox';

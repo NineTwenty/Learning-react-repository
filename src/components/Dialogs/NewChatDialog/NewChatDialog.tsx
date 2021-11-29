@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'hooks/hooks';
 import { useCurrentUser } from 'contexts/current-user-context';
-import { fetchUsers, selectUsersByIds, submitDialog } from 'redux/entities';
+import { fetchUsers, selectUsersByIds, submitDialog } from 'data/entities';
 import { Dialog } from 'components/common/Dialog/Dialog';
 import Avatar from 'components/common/Avatar/Avatar';
 import Button from 'components/common/Button';

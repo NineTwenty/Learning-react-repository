@@ -2,7 +2,7 @@ import { CroppedImage } from 'components/common/CroppedImage/CroppedImage';
 import { Gallery } from 'components/common/Gallery/Gallery';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { selectUserById } from 'redux/entities';
+import { selectUserById } from 'data/entities';
 
 type ImagesGalleryProps = {
   className?: string;

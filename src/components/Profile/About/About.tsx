@@ -2,7 +2,7 @@ import cx from 'classnames';
 import { Wrapper } from 'components/common/Wrapper/Wrapper';
 import { Separator } from 'components/common/Separator';
 import { useSelector } from 'react-redux';
-import { selectUserById } from 'redux/entities';
+import { selectUserById } from 'data/entities';
 import { Spinner } from 'components/common/Spinner';
 import { useParams } from 'react-router-dom';
 import styles from './About.module.scss';

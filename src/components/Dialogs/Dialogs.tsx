@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { fetchDialogs, selectDialogs } from 'redux/entities';
+import { fetchDialogs, selectDialogs } from 'data/entities';
 import { useAppSelector } from 'hooks/hooks';
 import { Dialog } from 'common/entities.types';
 import { Spinner } from 'components/common/Spinner';
 import { HamburgerButton } from 'components/Header/HamburgerButton/HamburgerButton';
-import { selectCurrentUserId } from '../../redux';
+import { selectCurrentUserId } from 'data';
 import { DialogItem } from './DialogItem/DialogItem';
 import { DialogsList } from './DialogsList/DIalogsList';
 import Chat from './Chat/Chat';

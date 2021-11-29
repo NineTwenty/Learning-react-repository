@@ -1,8 +1,8 @@
 import { useAppDispatch } from 'hooks/hooks';
 import { useSelector } from 'react-redux';
 import { useCurrentUser } from 'contexts/current-user-context';
-import { deletePost } from 'redux/entities/postsSlice';
-import { selectPostById, selectUserById } from 'redux/entities';
+import { deletePost } from 'data/entities/postsSlice';
+import { selectPostById, selectUserById } from 'data/entities';
 import { Separator } from 'components/common/Separator';
 import Button from 'components/common/Button';
 import Avatar from 'components/common/Avatar/Avatar';

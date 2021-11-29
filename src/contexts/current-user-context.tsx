@@ -2,8 +2,8 @@ import { User } from 'common/entities.types';
 import React, { useContext } from 'react';
 
 import { useSelector } from 'react-redux';
-import { selectUserById } from 'redux/entities';
-import { selectCurrentUserId } from '../redux';
+import { selectUserById } from 'data/entities';
+import { selectCurrentUserId } from 'data';
 
 const currentUserContext = React.createContext<User | undefined>(undefined);
 

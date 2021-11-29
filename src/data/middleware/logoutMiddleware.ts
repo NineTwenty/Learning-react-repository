@@ -1,5 +1,5 @@
 import { Action, Middleware } from 'redux';
-import { LOGOUT } from 'redux/common/actions';
+import { LOGOUT } from 'data/common/actions';
 
 // Middleware to perform cleanup side effects after logout
 

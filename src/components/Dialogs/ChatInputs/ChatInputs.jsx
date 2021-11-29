@@ -3,7 +3,7 @@ import Button from 'components/common/Button';
 import { TextAreaField } from 'components/common/TextAreaField';
 import { Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { fetchDialogs, submitMessage } from 'redux/entities';
+import { fetchDialogs, submitMessage } from 'data/entities';
 import styles from './ChatInputs.module.css';
 
 const ChatInputs = (props) => {

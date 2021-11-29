@@ -1,7 +1,7 @@
 import cx from 'classnames';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
-import { selectUserById, submitDialog } from 'redux/entities';
+import { selectUserById, submitDialog } from 'data/entities';
 import Avatar from 'components/common/Avatar/Avatar';
 import { Image } from 'components/common/Image/Image';
 import { Wrapper } from 'components/common/Wrapper/Wrapper';

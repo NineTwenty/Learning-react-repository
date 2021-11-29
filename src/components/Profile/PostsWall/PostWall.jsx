@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { submitPost, fetchFeed, selectFeedById } from 'redux/entities';
+import { submitPost, fetchFeed, selectFeedById } from 'data/entities';
 import { List } from 'components/common/List';
 import { useSelector, useDispatch } from 'react-redux';
 import cx from 'classnames';

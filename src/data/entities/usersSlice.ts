@@ -1,15 +1,15 @@
 import { createEntityAdapter, createSlice, EntityId } from '@reduxjs/toolkit';
 import { api } from 'api/API';
 import { isTokenExpireResponse } from 'api/APIUtils';
-import { AppDispatch, RootState } from 'redux/store';
+import { AppDispatch, RootState } from 'data/store';
 import { User } from 'common/entities.types';
 import {
   createLoadingActions,
   createLoadingMatchers,
   createLoadingReducers,
-} from 'redux/utils';
-import { StatusState } from 'redux/utils/utils.types';
-import { logout } from 'redux/common/actions';
+} from 'data/utils';
+import { StatusState } from 'data/utils/utils.types';
+import { logout } from 'data/common/actions';
 
 const sliceName = 'users';
 
