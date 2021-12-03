@@ -12,6 +12,7 @@ export {
   selectDialogById,
   selectDialogsIds,
   selectDialogMemberId,
+  selectDialogByMember,
 } from './dialogsSlice';
 
 // Users

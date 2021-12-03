@@ -135,3 +135,10 @@ export const selectDialogMemberId =
 
     return memberId;
   };
+
+export const selectDialogByMember =
+  (userId: EntityId) => (state: RootState) => {
+    const dialogs = selectDialogs(state);
+
+    return dialogs.find((dialog) => dialog.members.includes(userId));
+  };
