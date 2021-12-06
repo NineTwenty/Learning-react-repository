@@ -3,13 +3,11 @@ describe('Dialogs', () => {
     cy.reload();
     cy.visit('/');
     cy.login('admin', 'admin');
-    cy.wait(1000);
+    cy.location('pathname').should('contain', '/profile/');
   });
 
   it('Create new dialog by button on profile page', () => {
     cy.visit('/dialogs');
-    // Wait for dialogs loading
-    cy.wait(1000);
     // Find dialogs list
     cy.findAllByRole('navigation')
       .find('ul')
@@ -24,8 +22,6 @@ describe('Dialogs', () => {
 
         // Wait for redirect
         cy.location('pathname').should('have.string', '/dialogs/');
-        // Wait for dialogs loading
-        cy.wait(1000);
 
         // Find dialogs list
         cy.findAllByRole('navigation')
