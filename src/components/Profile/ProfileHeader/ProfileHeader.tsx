@@ -1,11 +1,12 @@
 import cx from 'classnames';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
-import { selectUserById, submitDialog } from 'data/entities';
+import { selectUserById } from 'data/entities';
 import Avatar from 'components/common/Avatar/Avatar';
 import { Image } from 'components/common/Image/Image';
 import { Wrapper } from 'components/common/Wrapper/Wrapper';
 import Button from 'components/common/Button';
+import { redirectToDialogByUser } from 'data/common/thunks';
 import styles from './ProfileHeader.module.scss';
 
 type ProfileHeaderProps = {
@@ -37,7 +38,7 @@ export const ProfileHeader = ({ className }: ProfileHeaderProps) => {
         <h2>{`${user.firstName} ${user.lastName}`}</h2>
         <div className={styles.Buttons}>
           <Button
-            onClick={() => dispatch(submitDialog(id))}
+            onClick={() => dispatch(redirectToDialogByUser(id))}
             className={styles.DialogButton}
           >
             Message
