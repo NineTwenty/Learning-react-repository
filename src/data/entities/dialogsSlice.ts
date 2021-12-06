@@ -10,7 +10,6 @@ import { AppDispatch, RootState } from 'data/store';
 import { StatusState } from 'data/utils/utils.types';
 import { isTokenExpireResponse } from 'api/APIUtils';
 import { logout } from 'data/common/actions';
-import { redirectTo } from 'data/appSlice';
 import { selectCurrentUserId } from 'data';
 import { addUsers } from '.';
 
@@ -100,7 +99,6 @@ export const submitDialog = (id: EntityId) => async (dispatch: AppDispatch) => {
   try {
     const { dialog } = await api.post<{ dialog: Dialog }>('dialogs', newDialog);
     dispatch(submitRequest.success(dialog));
-    dispatch(redirectTo(`/dialogs/${dialog.id}`));
     return dialog;
   } catch (error) {
     if (isTokenExpireResponse(error)) {
