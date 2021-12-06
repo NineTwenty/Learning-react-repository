@@ -7,6 +7,7 @@ import { Image } from 'components/common/Image/Image';
 import { Wrapper } from 'components/common/Wrapper/Wrapper';
 import Button from 'components/common/Button';
 import { redirectToDialogByUser } from 'data/common/thunks';
+import { selectCurrentUserId } from 'data';
 import styles from './ProfileHeader.module.scss';
 
 type ProfileHeaderProps = {
@@ -17,6 +18,7 @@ export const ProfileHeader = ({ className }: ProfileHeaderProps) => {
   const classes = cx(styles.Wrapper, { [`${className ?? ''}`]: className });
   const { id } = useParams<{ id: string | undefined }>();
   const dispatch = useAppDispatch();
+  const loggedUserId = useAppSelector(selectCurrentUserId);
 
   const user = useAppSelector(selectUserById(id));
 
@@ -37,12 +39,14 @@ export const ProfileHeader = ({ className }: ProfileHeaderProps) => {
       <div className={styles.Name}>
         <h2>{`${user.firstName} ${user.lastName}`}</h2>
         <div className={styles.Buttons}>
-          <Button
-            onClick={() => dispatch(redirectToDialogByUser(id))}
-            className={styles.DialogButton}
-          >
-            Message
-          </Button>
+          {user.id !== loggedUserId && (
+            <Button
+              onClick={() => dispatch(redirectToDialogByUser(id))}
+              className={styles.DialogButton}
+            >
+              Message
+            </Button>
+          )}
         </div>
       </div>
     </Wrapper>

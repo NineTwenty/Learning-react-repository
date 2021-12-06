@@ -6,6 +6,13 @@ describe('Dialogs', () => {
     cy.location('pathname').should('contain', '/profile/');
   });
 
+  describe('Button to create dialog with profile owner', () => {
+    it('Unavailable on user own profile page', () => {
+      // Find create dialog button
+      cy.findAllByText('Message').should('not.exist');
+    });
+  });
+
   it('Create new dialog by button on profile page', () => {
     cy.visit('/dialogs');
     // Find dialogs list
