@@ -38,6 +38,8 @@ export const ProfileHeader = ({ className }: ProfileHeaderProps) => {
       </div>
       <div className={styles.Name}>
         <h2>{`${user.firstName} ${user.lastName}`}</h2>
+      </div>
+      <div className={styles.Controls}>
         <div className={styles.Buttons}>
           {user.id !== loggedUserId && (
             <Button
