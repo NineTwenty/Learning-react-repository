@@ -1,6 +1,7 @@
 .Wrapper {
+  display: flex;
+  flex-flow: column;
   width: 100%;
-  height: 27vh;
   overflow: hidden;
   box-shadow: none;
 }
@@ -12,8 +13,6 @@
   justify-content: center;
 
   overflow: hidden;
-
-  height: 75%;
 
   .Image {
     position: absolute;
@@ -27,6 +26,7 @@
   }
 
   .Avatar {
+    margin: 2em;
     width: 7em;
     height: 7em;
     filter: drop-shadow(0 0.14em 0.1em rgb(43, 43, 43));
@@ -39,7 +39,6 @@
   align-items: center;
   justify-content: center;
   margin: 0;
-  height: 25%;
 }
 
 .Buttons {
