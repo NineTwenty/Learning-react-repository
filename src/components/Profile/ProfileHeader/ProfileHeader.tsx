@@ -47,13 +47,15 @@ export const ProfileHeader = ({ className }: ProfileHeaderProps) => {
           [styles.Controls__open]: isControlsOpen,
         })}
       >
-        <HamburgerButton
-          className={styles.ButtonsToggle}
-          type='button'
-          iconType='arrows'
-          isOpen={isControlsOpen}
-          onClick={() => setIsControlsOpen(!isControlsOpen)}
-        />
+        {user.id !== loggedUserId && (
+          <HamburgerButton
+            className={styles.ButtonsToggle}
+            type='button'
+            iconType='arrows'
+            isOpen={isControlsOpen}
+            onClick={() => setIsControlsOpen(!isControlsOpen)}
+          />
+        )}
         <div className={styles.Buttons}>
           {user.id !== loggedUserId && (
             <Button
