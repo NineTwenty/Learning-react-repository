@@ -7,6 +7,7 @@ import Avatar from 'components/common/Avatar/Avatar';
 import { Image } from 'components/common/Image/Image';
 import { Wrapper } from 'components/common/Wrapper/Wrapper';
 import Button from 'components/common/Button';
+import { HamburgerButton } from 'components/Header/HamburgerButton';
 import { redirectToDialogByUser } from 'data/common/thunks';
 import { selectCurrentUserId } from 'data';
 import styles from './ProfileHeader.module.scss';
@@ -42,6 +43,13 @@ export const ProfileHeader = ({ className }: ProfileHeaderProps) => {
         <h2>{`${user.firstName} ${user.lastName}`}</h2>
       </div>
       <div className={styles.Controls}>
+        <HamburgerButton
+          className={styles.ButtonsToggle}
+          type='button'
+          iconType='arrows'
+          isOpen={isControlsOpen}
+          onClick={() => setIsControlsOpen(!isControlsOpen)}
+        />
         <div className={styles.Buttons}>
           {user.id !== loggedUserId && (
             <Button

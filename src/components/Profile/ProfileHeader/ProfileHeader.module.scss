@@ -41,7 +41,17 @@
   margin: 0;
 }
 
+.ButtonsToggle {
+  position: absolute;
+  top: -5rem;
+  left: var(--padding-primary);
+
+  transform: rotateZ(90deg);
+}
+
 .Controls {
+  position: relative;
+
   .Buttons {
   }
 }
