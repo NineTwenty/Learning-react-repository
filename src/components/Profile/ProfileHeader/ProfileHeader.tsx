@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import cx from 'classnames';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
@@ -16,6 +17,7 @@ type ProfileHeaderProps = {
 
 export const ProfileHeader = ({ className }: ProfileHeaderProps) => {
   const classes = cx(styles.Wrapper, { [`${className ?? ''}`]: className });
+  const [isControlsOpen, setIsControlsOpen] = useState(false);
   const { id } = useParams<{ id: string | undefined }>();
   const dispatch = useAppDispatch();
   const loggedUserId = useAppSelector(selectCurrentUserId);
