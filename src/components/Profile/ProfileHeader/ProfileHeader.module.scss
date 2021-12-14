@@ -53,6 +53,14 @@
   position: relative;
 
   .Buttons {
+    display: none;
+    padding: var(--padding-primary);
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  &__open .Buttons {
+    display: flex;
+    gap: var(--padding-primary);
   }
 }
 

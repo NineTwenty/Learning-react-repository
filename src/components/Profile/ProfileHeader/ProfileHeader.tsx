@@ -42,7 +42,11 @@ export const ProfileHeader = ({ className }: ProfileHeaderProps) => {
       <div className={styles.Name}>
         <h2>{`${user.firstName} ${user.lastName}`}</h2>
       </div>
-      <div className={styles.Controls}>
+      <div
+        className={cx(styles.Controls, {
+          [styles.Controls__open]: isControlsOpen,
+        })}
+      >
         <HamburgerButton
           className={styles.ButtonsToggle}
           type='button'
