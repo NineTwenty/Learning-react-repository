@@ -58,21 +58,18 @@ const ChatInputs = (props) => {
         validate={validate}
         innerRef={formRef}
       >
-        {(formikProps) => (
-          <Form className={styles.Form}>
-            <TextAreaField
-              className={styles.TextArea}
-              name='text'
-              onKeyPress={handleKeyPress}
-              value={formikProps.values.text}
-              cols='20'
-              rows='3'
-            />
-            <Button type='submit'>
-              <span className={styles.SubmitButtonText}>SEND</span>
-            </Button>
-          </Form>
-        )}
+        <Form className={styles.Form}>
+          <TextAreaField
+            className={styles.TextArea}
+            name='text'
+            onKeyPress={handleKeyPress}
+            cols='20'
+            rows='3'
+          />
+          <Button type='submit'>
+            <span className={styles.SubmitButtonText}>SEND</span>
+          </Button>
+        </Form>
       </Formik>
     </div>
   );
