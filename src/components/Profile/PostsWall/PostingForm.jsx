@@ -41,7 +41,7 @@ const PostingForm = ({ header, onSubmit }) => {
         onSubmit={dispatchOnSubmit}
         validate={validate}
       >
-        <Form className={style.form}>
+        <Form data-testid='postingForm' className={style.form}>
           <TextAreaField
             placeholder='Write something...'
             name='postText'
