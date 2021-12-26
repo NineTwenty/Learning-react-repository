@@ -20,6 +20,7 @@ const mockDialog = {
 };
 
 jest.mock('data/entities/dialogsSlice', () => ({
+  ...jest.requireActual('data/entities/dialogsSlice'),
   selectDialogByMember: jest.fn(),
   submitDialog: jest.fn(),
 }));
