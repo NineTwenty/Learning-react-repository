@@ -9,7 +9,7 @@ import {
   Response,
 } from 'miragejs';
 import faker from 'faker';
-import jwt from 'jsonwebtoken';
+import { UnsecuredJWT } from 'jose';
 
 // ==================
 // 1. Serializers
@@ -25,12 +25,13 @@ import jwt from 'jsonwebtoken';
 // 5. Seeds
 // ==================
 
-const secret =
-  'B850B9761597B154641D8C3D7768F8AE500FE6BBA5409C1616D0DFC15495F4E5';
-
 function createJWT(user) {
   const { id: userId } = user;
-  return jwt.sign({ userId }, secret, { expiresIn: '100m' });
+
+  return new UnsecuredJWT({ userId })
+    .setIssuedAt()
+    .setExpirationTime('100m')
+    .encode();
 }
 
 function verifyJWT(authHeader) {
@@ -40,7 +41,7 @@ function verifyJWT(authHeader) {
     token = authHeader.substring(7, authHeader.length);
   }
 
-  return jwt.verify(token, secret);
+  return UnsecuredJWT.decode(token).payload;
 }
 
 function authenticateUser(request) {
