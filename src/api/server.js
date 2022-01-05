@@ -5,16 +5,19 @@ import {
   hasMany,
   belongsTo,
   RestSerializer,
-  Factory,
   Response,
 } from 'miragejs';
-import faker from 'faker';
 import { UnsecuredJWT } from 'jose';
+import usersFixture from 'api/fixtures/users';
+import dialogsFixture from 'api/fixtures/dialogs';
+import messagesFixture from 'api/fixtures/messages';
+import postsFixture from 'api/fixtures/posts';
+import feedsFixture from 'api/fixtures/feeds';
 
 // ==================
 // 1. Serializers
 // 2. Models
-// 3. Factories
+// 3. Fixtures
 // 4. Routes
 //  4.0 Utils
 //  4.1 Users
@@ -22,7 +25,6 @@ import { UnsecuredJWT } from 'jose';
 //  4.3 Messages
 //  4.4 Posts
 //  4.5 Authentication
-// 5. Seeds
 // ==================
 
 function createJWT(user) {
@@ -101,63 +103,15 @@ export function makeServer({ environment = 'development' } = {}) {
     },
 
     // ==================
-    // 3. Factories
+    // 3. Fixtures
     // ==================
 
-    factories: {
-      user: Factory.extend({
-        afterCreate: (user) => {
-          user.update({
-            fullName: `${user.firstName} ${user.lastName}`,
-          });
-        },
-        firstName: faker.name.firstName,
-        lastName: faker.name.lastName,
-        email: faker.internet.exampleEmail,
-        address: faker.address.country,
-        phoneNumber: faker.phone.phoneNumber.bind(null, '+(###) ###-####'),
-        birthDate: faker.date.between('January 1, 1950', 'January 1, 2010'),
-        online: false,
-        lastOnlineTime: faker.date.recent,
-        avatar: () => `https://picsum.photos/200?random=${Math.random()}`,
-        music: [],
-        images: (id) => {
-          const images = [
-            `https://picsum.photos/1280/920?random=${Math.random()}`,
-            `https://picsum.photos/947?random=${Math.random()}`,
-            `https://picsum.photos/700/1280?random=${Math.random()}`,
-            `https://picsum.photos/1280?random=${Math.random()}`,
-            `https://picsum.photos/1280/590?random=${Math.random()}`,
-            `https://picsum.photos/700/1280?random=${Math.random()}`,
-            `https://picsum.photos/1280/329?random=${Math.random()}`,
-            `https://picsum.photos/560?random=${Math.random()}`,
-            `https://picsum.photos/947?random=${Math.random()}`,
-            `https://picsum.photos/1280/329?random=${Math.random()}`,
-          ];
-
-          return images.map((src, i) => ({
-            src,
-            // if id or i == 0 and generated value is null then regenerate
-            // with explicitly defined numbers
-            id: Date.now() / id / i ?? Date.now() / 99 / 99,
-          }));
-        },
-      }),
-
-      dialog: Factory.extend({
-        count: null,
-        time: null,
-      }),
-
-      message: Factory.extend({
-        text: () => faker.lorem.sentence(Math.floor(Math.random() * 14) + 1),
-        unread: true,
-        created: Date.now(),
-      }),
-      post: Factory.extend({
-        created: Date.now(),
-        postText: () => faker.lorem.sentences(),
-      }),
+    fixtures: {
+      users: usersFixture,
+      dialogs: dialogsFixture,
+      messages: messagesFixture,
+      posts: postsFixture,
+      feeds: feedsFixture,
     },
 
     // ==================
@@ -320,78 +274,6 @@ export function makeServer({ environment = 'development' } = {}) {
         const { id } = request.params;
 
         return schema.feeds.find(id);
-      });
-    },
-
-    // ==================
-    // 5. Seeds
-    // ==================
-
-    seeds(server) {
-      server.createList('user', 14).forEach((user, i, userModels) => {
-        // Empty array of random length
-        const emptyArr = Array(Math.round(Math.random() * 10));
-        // Friend id generation func
-        const makeFriends = () =>
-          `${Math.round(1 + Math.random() * (userModels.length - 1))}`;
-        // Filter func
-        const onlyUnique = (value, index, self) =>
-          self.indexOf(value) === index;
-
-        // Fill empty array with ids
-        const friendsList = Array.from(emptyArr, makeFriends)
-          // Filter redundant ids
-          .filter(onlyUnique)
-          // Map ids to models
-          .map((id) => userModels[id]);
-
-        // Update user relationships
-        user.update({ friends: friendsList });
-
-        // Create posts for all users
-        const feed = server.create('feed', {
-          owner: user,
-        });
-
-        server.createList('post', 2, {
-          feed,
-          author: user,
-          views: 0,
-        });
-      });
-
-      // Remove possible self reference from friends list
-      server.schema.users.all().models.forEach((user) => {
-        user.update(
-          'friendIds',
-          user.friendIds.filter((id) => id !== user.id)
-        );
-      });
-
-      const admin = server.schema.users.all().models[3];
-
-      admin.update({
-        password: 'admin',
-        login: 'admin',
-      });
-
-      // Create two dialogs for main user
-      [
-        server.create('dialog', {
-          memberIds: [admin.id, `${+admin.id + 1}`],
-        }),
-        server.create('dialog', {
-          memberIds: [admin.id, `${+admin.id + 2}`],
-        }),
-      ].forEach((dialog) => {
-        // Create messages for each
-        server.createList('message', 34, {
-          authorId: () => {
-            // Randomize author
-            return dialog.memberIds[Math.round(Math.random())];
-          },
-          dialog,
-        });
       });
     },
   });
