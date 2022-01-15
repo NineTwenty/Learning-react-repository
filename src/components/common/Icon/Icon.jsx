@@ -10,7 +10,7 @@ import { ReactComponent as closeBlack } from 'images/close_black.svg';
 import { ReactComponent as closeWhite } from 'images/close_white.svg';
 import styles from './Icon.module.scss';
 
-export const Icon = ({ color = 'black', type, className = '' }) => {
+export function Icon({ color = 'black', type, className = '' }) {
   const iconsEnum = {
     black: {
       chevronLeft: chevronLeftBlack,
@@ -33,4 +33,4 @@ export const Icon = ({ color = 'black', type, className = '' }) => {
   return (
     <IconSvg title='' className={`${styles.Icon} ${className}`} aria-hidden />
   );
-};
+}

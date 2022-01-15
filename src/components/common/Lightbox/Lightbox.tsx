@@ -10,11 +10,11 @@ type LightboxProps = {
   onClose?: () => void;
 };
 
-export const Lightbox = ({
+export function Lightbox({
   className,
   children,
   onClose = () => {},
-}: LightboxProps) => {
+}: LightboxProps) {
   const backgroundRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const classes = cx(styles.Wrapper, { [`${className ?? ''}`]: className });
@@ -49,4 +49,4 @@ export const Lightbox = ({
       </div>
     </div>
   );
-};
+}

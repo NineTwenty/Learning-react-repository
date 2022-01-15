@@ -49,7 +49,7 @@ function PrivateRoute({ children, ...rest }: RouteProps) {
   );
 }
 
-const App = (): JSX.Element => {
+function App(): JSX.Element {
   const loggedIn = useSelector(selectLoggedInStatus);
   const isInitialized = useSelector(selectIsAppInitialized);
   const redirectLink = useSelector(selectRedirectLink);
@@ -88,50 +88,48 @@ const App = (): JSX.Element => {
 
   // Render
   return (
-    <>
-      <Switch>
-        <Route path='/login'>
-          <Login loggedIn={loggedIn} />
-        </Route>
-        <PrivateRoute path='/'>
-          <CurrentUserProvider>
+    <Switch>
+      <Route path='/login'>
+        <Login loggedIn={loggedIn} />
+      </Route>
+      <PrivateRoute path='/'>
+        <CurrentUserProvider>
+          <div>
+            <Header
+              menuBtnRef={menuBtnRef}
+              isSideNavForceOpen={isSideNavForceOpen}
+              setSideNavForceOpen={setSideNavForceOpen}
+            />
+            <Navbar
+              menuBtnRef={menuBtnRef}
+              isSideNavForceOpen={isSideNavForceOpen}
+              setSideNavForceOpen={setSideNavForceOpen}
+            />
             <div>
-              <Header
-                menuBtnRef={menuBtnRef}
-                isSideNavForceOpen={isSideNavForceOpen}
-                setSideNavForceOpen={setSideNavForceOpen}
-              />
-              <Navbar
-                menuBtnRef={menuBtnRef}
-                isSideNavForceOpen={isSideNavForceOpen}
-                setSideNavForceOpen={setSideNavForceOpen}
-              />
-              <div>
-                <Switch>
-                  <PrivateRoute path='/dialogs/:id?'>
-                    <Dialogs />
-                  </PrivateRoute>
-                  <PrivateRoute path='/profile/:id?'>
-                    <Profile />
-                  </PrivateRoute>
-                  <PrivateRoute path='/news'>
-                    <News />
-                  </PrivateRoute>
-                  <PrivateRoute path='/music'>
-                    <Music />
-                  </PrivateRoute>
-                  <PrivateRoute path='/settings'>
-                    <Settings />
-                  </PrivateRoute>
-                  <Redirect exact from='/' to='/profile' />
-                </Switch>
-              </div>
+              <Switch>
+                <PrivateRoute path='/dialogs/:id?'>
+                  <Dialogs />
+                </PrivateRoute>
+                <PrivateRoute path='/profile/:id?'>
+                  <Profile />
+                </PrivateRoute>
+                <PrivateRoute path='/news'>
+                  <News />
+                </PrivateRoute>
+                <PrivateRoute path='/music'>
+                  <Music />
+                </PrivateRoute>
+                <PrivateRoute path='/settings'>
+                  <Settings />
+                </PrivateRoute>
+                <Redirect exact from='/' to='/profile' />
+              </Switch>
             </div>
-          </CurrentUserProvider>
-        </PrivateRoute>
-      </Switch>
-    </>
+          </div>
+        </CurrentUserProvider>
+      </PrivateRoute>
+    </Switch>
   );
-};
+}
 
 export default App;

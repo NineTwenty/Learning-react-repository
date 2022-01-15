@@ -1,7 +1,7 @@
 import styles from './Header.module.css';
 import { HamburgerButton } from './HamburgerButton';
 
-const Header = ({ isSideNavForceOpen, setSideNavForceOpen, menuBtnRef }) => {
+function Header({ isSideNavForceOpen, setSideNavForceOpen, menuBtnRef }) {
   return (
     <header className={styles.header}>
       <img
@@ -18,6 +18,6 @@ const Header = ({ isSideNavForceOpen, setSideNavForceOpen, menuBtnRef }) => {
       </HamburgerButton>
     </header>
   );
-};
+}
 
 export default Header;

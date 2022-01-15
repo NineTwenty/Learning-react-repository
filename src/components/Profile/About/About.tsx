@@ -11,7 +11,7 @@ type AboutProps = {
   className?: string;
 };
 
-export const About = ({ className }: AboutProps) => {
+export function About({ className }: AboutProps) {
   const classes = cx(styles.Wrapper, { [`${className ?? ''}`]: className });
   const { id } = useParams<{ id: string | undefined }>();
 
@@ -57,4 +57,4 @@ export const About = ({ className }: AboutProps) => {
       </ul>
     </Wrapper>
   );
-};
+}

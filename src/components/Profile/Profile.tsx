@@ -12,7 +12,7 @@ import { About } from './About/About';
 import { ImagesGallery } from './ImagesGallery/ImagesGallery';
 import { ProfileHeader } from './ProfileHeader/ProfileHeader';
 
-const Profile = () => {
+function Profile() {
   const {
     url,
     path,
@@ -74,6 +74,6 @@ const Profile = () => {
       </Route>
     </Switch>
   );
-};
+}
 
 export default Profile;

@@ -13,14 +13,14 @@ type ImageProps = {
   className?: string;
 };
 
-export const CroppedImage = ({
+export function CroppedImage({
   src,
   alt,
   srcSet,
   width,
   height,
   className,
-}: ImageProps) => {
+}: ImageProps) {
   const [isOpen, setIsOpen] = useState(false);
   const classes = cx(styles.Wrapper, { [`${className ?? ''}`]: className });
 
@@ -42,4 +42,4 @@ export const CroppedImage = ({
       )}
     </>
   );
-};
+}

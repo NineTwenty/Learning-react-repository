@@ -16,7 +16,7 @@ type ProfileHeaderProps = {
   className?: string;
 };
 
-export const ProfileHeader = ({ className }: ProfileHeaderProps) => {
+export function ProfileHeader({ className }: ProfileHeaderProps) {
   const classes = cx(styles.Wrapper, { [`${className ?? ''}`]: className });
   const [isControlsOpen, setIsControlsOpen] = useState(false);
   const { id } = useParams<{ id: string | undefined }>();
@@ -69,4 +69,4 @@ export const ProfileHeader = ({ className }: ProfileHeaderProps) => {
       </div>
     </Wrapper>
   );
-};
+}

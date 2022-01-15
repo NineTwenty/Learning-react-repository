@@ -5,7 +5,7 @@ import { Spinner } from 'components/common/Spinner';
 import Avatar from '../../common/Avatar/Avatar';
 import styles from './DialogItem.module.scss';
 
-export const DialogItem = ({ id, isChosen }) => {
+export function DialogItem({ id, isChosen }) {
   const memberId = useSelector(selectDialogMemberId(id));
   const user = useSelector(selectUserById(memberId));
 
@@ -36,4 +36,4 @@ export const DialogItem = ({ id, isChosen }) => {
       <Link to={`/dialogs/${id}`} className={styles.Link} />
     </div>
   );
-};
+}

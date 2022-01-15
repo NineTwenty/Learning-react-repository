@@ -2,11 +2,11 @@ import { useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './Navbar.module.css';
 
-export const Navbar = ({
+export function Navbar({
   isSideNavForceOpen,
   setSideNavForceOpen,
   menuBtnRef,
-}) => {
+}) {
   const isOpen = isSideNavForceOpen ? style.isOpen : '';
 
   const selfRef = useRef(null);
@@ -76,4 +76,4 @@ export const Navbar = ({
       </NavLink>
     </nav>
   );
-};
+}

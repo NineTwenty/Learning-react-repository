@@ -1,7 +1,7 @@
 import { useFormikContext } from 'formik';
 import styles from './StatusErrors.module.css';
 
-const StatusErrors = () => {
+function StatusErrors() {
   // Get form status from context
   const { status } = useFormikContext();
   // Take errors if there any
@@ -12,6 +12,6 @@ const StatusErrors = () => {
     : '';
 
   return <ul className={styles.errors}>{errorsList}</ul>;
-};
+}
 
 export default StatusErrors;

@@ -7,10 +7,10 @@ type GalleryProps = {
   limit?: number;
 };
 
-export const Gallery = ({ children, className, limit }: GalleryProps) => {
+export function Gallery({ children, className, limit }: GalleryProps) {
   const classes = cx(styles.Wrapper, { className });
   const items =
     Array.isArray(children) && limit ? children.slice(0, limit) : children;
 
   return <div className={classes}>{items}</div>;
-};
+}

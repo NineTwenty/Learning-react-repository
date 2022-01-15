@@ -2,7 +2,7 @@ import { Redirect, useLocation } from 'react-router-dom';
 import style from './Login.module.scss';
 import LoginForm from './LoginForm';
 
-const Login = ({ loggedIn }) => {
+function Login({ loggedIn }) {
   // Get redirected page path
   const location = useLocation();
   const { referrer } = location.state || { referrer: { pathname: '/profile' } };
@@ -20,6 +20,6 @@ const Login = ({ loggedIn }) => {
       </div>
     </div>
   );
-};
+}
 
 export default Login;

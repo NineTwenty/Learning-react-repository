@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { fetchDialogs, submitMessage } from 'data/entities';
 import styles from './ChatInputs.module.css';
 
-const ChatInputs = (props) => {
+function ChatInputs(props) {
   const dispatch = useDispatch();
   const formRef = useRef();
 
@@ -73,6 +73,6 @@ const ChatInputs = (props) => {
       </Formik>
     </div>
   );
-};
+}
 
 export default ChatInputs;

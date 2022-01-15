@@ -23,7 +23,7 @@ type PostProps = {
   id: string;
 };
 
-export const Post = ({ id }: PostProps) => {
+export function Post({ id }: PostProps) {
   const dispatch = useAppDispatch();
   const currentUser = useCurrentUser();
   const post = useSelector(selectPostById(id));
@@ -60,4 +60,4 @@ export const Post = ({ id }: PostProps) => {
       <Separator />
     </div>
   );
-};
+}

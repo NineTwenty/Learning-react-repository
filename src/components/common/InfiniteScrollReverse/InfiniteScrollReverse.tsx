@@ -118,7 +118,7 @@ interface InfiniteScrollProps {
 }
 
 // Component
-const InfiniteScrollReverse = (props: InfiniteScrollProps) => {
+function InfiniteScrollReverse(props: InfiniteScrollProps) {
   const { children, loadMore, hasMore } = props;
 
   const initialState: InfiniteScrollState = {
@@ -265,6 +265,6 @@ const InfiniteScrollReverse = (props: InfiniteScrollProps) => {
       <div ref={bottomRef} className={styles.bottomSentinel} />
     </div>
   );
-};
+}
 
 export default InfiniteScrollReverse;

@@ -12,7 +12,7 @@ import { DialogsList } from './DialogsList/DIalogsList';
 import Chat from './Chat/Chat';
 import styles from './Dialogs.module.css';
 
-const Dialogs = () => {
+function Dialogs() {
   const { id: currentDialogId } = useParams<{ id: string }>();
   const userId = useAppSelector(selectCurrentUserId);
   const dialogs = useAppSelector(selectDialogs);
@@ -93,6 +93,6 @@ const Dialogs = () => {
       )}
     </div>
   );
-};
+}
 
 export default React.memo(Dialogs);

@@ -14,7 +14,7 @@ const validate = (values) => {
   }
 };
 
-const PostingForm = ({ header, onSubmit }) => {
+function PostingForm({ header, onSubmit }) {
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -55,6 +55,6 @@ const PostingForm = ({ header, onSubmit }) => {
       </Formik>
     </Wrapper>
   );
-};
+}
 
 export default PostingForm;

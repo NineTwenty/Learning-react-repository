@@ -9,7 +9,7 @@ type ImagesGalleryProps = {
   limit?: number;
 };
 
-export const ImagesGallery = ({ className, limit }: ImagesGalleryProps) => {
+export function ImagesGallery({ className, limit }: ImagesGalleryProps) {
   const { id } = useParams<{ id: string | undefined }>();
 
   const user = useSelector(selectUserById(id));
@@ -27,4 +27,4 @@ export const ImagesGallery = ({ className, limit }: ImagesGalleryProps) => {
       <Gallery limit={limit}>{croppedImages}</Gallery>
     </div>
   );
-};
+}

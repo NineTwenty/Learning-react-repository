@@ -8,12 +8,12 @@ interface TextFieldProps {
   type?: 'text' | 'password' | 'email';
 }
 
-const TextField = ({
+function TextField({
   name,
   label,
   type = 'text',
   placeholder,
-}: TextFieldProps) => {
+}: TextFieldProps) {
   return (
     <div className={style.wrapper}>
       <label className={style.label}>
@@ -27,6 +27,6 @@ const TextField = ({
       </label>
     </div>
   );
-};
+}
 
 export default TextField;

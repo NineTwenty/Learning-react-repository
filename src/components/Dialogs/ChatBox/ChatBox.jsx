@@ -10,7 +10,7 @@ import InfiniteScrollReverse from 'components/common/InfiniteScrollReverse/Infin
 import MessageItem from '../MessageItem/MessageItem';
 import styles from './ChatBox.module.css';
 
-const ChatBox = ({ dialogId, userId }) => {
+function ChatBox({ dialogId, userId }) {
   const dispatch = useDispatch();
 
   // Clear messages on dialog or page change
@@ -60,6 +60,6 @@ const ChatBox = ({ dialogId, userId }) => {
       </InfiniteScrollReverse>
     </div>
   );
-};
+}
 
 export default React.memo(ChatBox);

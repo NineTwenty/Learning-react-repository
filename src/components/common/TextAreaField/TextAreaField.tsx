@@ -10,14 +10,14 @@ interface TextAreaFieldProps {
   disabled?: boolean;
 }
 
-export const TextAreaField = ({
+export function TextAreaField({
   className,
   name,
   rows,
   cols,
   onKeyPress,
   disabled,
-}: TextAreaFieldProps) => {
+}: TextAreaFieldProps) {
   return (
     <Field
       as='textarea'
@@ -31,4 +31,4 @@ export const TextAreaField = ({
       }}
     />
   );
-};
+}

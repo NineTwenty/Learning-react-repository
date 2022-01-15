@@ -11,7 +11,7 @@ type CurrentUserProviderProps = {
   children: React.ReactNode;
 };
 
-export const CurrentUserProvider = ({ children }: CurrentUserProviderProps) => {
+export function CurrentUserProvider({ children }: CurrentUserProviderProps) {
   const assignError = new Error(
     'Attempt to assign value while user not authorized'
   );
@@ -31,7 +31,7 @@ export const CurrentUserProvider = ({ children }: CurrentUserProviderProps) => {
       {children}
     </currentUserContext.Provider>
   );
-};
+}
 
 export const useCurrentUser = () => {
   const currentUser = useContext(currentUserContext);

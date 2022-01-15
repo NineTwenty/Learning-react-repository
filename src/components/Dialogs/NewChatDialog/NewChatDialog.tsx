@@ -13,7 +13,7 @@ interface NewChatDialogProps extends React.ComponentPropsWithoutRef<'div'> {
   onClose: () => void;
 }
 
-export const NewChatDialog = ({ onClose, className }: NewChatDialogProps) => {
+export function NewChatDialog({ onClose, className }: NewChatDialogProps) {
   const dispatch = useAppDispatch();
 
   const currentUser = useCurrentUser();
@@ -47,4 +47,4 @@ export const NewChatDialog = ({ onClose, className }: NewChatDialogProps) => {
       <ul className={styles.List}>{friendsList}</ul>
     </Dialog>
   );
-};
+}

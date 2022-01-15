@@ -11,7 +11,7 @@ type FriendsGalleryProps = {
   limit?: number;
 };
 
-export const FriendsGallery = ({ className, limit }: FriendsGalleryProps) => {
+export function FriendsGallery({ className, limit }: FriendsGalleryProps) {
   const dispatch = useDispatch();
 
   // Fetch all users
@@ -64,4 +64,4 @@ export const FriendsGallery = ({ className, limit }: FriendsGalleryProps) => {
       {friendsCards}
     </Gallery>
   );
-};
+}

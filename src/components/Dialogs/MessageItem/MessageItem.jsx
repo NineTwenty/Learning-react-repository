@@ -4,7 +4,7 @@ import { Spinner } from 'components/common/Spinner';
 import Avatar from '../../common/Avatar/Avatar';
 import styles from './MessageItem.module.css';
 
-const MessageItem = ({ text, id, authorId, isMine }) => {
+function MessageItem({ text, id, authorId, isMine }) {
   const wrapperClasses = `${styles.messageItemWrapper} ${
     isMine ? styles.isMine : ''
   }`;
@@ -31,6 +31,6 @@ const MessageItem = ({ text, id, authorId, isMine }) => {
       <Spinner />
     </div>
   );
-};
+}
 
 export default MessageItem;

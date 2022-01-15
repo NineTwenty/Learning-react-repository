@@ -1,7 +1,7 @@
 import Avatar from 'components/common/Avatar/Avatar';
 import styles from './ChatHeader.module.css';
 
-const ChatHeader = ({ member }) => {
+function ChatHeader({ member }) {
   const { avatar, firstName, lastName } = member;
   const fullname = `${firstName} ${lastName}`;
 
@@ -12,6 +12,6 @@ const ChatHeader = ({ member }) => {
       <Avatar size='small' {...{ avatar, name: fullname }} />
     </div>
   );
-};
+}
 
 export default ChatHeader;

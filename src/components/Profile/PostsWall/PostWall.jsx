@@ -8,7 +8,7 @@ import PostingForm from './PostingForm';
 import { Post } from './Post/Post';
 import style from './PostWall.module.css';
 
-const PostWall = ({ className }) => {
+function PostWall({ className }) {
   const dispatch = useDispatch();
   const { id: feedId } = useParams();
 
@@ -31,6 +31,6 @@ const PostWall = ({ className }) => {
       <List>{posts}</List>
     </div>
   );
-};
+}
 
 export default PostWall;

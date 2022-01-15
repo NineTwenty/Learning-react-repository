@@ -6,7 +6,7 @@ interface CheckBoxFieldProps {
   label: string;
 }
 
-const CheckboxField = ({ name, label }: CheckBoxFieldProps) => {
+function CheckboxField({ name, label }: CheckBoxFieldProps) {
   return (
     <div>
       <label className={styles.label}>
@@ -16,6 +16,6 @@ const CheckboxField = ({ name, label }: CheckBoxFieldProps) => {
       </label>
     </div>
   );
-};
+}
 
 export default CheckboxField;

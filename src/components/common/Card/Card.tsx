@@ -9,7 +9,7 @@ type CardProps = {
   header: string;
 };
 
-export const Card = ({ children, className, header }: CardProps) => {
+export function Card({ children, className, header }: CardProps) {
   const classes = cx(styles.CardWrapper, className);
 
   return (
@@ -21,4 +21,4 @@ export const Card = ({ children, className, header }: CardProps) => {
       <div className={styles.Content}>{children}</div>
     </Wrapper>
   );
-};
+}

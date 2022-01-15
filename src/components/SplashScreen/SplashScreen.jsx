@@ -1,7 +1,7 @@
 import styles from './SplashScreen.module.css';
 import { Spinner } from '../common/Spinner';
 
-export const SplashScreen = () => {
+export function SplashScreen() {
   return (
     <div className={styles.splashScreenWrapper}>
       <div className={styles.splashScreenCentering}>
@@ -9,4 +9,4 @@ export const SplashScreen = () => {
       </div>
     </div>
   );
-};
+}

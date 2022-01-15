@@ -27,7 +27,7 @@ const validate = ({ login, password }: LoginFormValues) => {
   return error;
 };
 
-const LoginForm = () => {
+function LoginForm() {
   const dispatch = useAppDispatch();
 
   const inititalValues: LoginFormValues = {
@@ -79,6 +79,6 @@ const LoginForm = () => {
       </Formik>
     </div>
   );
-};
+}
 
 export default LoginForm;

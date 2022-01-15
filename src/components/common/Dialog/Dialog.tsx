@@ -9,7 +9,7 @@ interface DialogProps extends React.ComponentPropsWithoutRef<'div'> {
   onClose: () => void;
 }
 
-export const Dialog = ({ onClose, className, children }: DialogProps) => {
+export function Dialog({ onClose, className, children }: DialogProps) {
   const classes = cx(styles.Wrapper, className);
 
   return (
@@ -26,4 +26,4 @@ export const Dialog = ({ onClose, className, children }: DialogProps) => {
       </Wrapper>
     </Portal>
   );
-};
+}

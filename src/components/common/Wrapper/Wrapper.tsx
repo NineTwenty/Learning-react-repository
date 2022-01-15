@@ -7,8 +7,8 @@ type WrapperProps = {
   className?: string;
 };
 
-export const Wrapper = ({ className, children }: WrapperProps) => {
+export function Wrapper({ className, children }: WrapperProps) {
   const classes = cx(styles.Wrapper, className);
 
   return <div className={classes}>{children}</div>;
-};
+}

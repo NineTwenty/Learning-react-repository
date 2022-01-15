@@ -1,6 +1,6 @@
 import styles from './Avatar.module.css';
 
-const Avatar = ({ className = '', avatar, name, size = 'medium' }) => {
+function Avatar({ className = '', avatar, name, size = 'medium' }) {
   const sizeMod = styles[`Wrapper_size_${size}`];
   return (
     <div className={`${className} ${styles.Wrapper} ${sizeMod}`}>
@@ -8,6 +8,6 @@ const Avatar = ({ className = '', avatar, name, size = 'medium' }) => {
       {/* <span className={`${styles.Status} ${styles.online}`}>1</span> */}
     </div>
   );
-};
+}
 
 export default Avatar;
