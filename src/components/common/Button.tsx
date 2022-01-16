@@ -17,6 +17,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       type = 'button',
       styleType = 'default',
       onClick,
+      ...props
     }: ButtonProps,
     ref
   ) => {
@@ -28,8 +29,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <>
-        {/* eslint-disable-next-line react/button-has-type */}
-        <button className={classes} type={type} ref={ref} onClick={onClick}>
+        {/* eslint-disable react/button-has-type */}
+        <button
+          className={classes}
+          type={type}
+          ref={ref}
+          onClick={onClick}
+          {...props}
+        >
           {children}
         </button>
       </>
