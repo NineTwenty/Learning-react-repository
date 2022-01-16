@@ -24,6 +24,10 @@ describe('Dialogs', () => {
 
         // Visit someone profile
         cy.visit('/profile/1');
+        cy.findAllByTestId('profileControls')
+          .findAllByLabelText('hamburger button')
+          .click();
+
         // Find and click create dialog button
         cy.findAllByText('Message').click();
 
