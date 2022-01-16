@@ -1,4 +1,3 @@
-import React from 'react';
 import { useCurrentUser } from 'contexts/current-user-context';
 import { Card } from 'components/common/Card/Card';
 import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom';
