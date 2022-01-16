@@ -46,6 +46,7 @@ export function ProfileHeader({ className }: ProfileHeaderProps) {
         className={cx(styles.Controls, {
           [styles.Controls__open]: isControlsOpen,
         })}
+        data-testid='profileControls'
       >
         {user.id !== loggedUserId && (
           <HamburgerButton
