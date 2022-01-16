@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { fetchDialogs, submitMessage } from 'data/entities';
 import styles from './ChatInputs.module.css';
 
-function ChatInputs(props) {
+function ChatInputs({ dialogId }) {
   const dispatch = useDispatch();
   const formRef = useRef();
 
@@ -28,7 +28,7 @@ function ChatInputs(props) {
       created: Date.now(),
       text,
       unread: true,
-      dialogId: props.dialogId,
+      dialogId,
     };
 
     // Submit message
