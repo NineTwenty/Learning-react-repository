@@ -9,6 +9,9 @@ interface ButtonProps extends React.ComponentPropsWithRef<'button'> {
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
+      /* eslint-disable react/prop-types */
+      // False positive
+      // eslint-plugin-react #3140
       className,
       children,
       type = 'button',

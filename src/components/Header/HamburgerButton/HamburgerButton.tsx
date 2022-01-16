@@ -11,6 +11,9 @@ interface HamburgerButtonProps
 const component = React.forwardRef<HTMLButtonElement, HamburgerButtonProps>(
   (
     {
+      /* eslint-disable react/prop-types */
+      // False positive
+      // eslint-plugin-react #3140
       className,
       isOpen,
       onClick,
