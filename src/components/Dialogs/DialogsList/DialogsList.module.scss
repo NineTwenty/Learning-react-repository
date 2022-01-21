@@ -33,6 +33,11 @@
 
   &_hidden {
     flex: 0.000001;
+
+    .Header {
+      /* Hide heading on slide animation */
+      opacity: 0;
+    }
   }
 
   /* 
@@ -78,6 +83,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* Hide heading on slide animation */
+  transition: opacity 50ms cubic-bezier(1, -0.11, 0.74, 1.11);
 
   > h2 {
     margin: 0;
