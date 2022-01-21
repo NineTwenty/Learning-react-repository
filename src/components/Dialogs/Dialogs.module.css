@@ -1,14 +1,12 @@
 .dialogsWrapper {
   position: relative;
   display: flex;
-  flex-flow: column;
   height: 95vh;
   background: var(--color-background);
 }
 
 @media (min-width: 769px) {
   .dialogsWrapper {
-    flex-flow: row;
     max-width: 70ch;
     height: 90vh;
 
@@ -16,20 +14,6 @@
     border-radius: var(--border-radius-small);
 
     box-shadow: 0 0.25em 0.5em var(--color-shadow-light);
-  }
-}
-
-.dialogsWrapper.dialogChosen .dialogsList {
-  width: auto;
-}
-
-.dialogsChat {
-  flex: 1 1;
-}
-
-@media (min-width: 769px) {
-  .dialogsChat {
-    flex-basis: 70%;
   }
 }
 

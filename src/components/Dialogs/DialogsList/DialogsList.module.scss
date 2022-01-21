@@ -1,38 +1,73 @@
 .Wrapper {
-  position: absolute;
-  z-index: 2;
-  transform: translateX(0);
-  transition: transform 0.2s cubic-bezier(0, 0.77, 0.72, 1.03);
+  --fixed-width: 18rem;
 
+  z-index: 2;
   display: flex;
   flex-flow: column;
-  flex: 1 1;
-  width: 100%;
-  min-height: 0;
-  height: 95vh;
+  height: 90vh;
   border-right: 0.08em solid var(--color-border-light);
+
+  /* 
+    Set explicit width 
+    to have constant value
+    for left offset
+  */
+  width: var(--fixed-width);
 
   background: var(--color-background);
 
-  @media (min-width: 769px) {
-    transition: none;
+  /*
+    Overflow hidden necessary to allow 
+    flex: 0.01 value to shrink
+    beyond actual content width
+  */
+  overflow: hidden;
 
-    flex-basis: 30%;
-    height: 100%;
-    position: static;
-
-    background: none;
-  }
+  /* 
+    Open/Close animation for desktop layout
+    based on shrinking caused by
+    small flex-grow value
+  */
+  transition: flex-grow 150ms cubic-bezier(0.39, 0.58, 0.57, 1);
+  flex: 4;
 
   &_hidden {
+    flex: 0.000001;
+  }
+
+  /* 
+    Mobile layout with overlaping
+  */
+  @media (max-width: 769px) {
+    height: 95vh;
     position: absolute;
-    height: min-content;
-    transform: translateX(-900%);
+
+    /* 
+      Set left offset to minus width
+      to place component right outside left
+      screen edge for constat initial positioning
+      and to avoid visible slide out animation
+      on layout change
+    */
+    left: calc(var(--fixed-width) * -1);
+
+    /* 
+      Open/Close animation for mobile layout
+      based on absolute positioning and
+      translation from outside left screen side
+    */
+    transition: transform 150ms cubic-bezier(0.39, 0.58, 0.57, 1);
+    transform: translateX(100%);
+
+    &_hidden {
+      transform: translateX(0%);
+    }
   }
 }
 
 .List {
   overflow-y: auto;
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
   list-style-type: none;
