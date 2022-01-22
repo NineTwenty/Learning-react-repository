@@ -25,6 +25,7 @@ import feedsFixture from 'api/fixtures/feeds';
 //  4.3 Messages
 //  4.4 Posts
 //  4.5 Authentication
+//  4.7 Registration
 // ==================
 
 function createJWT(user) {
@@ -274,6 +275,51 @@ export function makeServer({ environment = 'development' } = {}) {
         const { id } = request.params;
 
         return schema.feeds.find(id);
+      });
+
+      // ==================
+      // 4.7 Registration
+      // ==================
+
+      this.post('/registration', (schema, request) => {
+        const {
+          firstName,
+          lastName,
+          email,
+          password,
+          address,
+          phoneNumber,
+          birthDate,
+        } = JSON.parse(request.requestBody);
+
+        const isUserExist = schema.users.findBy({ email });
+
+        if (isUserExist) {
+          return new Response(409, {}, [
+            'Account with such email already exists',
+          ]);
+        }
+
+        const user = schema.users.create({
+          fullName: `${firstName} ${lastName}`,
+          firstName,
+          lastName,
+          email,
+          password,
+          address,
+          phoneNumber,
+          birthDate,
+          online: false,
+          lastOnlineTime: Date.now(),
+          avatar: 'https://picsum.photos/200?random=0.885343491559527585',
+          music: [],
+          images: [],
+          feed: schema.feeds.create(),
+        });
+
+        const token = createJWT(user);
+
+        return new Response(200, {}, { token });
       });
     },
   });
