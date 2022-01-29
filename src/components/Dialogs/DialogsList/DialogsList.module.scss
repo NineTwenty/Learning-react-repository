@@ -33,6 +33,8 @@
 
   &_hidden {
     flex: 0.000001;
+    /* Hide border still visible after flex shrink */
+    border-right: none;
 
     .Header {
       /* Hide heading on slide animation */
