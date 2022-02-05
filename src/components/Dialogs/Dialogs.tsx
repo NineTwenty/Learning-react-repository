@@ -80,7 +80,7 @@ function Dialogs() {
         />
       )}
 
-      <DialogsList isOpen={isDialogsListOpen} className={styles.dialogsList}>
+      <DialogsList isOpen={isDialogsListOpen}>
         {isDialogsLoaded ? populateDialogs(dialogs) : <Spinner />}
       </DialogsList>
 
