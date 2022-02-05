@@ -3,7 +3,7 @@ import Button from 'components/common/Button';
 import styles from './DialogsList.module.scss';
 import { NewChatDialog } from '../NewChatDialog/NewChatDialog';
 
-export function DialogsList({ isOpen, children, className }) {
+export function DialogsList({ isOpen, children, className = '' }) {
   const [NewChatDialogIsOpen, setNewChatDialogIsOpen] = useState();
 
   const dialogsClasses = `${styles.Wrapper} ${
