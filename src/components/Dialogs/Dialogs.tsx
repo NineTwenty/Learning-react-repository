@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import cx from 'classnames';
 import { fetchDialogs, selectDialogs } from 'data/entities';
 import { useAppSelector } from 'hooks/hooks';
 import { Dialog } from 'common/entities.types';
@@ -86,7 +87,9 @@ function Dialogs() {
 
       {isDialogChosen && (
         <Chat
-          className={styles.dialogsChat}
+          className={cx(styles.dialogsChat, {
+            [styles.dialogsChat_overlapped]: isDialogsListOpen,
+          })}
           dialogId={currentDialogId}
           userId={userId}
         />
