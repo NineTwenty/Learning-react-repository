@@ -46,9 +46,9 @@ function Dialogs() {
   };
 
   // Show Chat if dialog is chosen
-  const wrapperClasses = `${styles.dialogsWrapper} ${
-    isDialogChosen ? styles.dialogChosen : ''
-  }`;
+  const wrapperClasses = cx(styles.dialogsWrapper, {
+    [styles.dialogChosen]: isDialogChosen,
+  });
 
   // Setup state for dialogs list control
   const [isDialogsListOpen, setIsDialogsListOpen] = useState(!isDialogChosen);
