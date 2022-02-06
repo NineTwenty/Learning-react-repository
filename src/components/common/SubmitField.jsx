@@ -7,7 +7,9 @@ function SubmitField(props) {
   return (
     <div className={styles.submitField}>
       <StatusErrors />
-      <Button type='submit'>{buttonText}</Button>
+      <Button className={styles.SubmitButton} type='submit'>
+        {buttonText}
+      </Button>
     </div>
   );
 }
