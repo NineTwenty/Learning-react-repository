@@ -5,6 +5,7 @@ export {
   authSliceName,
   authReducer,
   submitLoginForm,
+  handleUserRegistration,
   authorizationRequest,
   selectLoggedInStatus,
   selectCurrentUserId,

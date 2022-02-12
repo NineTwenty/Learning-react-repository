@@ -46,6 +46,7 @@ const initialState: AuthState = {
 };
 
 const loginActions = { loginStarted, loginCompleted };
+const registrationActions = createLoadingActions(sliceName, 'registration');
 const authorizationActions = createLoadingActions<EntityId>(
   sliceName,
   'authorization'
@@ -171,6 +172,44 @@ export const submitLoginForm =
       }
     } finally {
       dispatch(loginActions.loginCompleted());
+    }
+  };
+
+export const handleUserRegistration =
+  (
+    userData: Partial<User> & {
+      firstName: string;
+      lastName: string;
+      email: string;
+      password: string;
+    }
+  ) =>
+  async (dispatch: AppDispatch): Promise<{ payload: string[] } | void> => {
+    dispatch(registrationActions.request());
+
+    try {
+      // Registration
+      const { token } = await api.post<{ token: string }>(
+        '/registration',
+        userData
+      );
+
+      if (token) {
+        // Set token
+        localStorage.setItem('token', token);
+
+        dispatch(registrationActions.success());
+
+        // Authorize user after successful registration
+        await dispatch(authorizationRequest());
+      }
+    } catch (err) {
+      dispatch(registrationActions.failure());
+      if (axios.isAxiosError(err)) {
+        if (Array.isArray(err.response?.data))
+          // Return error to form
+          return { payload: err.response?.data as string[] };
+      }
     }
   };
 
