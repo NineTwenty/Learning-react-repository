@@ -18,7 +18,7 @@ function Dialogs() {
   const userId = useAppSelector(selectCurrentUserId);
   const dialogs = useAppSelector(selectDialogs);
   const isDialogChosen = !!currentDialogId;
-  const isDialogsLoaded = dialogs && dialogs.length;
+  const isDialogsLoaded = dialogs;
 
   const dispatch = useDispatch();
 
