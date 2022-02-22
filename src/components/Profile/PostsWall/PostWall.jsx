@@ -28,7 +28,7 @@ function PostWall({ className }) {
   return (
     <div className={classes}>
       <PostingForm header='Create Post' onSubmit={submitPost} />
-      <List>{posts}</List>
+      {posts?.length ? <List>{posts}</List> : null}
     </div>
   );
 }
