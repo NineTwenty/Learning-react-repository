@@ -58,7 +58,7 @@ function LoginForm() {
         validate={validate}
       >
         {() => (
-          <Form className={styles.form}>
+          <Form data-testid='loginForm' className={styles.form}>
             <TextField
               name='login'
               label='Login'
