@@ -86,19 +86,21 @@ export const fetchPosts = () => async (dispatch: AppDispatch) => {
   }
 };
 
-export const submitPost = (newPost: Post) => async (dispatch: AppDispatch) => {
-  dispatch(submitRequest.request());
-  try {
-    const { post } = await api.post<{ post: Post }>('posts', newPost);
+export const submitPost =
+  (newPost: { postText: string; feedId: string }) =>
+  async (dispatch: AppDispatch) => {
+    dispatch(submitRequest.request());
+    try {
+      const { post } = await api.post<{ post: Post }>('posts', newPost);
 
-    dispatch(submitRequest.success(post));
-  } catch (error) {
-    if (isTokenExpireResponse(error)) {
-      dispatch(submitRequest.failure());
-      dispatch(logout());
+      dispatch(submitRequest.success(post));
+    } catch (error) {
+      if (isTokenExpireResponse(error)) {
+        dispatch(submitRequest.failure());
+        dispatch(logout());
+      }
     }
-  }
-};
+  };
 
 export const deletePost = (id: string) => async (dispatch: AppDispatch) => {
   dispatch(deleteRequest.request());
