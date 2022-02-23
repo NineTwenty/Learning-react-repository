@@ -1,27 +1,44 @@
 import { useParams } from 'react-router-dom';
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikHelpers } from 'formik';
 import { TextAreaField } from 'components/common/TextAreaField';
 import SubmitField from 'components/common/SubmitField';
 import { Separator } from 'components/common/Separator/Separator';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFeed, getIsLoadingPostStatus } from 'data/entities';
 import { Wrapper } from 'components/common/Wrapper/Wrapper';
+import { AppDispatch } from 'data/store';
 import style from './PostingForm.module.css';
 
-const validate = (values) => {
+type UnregisteredPost = { postText: string; feedId: string };
+
+type Props = {
+  header: string;
+  onSubmit: (
+    newPost: UnregisteredPost
+  ) => (dispatch: AppDispatch) => Promise<void>;
+};
+
+type FormValues = {
+  postText: string;
+};
+
+const validate = (values: FormValues) => {
   if (!values.postText) {
-    return 'Field is empty';
+    return { postText: 'Field is empty' };
   }
 };
 
-function PostingForm({ header, onSubmit }) {
+function PostingForm({ header, onSubmit }: Props) {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
 
-  const dispatchOnSubmit = async (posts, formikBag) => {
+  const dispatchOnSubmit = async (
+    posts: FormValues,
+    formikBag: FormikHelpers<FormValues>
+  ) => {
     const post = { ...posts, feedId: id };
 
-    await dispatch(onSubmit(post));
+    dispatch(onSubmit(post));
     // Update changed feed
     dispatch(fetchFeed(id));
 
@@ -30,23 +47,21 @@ function PostingForm({ header, onSubmit }) {
 
   const isLoading = useSelector(getIsLoadingPostStatus);
 
+  const initialValues: FormValues = {
+    postText: '',
+  };
+
   return (
     <Wrapper className={style.wrapper}>
       <h3 className={style.header}>{header}</h3>
       <Separator />
       <Formik
-        initialValues={{
-          postText: '',
-        }}
+        initialValues={initialValues}
         onSubmit={dispatchOnSubmit}
         validate={validate}
       >
         <Form data-testid='postingForm' className={style.form}>
-          <TextAreaField
-            placeholder='Write something...'
-            name='postText'
-            disabled={isLoading}
-          />
+          <TextAreaField name='postText' disabled={isLoading} />
           <Separator />
           <div className={style.submitField}>
             <SubmitField buttonText='Post' />
