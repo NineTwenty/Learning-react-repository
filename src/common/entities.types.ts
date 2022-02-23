@@ -5,12 +5,12 @@ export type User = {
   firstName: string;
   lastName: string;
   email: string;
-  address: string;
-  phoneNumber: string;
-  birthDate: string;
+  address?: string;
+  phoneNumber?: string;
+  birthDate?: string;
   online: boolean;
   lastOnlineTime: string;
-  avatar: string;
+  avatar?: string;
   friends: number[];
   music: [];
   images: Image[];
