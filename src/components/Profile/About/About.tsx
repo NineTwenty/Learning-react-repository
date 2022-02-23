@@ -21,9 +21,9 @@ export function About({ className }: AboutProps) {
     return <Spinner />;
   }
 
-  const birthDate = new Date(
-    Date.parse(currentUser.birthDate)
-  ).toLocaleDateString();
+  const birthDate =
+    currentUser.birthDate &&
+    new Date(Date.parse(currentUser.birthDate)).toLocaleDateString();
 
   return (
     <Wrapper className={classes}>
@@ -42,18 +42,24 @@ export function About({ className }: AboutProps) {
           <span className={styles.Field}>Email: </span>
           {currentUser.email}
         </li>
-        <li>
-          <span className={styles.Field}>Address: </span>
-          {currentUser.address}
-        </li>
-        <li>
-          <span className={styles.Field}>Phone Number: </span>
-          {currentUser.phoneNumber}
-        </li>
-        <li>
-          <span className={styles.Field}>Birth Date: </span>
-          {birthDate}
-        </li>
+        {currentUser.address && (
+          <li>
+            <span className={styles.Field}>Address: </span>
+            {currentUser.address}
+          </li>
+        )}
+        {currentUser.phoneNumber && (
+          <li>
+            <span className={styles.Field}>Phone Number: </span>
+            {currentUser.phoneNumber}
+          </li>
+        )}
+        {currentUser.birthDate && (
+          <li>
+            <span className={styles.Field}>Birth Date: </span>
+            {birthDate}
+          </li>
+        )}
       </ul>
     </Wrapper>
   );
