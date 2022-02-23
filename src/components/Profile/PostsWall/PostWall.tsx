@@ -8,9 +8,13 @@ import PostingForm from './PostingForm';
 import { Post } from './Post/Post';
 import style from './PostWall.module.css';
 
-function PostWall({ className }) {
+type Props = {
+  className: string;
+};
+
+function PostWall({ className }: Props) {
   const dispatch = useDispatch();
-  const { id: feedId } = useParams();
+  const { id: feedId } = useParams<{ id: string }>();
 
   const feed = useSelector(selectFeedById(feedId));
   const posts = feed?.posts.map((id) => <Post id={id} key={id} />).reverse();
