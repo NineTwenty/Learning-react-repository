@@ -4,7 +4,14 @@ import { Spinner } from 'components/common/Spinner';
 import Avatar from '../../common/Avatar/Avatar';
 import styles from './MessageItem.module.css';
 
-function MessageItem({ text, id, authorId, isMine }) {
+type Props = {
+  text: string;
+  id: string;
+  authorId: string;
+  isMine: boolean;
+};
+
+function MessageItem({ text, id, authorId, isMine }: Props) {
   const wrapperClasses = `${styles.messageItemWrapper} ${
     isMine ? styles.isMine : ''
   }`;
@@ -12,14 +19,14 @@ function MessageItem({ text, id, authorId, isMine }) {
   const author = useSelector(selectUserById(authorId));
 
   if (author) {
-    const { avatar, username } = author;
+    const { avatar, fullName } = author;
     return (
       <div className={wrapperClasses}>
         <Avatar
           className={styles.messageItemAvatar}
           size='small'
           avatar={avatar}
-          name={username}
+          name={fullName}
           key={id}
         />
         <span className={styles.messageItemText}>{text}</span>
