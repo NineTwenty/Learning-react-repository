@@ -9,7 +9,7 @@ import { Spinner } from 'components/common/Spinner';
 import { HamburgerButton } from 'components/Header/HamburgerButton/HamburgerButton';
 import { selectCurrentUserId } from 'data';
 import { DialogItem } from './DialogItem/DialogItem';
-import { DialogsList } from './DialogsList/DIalogsList';
+import { DialogsList } from './DialogsList/DialogsList';
 import Chat from './Chat/Chat';
 import styles from './Dialogs.module.css';
 
