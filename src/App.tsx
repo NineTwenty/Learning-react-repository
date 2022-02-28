@@ -65,7 +65,7 @@ function App(): JSX.Element {
 
   // Navbar related
   const [isSideNavForceOpen, setSideNavForceOpen] = useState(false);
-  const menuBtnRef = useRef(null);
+  const menuBtnRef = useRef<HTMLButtonElement>(null);
 
   // Check if delayed redirect happend & inform state about it
   useEffect(() => {

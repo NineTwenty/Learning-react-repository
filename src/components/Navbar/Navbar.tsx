@@ -2,28 +2,35 @@ import { useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './Navbar.module.css';
 
+type Props = {
+  isSideNavForceOpen: boolean;
+  setSideNavForceOpen: (state: boolean) => void;
+  menuBtnRef: React.RefObject<HTMLButtonElement>;
+};
+
 export function Navbar({
   isSideNavForceOpen,
   setSideNavForceOpen,
   menuBtnRef,
-}) {
+}: Props) {
   const isOpen = isSideNavForceOpen ? style.isOpen : '';
 
-  const selfRef = useRef(null);
+  const selfRef = useRef<HTMLElement>(null);
 
   // Close on click outside navbar
   useEffect(() => {
     const menuBtn = menuBtnRef.current;
 
     // Click event handler
-    const closeOnOutsideClick = ({ target }) => {
+    const closeOnOutsideClick = ({ target }: MouseEvent) => {
+      if (!target) return;
       // Check if it's not the toggle button
-      if (menuBtn && !menuBtn.contains(target)) {
+      if (menuBtn && !menuBtn.contains(target as Element)) {
         // Check if navbar is open & target is part of navbar
         if (
           isSideNavForceOpen &&
           selfRef.current &&
-          !selfRef.current.contains(target)
+          !selfRef.current.contains(target as Element)
         ) {
           // Close navbar
           setSideNavForceOpen(false);
