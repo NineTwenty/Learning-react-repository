@@ -3,8 +3,14 @@ import Button from 'components/common/Button';
 import styles from './DialogsList.module.scss';
 import { NewChatDialog } from '../NewChatDialog/NewChatDialog';
 
-export function DialogsList({ isOpen, children, className = '' }) {
-  const [NewChatDialogIsOpen, setNewChatDialogIsOpen] = useState();
+type Props = {
+  isOpen: boolean;
+  children: React.ReactNode;
+  className?: string;
+};
+
+export function DialogsList({ isOpen, children, className = '' }: Props) {
+  const [NewChatDialogIsOpen, setNewChatDialogIsOpen] = useState(false);
 
   const dialogsClasses = `${styles.Wrapper} ${
     isOpen ? '' : styles.Wrapper_hidden
