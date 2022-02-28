@@ -6,10 +6,16 @@ import SignUpModalForm from 'components/Login/SignUpModalForm';
 import style from './Login.module.scss';
 import LoginForm from './LoginForm';
 
-function Login({ loggedIn }) {
+type Props = {
+  loggedIn: boolean;
+};
+
+function Login({ loggedIn }: Props) {
   // Get redirected page path
-  const location = useLocation();
-  const { referrer } = location.state || { referrer: { pathname: '/profile' } };
+  const location = useLocation<{ referrer: { pathname: string } }>();
+  const { referrer } = location.state || {
+    referrer: { pathname: '/profile' },
+  };
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -22,7 +28,7 @@ function Login({ loggedIn }) {
       <div className={style.Form}>
         <h1>Sign in</h1>
         <p>Enter your login or email address and password to sign in.</p>
-        <LoginForm loggedIn={loggedIn} />
+        <LoginForm />
         <Separator className={style.Separator} />
         <h2>Don&#39;t have an account?</h2>
         <Button
