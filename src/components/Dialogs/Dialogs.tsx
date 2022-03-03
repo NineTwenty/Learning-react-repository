@@ -80,12 +80,11 @@ function Dialogs() {
           aria-label='toggle dialogs list'
         />
       )}
-
       <DialogsList isOpen={isDialogsListOpen}>
         {isDialogsLoaded ? populateDialogs(dialogs) : <Spinner />}
       </DialogsList>
-
-      {isDialogChosen && (
+      {/* TODO: Redo userId type to account protected routes and loggedIn state */}
+      {userId && isDialogChosen && (
         <Chat
           className={cx(styles.dialogsChat, {
             [styles.dialogsChat_overlapped]: isDialogsListOpen,
