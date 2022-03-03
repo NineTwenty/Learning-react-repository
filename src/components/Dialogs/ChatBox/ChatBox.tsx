@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from 'hooks/hooks';
 import {
   clearMessages,
   selectDialogById,
@@ -7,47 +8,57 @@ import {
   selectLoadedMessagesByIds,
 } from 'data/entities';
 import InfiniteScrollReverse from 'components/common/InfiniteScrollReverse/InfiniteScrollReverse';
+import { Message } from 'common/entities.types';
 import MessageItem from '../MessageItem/MessageItem';
 import styles from './ChatBox.module.css';
 
-function ChatBox({ dialogId, userId }) {
+type Props = {
+  dialogId: string | number;
+  userId: string | number;
+};
+
+function ChatBox({ dialogId, userId }: Props) {
   const dispatch = useDispatch();
 
   // Clear messages on dialog or page change
   useEffect(() => {
     dispatch(clearMessages());
-    return () => dispatch(clearMessages());
+    return () => {
+      dispatch(clearMessages());
+    };
   }, [dispatch, dialogId]);
 
-  const populateMessages = (messages) =>
+  const populateMessages = (messages: Message[]) =>
     messages.map(({ text, id, author }) => {
       return (
         <MessageItem
           key={id}
-          id={id}
+          id={`${id}`}
           text={text}
-          authorId={author}
+          authorId={`${author}`}
           isMine={userId === author}
         />
       );
     });
 
-  const { messages: messagesIds } =
-    useSelector(selectDialogById(dialogId)) || {};
+  const { messages: messagesIds } = useAppSelector(
+    selectDialogById(dialogId)
+  ) || { messages: [] };
 
   // Select all currently available messages
-  const messages = useSelector((state) =>
+  const messages = useAppSelector((state) =>
     selectLoadedMessagesByIds(state, messagesIds)
   );
 
   const loadMore = useCallback(
-    (page) => {
+    (page: number) => {
       dispatch(fetchMessages(page, dialogId));
     },
     [dispatch, dialogId]
   );
 
-  const hasMore = messages ? messagesIds.length > messages.length : false;
+  const hasMore =
+    messages && messagesIds ? messagesIds.length > messages.length : false;
 
   return (
     <div className={styles.ChatBox}>
