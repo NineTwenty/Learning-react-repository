@@ -1,7 +1,12 @@
+import { User } from 'common/entities.types';
 import Avatar from 'components/common/Avatar/Avatar';
 import styles from './ChatHeader.module.css';
 
-function ChatHeader({ member }) {
+type Props = {
+  member: Pick<User, 'avatar' | 'firstName' | 'lastName'>;
+};
+
+function ChatHeader({ member }: Props) {
   const { avatar, firstName, lastName } = member;
   const fullname = `${firstName} ${lastName}`;
 
