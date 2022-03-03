@@ -5,7 +5,13 @@ import ChatHeader from '../ChatHeader/ChatHeader';
 import ChatBox from '../ChatBox/ChatBox';
 import ChatInputs from '../ChatInputs/ChatInputs';
 
-function Chat({ className, dialogId, userId }) {
+type Props = {
+  className: string;
+  dialogId: number | string;
+  userId: number | string;
+};
+
+function Chat({ className, dialogId, userId }: Props) {
   const memberId = useSelector(selectDialogMemberId(dialogId));
   const member = useSelector(selectUserById(memberId));
 
