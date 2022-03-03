@@ -1,17 +1,25 @@
-import { useRef } from 'react';
+import { KeyboardEvent, useRef } from 'react';
 import Button from 'components/common/Button';
 import { TextAreaField } from 'components/common/TextAreaField';
-import { Form, Formik } from 'formik';
+import { Form, Formik, FormikErrors, FormikHelpers, FormikProps } from 'formik';
 import { useDispatch } from 'react-redux';
 import { fetchDialogs, submitMessage } from 'data/entities';
 import styles from './ChatInputs.module.css';
 
-function ChatInputs({ dialogId }) {
-  const dispatch = useDispatch();
-  const formRef = useRef();
+type Props = {
+  dialogId: number | string;
+};
 
-  const validate = (values) => {
-    const errors = {};
+type FormValues = {
+  text: string;
+};
+
+function ChatInputs({ dialogId }: Props) {
+  const dispatch = useDispatch();
+  const formRef = useRef<FormikProps<FormValues>>(null);
+
+  const validate = (values: FormValues) => {
+    const errors: FormikErrors<FormValues> = {};
 
     if (!values.text) {
       errors.text = 'Required';
@@ -20,7 +28,7 @@ function ChatInputs({ dialogId }) {
     return errors;
   };
 
-  const onSubmit = (values, actions) => {
+  const onSubmit = (values: FormValues, actions: FormikHelpers<FormValues>) => {
     const { text } = values;
 
     // Create message
@@ -41,19 +49,21 @@ function ChatInputs({ dialogId }) {
     actions.resetForm();
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = (e: KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      formRef.current.handleSubmit();
+      formRef.current?.handleSubmit();
     }
+  };
+
+  const initialValues: FormValues = {
+    text: '',
   };
 
   return (
     <div className={styles.Wrapper}>
       <Formik
-        initialValues={{
-          text: '',
-        }}
+        initialValues={initialValues}
         onSubmit={onSubmit}
         validate={validate}
         innerRef={formRef}
