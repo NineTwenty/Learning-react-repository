@@ -5,7 +5,12 @@ import { Spinner } from 'components/common/Spinner';
 import Avatar from '../../common/Avatar/Avatar';
 import styles from './DialogItem.module.scss';
 
-export function DialogItem({ id, isChosen }) {
+type Props = {
+  id: number | string;
+  isChosen: boolean;
+};
+
+export function DialogItem({ id, isChosen }: Props) {
   const memberId = useSelector(selectDialogMemberId(id));
   const user = useSelector(selectUserById(memberId));
 
