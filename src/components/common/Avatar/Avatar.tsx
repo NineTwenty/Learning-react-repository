@@ -1,6 +1,18 @@
 import styles from './Avatar.module.css';
 
-function Avatar({ className = '', avatar, name, size = 'medium' }) {
+type Props = {
+  className?: string;
+  size?: 'small' | 'medium' | 'large' | 'fill';
+  name: string;
+  avatar?: string;
+};
+
+function Avatar({
+  className = '',
+  avatar = 'data:',
+  name,
+  size = 'medium',
+}: Props) {
   const sizeMod = styles[`Wrapper_size_${size}`];
   return (
     <div className={`${className} ${styles.Wrapper} ${sizeMod}`}>
