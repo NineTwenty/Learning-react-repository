@@ -16,7 +16,7 @@ it('render and trigger submit on click', async () => {
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form>
         <Field name='text' />
-        <SubmitField />
+        <SubmitField buttonText='test' />
       </Form>
     </Formik>
   );
