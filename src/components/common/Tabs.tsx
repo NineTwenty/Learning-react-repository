@@ -1,5 +1,9 @@
 import style from './Tabs.module.css';
 
-export function Tabs({ children }) {
+type Props = {
+  children: React.ReactNode;
+};
+
+export function Tabs({ children }: Props) {
   return <div className={style.tabs}>{children}</div>;
 }
