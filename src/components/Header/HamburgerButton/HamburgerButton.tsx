@@ -5,7 +5,7 @@ import { Icon } from 'components/common/Icon/Icon';
 interface HamburgerButtonProps
   extends React.ComponentPropsWithRef<typeof Button> {
   isOpen: boolean;
-  iconType: 'arrows' | 'hamburger';
+  iconType?: 'arrows' | 'hamburger';
 }
 
 const component = React.forwardRef<HTMLButtonElement, HamburgerButtonProps>(
