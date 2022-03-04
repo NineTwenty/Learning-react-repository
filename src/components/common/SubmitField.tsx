@@ -2,7 +2,11 @@ import styles from './SubmitField.module.css';
 import StatusErrors from './StatusErrors';
 import Button from './Button';
 
-function SubmitField(props) {
+type Props = {
+  buttonText: string;
+};
+
+function SubmitField(props: Props) {
   const { buttonText } = props;
   return (
     <div className={styles.submitField}>
