@@ -1,7 +1,17 @@
 import styles from './Header.module.css';
 import { HamburgerButton } from './HamburgerButton';
 
-function Header({ isSideNavForceOpen, setSideNavForceOpen, menuBtnRef }) {
+type Props = {
+  isSideNavForceOpen: boolean;
+  setSideNavForceOpen: (value: boolean) => void;
+  menuBtnRef: React.RefObject<HTMLButtonElement>;
+};
+
+function Header({
+  isSideNavForceOpen,
+  setSideNavForceOpen,
+  menuBtnRef,
+}: Props) {
   return (
     <header className={styles.header}>
       <img
