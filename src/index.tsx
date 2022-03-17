@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import store from 'data/store';
 import * as serviceWorker from './serviceWorker';
 
-import App from './App';
+import App from './app/App';
 
 import { makeServer } from './api/server';
 
