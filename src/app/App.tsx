@@ -1,11 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import {
-  Route,
-  Switch,
-  Redirect,
-  useLocation,
-  RouteProps,
-} from 'react-router-dom';
+import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import './constants.css';
@@ -26,28 +20,7 @@ import Music from 'common/components/Music/Music';
 import Settings from 'common/components/Settings/Settings';
 import { SplashScreen } from 'common/components/SplashScreen/SplashScreen';
 import { CurrentUserProvider } from 'common/contexts/current-user-context';
-
-function PrivateRoute({ children, ...rest }: RouteProps) {
-  const loggedIn = useSelector(selectLoggedInStatus);
-  const { component, render, exact, path, strict, sensitive } = rest;
-  return (
-    <Route
-      {...{ component, render, exact, path, strict, sensitive }}
-      render={({ location }) =>
-        loggedIn ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: '/login',
-              state: { referrer: location },
-            }}
-          />
-        )
-      }
-    />
-  );
-}
+import { PrivateRoute } from './PrivateRoute';
 
 function App(): JSX.Element {
   const loggedIn = useSelector(selectLoggedInStatus);
