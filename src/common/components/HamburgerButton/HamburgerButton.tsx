@@ -1,6 +1,12 @@
 import Button from 'common/components/Button';
 import React from 'react';
-import { Icon } from 'common/components/Icon/Icon';
+import {
+  MdMenuOpen,
+  MdMenu,
+  MdChevronLeft,
+  MdChevronRight,
+} from 'react-icons/md';
+import styles from './HamburgerButton.module.css';
 
 interface HamburgerButtonProps
   extends React.ComponentPropsWithRef<typeof Button> {
@@ -23,21 +29,20 @@ const component = React.forwardRef<HTMLButtonElement, HamburgerButtonProps>(
     }: HamburgerButtonProps,
     ref
   ) => {
+    const iconColor = styleType ? styles.iconBlack : styles.iconWhite;
     const iconsSets = {
       arrows: {
-        closed: 'chevronRight',
-        open: 'chevronLeft',
+        closed: <MdChevronRight className={iconColor} />,
+        open: <MdChevronLeft className={iconColor} />,
       },
       hamburger: {
-        closed: 'menu',
-        open: 'menuOpen',
+        closed: <MdMenu className={iconColor} />,
+        open: <MdMenuOpen className={iconColor} />,
       },
     };
 
-    // Choose icon to show
+    // // Choose icon to show
     const icon = isOpen ? iconsSets[iconType].open : iconsSets[iconType].closed;
-
-    const iconColor = styleType ? 'black' : 'white';
 
     return (
       <Button
@@ -49,7 +54,7 @@ const component = React.forwardRef<HTMLButtonElement, HamburgerButtonProps>(
         aria-expanded={isOpen}
         ref={ref}
       >
-        <Icon type={icon} color={iconColor} />
+        {icon}
         {children}
       </Button>
     );
