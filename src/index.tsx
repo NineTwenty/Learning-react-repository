@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from 'data/store';
+import { IconContext } from 'react-icons';
 import * as serviceWorker from './serviceWorker';
 
 import App from './app/App';
@@ -13,12 +14,16 @@ import { makeServer } from './api/server';
 // Run Mirage mock server
 makeServer();
 
+const iconsConfig = { className: 'react-icons' };
+
 const explicitRender = () => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
         <Provider store={store}>
-          <App />
+          <IconContext.Provider value={iconsConfig}>
+            <App />
+          </IconContext.Provider>
         </Provider>
       </BrowserRouter>
     </React.StrictMode>,
