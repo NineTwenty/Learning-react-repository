@@ -1,0 +1,30 @@
+.Wrapper {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  overflow-y: auto;
+
+  width: 90vw;
+  max-width: 60ch;
+  min-height: 20vh;
+  max-height: 70vh;
+
+  padding: var(--padding-primary);
+}
+
+.Heading {
+  margin: 0.2em;
+}
+
+.List {
+  list-style: none;
+  width: 100%;
+
+  > li {
+    > * {
+      width: 100%;
+      justify-content: flex-start;
+      gap: var(--padding-primary);
+    }
+  }
+}

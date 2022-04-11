@@ -1,0 +1,101 @@
+.Wrapper {
+  --fixed-width: 18rem;
+
+  z-index: 3;
+  display: flex;
+  flex-flow: column;
+  height: 90vh;
+  border-right: 0.08em solid var(--color-border-light);
+
+  /* 
+    Set explicit width 
+    to have constant value
+    for left offset
+  */
+  width: var(--fixed-width);
+
+  background: var(--color-background);
+
+  /*
+    Overflow hidden necessary to allow 
+    flex: 0.01 value to shrink
+    beyond actual content width
+  */
+  overflow: hidden;
+
+  /* 
+    Open/Close animation for desktop layout
+    based on shrinking caused by
+    small flex-grow value
+  */
+  transition: flex-grow 150ms cubic-bezier(0.39, 0.58, 0.57, 1);
+  flex: 4;
+
+  &_hidden {
+    flex: 0.000001;
+    /* Hide border still visible after flex shrink */
+    border-right: none;
+
+    .Header {
+      /* Hide heading on slide animation */
+      opacity: 0;
+    }
+  }
+
+  /* 
+    Mobile layout with overlaping
+  */
+  @media (max-width: 769px) {
+    height: 95vh;
+    position: absolute;
+
+    /* 
+      Set left offset to minus width
+      to place component right outside left
+      screen edge for constat initial positioning
+      and to avoid visible slide out animation
+      on layout change
+    */
+    left: calc(var(--fixed-width) * -1);
+
+    /* 
+      Open/Close animation for mobile layout
+      based on absolute positioning and
+      translation from outside left screen side
+    */
+    transition: transform 150ms cubic-bezier(0.39, 0.58, 0.57, 1);
+    transform: translateX(100%);
+
+    &_hidden {
+      transform: translateX(0%);
+    }
+  }
+}
+
+.List {
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.Header {
+  height: calc(2em + (var(--padding-primary) * 2));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Hide heading on slide animation */
+  transition: opacity 50ms cubic-bezier(1, -0.11, 0.74, 1.11);
+
+  > h2 {
+    margin: 0;
+  }
+}
+
+.AddButton {
+  margin: var(--padding-primary);
+  margin-top: auto;
+  font-weight: bold;
+}

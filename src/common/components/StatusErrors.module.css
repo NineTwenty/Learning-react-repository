@@ -1,0 +1,14 @@
+.errors {
+  color: var(--color-error);
+  height: fit-content;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.errors > li {
+  max-width: 100%;
+  margin-bottom: 0.3em;
+  padding: 0.45em;
+  border-left: 0.1em var(--color-error) solid;
+}

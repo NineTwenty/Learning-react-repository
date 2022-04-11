@@ -3,26 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@reduxjs/toolkit": "^1.6.1",
+    "@reduxjs/toolkit": "^1.7.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.0",
-    "@types/faker": "^5.5.7",
-    "@types/superagent": "^4.1.12",
+    "@types/faker": "^5.5.9",
+    "axios": "^0.23.0",
     "classnames": "^2.3.1",
-    "eslint-plugin-import": "^2.23.4",
-    "faker": "^5.0.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "faker": "^5.5.3",
     "formik": "^2.1.5",
-    "jsonwebtoken": "^8.5.1",
-    "ky": "^0.20.0",
+    "jose": "^4.3.7",
+    "miragejs": "^0.1.43",
     "node-sass": "^6.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-redux": "7.2.4",
+    "react-icons": "^4.3.1",
+    "react-redux": "^7.2.6",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
-    "redux": "^4.1.0",
-    "redux-thunk": "^2.3.0",
+    "react-scripts": "^5.0.0",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1",
     "superagent": "^6.1.0"
   },
   "scripts": {
@@ -32,14 +33,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app",
-    "plugins": [
-      "eslint-plugin-import"
-    ],
-    "rules": {
-      "no-console": "warn",
-      "import/no-cycle": "warn"
-    }
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
@@ -60,9 +57,16 @@
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
     "@types/react-router-dom": "^5.1.8",
-    "cypress": "^8.0.0",
-    "miragejs": "^0.1.41",
-    "typescript": "^4.3.5",
+    "cypress": "^9.2.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^16.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest-dom": "^4.0.1",
+    "eslint-plugin-testing-library": "^5.0.1",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.4",
     "typescript-plugin-css-modules": "^3.4.0"
   }
 }

@@ -1,11 +1,7 @@
-import agent from 'superagent';
+import axios from 'axios';
 
 // Generation of URL with prefix part
 const API_PREFIX = '/api/';
-const prefix = (request: agent.SuperAgentRequest) => {
-  request.url = `${API_PREFIX}${request.url}`;
-  return request;
-};
 
 const getToken = () => localStorage.getItem('token');
 
@@ -16,16 +12,35 @@ const getAuthString = () => {
   return '';
 };
 
-// func to get superagent instance
-export const getAgent = () =>
-  agent
-    .agent()
-    .type('application/json')
-    // Apply URL prefix
-    .use(prefix)
-    // set Headers property
-    .set('Authorization', getAuthString()); // keep token actual every call
+export const getInstance = () =>
+  axios.create({
+    baseURL: API_PREFIX,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: getAuthString(),
+    },
+  });
 
-export const isTokenExpireResponse = (error: agent.ResponseError) => {
-  return error?.response?.body.message === 'jwt expired';
+type MirageErrorResponse = {
+  message: string;
+  stack: string;
+};
+
+export const isMirageErrorResponse = (
+  value: unknown
+): value is MirageErrorResponse => {
+  return (
+    value !== null &&
+    value !== undefined &&
+    (value as MirageErrorResponse).message !== undefined &&
+    (value as MirageErrorResponse).stack !== undefined
+  );
+};
+
+export const isTokenExpireResponse = (error: unknown): boolean => {
+  return (
+    axios.isAxiosError(error) &&
+    isMirageErrorResponse(error.response?.data) &&
+    error.response?.data.message === 'jwt expired'
+  );
 };

@@ -1,0 +1,39 @@
+.Container {
+  display: none;
+  position: absolute;
+  z-index: 10;
+
+  width: 100%;
+  height: 100%;
+
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.866);
+
+  &_open {
+    display: flex;
+  }
+}
+
+.Wrapper {
+  width: 100%;
+
+  // Remove for mobile layout
+  border-radius: 0;
+  // Remove light shadow for dark background because it creates glow effect
+  box-shadow: none;
+
+  padding: 1.6rem;
+
+  @media (min-width: 400px) {
+    border-radius: var(--border-radius-small);
+    width: 45ch;
+  }
+}
+
+.Form {
+  display: flex;
+  flex-flow: column;
+  gap: var(--padding-primary);
+}

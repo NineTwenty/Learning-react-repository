@@ -1,0 +1,51 @@
+.checkInput {
+  margin: 0;
+  appearance: none;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  padding-left: 1.5em;
+}
+
+.checkBox {
+  position: absolute;
+  width: 0.9em;
+  height: 0.9em;
+  margin-left: -1.5em;
+
+  background-color: var(--color-background);
+
+  border: 0.01em var(--color-primary) solid;
+  border-radius: 0.3em;
+}
+
+.checkInput:focus + .checkBox {
+  box-shadow: 0 0 0.15em var(--color-primary);
+}
+
+/* Checked */
+
+.checkInput:checked + .checkBox {
+  background: center no-repeat
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z' fill='%23ffffff'/%3E%3C/svg%3E");
+  background-size: 0.6em;
+  background-color: var(--color-primary);
+
+  border: 0.01em var(--color-primary) solid;
+}
+
+.checkInput:checked:focus + .checkBox {
+  box-shadow: 0 0 0.1em var(--color-primary);
+}
+
+/* Disabled */
+
+.checkInput:disabled + .checkBox {
+  border: 0.01em var(--color-text-ui) solid;
+}
+
+.checkInput:checked:disabled + .checkBox {
+  background-color: var(--color-text-ui);
+}

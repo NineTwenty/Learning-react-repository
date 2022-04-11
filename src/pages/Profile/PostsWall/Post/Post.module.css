@@ -1,0 +1,34 @@
+.post {
+  color: var(--color-text-ui);
+  display: block;
+  padding-bottom: var(--padding-primary);
+}
+
+.header {
+  display: flex;
+}
+
+.title {
+  margin-left: var(--padding-primary);
+  margin-right: auto;
+}
+
+.time {
+  font-size: 0.8rem;
+}
+
+.name {
+  color: var(--color-text-headers);
+  font-size: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+.meta {
+  display: flex;
+  margin-bottom: var(--padding-primary);
+}
+
+.views {
+  font-size: 0.8rem;
+}

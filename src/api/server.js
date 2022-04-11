@@ -1,18 +1,23 @@
+// eslint-disable-next-line
 import {
   Server,
   Model,
   hasMany,
   belongsTo,
   RestSerializer,
-  Factory,
   Response,
 } from 'miragejs';
-import faker from 'faker';
+import { UnsecuredJWT } from 'jose';
+import usersFixture from 'api/fixtures/users';
+import dialogsFixture from 'api/fixtures/dialogs';
+import messagesFixture from 'api/fixtures/messages';
+import postsFixture from 'api/fixtures/posts';
+import feedsFixture from 'api/fixtures/feeds';
 
 // ==================
 // 1. Serializers
 // 2. Models
-// 3. Factories
+// 3. Fixtures
 // 4. Routes
 //  4.0 Utils
 //  4.1 Users
@@ -20,11 +25,33 @@ import faker from 'faker';
 //  4.3 Messages
 //  4.4 Posts
 //  4.5 Authentication
-// 5. Seeds
+//  4.7 Registration
 // ==================
 
-const secret =
-  'B850B9761597B154641D8C3D7768F8AE500FE6BBA5409C1616D0DFC15495F4E5';
+function createJWT(user) {
+  const { id: userId } = user;
+
+  return new UnsecuredJWT({ userId })
+    .setIssuedAt()
+    .setExpirationTime('100m')
+    .encode();
+}
+
+function verifyJWT(authHeader) {
+  let token;
+
+  if (authHeader.startsWith('Bearer ')) {
+    token = authHeader.substring(7, authHeader.length);
+  }
+
+  return UnsecuredJWT.decode(token).payload;
+}
+
+function authenticateUser(request) {
+  const { Authorization } = request.requestHeaders;
+  const { userId } = verifyJWT(Authorization);
+  return userId;
+}
 
 export function makeServer({ environment = 'development' } = {}) {
   return new Server({
@@ -52,6 +79,7 @@ export function makeServer({ environment = 'development' } = {}) {
         messages: hasMany(),
         posts: hasMany(),
         feed: belongsTo(),
+        friends: hasMany('user', { inverse: 'friends' }),
       }),
 
       dialog: Model.extend({
@@ -76,71 +104,15 @@ export function makeServer({ environment = 'development' } = {}) {
     },
 
     // ==================
-    // 3. Factories
+    // 3. Fixtures
     // ==================
 
-    factories: {
-      user: Factory.extend({
-        afterCreate: (user) => {
-          user.update({
-            friends: user.friends.filter((id) => user.id !== id),
-          });
-        },
-        firstName: faker.name.firstName,
-        lastName: faker.name.lastName,
-        email: faker.internet.exampleEmail,
-        address: faker.address.country,
-        phoneNumber: faker.phone.phoneNumber.bind(null,'+(###) ###-####'),
-        birthDate: faker.date.between('January 1, 1950', 'January 1, 2010'),
-        online: false,
-        lastOnlineTime: faker.date.recent,
-        avatar: () => `https://picsum.photos/200?random=${Math.random()}`,
-        friends: () => {
-          const arr = Array(Math.round(Math.random() * 15));
-          const makeFriends = () =>
-            `${Math.round(1 + Math.random() * (21 - 1))}`;
-          const onlyUnique = (value, index, self) =>
-            self.indexOf(value) === index;
-
-          return Array.from(arr, makeFriends).filter(onlyUnique);
-        },
-        music: [],
-        images: (id) => {
-          const images = [
-            `https://picsum.photos/1280/920?random=${Math.random()}`,
-            `https://picsum.photos/947?random=${Math.random()}`,
-            `https://picsum.photos/700/1280?random=${Math.random()}`,
-            `https://picsum.photos/1280?random=${Math.random()}`,
-            `https://picsum.photos/1280/590?random=${Math.random()}`,
-            `https://picsum.photos/700/1280?random=${Math.random()}`,
-            `https://picsum.photos/1280/329?random=${Math.random()}`,
-            `https://picsum.photos/560?random=${Math.random()}`,
-            `https://picsum.photos/947?random=${Math.random()}`,
-            `https://picsum.photos/1280/329?random=${Math.random()}`,
-          ];
-
-          return images.map((src, i) => ({
-            src,
-            // if id or i == 0 and generated value is null then regenerate
-            // with explicitly defined numbers
-            id: Date.now() / id / i ?? Date.now() / 99 / 99,
-          }));
-        },
-      }),
-
-      dialog: Factory.extend({
-        count: null,
-        time: null,
-      }),
-
-      message: Factory.extend({
-        text: () => faker.lorem.sentence(Math.floor(Math.random() * 14) + 1),
-        unread: true,
-        created: Date.now(),
-      }),
-      post: Factory.extend({
-        postText: () => faker.lorem.sentences(),
-      }),
+    fixtures: {
+      users: usersFixture,
+      dialogs: dialogsFixture,
+      messages: messagesFixture,
+      posts: postsFixture,
+      feeds: feedsFixture,
     },
 
     // ==================
@@ -148,84 +120,6 @@ export function makeServer({ environment = 'development' } = {}) {
     // ==================
 
     routes() {
-      // ==================
-      // 4.0 Utils
-      // ==================
-
-      // Func to form appropriate relationships object
-      function createRelationshipsBySchema(schemaName, userId) {
-        switch (schemaName) {
-          case 'posts':
-            return {
-              authorId: userId,
-            };
-          default:
-            return {};
-        }
-      }
-
-      function handleWithDefaultValues(schemaName, defaultValues) {
-        return function (schema, request) {
-          try {
-            const attrs = this.normalizedRequestAttrs();
-            const userId = request.requestHeaders.userId;
-            // Form relationship object
-            const relationships = createRelationshipsBySchema(
-              schemaName,
-              userId
-            );
-
-            const entity = schema[schemaName].create({
-              ...defaultValues,
-              ...attrs,
-              ...relationships,
-            });
-
-            const response = {
-              resultCode: 1,
-              data: {
-                [schemaName]: [entity],
-              },
-            };
-
-            return response;
-          } catch (err) {
-            return {
-              resultCode: 0,
-            };
-          }
-        };
-      }
-
-      function handleUser() {
-        return handleWithDefaultValues('users', {
-          online: false,
-          lastOnlineTime: '15min ago',
-          avatar: null,
-          friends: [],
-          music: [],
-        });
-      }
-      function handleDialog() {
-        return handleWithDefaultValues('dialogs', {
-          count: null,
-          time: null,
-          memberIds: [],
-        });
-      }
-      function handleMessage() {
-        return handleWithDefaultValues('messages', {
-          text: faker.lorem.sentence(),
-          unread: true,
-        });
-      }
-      // function handlePost() {
-      //   return handleWithDefaultValues('posts', {
-      //     postText: faker.lorem.sentences(),
-      //     views: 0,
-      //   });
-      // }
-
       this.namespace = 'api';
 
       // ==================
@@ -234,7 +128,6 @@ export function makeServer({ environment = 'development' } = {}) {
 
       this.get('/users');
       this.get('/users/:id');
-      this.post('/users', handleUser());
 
       // ==================
       // 4.2 Dialogs
@@ -246,7 +139,33 @@ export function makeServer({ environment = 'development' } = {}) {
 
         return schema.dialogs.find(dialogIds);
       });
-      this.post('/dialogs', handleDialog());
+
+      this.post('/dialogs', (schema, request) => {
+        const userId = authenticateUser(request);
+        const { members } = JSON.parse(request.requestBody);
+
+        const user = schema.users.find(userId);
+
+        // Iterate through user's dialogs to find possible duplicate
+        const isExist = !user.dialogs.models.every((dialog) => {
+          // Remove userId from members list
+          const dialogMembers = dialog.memberIds.filter((id) => id !== userId);
+
+          // Check that dialog don't contain same members as provided with request
+          return !dialogMembers.every((id) => members.includes(id));
+        });
+
+        if (isExist) return new Response(409);
+
+        const dialog = {
+          count: 0,
+          time: null,
+          memberIds: [...members, userId],
+          messageIds: [],
+        };
+
+        return schema.dialogs.create(dialog);
+      });
 
       // ==================
       // 4.3 Messages
@@ -254,7 +173,8 @@ export function makeServer({ environment = 'development' } = {}) {
 
       this.get('/messages', (schema, request) => {
         const userId = authenticateUser(request);
-        let { dialogId, limit, page } = request.queryParams;
+        const { dialogId, page } = request.queryParams;
+        let { limit } = request.queryParams;
         limit = limit ? +limit : 10;
 
         const user = schema.users.find(userId);
@@ -302,36 +222,26 @@ export function makeServer({ environment = 'development' } = {}) {
         if (post && post.postText) {
           post.authorId = userId;
           post.views = 0;
+          post.created = Date.now();
           return schema.posts.create(post);
         }
+      });
+      this.delete('/posts/:id', (schema, request) => {
+        const userId = authenticateUser(request);
+        const { id } = request.params;
+
+        const post = schema.posts.find(id);
+
+        if (post.authorId === userId) {
+          return post.destroy();
+        }
+
+        return new Response(403);
       });
 
       // ==================
       // 4.5 Authentication
       // ==================
-
-      function createJWT(user) {
-        const { id: userId } = user;
-        const jwt = require('jsonwebtoken');
-        return jwt.sign({ userId }, secret, { expiresIn: '100m' });
-      }
-
-      function verifyJWT(authHeader) {
-        let token;
-
-        if (authHeader.startsWith('Bearer ')) {
-          token = authHeader.substring(7, authHeader.length);
-        }
-
-        const jwt = require('jsonwebtoken');
-        return jwt.verify(token, secret);
-      }
-
-      function authenticateUser(request) {
-        const { Authorization } = request.requestHeaders;
-        const { userId } = verifyJWT(Authorization);
-        return userId;
-      }
 
       this.post('/auth/login', (schema, request) => {
         const errors = [];
@@ -341,7 +251,7 @@ export function makeServer({ environment = 'development' } = {}) {
         // Authentication
         if (user && user.password === password) {
           const token = createJWT(user);
-          return { body: { token } };
+          return { token };
         }
 
         // Add error
@@ -361,57 +271,55 @@ export function makeServer({ environment = 'development' } = {}) {
       // ==================
 
       this.get('/feeds/:id', (schema, request) => {
-        const userId = authenticateUser(request);
-        const { id } = request.params
+        authenticateUser(request);
+        const { id } = request.params;
 
-        return schema.feeds.find(id)
-      });
-    },
-
-    // ==================
-    // 5. Seeds
-    // ==================
-
-    seeds(server) {
-      server.createList('user', 3);
-
-      const admin = server.create('user', {
-        login: 'admin',
-        password: 'admin',
+        return schema.feeds.find(id);
       });
 
-      server.createList('user', 21);
+      // ==================
+      // 4.7 Registration
+      // ==================
 
-      // Create posts for all users
-      server.schema.users.all().models.forEach((user) => {
-        const feed = server.create('feed', {
-          owner: user,
+      this.post('/registration', (schema, request) => {
+        const {
+          firstName,
+          lastName,
+          email,
+          password,
+          address,
+          phoneNumber,
+          birthDate,
+        } = JSON.parse(request.requestBody);
+
+        const isUserExist = schema.users.findBy({ email });
+
+        if (isUserExist) {
+          return new Response(409, {}, [
+            'Account with such email already exists',
+          ]);
+        }
+
+        const user = schema.users.create({
+          fullName: `${firstName} ${lastName}`,
+          firstName,
+          lastName,
+          email,
+          password,
+          address,
+          phoneNumber,
+          birthDate,
+          online: false,
+          lastOnlineTime: Date.now(),
+          avatar: 'https://picsum.photos/200?random=0.885343491559527585',
+          music: [],
+          images: [],
+          feed: schema.feeds.create(),
         });
 
-        server.createList('post', 2, {
-          feed,
-          author: user,
-          views: 0,
-        });
-      });
+        const token = createJWT(user);
 
-      // Create two dialogs for main user
-      [
-        server.create('dialog', {
-          memberIds: [admin.id, `${+admin.id + 1}`],
-        }),
-        server.create('dialog', {
-          memberIds: [admin.id, `${+admin.id + 2}`],
-        }),
-      ].forEach((dialog) => {
-        // Create messages for each
-        server.createList('message', 34, {
-          authorId: () => {
-            // Randomize author
-            return dialog.memberIds[Math.round(Math.random())];
-          },
-          dialog,
-        });
+        return new Response(200, {}, { token });
       });
     },
   });

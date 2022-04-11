@@ -1,0 +1,13 @@
+$row-count: 2;
+
+.Wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(max(12%, 6em), 1fr));
+  gap: var(--padding-primary);
+
+  width: 100%;
+
+  @media (min-width: 782px) {
+    grid-template-columns: repeat(auto-fill, minmax(max(12%, 4.5em), 1fr));
+  }
+}
