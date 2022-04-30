@@ -47,18 +47,18 @@ export function Navbar({
   return (
     <nav ref={selfRef} className={`${style.nav} ${isOpen}`}>
       <NavLink
-        to='/dialogs'
-        className={style.navLink}
-        activeClassName={style.active}
-      >
-        Dialogs
-      </NavLink>
-      <NavLink
         to='/profile'
         className={style.navLink}
         activeClassName={style.active}
       >
         Profile
+      </NavLink>
+      <NavLink
+        to='/dialogs'
+        className={style.navLink}
+        activeClassName={style.active}
+      >
+        Dialogs
       </NavLink>
       <NavLink
         to='/news'
