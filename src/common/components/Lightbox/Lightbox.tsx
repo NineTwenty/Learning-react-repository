@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import cx from 'classnames';
+import { MdClose } from 'react-icons/md';
 import styles from './Lightbox.module.scss';
 import Button from '../Button';
-import { Icon } from '../Icon/Icon';
 
 type LightboxProps = {
   className?: string;
@@ -42,7 +42,7 @@ export function Lightbox({
         styleType='borderless'
         onClick={onClose}
       >
-        <Icon color='white' type='close' />
+        <MdClose />
       </Button>
       <div ref={wrapperRef} className={classes}>
         {children}

@@ -1,8 +1,8 @@
 import cx from 'classnames';
+import { MdClose } from 'react-icons/md';
 import styles from './Dialog.module.scss';
 import { Wrapper } from '../Wrapper/Wrapper';
 import { Portal } from '../Portal/Portal';
-import { Icon } from '../Icon/Icon';
 import Button from '../Button';
 
 interface DialogProps extends React.ComponentPropsWithoutRef<'div'> {
@@ -20,7 +20,7 @@ export function Dialog({ onClose, className, children }: DialogProps) {
           className={styles.Button}
           styleType='borderless'
         >
-          <Icon type='close' />
+          <MdClose />
         </Button>
         {children}
       </Wrapper>
