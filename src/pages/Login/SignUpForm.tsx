@@ -4,7 +4,7 @@ import { useAppDispatch } from 'common/hooks/hooks';
 import PasswordField from 'common/components/PasswordField';
 import SubmitField from 'common/components/SubmitField';
 import TextField from 'common/components/TextField';
-import style from './SignUpModalForm.module.scss';
+import style from './SignUpForm.module.scss';
 
 type FormValues = {
   firstName: string;
@@ -14,7 +14,7 @@ type FormValues = {
   confirmPassword: string;
 };
 
-function SignUpModalForm() {
+function SignUpForm() {
   const dispatch = useAppDispatch();
   const initialValues: FormValues = {
     firstName: '',
@@ -84,4 +84,4 @@ function SignUpModalForm() {
   );
 }
 
-export default SignUpModalForm;
+export default SignUpForm;

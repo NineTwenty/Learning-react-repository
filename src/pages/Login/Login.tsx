@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 import Button from 'common/components/Button';
 import { Separator } from 'common/components/Separator';
-import SignUpModalForm from 'pages/Login/SignUpModalForm';
+import SignUpForm from 'pages/Login/SignUpForm';
 import style from './Login.module.scss';
 import LoginForm from './LoginForm';
 
@@ -37,7 +37,7 @@ function Login({ loggedIn }: Props) {
         >
           Sign Up
         </Button>
-        <SignUpModalForm isOpen={isOpen} />
+        <SignUpForm isOpen={isOpen} />
       </div>
     </div>
   );
