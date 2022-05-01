@@ -1,17 +1,10 @@
-import cx from 'classnames';
 import { Form, Formik, FormikErrors } from 'formik';
 import { handleUserRegistration } from 'data';
 import { useAppDispatch } from 'common/hooks/hooks';
 import PasswordField from 'common/components/PasswordField';
-import { Portal } from 'common/components/Portal/Portal';
 import SubmitField from 'common/components/SubmitField';
 import TextField from 'common/components/TextField';
-import { Wrapper } from 'common/components/Wrapper/Wrapper';
 import style from './SignUpModalForm.module.scss';
-
-type Props = {
-  isOpen: boolean;
-};
 
 type FormValues = {
   firstName: string;
@@ -21,7 +14,7 @@ type FormValues = {
   confirmPassword: string;
 };
 
-function SignUpModalForm({ isOpen }: Props) {
+function SignUpModalForm() {
   const dispatch = useAppDispatch();
   const initialValues: FormValues = {
     firstName: '',
@@ -48,52 +41,46 @@ function SignUpModalForm({ isOpen }: Props) {
   };
 
   return (
-    <Portal>
-      <section
-        className={cx(style.Container, { [style.Container_open]: isOpen })}
-      >
-        <Wrapper className={style.Wrapper}>
-          <h1>Sign Up</h1>
-          <Formik
-            initialValues={initialValues}
-            validate={validate}
-            onSubmit={async (values, formUtils) => {
-              const errors = await dispatch(handleUserRegistration(values));
+    <section>
+      <h1>Sign Up</h1>
+      <Formik
+        initialValues={initialValues}
+        validate={validate}
+        onSubmit={async (values, formUtils) => {
+          const errors = await dispatch(handleUserRegistration(values));
 
-              if (errors) {
-                // Set global form error
-                formUtils.setStatus({ formErrors: [...errors.payload] });
-              }
-            }}
-          >
-            <Form className={style.Form}>
-              <TextField
-                name='firstName'
-                label='First name'
-                placeholder='First name'
-              />
-              <TextField
-                name='lastName'
-                label='Last name'
-                placeholder='Last name'
-              />
-              <TextField name='email' label='Email' placeholder='Email' />
-              <PasswordField
-                name='password'
-                label='Password'
-                placeholder='Password'
-              />
-              <PasswordField
-                name='confirmPassword'
-                label='Confirm Password'
-                placeholder='Confirm Password'
-              />
-              <SubmitField buttonText='Sign Up' />
-            </Form>
-          </Formik>
-        </Wrapper>
-      </section>
-    </Portal>
+          if (errors) {
+            // Set global form error
+            formUtils.setStatus({ formErrors: [...errors.payload] });
+          }
+        }}
+      >
+        <Form className={style.Form}>
+          <TextField
+            name='firstName'
+            label='First name'
+            placeholder='First name'
+          />
+          <TextField
+            name='lastName'
+            label='Last name'
+            placeholder='Last name'
+          />
+          <TextField name='email' label='Email' placeholder='Email' />
+          <PasswordField
+            name='password'
+            label='Password'
+            placeholder='Password'
+          />
+          <PasswordField
+            name='confirmPassword'
+            label='Confirm Password'
+            placeholder='Confirm Password'
+          />
+          <SubmitField buttonText='Sign Up' />
+        </Form>
+      </Formik>
+    </section>
   );
 }
 
