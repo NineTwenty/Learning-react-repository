@@ -23,10 +23,11 @@
 .Form {
   display: flex;
   flex-flow: column nowrap;
-  place-content: center;
+  align-content: center;
   min-width: min(100%, 55ch);
 
   padding: 2em;
+  padding-top: 8%;
   background: var(--color-background);
 }
 
