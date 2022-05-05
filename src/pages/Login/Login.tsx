@@ -17,7 +17,7 @@ function Login({ loggedIn }: Props) {
     referrer: { pathname: '/profile' },
   };
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isUserHaveAccount, setIsUserHaveAccount] = useState(true);
 
   // Redirect if user already logged in
   if (loggedIn) return <Redirect to={referrer} />;
@@ -26,18 +26,23 @@ function Login({ loggedIn }: Props) {
     <div className={style.Wrapper}>
       <div className={style.Meta} />
       <div className={style.Form}>
-        <h1>Sign in</h1>
-        <p>Enter your login or email address and password to sign in.</p>
-        <LoginForm />
+        {isUserHaveAccount ? <LoginForm /> : <SignUpForm />}
         <Separator className={style.Separator} />
-        <h2>Don&#39;t have an account?</h2>
+        {isUserHaveAccount ? (
+          <h2>Don&#39;t have an account?</h2>
+        ) : (
+          <h2>Already have an account?</h2>
+        )}
         <Button
           styleType='light'
-          onClick={() => setIsOpen((currentIsOpen) => !currentIsOpen)}
+          onClick={() =>
+            setIsUserHaveAccount(
+              (currentIsUserHaveAccount) => !currentIsUserHaveAccount
+            )
+          }
         >
-          Sign Up
+          {isUserHaveAccount ? 'Sign Up' : 'Sign In'}
         </Button>
-        <SignUpForm isOpen={isOpen} />
       </div>
     </div>
   );
