@@ -59,6 +59,8 @@ export default [
     firstName: 'Billy',
     id: '1',
     fullName: 'Billy Bogisich',
+    password: 'Bogisich',
+    login: 'Billy',
   },
   {
     dialogIds: null,
@@ -120,6 +122,8 @@ export default [
     firstName: 'Alicia',
     id: '2',
     fullName: 'Alicia Wilkinson',
+    password: 'Wilkinson',
+    login: 'Alicia',
   },
   {
     dialogIds: null,
@@ -181,6 +185,8 @@ export default [
     firstName: 'Ginger',
     id: '3',
     fullName: 'Ginger Greenfelder',
+    password: 'Greenfelder',
+    login: 'Ginger',
   },
   {
     dialogIds: ['1', '2'],
@@ -360,6 +366,8 @@ export default [
     firstName: 'Krystal',
     id: '5',
     fullName: 'Krystal Boyer',
+    password: 'Boyer',
+    login: 'Krystal',
   },
   {
     dialogIds: ['2'],
@@ -437,6 +445,8 @@ export default [
     firstName: 'Deborah',
     id: '6',
     fullName: 'Deborah Gutmann',
+    password: 'Gutmann',
+    login: 'Deborah',
   },
   {
     dialogIds: null,
@@ -498,6 +508,8 @@ export default [
     firstName: 'Hannah',
     id: '7',
     fullName: 'Hannah McGlynn',
+    password: 'McGlynn',
+    login: 'Hannah',
   },
   {
     dialogIds: null,
@@ -559,6 +571,8 @@ export default [
     firstName: 'Leslie',
     id: '8',
     fullName: 'Leslie Schmidt',
+    password: 'Schmidt',
+    login: 'Leslie',
   },
   {
     dialogIds: null,
@@ -620,6 +634,8 @@ export default [
     firstName: 'Alexandra',
     id: '9',
     fullName: 'Alexandra Erdman',
+    password: 'Erdman',
+    login: 'Alexandra',
   },
   {
     dialogIds: null,
@@ -681,6 +697,8 @@ export default [
     firstName: 'Olga',
     id: '10',
     fullName: 'Olga Zboncak',
+    password: 'Zboncak',
+    login: 'Olga',
   },
   {
     dialogIds: null,
@@ -742,6 +760,8 @@ export default [
     firstName: 'Marion',
     id: '11',
     fullName: 'Marion Kemmer',
+    password: 'Kemmer',
+    login: 'Marion',
   },
   {
     dialogIds: null,
@@ -803,6 +823,8 @@ export default [
     firstName: 'Darla',
     id: '12',
     fullName: 'Darla Bernhard',
+    password: 'Bernhard',
+    login: 'Darla',
   },
   {
     dialogIds: null,
@@ -864,6 +886,8 @@ export default [
     firstName: 'Jodi',
     id: '13',
     fullName: 'Jodi Miller',
+    password: 'Miller',
+    login: 'Jodi',
   },
   {
     dialogIds: null,
@@ -925,5 +949,7 @@ export default [
     firstName: 'Elena',
     id: '14',
     fullName: 'Elena Connelly',
+    password: 'Connelly',
+    login: 'Elena',
   },
 ];
