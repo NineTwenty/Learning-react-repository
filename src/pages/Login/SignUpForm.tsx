@@ -10,6 +10,7 @@ type FormValues = {
   firstName: string;
   lastName: string;
   email: string;
+  login: string;
   password: string;
   confirmPassword: string;
 };
@@ -20,18 +21,20 @@ function SignUpForm() {
     firstName: '',
     lastName: '',
     email: '',
+    login: '',
     password: '',
     confirmPassword: '',
   };
 
   const validate = (formValues: FormValues): FormikErrors<FormValues> => {
     const errors: Partial<FormValues> = {};
-    const { firstName, lastName, email, password, confirmPassword } =
+    const { firstName, lastName, email, login, password, confirmPassword } =
       formValues;
 
     if (!firstName) errors.firstName = 'Required';
     if (!lastName) errors.lastName = 'Required';
     if (!email) errors.email = 'Required';
+    if (!login) errors.email = 'Required';
     if (!password) errors.password = 'Required';
     if (!confirmPassword) errors.confirmPassword = 'Required';
     if (confirmPassword !== password)
@@ -67,6 +70,7 @@ function SignUpForm() {
             placeholder='Last name'
           />
           <TextField name='email' label='Email' placeholder='Email' />
+          <TextField name='login' label='Login' placeholder='Login' />
           <PasswordField
             name='password'
             label='Password'
