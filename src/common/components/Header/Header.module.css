@@ -2,7 +2,6 @@
   position: sticky;
   top: 0;
   display: flex;
-  justify-content: space-between;
   height: 5vh;
   z-index: 10;
   padding: 0 var(--padding-primary);
@@ -13,6 +12,7 @@
 
 .header img {
   height: 100%;
+  padding-right: var(--padding-primary);
 }
 
 .headerAuthButton {
