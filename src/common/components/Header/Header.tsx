@@ -1,4 +1,6 @@
+import Button from 'common/components/Button';
 import { HamburgerButton } from 'common/components/HamburgerButton';
+import { MdLogout } from 'react-icons/md';
 import styles from './Header.module.css';
 
 type Props = {
@@ -26,6 +28,9 @@ function Header({
       >
         Menu
       </HamburgerButton>
+      <Button className={styles.logoutButton} styleType='borderless'>
+        <MdLogout /> Logout
+      </Button>
     </header>
   );
 }

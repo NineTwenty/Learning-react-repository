@@ -14,3 +14,8 @@
   height: 100%;
   padding-right: var(--padding-primary);
 }
+
+.logoutButton {
+  margin-left: auto;
+  margin-right: 1em;
+}
