@@ -1,5 +1,7 @@
 import Button from 'common/components/Button';
 import { HamburgerButton } from 'common/components/HamburgerButton';
+import { useAppDispatch } from 'common/hooks/hooks';
+import { logout } from 'data/common/actions';
 import { MdLogout } from 'react-icons/md';
 import styles from './Header.module.css';
 
@@ -14,6 +16,8 @@ function Header({
   setSideNavForceOpen,
   menuBtnRef,
 }: Props) {
+  const dispatch = useAppDispatch();
+
   return (
     <header className={styles.header}>
       <img
@@ -28,7 +32,13 @@ function Header({
       >
         Menu
       </HamburgerButton>
-      <Button className={styles.logoutButton} styleType='borderless'>
+      <Button
+        className={styles.logoutButton}
+        styleType='borderless'
+        onClick={() => {
+          dispatch(logout());
+        }}
+      >
         <MdLogout /> Logout
       </Button>
     </header>
