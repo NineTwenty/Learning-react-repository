@@ -1,14 +1,8 @@
 // eslint-disable-next-line
-import {
-  Server,
-  Model,
-  hasMany,
-  belongsTo,
-  RestSerializer,
-  Response,
-} from 'miragejs';
+import { Server, RestSerializer, Response } from 'miragejs';
 import { UnsecuredJWT } from 'jose';
 import fixtures from 'mirage/fixtures';
+import models from 'mirage/models';
 
 // ==================
 // 1. Serializers
@@ -69,35 +63,7 @@ export function makeServer({ environment = 'development' } = {}) {
     // 2. Models
     // ==================
 
-    models: {
-      user: Model.extend({
-        dialogs: hasMany(),
-        messages: hasMany(),
-        posts: hasMany(),
-        feed: belongsTo(),
-        friends: hasMany('user', { inverse: 'friends' }),
-      }),
-
-      dialog: Model.extend({
-        members: hasMany('user'),
-        messages: hasMany(),
-      }),
-
-      message: Model.extend({
-        author: belongsTo('user'),
-        dialog: belongsTo(),
-      }),
-
-      feed: Model.extend({
-        owner: belongsTo('user'),
-        posts: hasMany(),
-      }),
-
-      post: Model.extend({
-        author: belongsTo('user'),
-        feed: belongsTo(),
-      }),
-    },
+    models,
 
     // ==================
     // 3. Fixtures
