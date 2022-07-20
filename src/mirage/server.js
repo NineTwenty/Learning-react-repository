@@ -5,17 +5,12 @@ import fixtures from 'mirage/fixtures';
 import models from 'mirage/models';
 
 // ==================
-// 1. Serializers
-// 2. Models
-// 3. Fixtures
-// 4. Routes
-//  4.0 Utils
-//  4.1 Users
-//  4.2 Dialogs
-//  4.3 Messages
-//  4.4 Posts
-//  4.5 Authentication
-//  4.7 Registration
+//  1 Users
+//  2 Dialogs
+//  3 Messages
+//  4 Posts
+//  5 Authentication
+//  7 Registration
 // ==================
 
 function createJWT(user) {
@@ -46,11 +41,6 @@ function authenticateUser(request) {
 export function makeServer({ environment = 'development' } = {}) {
   return new Server({
     environment,
-
-    // ==================
-    // 1. Serializers
-    // ==================
-
     serializers: {
       application: RestSerializer.extend({
         include: (request) => {
@@ -58,35 +48,20 @@ export function makeServer({ environment = 'development' } = {}) {
         },
       }),
     },
-
-    // ==================
-    // 2. Models
-    // ==================
-
     models,
-
-    // ==================
-    // 3. Fixtures
-    // ==================
-
     fixtures,
-
-    // ==================
-    // 4. Routes
-    // ==================
-
     routes() {
       this.namespace = 'api';
 
       // ==================
-      // 4.1 Users
+      // 1 Users
       // ==================
 
       this.get('/users');
       this.get('/users/:id');
 
       // ==================
-      // 4.2 Dialogs
+      // 2 Dialogs
       // ==================
 
       this.get('/dialogs', (schema, request) => {
@@ -124,7 +99,7 @@ export function makeServer({ environment = 'development' } = {}) {
       });
 
       // ==================
-      // 4.3 Messages
+      // 3 Messages
       // ==================
 
       this.get('/messages', (schema, request) => {
@@ -162,7 +137,7 @@ export function makeServer({ environment = 'development' } = {}) {
       });
 
       // ==================
-      // 4.4 Posts
+      // 4 Posts
       // ==================
 
       this.get('/posts', (schema, request) => {
@@ -196,7 +171,7 @@ export function makeServer({ environment = 'development' } = {}) {
       });
 
       // ==================
-      // 4.5 Authentication
+      // 5 Authentication
       // ==================
 
       this.post('/auth/login', (schema, request) => {
@@ -223,7 +198,7 @@ export function makeServer({ environment = 'development' } = {}) {
       });
 
       // ==================
-      // 4.6 Feeds
+      // 6 Feeds
       // ==================
 
       this.get('/feeds/:id', (schema, request) => {
@@ -234,7 +209,7 @@ export function makeServer({ environment = 'development' } = {}) {
       });
 
       // ==================
-      // 4.7 Registration
+      // 7 Registration
       // ==================
 
       this.post('/registration', (schema, request) => {
