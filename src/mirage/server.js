@@ -8,11 +8,7 @@ import {
   Response,
 } from 'miragejs';
 import { UnsecuredJWT } from 'jose';
-import usersFixture from 'mirage/fixtures/users';
-import dialogsFixture from 'mirage/fixtures/dialogs';
-import messagesFixture from 'mirage/fixtures/messages';
-import postsFixture from 'mirage/fixtures/posts';
-import feedsFixture from 'mirage/fixtures/feeds';
+import fixtures from 'mirage/fixtures';
 
 // ==================
 // 1. Serializers
@@ -107,13 +103,7 @@ export function makeServer({ environment = 'development' } = {}) {
     // 3. Fixtures
     // ==================
 
-    fixtures: {
-      users: usersFixture,
-      dialogs: dialogsFixture,
-      messages: messagesFixture,
-      posts: postsFixture,
-      feeds: feedsFixture,
-    },
+    fixtures,
 
     // ==================
     // 4. Routes
