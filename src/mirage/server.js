@@ -8,11 +8,11 @@ import {
   Response,
 } from 'miragejs';
 import { UnsecuredJWT } from 'jose';
-import usersFixture from 'api/fixtures/users';
-import dialogsFixture from 'api/fixtures/dialogs';
-import messagesFixture from 'api/fixtures/messages';
-import postsFixture from 'api/fixtures/posts';
-import feedsFixture from 'api/fixtures/feeds';
+import usersFixture from 'mirage/fixtures/users';
+import dialogsFixture from 'mirage/fixtures/dialogs';
+import messagesFixture from 'mirage/fixtures/messages';
+import postsFixture from 'mirage/fixtures/posts';
+import feedsFixture from 'mirage/fixtures/feeds';
 
 // ==================
 // 1. Serializers
