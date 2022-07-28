@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers, PreloadedState } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { appReducer, authReducer } from 'data';
 import { logoutMiddleware } from './middleware/logoutMiddleware';
@@ -12,11 +12,16 @@ const rootReducer = combineReducers({
 
 export type RootState = ReturnType<typeof rootReducer>;
 
-const store = configureStore({
-  reducer: rootReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(logoutMiddleware),
-});
+export function createStore(preloadedState?: PreloadedState<RootState>) {
+  return configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(logoutMiddleware),
+    preloadedState,
+  });
+}
+
+const store = createStore();
 
 export default store;
 export type AppDispatch = typeof store.dispatch;
