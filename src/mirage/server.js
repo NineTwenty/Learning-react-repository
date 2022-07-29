@@ -1,8 +1,8 @@
 // eslint-disable-next-line
 import { Server, RestSerializer, Response } from 'miragejs';
-import { UnsecuredJWT } from 'jose';
 import fixtures from 'mirage/fixtures';
 import models from 'mirage/models';
+import { authenticateUser, createJWT } from 'mirage/mirage-utils';
 
 // ==================
 //  1 Users
@@ -12,31 +12,6 @@ import models from 'mirage/models';
 //  5 Authentication
 //  7 Registration
 // ==================
-
-function createJWT(user) {
-  const { id: userId } = user;
-
-  return new UnsecuredJWT({ userId })
-    .setIssuedAt()
-    .setExpirationTime('100m')
-    .encode();
-}
-
-function verifyJWT(authHeader) {
-  let token;
-
-  if (authHeader.startsWith('Bearer ')) {
-    token = authHeader.substring(7, authHeader.length);
-  }
-
-  return UnsecuredJWT.decode(token).payload;
-}
-
-function authenticateUser(request) {
-  const { Authorization } = request.requestHeaders;
-  const { userId } = verifyJWT(Authorization);
-  return userId;
-}
 
 export function makeServer({ environment = 'development' } = {}) {
   return new Server({
