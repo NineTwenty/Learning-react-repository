@@ -60,7 +60,9 @@ export function ProfileHeader({ className }: ProfileHeaderProps) {
         <div className={styles.Buttons}>
           {user.id !== loggedUserId && (
             <Button
-              onClick={() => dispatch(redirectToDialogByUser(id))}
+              onClick={() => {
+                void dispatch(redirectToDialogByUser(id));
+              }}
               className={styles.DialogButton}
             >
               Message

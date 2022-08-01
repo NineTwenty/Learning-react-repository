@@ -50,7 +50,13 @@ export function Post({ id }: PostProps) {
           <span className={style.time}>Posted: {`${timePassed}`} ago</span>
         </div>
         {currentUser.id === post.author && (
-          <Button onClick={() => dispatch(deletePost(id))}>Delete</Button>
+          <Button
+            onClick={() => {
+              void dispatch(deletePost(id));
+            }}
+          >
+            Delete
+          </Button>
         )}
       </div>
       <p>{post.postText}</p>

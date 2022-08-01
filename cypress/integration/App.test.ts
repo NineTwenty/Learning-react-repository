@@ -25,7 +25,7 @@ describe('App', () => {
 
         // Assert that location changed to friend profile page
         cy.location().should((loc) => {
-          const pathMatch = new RegExp(/profile\/\d+\/posts/);
+          const pathMatch = /profile\/\d+\/posts/;
           expect(loc.pathname).to.match(pathMatch);
         });
 
