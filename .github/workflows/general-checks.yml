@@ -7,6 +7,8 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
       - name: Install packages
         run: npm ci
       - name: Check linting
