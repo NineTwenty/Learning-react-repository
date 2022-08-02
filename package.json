@@ -28,7 +28,7 @@
     "test": "react-scripts test",
     "test:staged": "cross-env CI=true react-scripts test --env=jsdom --findRelatedTests",
     "eject": "react-scripts eject",
-    "lint": "eslint --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx .",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js||jsx|ts|tsx)\"",
     "check-types": "tsc",
     "check-format": "npm run prettier -- --list-different",
