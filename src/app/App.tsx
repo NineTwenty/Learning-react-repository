@@ -15,9 +15,6 @@ import Profile from 'pages/Profile/Profile';
 import Login from 'pages/Login/Login';
 import Header from 'common/components/Header/Header';
 import { Navbar } from 'common/components/Navbar/Navbar';
-import News from 'common/components/News/News';
-import Music from 'common/components/Music/Music';
-import Settings from 'common/components/Settings/Settings';
 import { SplashScreen } from 'common/components/SplashScreen/SplashScreen';
 import { CurrentUserProvider } from 'common/contexts/current-user-context';
 import { PrivateRoute } from './PrivateRoute';
@@ -85,15 +82,6 @@ function App(): JSX.Element {
                 </PrivateRoute>
                 <PrivateRoute path='/profile/:id?'>
                   <Profile />
-                </PrivateRoute>
-                <PrivateRoute path='/news'>
-                  <News />
-                </PrivateRoute>
-                <PrivateRoute path='/music'>
-                  <Music />
-                </PrivateRoute>
-                <PrivateRoute path='/settings'>
-                  <Settings />
                 </PrivateRoute>
                 <Redirect exact from='/' to='/profile' />
               </Switch>
