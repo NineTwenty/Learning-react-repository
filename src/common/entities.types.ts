@@ -11,7 +11,7 @@ export type User = {
   online: boolean;
   lastOnlineTime: string;
   avatar?: string;
-  friends: number[];
+  friends: string[];
   music: [];
   images: Image[];
   id: string;
@@ -50,6 +50,7 @@ export type Message = {
 };
 
 export type Feed = {
-  ownerId: string;
+  id: EntityId;
+  owner: string;
   posts: string[];
 };
