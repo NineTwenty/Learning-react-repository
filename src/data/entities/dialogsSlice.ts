@@ -22,7 +22,7 @@ const adapter = createEntityAdapter<Dialog>();
 const initialState = adapter.getInitialState<StatusState>({ status: 'idle' });
 
 // State type
-type DialogsState = typeof initialState;
+export type DialogsState = typeof initialState;
 
 // Loading reducers
 const { handleRequestStart, handleRequestEnd } =

@@ -14,6 +14,7 @@ export {
   selectDialogMemberId,
   selectDialogByMember,
 } from './dialogsSlice';
+export type { DialogsState } from './dialogsSlice';
 
 // Users
 export {
@@ -24,6 +25,7 @@ export {
   selectUsersIds,
   selectUsersByIds,
 } from './usersSlice';
+export type { UserState } from './usersSlice';
 
 // Posts
 export {
@@ -34,6 +36,7 @@ export {
   selectPostsIds,
   getIsLoadingPostStatus,
 } from './postsSlice';
+export type { PostsState } from './postsSlice';
 
 // Messages
 export {
@@ -45,6 +48,7 @@ export {
   selectLoadedMessagesByIds,
   clearMessages,
 } from './messagesSlice';
+export type { MessagesState } from './messagesSlice';
 
 // Feeds
 export {
@@ -52,3 +56,4 @@ export {
   selectFeedById,
   selectIsLoadingFeedStatus,
 } from './feedsSlice';
+export type { FeedsState } from './feedsSlice';

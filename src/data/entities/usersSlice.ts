@@ -20,7 +20,7 @@ const adapter = createEntityAdapter<User>();
 const initialState = adapter.getInitialState<StatusState>({ status: 'idle' });
 
 // State type
-type UserState = typeof initialState;
+export type UserState = typeof initialState;
 
 // Loading reducers
 const { handleRequestStart, handleRequestEnd } =

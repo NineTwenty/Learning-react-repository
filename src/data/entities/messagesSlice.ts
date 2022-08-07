@@ -25,7 +25,7 @@ const adapter = createEntityAdapter<Message>();
 const initialState = adapter.getInitialState<StatusState>({ status: 'idle' });
 
 // State type
-type MessagesState = typeof initialState;
+export type MessagesState = typeof initialState;
 
 // Setup loading parts
 // Loading reducers
