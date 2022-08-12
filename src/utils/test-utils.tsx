@@ -50,4 +50,5 @@ const render = (
 };
 
 export * from '@testing-library/react';
+export { default as createPreloadedState } from './createPreloadedState';
 export { render };
