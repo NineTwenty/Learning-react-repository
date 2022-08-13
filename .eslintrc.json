@@ -91,6 +91,14 @@
       ]
     },
     {
+      "files": [
+        "**/*.test.[jt]s?(x)"
+      ],
+      "rules": {
+        "import/no-extraneous-dependencies": "off"
+      }
+    },
+    {
       // Override styling rules & React import
       "files": [
         "**/*.[jt]s?(x)"
