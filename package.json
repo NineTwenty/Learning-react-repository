@@ -23,10 +23,16 @@
     "redux": "^4.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts -r @cypress/instrument-cra start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:staged": "cross-env CI=true react-scripts test --env=jsdom --findRelatedTests",
+    "coverage": "npm-run-all -p coverage:cypress coverage:jest -s coverage:copy coverage:merge coverage:combined",
+    "coverage:copy": "cp cypress_coverage/coverage-final.json reports/from-cypress.json && cp jest_coverage/coverage-final.json reports/from-jest.json",
+    "coverage:merge": "npx nyc merge reports && mv coverage.json .nyc_output/out.json",
+    "coverage:combined": "npx nyc report --reporter lcov --reporter text --report-dir coverage",
+    "coverage:jest": "npm test -- --coverage --watchAll=false --coverageDirectory=./jest_coverage",
+    "coverage:cypress": "cypress run",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js||jsx|ts|tsx)\"",
@@ -35,6 +41,9 @@
     "validate": "npm run check-types && npm run check-format && npm run lint",
     "prepare": "husky install",
     "lint-staged": "lint-staged"
+  },
+  "nyc": {
+    "report-dir": "cypress_coverage"
   },
   "eslintConfig": {
     "extends": [
@@ -55,6 +64,8 @@
     ]
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.10.0",
+    "@cypress/instrument-cra": "^1.4.0",
     "@testing-library/cypress": "^8.0.3",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.11.47",
@@ -72,6 +83,7 @@
     "eslint-plugin-testing-library": "^5.6.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
     "typescript": "^4.7.4",
     "typescript-plugin-css-modules": "^3.4.0"
