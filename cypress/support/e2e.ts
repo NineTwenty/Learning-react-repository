@@ -27,7 +27,7 @@ declare global {
        * Custom command to login using authentication form.
        * @example cy.login('login', 'password')
        */
-      login(login: string, password: string): void;
+      login(login?: string, password?: string): void;
     }
   }
 }
