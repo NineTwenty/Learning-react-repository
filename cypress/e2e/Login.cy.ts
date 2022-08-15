@@ -13,4 +13,12 @@ describe('Login page', () => {
     cy.login();
     cy.location().should('match', /profile\/\d+\/posts/);
   });
+
+  it('Redirect to it on logout', () => {
+    cy.login();
+    cy.findByRole('button', { name: /logout/i }).click();
+    cy.location('pathname').should('equal', '/login');
+    cy.findByRole('heading', { name: /sign in/i });
+    cy.findByRole('button', { name: /sign in/i });
+  });
 });
