@@ -5,12 +5,6 @@ describe('App', () => {
     cy.login('admin', 'admin');
   });
 
-  it('Redirect to profile on login', () => {
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq('/profile/4/posts');
-    });
-  });
-
   it('Can load friends profile page', () => {
     // Find any friend card
     cy.findAllByLabelText(/To \w+ \w+ profile/)

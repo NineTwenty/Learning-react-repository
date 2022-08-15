@@ -8,4 +8,9 @@ describe('Login page', () => {
     cy.findByRole('heading', { name: /sign in/i });
     cy.findByRole('button', { name: /sign in/i });
   });
+
+  it('Redirect to profile on login', () => {
+    cy.login();
+    cy.location().should('match', /profile\/\d+\/posts/);
+  });
 });
