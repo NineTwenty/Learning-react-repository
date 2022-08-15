@@ -5,6 +5,28 @@ describe('Profile page', () => {
     cy.location('pathname').should('contain', '/profile/');
   });
 
+  it('Can navigate to posts subpage', () => {
+    cy.findByRole('link', { name: /posts/i }).click();
+    cy.location('pathname').should('match', /posts/);
+    cy.findByText(/create post/i);
+  });
+
+  it('Can navigate to about subpage', () => {
+    cy.findByRole('link', { name: /about/i }).click();
+    cy.location('pathname').should('match', /about/);
+    cy.findByText(/first name/i);
+  });
+
+  it('Can navigate to friends subpage', () => {
+    cy.findByRole('link', { name: /friends/i }).click();
+    cy.location('pathname').should('match', /friends/);
+  });
+
+  it('Can navigate to photos subpage', () => {
+    cy.findByRole('link', { name: /photos/i }).click();
+    cy.location('pathname').should('match', /photos/);
+  });
+
   describe('Posting form', () => {
     const string = 'Testing string';
     it('Should reset value on submit', () => {
