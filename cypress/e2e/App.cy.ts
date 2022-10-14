@@ -5,6 +5,16 @@ describe('App', () => {
     cy.login('admin', 'admin');
   });
 
+  const profileMatch = /profile\/\d+\/posts/;
+
+  it('Redirect to default route on attempt to load incorrect one', () => {
+    cy.location().should('match', profileMatch);
+    cy.findAllByRole('link', { name: /posts/i });
+    cy.visit('/qwerty');
+    cy.location().should('match', profileMatch);
+    cy.findAllByRole('link', { name: /posts/i });
+  });
+
   it('Can load friends profile page', () => {
     // Find any friend card
     cy.findAllByLabelText(/To \w+ \w+ profile/)

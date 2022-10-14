@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import './constants.css';
@@ -12,12 +12,10 @@ import {
 } from 'data';
 import Dialogs from 'pages/Dialogs/Dialogs';
 import Profile from 'pages/Profile/Profile';
+import HomeProfile from 'pages/Profile/HomeProfile';
 import Login from 'pages/Login/Login';
-import Header from 'common/components/Header/Header';
-import { Navbar } from 'common/components/Navbar/Navbar';
 import { SplashScreen } from 'common/components/SplashScreen/SplashScreen';
-import { CurrentUserProvider } from 'common/contexts/current-user-context';
-import { PrivateRoute } from './PrivateRoute';
+import { Page } from 'common/components/Page';
 
 function App(): JSX.Element {
   const loggedIn = useSelector(selectLoggedInStatus);
@@ -32,10 +30,6 @@ function App(): JSX.Element {
       dispatch(initialization());
     }
   }, [dispatch, isInitialized]);
-
-  // Navbar related
-  const [isSideNavForceOpen, setSideNavForceOpen] = useState(false);
-  const menuBtnRef = useRef<HTMLButtonElement>(null);
 
   // Check if delayed redirect happend & inform state about it
   useEffect(() => {
@@ -53,43 +47,30 @@ function App(): JSX.Element {
 
   // Delayed redirect to stored path
   if (redirectLink) {
-    return <Redirect to={redirectLink} />;
+    return <Navigate to={redirectLink} />;
   }
 
   // Render
   return (
-    <Switch>
-      <Route path='/login'>
-        <Login loggedIn={loggedIn} />
+    <Routes>
+      <Route path='/' element={<Page />}>
+        {/* Index route to ensure that page isn't empty &
+            profile always get necessary id param */}
+        <Route index element={<HomeProfile />} />
+        <Route path='profile/:id/*' element={<Profile />}>
+          <Route path=':entity' element={<Profile />} />
+        </Route>
+        <Route path='dialogs' element={<Dialogs />}>
+          <Route path=':id' element={<Dialogs />} />
+        </Route>
       </Route>
-      <PrivateRoute path='/'>
-        <CurrentUserProvider>
-          <div>
-            <Header
-              menuBtnRef={menuBtnRef}
-              isSideNavForceOpen={isSideNavForceOpen}
-              setSideNavForceOpen={setSideNavForceOpen}
-            />
-            <Navbar
-              menuBtnRef={menuBtnRef}
-              isSideNavForceOpen={isSideNavForceOpen}
-              setSideNavForceOpen={setSideNavForceOpen}
-            />
-            <div>
-              <Switch>
-                <PrivateRoute path='/dialogs/:id?'>
-                  <Dialogs />
-                </PrivateRoute>
-                <PrivateRoute path='/profile/:id?'>
-                  <Profile />
-                </PrivateRoute>
-                <Redirect exact from='/' to='/profile' />
-              </Switch>
-            </div>
-          </div>
-        </CurrentUserProvider>
-      </PrivateRoute>
-    </Switch>
+      <Route path='/login' element={<Login loggedIn={loggedIn} />} />
+      {/* Redirect to valid default page */}
+      <Route
+        path='*'
+        element={loggedIn ? <Navigate to='/' /> : <Navigate to='/login' />}
+      />
+    </Routes>
   );
 }
 

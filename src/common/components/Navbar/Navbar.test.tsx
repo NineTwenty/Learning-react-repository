@@ -18,13 +18,13 @@ const renderNavbar = ({
 };
 
 it('Change location on link click', async () => {
-  const { history } = renderNavbar();
-  expect(history.location.pathname).toBe('/');
+  renderNavbar();
+  expect(window.location.pathname).toBe('/');
 
   const navBtn = screen.getByRole('link', { name: /profile/i });
   userEvent.click(navBtn);
 
-  expect(history.location.pathname).toBe('/profile');
+  expect(window.location.pathname).toBe('/profile');
 });
 
 it('Turn off forced open on click outside', () => {

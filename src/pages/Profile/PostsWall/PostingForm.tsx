@@ -32,6 +32,10 @@ function PostingForm({ header, onSubmit }: Props) {
   const dispatch = useDispatch();
   const { id } = useParams<{ id: string }>();
 
+  if (!id) {
+    throw new Error(`id URL param is not set`);
+  }
+
   const dispatchOnSubmit = async (
     posts: FormValues,
     formikBag: FormikHelpers<FormValues>

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
+import cx from 'classnames';
 import style from './Navbar.module.css';
 
 type Props = {
@@ -43,42 +44,25 @@ export function Navbar({
     return () => window.removeEventListener('click', closeOnOutsideClick);
   }, [isSideNavForceOpen, setSideNavForceOpen, menuBtnRef]);
 
+  const handleClassName = ({ isActive }: { isActive: boolean }) =>
+    cx([style.navLink, { [style.active]: isActive }]);
+
   // Render
   return (
     <nav ref={selfRef} className={`${style.nav} ${isOpen}`}>
-      <NavLink
-        to='/profile'
-        className={style.navLink}
-        activeClassName={style.active}
-      >
+      <NavLink to='/profile' className={handleClassName}>
         Profile
       </NavLink>
-      <NavLink
-        to='/dialogs'
-        className={style.navLink}
-        activeClassName={style.active}
-      >
+      <NavLink to='/dialogs' className={handleClassName}>
         Dialogs
       </NavLink>
-      <NavLink
-        to='/news'
-        className={style.navLink}
-        activeClassName={style.active}
-      >
+      <NavLink to='/news' className={handleClassName}>
         News
       </NavLink>
-      <NavLink
-        to='/music'
-        className={style.navLink}
-        activeClassName={style.active}
-      >
+      <NavLink to='/music' className={handleClassName}>
         Music
       </NavLink>
-      <NavLink
-        to='/settings'
-        className={style.navLink}
-        activeClassName={style.active}
-      >
+      <NavLink to='/settings' className={handleClassName}>
         Settings
       </NavLink>
     </nav>

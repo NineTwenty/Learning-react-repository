@@ -16,6 +16,10 @@ function PostWall({ className }: Props) {
   const dispatch = useDispatch();
   const { id: feedId } = useParams<{ id: string }>();
 
+  if (!feedId) {
+    throw new Error(`id URL param is not set`);
+  }
+
   const feed = useSelector(selectFeedById(feedId));
   const posts = feed?.posts.map((id) => <Post id={id} key={id} />).reverse();
 

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { generatePath, Link, useRouteMatch } from 'react-router-dom';
+import { generatePath, Link, useParams } from 'react-router-dom';
 import { fetchUsers, selectUserById, selectUsersByIds } from 'data/entities';
 import Avatar from 'common/components/Avatar/Avatar';
 import { Gallery } from 'common/components/Gallery/Gallery';
@@ -20,10 +20,7 @@ export function FriendsGallery({ className, limit }: FriendsGalleryProps) {
   }, [dispatch]);
 
   // Get routing data
-  const {
-    path,
-    params: { url, id, entity },
-  } = useRouteMatch<{ url: string; id: string; entity: string }>();
+  const { id } = useParams<{ id: string }>();
 
   const user = useSelector(selectUserById(id));
 
@@ -37,7 +34,7 @@ export function FriendsGallery({ className, limit }: FriendsGalleryProps) {
     }
 
     // Generate link path
-    const linkToFriend = generatePath(path, { url, id: friend.id, entity });
+    const linkToFriend = generatePath('/profile/:id', { id: friend.id });
 
     return (
       <Link

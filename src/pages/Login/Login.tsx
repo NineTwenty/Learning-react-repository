@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Redirect, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import { useReferrerPath } from 'common/hooks/hooks';
 import Button from 'common/components/Button';
 import { Separator } from 'common/components/Separator';
 import SignUpForm from 'pages/Login/SignUpForm';
@@ -11,16 +12,13 @@ type Props = {
 };
 
 function Login({ loggedIn }: Props) {
-  // Get redirected page path
-  const location = useLocation<{ referrer: { pathname: string } }>();
-  const { referrer } = location.state || {
-    referrer: { pathname: '/profile' },
-  };
-
+  const referrerPath = useReferrerPath();
   const [isUserHaveAccount, setIsUserHaveAccount] = useState(true);
 
   // Redirect if user already logged in
-  if (loggedIn) return <Redirect to={referrer} />;
+  if (loggedIn) {
+    return <Navigate to={referrerPath} />;
+  }
 
   return (
     <div className={style.Wrapper}>
