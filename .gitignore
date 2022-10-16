@@ -17,3 +17,4 @@ cypress_coverage
 jest_coverage
 .nyc_output
 reports
+.vercel
