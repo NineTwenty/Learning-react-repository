@@ -7,48 +7,48 @@ export default [
     friendIds: [],
     images: [
       {
-        src: 'https://picsum.photos/1280/920?random=0.22455715310808766',
+        src: `/api/picture?width=1280&height=920&random=0.22455715310808766`,
         id: 3247680987,
       },
       {
-        src: 'https://picsum.photos/947?random=0.44543798161263237',
+        src: `/api/picture?width=947&random=0.44543798161263237`,
         id: 6565412745,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.5046808469456665',
+        src: `/api/picture?width=700&height=1280&random=0.5046808469456665`,
         id: 34562432332,
       },
       {
-        src: 'https://picsum.photos/1280?random=0.13634536502107641',
+        src: `/api/picture?width=1280&random=0.13634536502107641`,
         id: 52436454555,
       },
       {
-        src: 'https://picsum.photos/1280/590?random=0.6316084872888568',
+        src: `/api/picture?width=1280&height=590&random=0.6316084872888568`,
         id: 26245897565,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.18468078042840452',
+        src: `/api/picture?width=700&height=1280&random=0.18468078042840452`,
         id: 234571546534,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.6049633119992137',
+        src: `/api/picture?width=1280&height=329&random=0.6049633119992137`,
         id: 674562918356,
       },
       {
-        src: 'https://picsum.photos/560?random=0.5265710592882156',
+        src: `/api/picture?width=560&random=0.5265710592882156`,
         id: 113482854634,
       },
       {
-        src: 'https://picsum.photos/947?random=0.7775894231229743',
+        src: `/api/picture?width=947&random=0.7775894231229743`,
         id: 526175364326,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.6884816818004602',
+        src: `/api/picture?width=1280&height=329&random=0.6884816818004602`,
         id: 234765334254,
       },
     ],
     music: [],
-    avatar: 'https://picsum.photos/200?random=0.48843491559527585',
+    avatar: `/api/picture?width=200&random=0.48843491559527585`,
     lastOnlineTime: '2022-01-05T07:56:48.627Z',
     online: false,
     birthDate: '2001-03-22T08:59:03.016Z',
@@ -70,48 +70,48 @@ export default [
     friendIds: ['3'],
     images: [
       {
-        src: 'https://picsum.photos/1280/920?random=0.9431001600011457',
+        src: `/api/picture?width=1280&height=920&random=0.9431001600011457`,
         id: 9880913264823,
       },
       {
-        src: 'https://picsum.photos/947?random=0.26292082668770145',
+        src: `/api/picture?width=947&random=0.26292082668770145`,
         id: 1641396599056,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.33261083393226665',
+        src: `/api/picture?width=700&height=1280&random=0.33261083393226665`,
         id: 820698299528,
       },
       {
-        src: 'https://picsum.photos/1280?random=0.1374049434813216',
+        src: `/api/picture?width=1280&random=0.1374049434813216`,
         id: 547132199685.3333,
       },
       {
-        src: 'https://picsum.photos/1280/590?random=0.09340886859101549',
+        src: `/api/picture?width=1280&height=590&random=0.09340886859101549`,
         id: 410349149764,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.41653554067184784',
+        src: `/api/picture?width=700&height=1280&random=0.41653554067184784`,
         id: 328279319811.2,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.21185985741608926',
+        src: `/api/picture?width=1280&height=329&random=0.21185985741608926`,
         id: 273566099842.66666,
       },
       {
-        src: 'https://picsum.photos/560?random=0.2605049750677204',
+        src: `/api/picture?width=560&random=0.2605049750677204`,
         id: 234485228436.57144,
       },
       {
-        src: 'https://picsum.photos/947?random=0.782616464809859',
+        src: `/api/picture?width=947&random=0.782616464809859`,
         id: 205174574882,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.8271145044499995',
+        src: `/api/picture?width=1280&height=329&random=0.8271145044499995`,
         id: 182377399895.1111,
       },
     ],
     music: [],
-    avatar: 'https://picsum.photos/200?random=0.33513966863381883',
+    avatar: `/api/picture?width=200&random=0.33513966863381883`,
     lastOnlineTime: '2022-01-05T09:23:12.576Z',
     online: false,
     birthDate: '2001-03-22T08:59:03.016Z',
@@ -133,48 +133,48 @@ export default [
     friendIds: ['2', '5', '8', '4', '12', '14'],
     images: [
       {
-        src: 'https://picsum.photos/1280/920?random=0.34987029750095777',
+        src: `/api/picture?width=1280&height=920&random=0.34987029750095777`,
         id: 327462938901,
       },
       {
-        src: 'https://picsum.photos/947?random=0.7043842133514371',
+        src: `/api/picture?width=947&random=0.7043842133514371`,
         id: 820698299529,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.442095710398962',
+        src: `/api/picture?width=700&height=1280&random=0.442095710398962`,
         id: 410349149764.5,
       },
       {
-        src: 'https://picsum.photos/1280?random=0.9240861134296936',
+        src: `/api/picture?width=1280&random=0.9240861134296936`,
         id: 273566099843,
       },
       {
-        src: 'https://picsum.photos/1280/590?random=0.9827052830643996',
+        src: `/api/picture?width=1280&height=590&random=0.9827052830643996`,
         id: 205174574882.25,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.912076234118351',
+        src: `/api/picture?width=700&height=1280&random=0.912076234118351`,
         id: 164139659905.8,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.46590547527532555',
+        src: `/api/picture?width=1280&height=329&random=0.46590547527532555`,
         id: 136783049921.5,
       },
       {
-        src: 'https://picsum.photos/560?random=0.19953211265329718',
+        src: `/api/picture?width=560&random=0.19953211265329718`,
         id: 117242614218.42857,
       },
       {
-        src: 'https://picsum.photos/947?random=0.2988795083117681',
+        src: `/api/picture?width=947&random=0.2988795083117681`,
         id: 102587287441.125,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.8372921542307932',
+        src: `/api/picture?width=1280&height=329&random=0.8372921542307932`,
         id: 91188699947.66667,
       },
     ],
     music: [],
-    avatar: 'https://picsum.photos/200?random=0.594597102572721',
+    avatar: `/api/picture?width=200&random=0.594597102572721`,
     lastOnlineTime: '2022-01-04T10:32:51.047Z',
     online: false,
     birthDate: '2001-03-22T08:59:03.016Z',
@@ -232,48 +232,48 @@ export default [
     friendIds: ['3', '7', '6', '11', '14'],
     images: [
       {
-        src: 'https://picsum.photos/1280/920?random=0.08934466448831246',
+        src: `/api/picture?width=1280&height=920&random=0.08934466448831246`,
         id: 290384329864,
       },
       {
-        src: 'https://picsum.photos/947?random=0.45455241213744935',
+        src: `/api/picture?width=947&random=0.45455241213744935`,
         id: 547132199686.6667,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.3699615282079918',
+        src: `/api/picture?width=700&height=1280&random=0.3699615282079918`,
         id: 273566099843.33334,
       },
       {
-        src: 'https://picsum.photos/1280?random=0.6055365437280533',
+        src: `/api/picture?width=1280&random=0.6055365437280533`,
         id: 182377399895.55557,
       },
       {
-        src: 'https://picsum.photos/1280/590?random=0.3838800973974845',
+        src: `/api/picture?width=1280&height=590&random=0.3838800973974845`,
         id: 136783049921.66667,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.14473615414424867',
+        src: `/api/picture?width=700&height=1280&random=0.14473615414424867`,
         id: 109426439937.33334,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.748012419886469',
+        src: `/api/picture?width=1280&height=329&random=0.748012419886469`,
         id: 91188699947.77779,
       },
       {
-        src: 'https://picsum.photos/560?random=0.7733678070580075',
+        src: `/api/picture?width=560&random=0.7733678070580075`,
         id: 78161742812.38095,
       },
       {
-        src: 'https://picsum.photos/947?random=0.5173375601713541',
+        src: `/api/picture?width=947&random=0.5173375601713541`,
         id: 68391524960.833336,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.9633749383879773',
+        src: `/api/picture?width=1280&height=329&random=0.9633749383879773`,
         id: 60792466631.85185,
       },
     ],
     music: [],
-    avatar: 'https://picsum.photos/200?random=0.9809934542533709',
+    avatar: `/api/picture?width=200&random=0.9809934542533709`,
     lastOnlineTime: '2022-01-03T21:11:36.422Z',
     online: false,
     birthDate: '2001-03-22T08:59:03.016Z',
@@ -314,48 +314,48 @@ export default [
     friendIds: ['3', '6', '12'],
     images: [
       {
-        src: 'https://picsum.photos/1280/920?random=0.28327708142687924',
+        src: `/api/picture?width=1280&height=920&random=0.28327708142687924`,
         id: 342908763423,
       },
       {
-        src: 'https://picsum.photos/947?random=0.47665645951594215',
+        src: `/api/picture?width=947&random=0.47665645951594215`,
         id: 410349149765.25,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.6443690762238734',
+        src: `/api/picture?width=700&height=1280&random=0.6443690762238734`,
         id: 205174574882.625,
       },
       {
-        src: 'https://picsum.photos/1280?random=0.5040995329612956',
+        src: `/api/picture?width=1280&random=0.5040995329612956`,
         id: 136783049921.75,
       },
       {
-        src: 'https://picsum.photos/1280/590?random=0.8815444430020047',
+        src: `/api/picture?width=1280&height=590&random=0.8815444430020047`,
         id: 102587287441.3125,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.2706148800925452',
+        src: `/api/picture?width=700&height=1280&random=0.2706148800925452`,
         id: 82069829953.05,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.15575808435904026',
+        src: `/api/picture?width=1280&height=329&random=0.15575808435904026`,
         id: 68391524960.875,
       },
       {
-        src: 'https://picsum.photos/560?random=0.5354428196045677',
+        src: `/api/picture?width=560&random=0.5354428196045677`,
         id: 58621307109.32143,
       },
       {
-        src: 'https://picsum.photos/947?random=0.07847115158072082',
+        src: `/api/picture?width=947&random=0.07847115158072082`,
         id: 51293643720.65625,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.3190607785542292',
+        src: `/api/picture?width=1280&height=329&random=0.3190607785542292`,
         id: 45594349973.916664,
       },
     ],
     music: [],
-    avatar: 'https://picsum.photos/200?random=0.15065960733564676',
+    avatar: `/api/picture?width=200&random=0.15065960733564676`,
     lastOnlineTime: '2022-01-03T01:02:20.343Z',
     online: false,
     birthDate: '2001-03-22T08:59:03.016Z',
@@ -393,48 +393,48 @@ export default [
     friendIds: ['5', '4', '8', '13'],
     images: [
       {
-        src: 'https://picsum.photos/1280/920?random=0.9780308373854332',
+        src: `/api/picture?width=1280&height=920&random=0.9780308373854332`,
         id: 324238791726,
       },
       {
-        src: 'https://picsum.photos/947?random=0.2549566461177397',
+        src: `/api/picture?width=947&random=0.2549566461177397`,
         id: 328279319812.4,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.5104061633124659',
+        src: `/api/picture?width=700&height=1280&random=0.5104061633124659`,
         id: 164139659906.2,
       },
       {
-        src: 'https://picsum.photos/1280?random=0.7994519543238923',
+        src: `/api/picture?width=1280&random=0.7994519543238923`,
         id: 109426439937.46667,
       },
       {
-        src: 'https://picsum.photos/1280/590?random=0.43629552502567814',
+        src: `/api/picture?width=1280&height=590&random=0.43629552502567814`,
         id: 82069829953.1,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.09181138342194561',
+        src: `/api/picture?width=700&height=1280&random=0.09181138342194561`,
         id: 65655863962.48,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.8826820374355009',
+        src: `/api/picture?width=1280&height=329&random=0.8826820374355009`,
         id: 54713219968.73334,
       },
       {
-        src: 'https://picsum.photos/560?random=0.116149892935969',
+        src: `/api/picture?width=560&random=0.116149892935969`,
         id: 46897045687.48572,
       },
       {
-        src: 'https://picsum.photos/947?random=0.5267079447415184',
+        src: `/api/picture?width=947&random=0.5267079447415184`,
         id: 41034914976.55,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.42556976882000686',
+        src: `/api/picture?width=1280&height=329&random=0.42556976882000686`,
         id: 36475479979.155556,
       },
     ],
     music: [],
-    avatar: 'https://picsum.photos/200?random=0.05794345072607032',
+    avatar: `/api/picture?width=200&random=0.05794345072607032`,
     lastOnlineTime: '2022-01-04T03:01:32.002Z',
     online: false,
     birthDate: '2001-03-22T08:59:03.016Z',
@@ -456,48 +456,48 @@ export default [
     friendIds: ['4', '12', '13'],
     images: [
       {
-        src: 'https://picsum.photos/1280/920?random=0.9630028347815214',
+        src: `/api/picture?width=1280&height=920&random=0.9630028347815214`,
         id: 879234891489,
       },
       {
-        src: 'https://picsum.photos/947?random=0.6554064950007437',
+        src: `/api/picture?width=947&random=0.6554064950007437`,
         id: 273566099844,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.45321406670356623',
+        src: `/api/picture?width=700&height=1280&random=0.45321406670356623`,
         id: 136783049922,
       },
       {
-        src: 'https://picsum.photos/1280?random=0.080982539552241',
+        src: `/api/picture?width=1280&random=0.080982539552241`,
         id: 91188699948,
       },
       {
-        src: 'https://picsum.photos/1280/590?random=0.010508702162165262',
+        src: `/api/picture?width=1280&height=590&random=0.010508702162165262`,
         id: 68391524961,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.44507854058490537',
+        src: `/api/picture?width=700&height=1280&random=0.44507854058490537`,
         id: 54713219968.8,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.09992020336448615',
+        src: `/api/picture?width=1280&height=329&random=0.09992020336448615`,
         id: 45594349974,
       },
       {
-        src: 'https://picsum.photos/560?random=0.6573015153993087',
+        src: `/api/picture?width=560&random=0.6573015153993087`,
         id: 39080871406.28571,
       },
       {
-        src: 'https://picsum.photos/947?random=0.45999917577579263',
+        src: `/api/picture?width=947&random=0.45999917577579263`,
         id: 34195762480.5,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.70409612810478',
+        src: `/api/picture?width=1280&height=329&random=0.70409612810478`,
         id: 30396233316,
       },
     ],
     music: [],
-    avatar: 'https://picsum.photos/200?random=0.3536204823678497',
+    avatar: `/api/picture?width=200&random=0.3536204823678497`,
     lastOnlineTime: '2021-12-31T04:53:57.798Z',
     online: false,
     birthDate: '2001-03-22T08:59:03.016Z',
@@ -519,48 +519,48 @@ export default [
     friendIds: ['9', '6', '3', '13', '14'],
     images: [
       {
-        src: 'https://picsum.photos/1280/920?random=0.017926876125443858',
+        src: `/api/picture?width=1280&height=920&random=0.017926876125443858`,
         id: 508012374986,
       },
       {
-        src: 'https://picsum.photos/947?random=0.07673152593344867',
+        src: `/api/picture?width=947&random=0.07673152593344867`,
         id: 234485228437.85715,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.23134483957818253',
+        src: `/api/picture?width=700&height=1280&random=0.23134483957818253`,
         id: 117242614218.92857,
       },
       {
-        src: 'https://picsum.photos/1280?random=0.02565183399711035',
+        src: `/api/picture?width=1280&random=0.02565183399711035`,
         id: 78161742812.61905,
       },
       {
-        src: 'https://picsum.photos/1280/590?random=0.7923569639670889',
+        src: `/api/picture?width=1280&height=590&random=0.7923569639670889`,
         id: 58621307109.46429,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.04755470175965204',
+        src: `/api/picture?width=700&height=1280&random=0.04755470175965204`,
         id: 46897045687.57143,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.4219057164028488',
+        src: `/api/picture?width=1280&height=329&random=0.4219057164028488`,
         id: 39080871406.309525,
       },
       {
-        src: 'https://picsum.photos/560?random=0.14785519520124746',
+        src: `/api/picture?width=560&random=0.14785519520124746`,
         id: 33497889776.836735,
       },
       {
-        src: 'https://picsum.photos/947?random=0.8966278640192966',
+        src: `/api/picture?width=947&random=0.8966278640192966`,
         id: 29310653554.732143,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.0176194630664972',
+        src: `/api/picture?width=1280&height=329&random=0.0176194630664972`,
         id: 26053914270.873016,
       },
     ],
     music: [],
-    avatar: 'https://picsum.photos/200?random=0.2248050982733636',
+    avatar: `/api/picture?width=200&random=0.2248050982733636`,
     lastOnlineTime: '2021-12-31T00:57:05.310Z',
     online: false,
     birthDate: '2001-03-22T08:59:03.016Z',
@@ -582,48 +582,48 @@ export default [
     friendIds: ['8', '11', '10'],
     images: [
       {
-        src: 'https://picsum.photos/1280/920?random=0.919178526609638',
+        src: `/api/picture?width=1280&height=920&random=0.919178526609638`,
         id: 984372772833,
       },
       {
-        src: 'https://picsum.photos/947?random=0.933935795632606',
+        src: `/api/picture?width=947&random=0.933935795632606`,
         id: 205174574883.25,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.607156946890449',
+        src: `/api/picture?width=700&height=1280&random=0.607156946890449`,
         id: 102587287441.625,
       },
       {
-        src: 'https://picsum.photos/1280?random=0.14643732505664575',
+        src: `/api/picture?width=1280&random=0.14643732505664575`,
         id: 68391524961.083336,
       },
       {
-        src: 'https://picsum.photos/1280/590?random=0.862311766865562',
+        src: `/api/picture?width=1280&height=590&random=0.862311766865562`,
         id: 51293643720.8125,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.6632645504857078',
+        src: `/api/picture?width=700&height=1280&random=0.6632645504857078`,
         id: 41034914976.65,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.2234120723923092',
+        src: `/api/picture?width=1280&height=329&random=0.2234120723923092`,
         id: 34195762480.541668,
       },
       {
-        src: 'https://picsum.photos/560?random=0.49737476541764325',
+        src: `/api/picture?width=560&random=0.49737476541764325`,
         id: 29310653554.75,
       },
       {
-        src: 'https://picsum.photos/947?random=0.5922171855233087',
+        src: `/api/picture?width=947&random=0.5922171855233087`,
         id: 25646821860.40625,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.7932800221540963',
+        src: `/api/picture?width=1280&height=329&random=0.7932800221540963`,
         id: 22797174987.02778,
       },
     ],
     music: [],
-    avatar: 'https://picsum.photos/200?random=0.022916000951348714',
+    avatar: `/api/picture?width=200&random=0.022916000951348714`,
     lastOnlineTime: '2022-01-03T22:10:13.475Z',
     online: false,
     birthDate: '2001-03-22T08:59:03.016Z',
@@ -645,48 +645,48 @@ export default [
     friendIds: ['9', '12', '13'],
     images: [
       {
-        src: 'https://picsum.photos/1280/920?random=0.5490036300951802',
+        src: `/api/picture?width=1280&height=920&random=0.5490036300951802`,
         id: 419032874236,
       },
       {
-        src: 'https://picsum.photos/947?random=0.7661545965126886',
+        src: `/api/picture?width=947&random=0.7661545965126886`,
         id: 182377399896.33334,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.05666950631886669',
+        src: `/api/picture?width=700&height=1280&random=0.05666950631886669`,
         id: 91188699948.16667,
       },
       {
-        src: 'https://picsum.photos/1280?random=0.8460520590704934',
+        src: `/api/picture?width=1280&random=0.8460520590704934`,
         id: 60792466632.111115,
       },
       {
-        src: 'https://picsum.photos/1280/590?random=0.9994001583252281',
+        src: `/api/picture?width=1280&height=590&random=0.9994001583252281`,
         id: 45594349974.083336,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.7489907261690891',
+        src: `/api/picture?width=700&height=1280&random=0.7489907261690891`,
         id: 36475479979.26667,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.1516633512040051',
+        src: `/api/picture?width=1280&height=329&random=0.1516633512040051`,
         id: 30396233316.055557,
       },
       {
-        src: 'https://picsum.photos/560?random=0.2923092635941833',
+        src: `/api/picture?width=560&random=0.2923092635941833`,
         id: 26053914270.904762,
       },
       {
-        src: 'https://picsum.photos/947?random=0.4228861333210536',
+        src: `/api/picture?width=947&random=0.4228861333210536`,
         id: 22797174987.041668,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.15146636977454575',
+        src: `/api/picture?width=1280&height=329&random=0.15146636977454575`,
         id: 20264155544.037037,
       },
     ],
     music: [],
-    avatar: 'https://picsum.photos/200?random=0.32957352644381954',
+    avatar: `/api/picture?width=200&random=0.32957352644381954`,
     lastOnlineTime: '2021-12-30T09:51:46.621Z',
     online: false,
     birthDate: '2001-03-22T08:59:03.016Z',
@@ -708,48 +708,48 @@ export default [
     friendIds: ['4', '9', '13'],
     images: [
       {
-        src: 'https://picsum.photos/1280/920?random=0.5974271211710938',
+        src: `/api/picture?width=1280&height=920&random=0.5974271211710938`,
         id: 164252523412,
       },
       {
-        src: 'https://picsum.photos/947?random=0.08950852995698777',
+        src: `/api/picture?width=947&random=0.08950852995698777`,
         id: 164139659906.9,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.9465820176001916',
+        src: `/api/picture?width=700&height=1280&random=0.9465820176001916`,
         id: 82069829953.45,
       },
       {
-        src: 'https://picsum.photos/1280?random=0.5813845919562477',
+        src: `/api/picture?width=1280&random=0.5813845919562477`,
         id: 54713219968.96667,
       },
       {
-        src: 'https://picsum.photos/1280/590?random=0.8439771824205025',
+        src: `/api/picture?width=1280&height=590&random=0.8439771824205025`,
         id: 41034914976.725,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.5664837201443935',
+        src: `/api/picture?width=700&height=1280&random=0.5664837201443935`,
         id: 32827931981.379997,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.6198403647396147',
+        src: `/api/picture?width=1280&height=329&random=0.6198403647396147`,
         id: 27356609984.483334,
       },
       {
-        src: 'https://picsum.photos/560?random=0.4825903718079092',
+        src: `/api/picture?width=560&random=0.4825903718079092`,
         id: 23448522843.842857,
       },
       {
-        src: 'https://picsum.photos/947?random=0.6032826301345238',
+        src: `/api/picture?width=947&random=0.6032826301345238`,
         id: 20517457488.3625,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.5295939922374941',
+        src: `/api/picture?width=1280&height=329&random=0.5295939922374941`,
         id: 18237739989.655556,
       },
     ],
     music: [],
-    avatar: 'https://picsum.photos/200?random=0.20809521183848778',
+    avatar: `/api/picture?width=200&random=0.20809521183848778`,
     lastOnlineTime: '2022-01-03T00:41:10.725Z',
     online: false,
     birthDate: '2001-03-22T08:59:03.016Z',
@@ -771,48 +771,48 @@ export default [
     friendIds: ['14', '3', '7', '10', '5'],
     images: [
       {
-        src: 'https://picsum.photos/1280/920?random=0.9594311983220825',
+        src: `/api/picture?width=1280&height=920&random=0.9594311983220825`,
         id: 42398766234234,
       },
       {
-        src: 'https://picsum.photos/947?random=0.5392150101656599',
+        src: `/api/picture?width=947&random=0.5392150101656599`,
         id: 149217872642.72726,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.7614953207772879',
+        src: `/api/picture?width=700&height=1280&random=0.7614953207772879`,
         id: 74608936321.36363,
       },
       {
-        src: 'https://picsum.photos/1280?random=0.2700370614650722',
+        src: `/api/picture?width=1280&random=0.2700370614650722`,
         id: 49739290880.90909,
       },
       {
-        src: 'https://picsum.photos/1280/590?random=0.28714809488649706',
+        src: `/api/picture?width=1280&height=590&random=0.28714809488649706`,
         id: 37304468160.681816,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.6831908981661208',
+        src: `/api/picture?width=700&height=1280&random=0.6831908981661208`,
         id: 29843574528.545452,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.08331345869263362',
+        src: `/api/picture?width=1280&height=329&random=0.08331345869263362`,
         id: 24869645440.454544,
       },
       {
-        src: 'https://picsum.photos/560?random=0.7604795066273164',
+        src: `/api/picture?width=560&random=0.7604795066273164`,
         id: 21316838948.961037,
       },
       {
-        src: 'https://picsum.photos/947?random=0.830969096744872',
+        src: `/api/picture?width=947&random=0.830969096744872`,
         id: 18652234080.340908,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.3862430401867778',
+        src: `/api/picture?width=1280&height=329&random=0.3862430401867778`,
         id: 16579763626.969696,
       },
     ],
     music: [],
-    avatar: 'https://picsum.photos/200?random=0.870677281517324',
+    avatar: `/api/picture?width=200&random=0.870677281517324`,
     lastOnlineTime: '2022-01-04T18:22:35.926Z',
     online: false,
     birthDate: '2001-03-22T08:59:03.016Z',
@@ -834,48 +834,48 @@ export default [
     friendIds: ['10', '11', '8', '6', '7'],
     images: [
       {
-        src: 'https://picsum.photos/1280/920?random=0.4825668772964997',
+        src: `/api/picture?width=1280&height=920&random=0.4825668772964997`,
         id: 152432566262,
       },
       {
-        src: 'https://picsum.photos/947?random=0.31712016395390763',
+        src: `/api/picture?width=947&random=0.31712016395390763`,
         id: 136783049922.66667,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.8366492970562367',
+        src: `/api/picture?width=700&height=1280&random=0.8366492970562367`,
         id: 68391524961.333336,
       },
       {
-        src: 'https://picsum.photos/1280?random=0.6653866979011653',
+        src: `/api/picture?width=1280&random=0.6653866979011653`,
         id: 45594349974.22222,
       },
       {
-        src: 'https://picsum.photos/1280/590?random=0.5370594211943451',
+        src: `/api/picture?width=1280&height=590&random=0.5370594211943451`,
         id: 34195762480.666668,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.863643407002854',
+        src: `/api/picture?width=700&height=1280&random=0.863643407002854`,
         id: 27356609984.533333,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.6555201950159524',
+        src: `/api/picture?width=1280&height=329&random=0.6555201950159524`,
         id: 22797174987.11111,
       },
       {
-        src: 'https://picsum.photos/560?random=0.30455997175892846',
+        src: `/api/picture?width=560&random=0.30455997175892846`,
         id: 19540435703.238094,
       },
       {
-        src: 'https://picsum.photos/947?random=0.736586015073244',
+        src: `/api/picture?width=947&random=0.736586015073244`,
         id: 17097881240.333334,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.8099081805869313',
+        src: `/api/picture?width=1280&height=329&random=0.8099081805869313`,
         id: 15198116658.074074,
       },
     ],
     music: [],
-    avatar: 'https://picsum.photos/200?random=0.5147360488831998',
+    avatar: `/api/picture?width=200&random=0.5147360488831998`,
     lastOnlineTime: '2021-12-25T09:53:34.118Z',
     online: false,
     birthDate: '2001-03-22T08:59:03.016Z',
@@ -897,48 +897,48 @@ export default [
     friendIds: ['12', '3', '8', '4'],
     images: [
       {
-        src: 'https://picsum.photos/1280/920?random=0.6088044091198102',
+        src: `/api/picture?width=1280&height=920&random=0.6088044091198102`,
         id: 982374671532,
       },
       {
-        src: 'https://picsum.photos/947?random=0.24734118638948832',
+        src: `/api/picture?width=947&random=0.24734118638948832`,
         id: 126261276851.76923,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.11436220715016998',
+        src: `/api/picture?width=700&height=1280&random=0.11436220715016998`,
         id: 63130638425.88461,
       },
       {
-        src: 'https://picsum.photos/1280?random=0.04318131930432867',
+        src: `/api/picture?width=1280&random=0.04318131930432867`,
         id: 42087092283.92307,
       },
       {
-        src: 'https://picsum.photos/1280/590?random=0.17824509549662393',
+        src: `/api/picture?width=1280&height=590&random=0.17824509549662393`,
         id: 31565319212.942307,
       },
       {
-        src: 'https://picsum.photos/700/1280?random=0.42116299899831144',
+        src: `/api/picture?width=700&height=1280&random=0.42116299899831144`,
         id: 25252255370.353844,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.9767006321217244',
+        src: `/api/picture?width=1280&height=329&random=0.9767006321217244`,
         id: 21043546141.961536,
       },
       {
-        src: 'https://picsum.photos/560?random=0.39389693227439326',
+        src: `/api/picture?width=560&random=0.39389693227439326`,
         id: 18037325264.53846,
       },
       {
-        src: 'https://picsum.photos/947?random=0.051065752190956104',
+        src: `/api/picture?width=947&random=0.051065752190956104`,
         id: 15782659606.471153,
       },
       {
-        src: 'https://picsum.photos/1280/329?random=0.7145628776223387',
+        src: `/api/picture?width=1280&height=329&random=0.7145628776223387`,
         id: 14029030761.307692,
       },
     ],
     music: [],
-    avatar: 'https://picsum.photos/200?random=0.7100323504923929',
+    avatar: `/api/picture?width=200&random=0.7100323504923929`,
     lastOnlineTime: '2021-12-25T15:43:24.178Z',
     online: false,
     birthDate: '2001-03-22T08:59:03.016Z',
