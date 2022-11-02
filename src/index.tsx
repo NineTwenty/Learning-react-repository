@@ -9,11 +9,6 @@ import * as serviceWorker from './serviceWorker';
 
 import App from './app/App';
 
-import { makeServer } from './mirage/server';
-
-// Run Mirage mock server
-makeServer();
-
 const iconsConfig = { className: 'react-icons' };
 
 const explicitRender = () => {
