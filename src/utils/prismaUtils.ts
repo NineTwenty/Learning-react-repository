@@ -1,4 +1,7 @@
 import { Prisma, PrismaClient } from '@prisma/client';
+import type { VercelRequest } from '@vercel/node';
+import { UnsecuredJWT } from 'jose';
+import { z } from 'zod';
 
 export const userInclude = Prisma.validator<Prisma.UserInclude>()({
   avatar: { include: { image: true } },
@@ -41,4 +44,30 @@ export async function findUserById(userId: number, prisma: PrismaClient) {
   if (user) {
     return prepareUserForClient(user);
   }
+}
+
+function verifyJWT(authHeader: string | string[] | undefined) {
+  // Validate input
+  const token = z
+    .string()
+    .startsWith('Bearer ')
+    // Extract token
+    .transform((val) => val.substring(7))
+    .parse(authHeader);
+
+  const tokenPayload = UnsecuredJWT.decode(token).payload;
+
+  return z
+    .object({
+      userId: z
+        .number()
+        .min(1, { message: 'userId is required in token payload' }),
+    })
+    .parse(tokenPayload);
+}
+
+export function authenticateUser(request: VercelRequest) {
+  const { authorization } = request.headers;
+  const { userId } = verifyJWT(authorization);
+  return userId;
 }
