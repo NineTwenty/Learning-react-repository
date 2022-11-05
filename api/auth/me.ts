@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'GET') {
-    return res.status(400);
+    return res.status(405);
   }
 
   const userId = authenticateUser(req);

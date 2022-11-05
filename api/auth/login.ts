@@ -10,6 +10,10 @@ const LoginRequestBody = z.object({
 });
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  if (req.method !== 'POST') {
+    res.status(405);
+  }
+
   const validatedBody = LoginRequestBody.safeParse(req.body);
   if (!validatedBody.success) {
     return res.status(400);
