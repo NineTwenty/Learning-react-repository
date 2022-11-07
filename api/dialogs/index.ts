@@ -1,5 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { PrismaClient } from '@prisma/client';
+import { z } from 'zod';
 import { authenticateUser } from '../../src/utils/prismaUtils';
 
 const prisma = new PrismaClient();
@@ -43,11 +44,37 @@ async function handleGet(
     .send({ dialogs: transformedDialogs, users: uniqueUsers });
 }
 
+async function handlePost(
+  req: VercelRequest,
+  res: VercelResponse,
+  userId: number
+) {
+  const { members } = z
+    .object({ members: z.array(z.number()).nonempty() })
+    .parse(req.body);
+
+  const membersMap = members.map((id) => ({
+    id,
+  }));
+
+  const dialog = await prisma.dialog.create({
+    data: { members: { connect: [{ id: userId }, ...membersMap] } },
+    include: {
+      members: { select: { id: true } },
+      messages: { select: { id: true } },
+    },
+  });
+
+  return res.status(201).send({ dialog });
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const userId = authenticateUser(req);
   switch (req.method) {
     case 'GET':
       return handleGet(req, res, userId);
+    case 'POST':
+      return handlePost(req, res, userId);
     default:
       res.status(405);
   }
