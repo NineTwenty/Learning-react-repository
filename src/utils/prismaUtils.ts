@@ -48,6 +48,28 @@ export async function findUserById(userId: number, prisma: PrismaClient) {
   }
 }
 
+export const dialogInclude = Prisma.validator<Prisma.DialogInclude>()({
+  members: { include: userInclude },
+  messages: { select: { id: true } },
+});
+
+type DialogWithRelationships = Prisma.DialogGetPayload<{
+  include: typeof dialogInclude;
+}>;
+
+export function prepareDialogForClient({
+  members,
+  messages,
+  ...rest
+}: DialogWithRelationships) {
+  return {
+    members: members.map(({ id }) => id),
+    messages: messages.map(({ id }) => id),
+    ...rest,
+  };
+}
+
+export type Dialog = ReturnType<typeof prepareDialogForClient>;
 function verifyJWT(authHeader: string | string[] | undefined) {
   // Validate input
   const token = z
