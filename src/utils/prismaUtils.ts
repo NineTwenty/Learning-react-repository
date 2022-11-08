@@ -35,6 +35,8 @@ export function prepareUserForClient(user: UserWithRelationships) {
   return formatedUser;
 }
 
+export type User = ReturnType<typeof prepareUserForClient>;
+
 export async function findUserById(userId: number, prisma: PrismaClient) {
   const user = await prisma.user.findFirst({
     where: { id: userId },
