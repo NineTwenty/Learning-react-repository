@@ -1,7 +1,11 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
-import { authenticateUser } from '../../src/utils/prismaUtils';
+import {
+  authenticateUser,
+  dialogInclude,
+  prepareDialogForClient,
+} from '../../src/utils/prismaUtils';
 
 const prisma = new PrismaClient();
 
@@ -12,7 +16,7 @@ async function handleGet(
 ) {
   const dialogs = await prisma.dialog.findMany({
     where: { members: { some: { id: userId } } },
-    include: { members: true, messages: { select: { id: true } } },
+    include: dialogInclude,
   });
 
   if (!dialogs) {
@@ -20,11 +24,7 @@ async function handleGet(
   }
 
   // Transform members field of dialogs in array of ids
-  const transformedDialogs = dialogs.map(({ members, messages, ...rest }) => ({
-    members: members.map(({ id }) => id),
-    messages: messages.map(({ id }) => id),
-    ...rest,
-  }));
+  const transformedDialogs = dialogs.map(prepareDialogForClient);
 
   // Make flat users array
   const users = dialogs.flatMap(({ members }) => members);
@@ -59,13 +59,10 @@ async function handlePost(
 
   const dialog = await prisma.dialog.create({
     data: { members: { connect: [{ id: userId }, ...membersMap] } },
-    include: {
-      members: { select: { id: true } },
-      messages: { select: { id: true } },
-    },
+    include: dialogInclude,
   });
 
-  return res.status(201).send({ dialog });
+  return res.status(201).send({ dialog: prepareDialogForClient(dialog) });
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
