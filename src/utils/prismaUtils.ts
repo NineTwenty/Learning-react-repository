@@ -70,6 +70,27 @@ export function prepareDialogForClient({
 }
 
 export type Dialog = ReturnType<typeof prepareDialogForClient>;
+
+export const feedInclude = Prisma.validator<Prisma.FeedInclude>()({
+  posts: true,
+});
+
+type FeedWithRelationships = Prisma.FeedGetPayload<{
+  include: typeof feedInclude;
+}>;
+
+export function prepareFeedForClient({
+  posts,
+  ...rest
+}: FeedWithRelationships) {
+  return {
+    ...rest,
+    posts: posts.map((val) => val.id),
+  };
+}
+
+export type Feed = ReturnType<typeof prepareFeedForClient>;
+
 function verifyJWT(authHeader: string | string[] | undefined) {
   // Validate input
   const token = z
