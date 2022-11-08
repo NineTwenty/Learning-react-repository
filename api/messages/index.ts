@@ -1,5 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { PrismaClient } from '@prisma/client';
+import { z } from 'zod';
 import { authenticateUser } from '../../src/utils/prismaUtils';
 
 const prisma = new PrismaClient();
@@ -41,11 +42,36 @@ async function handleGet(
   return res.status(200).send({ messages });
 }
 
+async function handlePost(
+  req: VercelRequest,
+  res: VercelResponse,
+  userId: number
+) {
+  const { text, dialogId } = z
+    .object({
+      text: z.string().min(1),
+      dialogId: z.number(),
+    })
+    .parse(req.body);
+
+  const message = await prisma.message.create({
+    data: {
+      text,
+      author: { connect: { id: userId } },
+      dialog: { connect: { id: dialogId } },
+    },
+  });
+
+  return res.status(201).send({ message });
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const userId = authenticateUser(req);
   switch (req.method) {
     case 'GET':
       return handleGet(req, res, userId);
+    case 'POST':
+      return handlePost(req, res, userId);
     default:
       res.status(405);
   }
