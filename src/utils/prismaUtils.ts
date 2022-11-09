@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient, Message as PrismaMessage } from '@prisma/client';
 import type { VercelRequest } from '@vercel/node';
 import { UnsecuredJWT } from 'jose';
 import { z } from 'zod';
@@ -90,6 +90,15 @@ export function prepareFeedForClient({
 }
 
 export type Feed = ReturnType<typeof prepareFeedForClient>;
+
+export function prepareMessageForClient({ authorId, ...rest }: PrismaMessage) {
+  return {
+    ...rest,
+    author: authorId,
+  };
+}
+
+export type Message = ReturnType<typeof prepareMessageForClient>;
 
 function verifyJWT(authHeader: string | string[] | undefined) {
   // Validate input
