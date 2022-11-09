@@ -5,6 +5,7 @@ import {
   authenticateUser,
   dialogInclude,
   prepareDialogForClient,
+  prepareUserForClient,
 } from '../../src/utils/prismaUtils';
 
 const prisma = new PrismaClient();
@@ -26,8 +27,10 @@ async function handleGet(
   // Transform members field of dialogs in array of ids
   const transformedDialogs = dialogs.map(prepareDialogForClient);
 
-  // Make flat users array
-  const users = dialogs.flatMap(({ members }) => members);
+  // Make flat users array and prepare for client
+  const users = dialogs
+    .flatMap(({ members }) => members)
+    .map(prepareUserForClient);
 
   // Filter out duplicate users
   const ids: number[] = [];
