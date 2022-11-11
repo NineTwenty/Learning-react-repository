@@ -1,7 +1,10 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
-import { authenticateUser } from '../../src/utils/prismaUtils';
+import {
+  authenticateUser,
+  prepareMessageForClient,
+} from '../../src/utils/prismaUtils';
 
 const prisma = new PrismaClient();
 
@@ -39,7 +42,9 @@ async function handleGet(
     },
   });
 
-  return res.status(200).send({ messages });
+  return res
+    .status(200)
+    .send({ messages: messages.map(prepareMessageForClient) });
 }
 
 async function handlePost(
@@ -62,7 +67,7 @@ async function handlePost(
     },
   });
 
-  return res.status(201).send({ message });
+  return res.status(201).send({ message: prepareMessageForClient(message) });
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
