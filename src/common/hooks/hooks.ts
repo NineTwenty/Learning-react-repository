@@ -1,5 +1,5 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { AppDispatch, RootState } from 'data/store';
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
@@ -18,4 +18,13 @@ export function useReferrerPath(): string {
   if (path && path !== '/') return path;
   // Default redirect path
   return '/profile';
+}
+
+/**
+ * Wrapper to avoid repetitive string to number conversions
+ */
+
+export function useIdParam(): number | undefined {
+  const { id } = useParams();
+  return id !== undefined ? +id : undefined;
 }
