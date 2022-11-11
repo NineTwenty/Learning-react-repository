@@ -1,8 +1,8 @@
-import { createEntityAdapter, createSlice, EntityId } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { api } from 'api/API';
 import { isTokenExpireResponse } from 'api/APIUtils';
 import { AppDispatch, RootState } from 'data/store';
-import { User } from 'common/entities.types';
+import type { User } from 'common/entities.types';
 import {
   createLoadingActions,
   createLoadingMatchers,
@@ -104,13 +104,13 @@ const { selectIds, selectById, selectEntities } = adapter.getSelectors(
 export const selectUsersIds = (state: RootState) => selectIds(state);
 
 export const selectUserById =
-  (id: EntityId | undefined) => (state: RootState) => {
+  (id: User['id'] | undefined) => (state: RootState) => {
     if (id) {
       return selectById(state, id);
     }
   };
 
-export const selectUsersByIds = (ids: EntityId[]) => (state: RootState) => {
+export const selectUsersByIds = (ids: User['id'][]) => (state: RootState) => {
   const entities = selectEntities(state);
 
   return ids.map((id) => entities[id]).filter(Boolean) as User[];

@@ -6,6 +6,7 @@ import { selectPostById, selectUserById } from 'data/entities';
 import { Separator } from 'common/components/Separator';
 import Button from 'common/components/Button';
 import Avatar from 'common/components/Avatar/Avatar';
+import type { Post as PostEntity } from 'utils/prismaUtils';
 import style from './Post.module.css';
 
 function msToTime(ms: number) {
@@ -20,7 +21,7 @@ function msToTime(ms: number) {
 }
 
 type PostProps = {
-  id: string;
+  id: PostEntity['id'];
 };
 
 export function Post({ id }: PostProps) {

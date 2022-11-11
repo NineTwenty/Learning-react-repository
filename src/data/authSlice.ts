@@ -1,6 +1,6 @@
-import { createSlice, EntityId } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { User } from 'common/entities.types';
+import type { User } from 'common/entities.types';
 import { api } from '../api/API';
 import { LOGOUT } from './common/actions';
 import { addUser } from './entities/usersSlice';
@@ -33,7 +33,7 @@ const loginCompleted = () => ({
 // State type
 
 type AuthState = {
-  userId: EntityId | null;
+  userId: User['id'] | null;
   loggedIn: boolean;
 } & StatusState;
 
@@ -47,7 +47,7 @@ const initialState: AuthState = {
 
 const loginActions = { loginStarted, loginCompleted };
 const registrationActions = createLoadingActions(sliceName, 'registration');
-const authorizationActions = createLoadingActions<EntityId>(
+const authorizationActions = createLoadingActions<User['id']>(
   sliceName,
   'authorization'
 );
@@ -177,12 +177,10 @@ export const submitLoginForm =
 
 export const handleUserRegistration =
   (
-    userData: Partial<User> & {
-      firstName: string;
-      lastName: string;
-      email: string;
-      password: string;
-    }
+    userData: Partial<User> &
+      Pick<User, 'firstName' | 'lastName' | 'email'> & {
+        password: string;
+      }
   ) =>
   async (dispatch: AppDispatch): Promise<{ payload: string[] } | void> => {
     dispatch(registrationActions.request());

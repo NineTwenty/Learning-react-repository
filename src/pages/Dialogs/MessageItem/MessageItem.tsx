@@ -2,12 +2,13 @@ import { useSelector } from 'react-redux';
 import { selectUserById } from 'data/entities';
 import { Spinner } from 'common/components/Spinner';
 import Avatar from 'common/components/Avatar/Avatar';
+import type { Message, User } from 'utils/prismaUtils';
 import styles from './MessageItem.module.css';
 
 type Props = {
   text: string;
-  id: string;
-  authorId: string;
+  id: Message['id'];
+  authorId: User['id'];
   isMine: boolean;
 };
 

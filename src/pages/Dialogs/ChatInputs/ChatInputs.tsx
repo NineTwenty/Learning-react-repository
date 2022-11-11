@@ -3,11 +3,12 @@ import Button from 'common/components/Button';
 import { TextAreaField } from 'common/components/TextAreaField';
 import { Form, Formik, FormikErrors, FormikHelpers, FormikProps } from 'formik';
 import { useDispatch } from 'react-redux';
+import type { Dialog } from 'utils/prismaUtils';
 import { fetchDialogs, submitMessage } from 'data/entities';
 import styles from './ChatInputs.module.css';
 
 type Props = {
-  dialogId: number | string;
+  dialogId: Dialog['id'];
 };
 
 type FormValues = {

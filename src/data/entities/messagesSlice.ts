@@ -2,11 +2,10 @@ import {
   createEntityAdapter,
   createSelector,
   createSlice,
-  EntityId,
 } from '@reduxjs/toolkit';
 import { api } from 'api/API';
 import { isTokenExpireResponse } from 'api/APIUtils';
-import { Message } from 'common/entities.types';
+import type { Dialog, Message } from 'common/entities.types';
 import { logout } from 'data/common/actions';
 import { AppDispatch, RootState } from 'data/store';
 import {
@@ -80,7 +79,7 @@ export const clearMessages = () => messagesSlice.actions.removeAll();
 // Thunks
 
 export const fetchMessages =
-  (page: number, dialogId: EntityId) => async (dispatch: AppDispatch) => {
+  (page: number, dialogId: Dialog['id']) => async (dispatch: AppDispatch) => {
     dispatch(getRequest.request());
     try {
       const { messages } = await api.get<{ messages: Message[] }>(
@@ -123,12 +122,12 @@ const { selectIds, selectById, selectAll, selectEntities } =
 
 export const selectMessages = (state: RootState) => selectAll(state);
 export const selectMessagesIds = (state: RootState) => selectIds(state);
-export const selectMessageById = (id: EntityId) => (state: RootState) =>
+export const selectMessageById = (id: Message['id']) => (state: RootState) =>
   selectById(state, id);
 export const selectLoadedMessagesByIds = createSelector(
   [
     selectEntities,
-    (_: unknown, props: EntityId[]) => {
+    (_: unknown, props: Message['id'][]) => {
       return props;
     },
   ],

@@ -8,13 +8,13 @@ import {
   selectLoadedMessagesByIds,
 } from 'data/entities';
 import InfiniteScrollReverse from 'common/components/InfiniteScrollReverse/InfiniteScrollReverse';
-import { Message } from 'common/entities.types';
+import type { Dialog, Message, User } from 'common/entities.types';
 import MessageItem from '../MessageItem/MessageItem';
 import styles from './ChatBox.module.css';
 
 type Props = {
-  dialogId: string | number;
-  userId: string | number;
+  dialogId: Dialog['id'];
+  userId: User['id'];
 };
 
 function ChatBox({ dialogId, userId }: Props) {
@@ -33,9 +33,9 @@ function ChatBox({ dialogId, userId }: Props) {
       return (
         <MessageItem
           key={id}
-          id={`${id}`}
+          id={id}
           text={text}
-          authorId={`${author}`}
+          authorId={author}
           isMine={userId === author}
         />
       );

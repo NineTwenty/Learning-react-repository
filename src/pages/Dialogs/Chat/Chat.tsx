@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { selectDialogMemberId, selectUserById } from 'data/entities';
+import type { Dialog, User } from 'utils/prismaUtils';
 import styles from './Chat.module.css';
 import ChatHeader from '../ChatHeader/ChatHeader';
 import ChatBox from '../ChatBox/ChatBox';
@@ -7,8 +8,8 @@ import ChatInputs from '../ChatInputs/ChatInputs';
 
 type Props = {
   className: string;
-  dialogId: number | string;
-  userId: number | string;
+  dialogId: Dialog['id'];
+  userId: User['id'];
 };
 
 function Chat({ className, dialogId, userId }: Props) {

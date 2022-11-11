@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { selectDialogMemberId, selectUserById } from 'data/entities';
 import { Spinner } from 'common/components/Spinner';
 import Avatar from 'common/components/Avatar/Avatar';
+import type { Dialog } from 'utils/prismaUtils';
 import styles from './DialogItem.module.scss';
 
 type Props = {
-  id: number | string;
+  id: Dialog['id'];
   isChosen: boolean;
 };
 
