@@ -4,7 +4,7 @@ import { Separator } from 'common/components/Separator';
 import { useSelector } from 'react-redux';
 import { selectUserById } from 'data/entities';
 import { Spinner } from 'common/components/Spinner';
-import { useParams } from 'react-router-dom';
+import { useIdParam } from 'common/hooks/hooks';
 import styles from './About.module.scss';
 
 type AboutProps = {
@@ -13,7 +13,7 @@ type AboutProps = {
 
 export function About({ className }: AboutProps) {
   const classes = cx(styles.Wrapper, { [`${className ?? ''}`]: className });
-  const { id } = useParams<{ id: string | undefined }>();
+  const id = useIdParam();
 
   const currentUser = useSelector(selectUserById(id));
 

@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import { Formik, Form, FormikHelpers } from 'formik';
 import { TextAreaField } from 'common/components/TextAreaField';
 import SubmitField from 'common/components/SubmitField';
@@ -7,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchFeed, getIsLoadingPostStatus } from 'data/entities';
 import { Wrapper } from 'common/components/Wrapper/Wrapper';
 import { AppDispatch } from 'data/store';
+import { useIdParam } from 'common/hooks/hooks';
 import style from './PostingForm.module.css';
 
 type UnregisteredPost = { postText: string; feedId: string };
@@ -30,7 +30,7 @@ const validate = (values: FormValues) => {
 
 function PostingForm({ header, onSubmit }: Props) {
   const dispatch = useDispatch();
-  const { id } = useParams<{ id: string }>();
+  const id = useIdParam();
 
   if (!id) {
     throw new Error(`id URL param is not set`);

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import cx from 'classnames';
 import { fetchDialogs, selectDialogs } from 'data/entities';
-import { useAppSelector } from 'common/hooks/hooks';
+import { useAppSelector, useIdParam } from 'common/hooks/hooks';
 import { Dialog } from 'common/entities.types';
 import { Spinner } from 'common/components/Spinner';
 import { HamburgerButton } from 'common/components/HamburgerButton/HamburgerButton';
@@ -14,7 +13,7 @@ import Chat from './Chat/Chat';
 import styles from './Dialogs.module.css';
 
 function Dialogs() {
-  const { id: currentDialogId } = useParams<{ id: string }>();
+  const currentDialogId = useIdParam();
   const userId = useAppSelector(selectCurrentUserId);
   const dialogs = useAppSelector(selectDialogs);
   const isDialogChosen = !!currentDialogId;

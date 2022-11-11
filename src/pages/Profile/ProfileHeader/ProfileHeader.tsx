@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import cx from 'classnames';
-import { useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'common/hooks/hooks';
+import { useAppDispatch, useAppSelector, useIdParam } from 'common/hooks/hooks';
 import { selectUserById } from 'data/entities';
 import Avatar from 'common/components/Avatar/Avatar';
 import { Image } from 'common/components/Image/Image';
@@ -19,7 +18,7 @@ type ProfileHeaderProps = {
 export function ProfileHeader({ className }: ProfileHeaderProps) {
   const classes = cx(styles.Wrapper, { [`${className ?? ''}`]: className });
   const [isControlsOpen, setIsControlsOpen] = useState(false);
-  const { id } = useParams<{ id: string | undefined }>();
+  const id = useIdParam();
   const dispatch = useAppDispatch();
   const loggedUserId = useAppSelector(selectCurrentUserId);
 

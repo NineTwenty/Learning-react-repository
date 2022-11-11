@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { generatePath, Link, useParams } from 'react-router-dom';
+import { generatePath, Link } from 'react-router-dom';
 import { fetchUsers, selectUserById, selectUsersByIds } from 'data/entities';
 import Avatar from 'common/components/Avatar/Avatar';
 import { Gallery } from 'common/components/Gallery/Gallery';
+import { useIdParam } from 'common/hooks/hooks';
 import styles from './FriendsGallery.module.scss';
 
 type FriendsGalleryProps = {
@@ -20,7 +21,7 @@ export function FriendsGallery({ className, limit }: FriendsGalleryProps) {
   }, [dispatch]);
 
   // Get routing data
-  const { id } = useParams<{ id: string }>();
+  const id = useIdParam();
 
   const user = useSelector(selectUserById(id));
 

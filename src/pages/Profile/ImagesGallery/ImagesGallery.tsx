@@ -1,7 +1,7 @@
 import { CroppedImage } from 'common/components/CroppedImage/CroppedImage';
 import { Gallery } from 'common/components/Gallery/Gallery';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useIdParam } from 'common/hooks/hooks';
 import { selectUserById } from 'data/entities';
 
 type ImagesGalleryProps = {
@@ -10,7 +10,7 @@ type ImagesGalleryProps = {
 };
 
 export function ImagesGallery({ className, limit }: ImagesGalleryProps) {
-  const { id } = useParams<{ id: string | undefined }>();
+  const id = useIdParam();
 
   const user = useSelector(selectUserById(id));
 

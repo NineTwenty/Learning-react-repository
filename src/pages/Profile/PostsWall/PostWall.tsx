@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { submitPost, fetchFeed, selectFeedById } from 'data/entities';
 import { List } from 'common/components/List';
 import { useSelector, useDispatch } from 'react-redux';
 import cx from 'classnames';
+import { useIdParam } from 'common/hooks/hooks';
 import PostingForm from './PostingForm';
 import { Post } from './Post/Post';
 import style from './PostWall.module.css';
@@ -14,7 +14,7 @@ type Props = {
 
 function PostWall({ className }: Props) {
   const dispatch = useDispatch();
-  const { id: feedId } = useParams<{ id: string }>();
+  const feedId = useIdParam();
 
   if (!feedId) {
     throw new Error(`id URL param is not set`);
