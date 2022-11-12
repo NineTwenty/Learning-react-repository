@@ -110,9 +110,14 @@ export function prepareFeedForClient({
 
 export type Feed = ReturnType<typeof prepareFeedForClient>;
 
-export function prepareMessageForClient({ authorId, ...rest }: PrismaMessage) {
+export function prepareMessageForClient({
+  authorId,
+  createdAt,
+  ...rest
+}: PrismaMessage) {
   return {
     ...rest,
+    createdAt: createdAt.toISOString(),
     author: authorId,
   };
 }
