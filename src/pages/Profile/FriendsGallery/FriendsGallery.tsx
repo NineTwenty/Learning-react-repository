@@ -35,7 +35,7 @@ export function FriendsGallery({ className, limit }: FriendsGalleryProps) {
     }
 
     // Generate link path
-    const linkToFriend = generatePath('/profile/:id', { id: friend.id });
+    const linkToFriend = generatePath('/profile/:id', { id: `${friend.id}` });
 
     return (
       <Link

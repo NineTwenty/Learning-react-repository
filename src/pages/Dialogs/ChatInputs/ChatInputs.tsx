@@ -34,9 +34,7 @@ function ChatInputs({ dialogId }: Props) {
 
     // Create message
     const message = {
-      created: Date.now(),
       text,
-      unread: true,
       dialogId,
     };
 
