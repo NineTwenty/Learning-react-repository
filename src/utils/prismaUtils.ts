@@ -124,9 +124,14 @@ export function prepareMessageForClient({
 
 export type Message = ReturnType<typeof prepareMessageForClient>;
 
-export function preparePostForClient({ authorId, ...rest }: PrismaPost) {
+export function preparePostForClient({
+  authorId,
+  created,
+  ...rest
+}: PrismaPost) {
   return {
     ...rest,
+    created: created.toISOString(),
     author: authorId,
   };
 }
