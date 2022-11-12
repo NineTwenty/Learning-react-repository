@@ -77,9 +77,11 @@ type DialogWithRelationships = Prisma.DialogGetPayload<{
 export function prepareDialogForClient({
   members,
   messages,
+  updatedAt,
   ...rest
 }: DialogWithRelationships) {
   return {
+    updatedAt: updatedAt.toISOString(),
     members: members.map(({ id }) => id),
     messages: messages.map(({ id }) => id),
     ...rest,
