@@ -22,7 +22,17 @@ export type UserWithRelationships = Prisma.UserGetPayload<{
 
 export function prepareUserForClient(user: UserWithRelationships) {
   // Remove sensitive information and transform for client
-  const { password, login, avatar, friends, posts, feed, ...rest } = user;
+  const {
+    password,
+    login,
+    avatar,
+    friends,
+    posts,
+    feed,
+    lastOnlineTime,
+    updatedAt,
+    ...rest
+  } = user;
 
   if (!feed) {
     throw new Error('Data error: feed must be present on user object');
@@ -31,6 +41,8 @@ export function prepareUserForClient(user: UserWithRelationships) {
   const objToId = ({ id }: { id: number }) => id;
   const formatedUser = {
     ...rest,
+    updatedAt: updatedAt.toISOString(),
+    lastOnlineTime: lastOnlineTime.toISOString(),
     avatar: avatar?.image.src,
     friends: friends.map(objToId),
     posts: posts.map(objToId),
