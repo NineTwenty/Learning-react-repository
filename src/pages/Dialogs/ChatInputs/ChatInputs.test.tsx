@@ -12,7 +12,7 @@ jest.mock('react-redux', () => ({
 const testString = 'Test string';
 
 test('Change value when something typed in', async () => {
-  const { getByRole } = render(<ChatInputs dialogId='1' />);
+  const { getByRole } = render(<ChatInputs dialogId={1} />);
   const textarea = getByRole('textbox');
 
   userEvent.type(textarea, testString);
@@ -21,7 +21,7 @@ test('Change value when something typed in', async () => {
 });
 
 test('Reset Value on submit', async () => {
-  const { getByRole } = render(<ChatInputs dialogId='1' />);
+  const { getByRole } = render(<ChatInputs dialogId={1} />);
   const textarea = getByRole('textbox');
 
   userEvent.type(textarea, testString);
@@ -31,7 +31,7 @@ test('Reset Value on submit', async () => {
 });
 
 test('Type new line on shift + enter keypress', async () => {
-  const { getByRole } = render(<ChatInputs dialogId='1' />);
+  const { getByRole } = render(<ChatInputs dialogId={1} />);
   const textarea = getByRole('textbox');
 
   userEvent.type(textarea, testString);

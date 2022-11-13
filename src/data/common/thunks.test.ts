@@ -2,6 +2,7 @@ import { redirectTo } from 'data';
 import { RootState } from 'data/store';
 import { selectDialogByMember, submitDialog } from 'data/entities';
 import { redirectToDialogByUser } from 'data/common/thunks';
+import { Dialog } from 'utils/prismaUtils';
 
 const dispatch = jest.fn();
 const mockSelectDialogByMember = selectDialogByMember as jest.MockedFunction<
@@ -11,11 +12,10 @@ const mockSubmitDialog = submitDialog as jest.MockedFunction<
   typeof submitDialog
 >;
 
-const mockDialog = {
-  count: 12323,
-  time: '234',
+const mockDialog: Dialog = {
+  updatedAt: new Date().toISOString(),
   messages: [],
-  id: '2',
+  id: 2,
   members: [5, 7],
 };
 
