@@ -46,10 +46,10 @@ const appSlice = createSlice({
       state.redirectLink = action.payload;
     },
   },
-  extraReducers: {
-    [INITIALIZATION_FINISH]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(INITIALIZATION_FINISH, (state) => {
       state.isInitialized = true;
-    },
+    });
   },
   /* eslint-enable no-param-reassign */
 });
