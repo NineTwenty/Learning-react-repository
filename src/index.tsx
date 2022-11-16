@@ -1,6 +1,6 @@
 import './index.css';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from 'data/store';
@@ -11,8 +11,10 @@ import App from './app/App';
 
 const iconsConfig = { className: 'react-icons' };
 
+const root = createRoot(document.getElementById('root')!);
+
 const explicitRender = () => {
-  ReactDOM.render(
+  root.render(
     <React.StrictMode>
       <BrowserRouter>
         <Provider store={store}>
@@ -21,8 +23,7 @@ const explicitRender = () => {
           </IconContext.Provider>
         </Provider>
       </BrowserRouter>
-    </React.StrictMode>,
-    document.getElementById('root')
+    </React.StrictMode>
   );
 };
 
