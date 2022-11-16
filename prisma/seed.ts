@@ -805,563 +805,563 @@ async function main() {
   await prisma.image.createMany({
     data: [
       {
-        src: '/api/picture?width=1280&height=920&random=0.22455715310808766',
+        src: 'https://picsum.photos/1280/920?random=0.22455715310808766',
         uploaderId: 1,
       },
       {
-        src: '/api/picture?width=947&random=0.44543798161263237',
+        src: 'https://picsum.photos/947?random=0.44543798161263237',
         uploaderId: 1,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.5046808469456665',
+        src: 'https://picsum.photos/700/1280?random=0.5046808469456665',
         uploaderId: 1,
       },
       {
-        src: '/api/picture?width=1280&random=0.13634536502107641',
+        src: 'https://picsum.photos/1280?random=0.13634536502107641',
         uploaderId: 1,
       },
       {
-        src: '/api/picture?width=1280&height=590&random=0.6316084872888568',
+        src: 'https://picsum.photos/1280/590?random=0.6316084872888568',
         uploaderId: 1,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.18468078042840452',
+        src: 'https://picsum.photos/700/1280?random=0.18468078042840452',
         uploaderId: 1,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.6049633119992137',
+        src: 'https://picsum.photos/1280/329?random=0.6049633119992137',
         uploaderId: 1,
       },
       {
-        src: '/api/picture?width=560&random=0.5265710592882156',
+        src: 'https://picsum.photos/560?random=0.5265710592882156',
         uploaderId: 1,
       },
       {
-        src: '/api/picture?width=947&random=0.7775894231229743',
+        src: 'https://picsum.photos/947?random=0.7775894231229743',
         uploaderId: 1,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.6884816818004602',
+        src: 'https://picsum.photos/1280/329?random=0.6884816818004602',
         uploaderId: 1,
       },
       {
-        src: '/api/picture?width=1280&height=920&random=0.9431001600011457',
+        src: 'https://picsum.photos/1280/920?random=0.9431001600011457',
         uploaderId: 2,
       },
       {
-        src: '/api/picture?width=947&random=0.26292082668770145',
+        src: 'https://picsum.photos/947?random=0.26292082668770145',
         uploaderId: 2,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.33261083393226665',
+        src: 'https://picsum.photos/700/1280?random=0.33261083393226665',
         uploaderId: 2,
       },
       {
-        src: '/api/picture?width=1280&random=0.1374049434813216',
+        src: 'https://picsum.photos/1280?random=0.1374049434813216',
         uploaderId: 2,
       },
       {
-        src: '/api/picture?width=1280&height=590&random=0.09340886859101549',
+        src: 'https://picsum.photos/1280/590?random=0.09340886859101549',
         uploaderId: 2,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.41653554067184784',
+        src: 'https://picsum.photos/700/1280?random=0.41653554067184784',
         uploaderId: 2,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.21185985741608926',
+        src: 'https://picsum.photos/1280/329?random=0.21185985741608926',
         uploaderId: 2,
       },
       {
-        src: '/api/picture?width=560&random=0.2605049750677204',
+        src: 'https://picsum.photos/560?random=0.2605049750677204',
         uploaderId: 2,
       },
       {
-        src: '/api/picture?width=947&random=0.782616464809859',
+        src: 'https://picsum.photos/947?random=0.782616464809859',
         uploaderId: 2,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.8271145044499995',
+        src: 'https://picsum.photos/1280/329?random=0.8271145044499995',
         uploaderId: 2,
       },
       {
-        src: '/api/picture?width=1280&height=920&random=0.34987029750095777',
+        src: 'https://picsum.photos/1280/920?random=0.34987029750095777',
         uploaderId: 3,
       },
       {
-        src: '/api/picture?width=947&random=0.7043842133514371',
+        src: 'https://picsum.photos/947?random=0.7043842133514371',
         uploaderId: 3,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.442095710398962',
+        src: 'https://picsum.photos/700/1280?random=0.442095710398962',
         uploaderId: 3,
       },
       {
-        src: '/api/picture?width=1280&random=0.9240861134296936',
+        src: 'https://picsum.photos/1280?random=0.9240861134296936',
         uploaderId: 3,
       },
       {
-        src: '/api/picture?width=1280&height=590&random=0.9827052830643996',
+        src: 'https://picsum.photos/1280/590?random=0.9827052830643996',
         uploaderId: 3,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.912076234118351',
+        src: 'https://picsum.photos/700/1280?random=0.912076234118351',
         uploaderId: 3,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.46590547527532555',
+        src: 'https://picsum.photos/1280/329?random=0.46590547527532555',
         uploaderId: 3,
       },
       {
-        src: '/api/picture?width=560&random=0.19953211265329718',
+        src: 'https://picsum.photos/560?random=0.19953211265329718',
         uploaderId: 3,
       },
       {
-        src: '/api/picture?width=947&random=0.2988795083117681',
+        src: 'https://picsum.photos/947?random=0.2988795083117681',
         uploaderId: 3,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.8372921542307932',
+        src: 'https://picsum.photos/1280/329?random=0.8372921542307932',
         uploaderId: 3,
       },
       {
-        src: '/api/picture?width=1280&height=920&random=0.08934466448831246',
+        src: 'https://picsum.photos/1280/920?random=0.08934466448831246',
         uploaderId: 4,
       },
       {
-        src: '/api/picture?width=947&random=0.45455241213744935',
+        src: 'https://picsum.photos/947?random=0.45455241213744935',
         uploaderId: 4,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.3699615282079918',
+        src: 'https://picsum.photos/700/1280?random=0.3699615282079918',
         uploaderId: 4,
       },
       {
-        src: '/api/picture?width=1280&random=0.6055365437280533',
+        src: 'https://picsum.photos/1280?random=0.6055365437280533',
         uploaderId: 4,
       },
       {
-        src: '/api/picture?width=1280&height=590&random=0.3838800973974845',
+        src: 'https://picsum.photos/1280/590?random=0.3838800973974845',
         uploaderId: 4,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.14473615414424867',
+        src: 'https://picsum.photos/700/1280?random=0.14473615414424867',
         uploaderId: 4,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.748012419886469',
+        src: 'https://picsum.photos/1280/329?random=0.748012419886469',
         uploaderId: 4,
       },
       {
-        src: '/api/picture?width=560&random=0.7733678070580075',
+        src: 'https://picsum.photos/560?random=0.7733678070580075',
         uploaderId: 4,
       },
       {
-        src: '/api/picture?width=947&random=0.5173375601713541',
+        src: 'https://picsum.photos/947?random=0.5173375601713541',
         uploaderId: 4,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.9633749383879773',
+        src: 'https://picsum.photos/1280/329?random=0.9633749383879773',
         uploaderId: 4,
       },
       {
-        src: '/api/picture?width=1280&height=920&random=0.28327708142687924',
+        src: 'https://picsum.photos/1280/920?random=0.28327708142687924',
         uploaderId: 5,
       },
       {
-        src: '/api/picture?width=947&random=0.47665645951594215',
+        src: 'https://picsum.photos/947?random=0.47665645951594215',
         uploaderId: 5,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.6443690762238734',
+        src: 'https://picsum.photos/700/1280?random=0.6443690762238734',
         uploaderId: 5,
       },
       {
-        src: '/api/picture?width=1280&random=0.5040995329612956',
+        src: 'https://picsum.photos/1280?random=0.5040995329612956',
         uploaderId: 5,
       },
       {
-        src: '/api/picture?width=1280&height=590&random=0.8815444430020047',
+        src: 'https://picsum.photos/1280/590?random=0.8815444430020047',
         uploaderId: 5,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.2706148800925452',
+        src: 'https://picsum.photos/700/1280?random=0.2706148800925452',
         uploaderId: 5,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.15575808435904026',
+        src: 'https://picsum.photos/1280/329?random=0.15575808435904026',
         uploaderId: 5,
       },
       {
-        src: '/api/picture?width=560&random=0.5354428196045677',
+        src: 'https://picsum.photos/560?random=0.5354428196045677',
         uploaderId: 5,
       },
       {
-        src: '/api/picture?width=947&random=0.07847115158072082',
+        src: 'https://picsum.photos/947?random=0.07847115158072082',
         uploaderId: 5,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.3190607785542292',
+        src: 'https://picsum.photos/1280/329?random=0.3190607785542292',
         uploaderId: 5,
       },
       {
-        src: '/api/picture?width=1280&height=920&random=0.9780308373854332',
+        src: 'https://picsum.photos/1280/920?random=0.9780308373854332',
         uploaderId: 6,
       },
       {
-        src: '/api/picture?width=947&random=0.2549566461177397',
+        src: 'https://picsum.photos/947?random=0.2549566461177397',
         uploaderId: 6,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.5104061633124659',
+        src: 'https://picsum.photos/700/1280?random=0.5104061633124659',
         uploaderId: 6,
       },
       {
-        src: '/api/picture?width=1280&random=0.7994519543238923',
+        src: 'https://picsum.photos/1280?random=0.7994519543238923',
         uploaderId: 6,
       },
       {
-        src: '/api/picture?width=1280&height=590&random=0.43629552502567814',
+        src: 'https://picsum.photos/1280/590?random=0.43629552502567814',
         uploaderId: 6,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.09181138342194561',
+        src: 'https://picsum.photos/700/1280?random=0.09181138342194561',
         uploaderId: 6,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.8826820374355009',
+        src: 'https://picsum.photos/1280/329?random=0.8826820374355009',
         uploaderId: 6,
       },
       {
-        src: '/api/picture?width=560&random=0.116149892935969',
+        src: 'https://picsum.photos/560?random=0.116149892935969',
         uploaderId: 6,
       },
       {
-        src: '/api/picture?width=947&random=0.5267079447415184',
+        src: 'https://picsum.photos/947?random=0.5267079447415184',
         uploaderId: 6,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.42556976882000686',
+        src: 'https://picsum.photos/1280/329?random=0.42556976882000686',
         uploaderId: 6,
       },
       {
-        src: '/api/picture?width=1280&height=920&random=0.9630028347815214',
+        src: 'https://picsum.photos/1280/920?random=0.9630028347815214',
         uploaderId: 7,
       },
       {
-        src: '/api/picture?width=947&random=0.6554064950007437',
+        src: 'https://picsum.photos/947?random=0.6554064950007437',
         uploaderId: 7,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.45321406670356623',
+        src: 'https://picsum.photos/700/1280?random=0.45321406670356623',
         uploaderId: 7,
       },
       {
-        src: '/api/picture?width=1280&random=0.080982539552241',
+        src: 'https://picsum.photos/1280?random=0.080982539552241',
         uploaderId: 7,
       },
       {
-        src: '/api/picture?width=1280&height=590&random=0.010508702162165262',
+        src: 'https://picsum.photos/1280/590?random=0.010508702162165262',
         uploaderId: 7,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.44507854058490537',
+        src: 'https://picsum.photos/700/1280?random=0.44507854058490537',
         uploaderId: 7,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.09992020336448615',
+        src: 'https://picsum.photos/1280/329?random=0.09992020336448615',
         uploaderId: 7,
       },
       {
-        src: '/api/picture?width=560&random=0.6573015153993087',
+        src: 'https://picsum.photos/560?random=0.6573015153993087',
         uploaderId: 7,
       },
       {
-        src: '/api/picture?width=947&random=0.45999917577579263',
+        src: 'https://picsum.photos/947?random=0.45999917577579263',
         uploaderId: 7,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.70409612810478',
+        src: 'https://picsum.photos/1280/329?random=0.70409612810478',
         uploaderId: 7,
       },
       {
-        src: '/api/picture?width=1280&height=920&random=0.017926876125443858',
+        src: 'https://picsum.photos/1280/920?random=0.017926876125443858',
         uploaderId: 8,
       },
       {
-        src: '/api/picture?width=947&random=0.07673152593344867',
+        src: 'https://picsum.photos/947?random=0.07673152593344867',
         uploaderId: 8,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.23134483957818253',
+        src: 'https://picsum.photos/700/1280?random=0.23134483957818253',
         uploaderId: 8,
       },
       {
-        src: '/api/picture?width=1280&random=0.02565183399711035',
+        src: 'https://picsum.photos/1280?random=0.02565183399711035',
         uploaderId: 8,
       },
       {
-        src: '/api/picture?width=1280&height=590&random=0.7923569639670889',
+        src: 'https://picsum.photos/1280/590?random=0.7923569639670889',
         uploaderId: 8,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.04755470175965204',
+        src: 'https://picsum.photos/700/1280?random=0.04755470175965204',
         uploaderId: 8,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.4219057164028488',
+        src: 'https://picsum.photos/1280/329?random=0.4219057164028488',
         uploaderId: 8,
       },
       {
-        src: '/api/picture?width=560&random=0.14785519520124746',
+        src: 'https://picsum.photos/560?random=0.14785519520124746',
         uploaderId: 8,
       },
       {
-        src: '/api/picture?width=947&random=0.8966278640192966',
+        src: 'https://picsum.photos/947?random=0.8966278640192966',
         uploaderId: 8,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.0176194630664972',
+        src: 'https://picsum.photos/1280/329?random=0.0176194630664972',
         uploaderId: 8,
       },
       {
-        src: '/api/picture?width=1280&height=920&random=0.919178526609638',
+        src: 'https://picsum.photos/1280/920?random=0.919178526609638',
         uploaderId: 9,
       },
       {
-        src: '/api/picture?width=947&random=0.933935795632606',
+        src: 'https://picsum.photos/947?random=0.933935795632606',
         uploaderId: 9,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.607156946890449',
+        src: 'https://picsum.photos/700/1280?random=0.607156946890449',
         uploaderId: 9,
       },
       {
-        src: '/api/picture?width=1280&random=0.14643732505664575',
+        src: 'https://picsum.photos/1280?random=0.14643732505664575',
         uploaderId: 9,
       },
       {
-        src: '/api/picture?width=1280&height=590&random=0.862311766865562',
+        src: 'https://picsum.photos/1280/590?random=0.862311766865562',
         uploaderId: 9,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.6632645504857078',
+        src: 'https://picsum.photos/700/1280?random=0.6632645504857078',
         uploaderId: 9,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.2234120723923092',
+        src: 'https://picsum.photos/1280/329?random=0.2234120723923092',
         uploaderId: 9,
       },
       {
-        src: '/api/picture?width=560&random=0.49737476541764325',
+        src: 'https://picsum.photos/560?random=0.49737476541764325',
         uploaderId: 9,
       },
       {
-        src: '/api/picture?width=947&random=0.5922171855233087',
+        src: 'https://picsum.photos/947?random=0.5922171855233087',
         uploaderId: 9,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.7932800221540963',
+        src: 'https://picsum.photos/1280/329?random=0.7932800221540963',
         uploaderId: 9,
       },
       {
-        src: '/api/picture?width=1280&height=920&random=0.5490036300951802',
+        src: 'https://picsum.photos/1280/920?random=0.5490036300951802',
         uploaderId: 10,
       },
       {
-        src: '/api/picture?width=947&random=0.7661545965126886',
+        src: 'https://picsum.photos/947?random=0.7661545965126886',
         uploaderId: 10,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.05666950631886669',
+        src: 'https://picsum.photos/700/1280?random=0.05666950631886669',
         uploaderId: 10,
       },
       {
-        src: '/api/picture?width=1280&random=0.8460520590704934',
+        src: 'https://picsum.photos/1280?random=0.8460520590704934',
         uploaderId: 10,
       },
       {
-        src: '/api/picture?width=1280&height=590&random=0.9994001583252281',
+        src: 'https://picsum.photos/1280/590?random=0.9994001583252281',
         uploaderId: 10,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.7489907261690891',
+        src: 'https://picsum.photos/700/1280?random=0.7489907261690891',
         uploaderId: 10,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.1516633512040051',
+        src: 'https://picsum.photos/1280/329?random=0.1516633512040051',
         uploaderId: 10,
       },
       {
-        src: '/api/picture?width=560&random=0.2923092635941833',
+        src: 'https://picsum.photos/560?random=0.2923092635941833',
         uploaderId: 10,
       },
       {
-        src: '/api/picture?width=947&random=0.4228861333210536',
+        src: 'https://picsum.photos/947?random=0.4228861333210536',
         uploaderId: 10,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.15146636977454575',
+        src: 'https://picsum.photos/1280/329?random=0.15146636977454575',
         uploaderId: 10,
       },
       {
-        src: '/api/picture?width=1280&height=920&random=0.5974271211710938',
+        src: 'https://picsum.photos/1280/920?random=0.5974271211710938',
         uploaderId: 11,
       },
       {
-        src: '/api/picture?width=947&random=0.08950852995698777',
+        src: 'https://picsum.photos/947?random=0.08950852995698777',
         uploaderId: 11,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.9465820176001916',
+        src: 'https://picsum.photos/700/1280?random=0.9465820176001916',
         uploaderId: 11,
       },
       {
-        src: '/api/picture?width=1280&random=0.5813845919562477',
+        src: 'https://picsum.photos/1280?random=0.5813845919562477',
         uploaderId: 11,
       },
       {
-        src: '/api/picture?width=1280&height=590&random=0.8439771824205025',
+        src: 'https://picsum.photos/1280/590?random=0.8439771824205025',
         uploaderId: 11,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.5664837201443935',
+        src: 'https://picsum.photos/700/1280?random=0.5664837201443935',
         uploaderId: 11,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.6198403647396147',
+        src: 'https://picsum.photos/1280/329?random=0.6198403647396147',
         uploaderId: 11,
       },
       {
-        src: '/api/picture?width=560&random=0.4825903718079092',
+        src: 'https://picsum.photos/560?random=0.4825903718079092',
         uploaderId: 11,
       },
       {
-        src: '/api/picture?width=947&random=0.6032826301345238',
+        src: 'https://picsum.photos/947?random=0.6032826301345238',
         uploaderId: 11,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.5295939922374941',
+        src: 'https://picsum.photos/1280/329?random=0.5295939922374941',
         uploaderId: 11,
       },
       {
-        src: '/api/picture?width=1280&height=920&random=0.9594311983220825',
+        src: 'https://picsum.photos/1280/920?random=0.9594311983220825',
         uploaderId: 12,
       },
       {
-        src: '/api/picture?width=947&random=0.5392150101656599',
+        src: 'https://picsum.photos/947?random=0.5392150101656599',
         uploaderId: 12,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.7614953207772879',
+        src: 'https://picsum.photos/700/1280?random=0.7614953207772879',
         uploaderId: 12,
       },
       {
-        src: '/api/picture?width=1280&random=0.2700370614650722',
+        src: 'https://picsum.photos/1280?random=0.2700370614650722',
         uploaderId: 12,
       },
       {
-        src: '/api/picture?width=1280&height=590&random=0.28714809488649706',
+        src: 'https://picsum.photos/1280/590?random=0.28714809488649706',
         uploaderId: 12,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.6831908981661208',
+        src: 'https://picsum.photos/700/1280?random=0.6831908981661208',
         uploaderId: 12,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.08331345869263362',
+        src: 'https://picsum.photos/1280/329?random=0.08331345869263362',
         uploaderId: 12,
       },
       {
-        src: '/api/picture?width=560&random=0.7604795066273164',
+        src: 'https://picsum.photos/560?random=0.7604795066273164',
         uploaderId: 12,
       },
       {
-        src: '/api/picture?width=947&random=0.830969096744872',
+        src: 'https://picsum.photos/947?random=0.830969096744872',
         uploaderId: 12,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.3862430401867778',
+        src: 'https://picsum.photos/1280/329?random=0.3862430401867778',
         uploaderId: 12,
       },
       {
-        src: '/api/picture?width=1280&height=920&random=0.4825668772964997',
+        src: 'https://picsum.photos/1280/920?random=0.4825668772964997',
         uploaderId: 13,
       },
       {
-        src: '/api/picture?width=947&random=0.31712016395390763',
+        src: 'https://picsum.photos/947?random=0.31712016395390763',
         uploaderId: 13,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.8366492970562367',
+        src: 'https://picsum.photos/700/1280?random=0.8366492970562367',
         uploaderId: 13,
       },
       {
-        src: '/api/picture?width=1280&random=0.6653866979011653',
+        src: 'https://picsum.photos/1280?random=0.6653866979011653',
         uploaderId: 13,
       },
       {
-        src: '/api/picture?width=1280&height=590&random=0.5370594211943451',
+        src: 'https://picsum.photos/1280/590?random=0.5370594211943451',
         uploaderId: 13,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.863643407002854',
+        src: 'https://picsum.photos/700/1280?random=0.863643407002854',
         uploaderId: 13,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.6555201950159524',
+        src: 'https://picsum.photos/1280/329?random=0.6555201950159524',
         uploaderId: 13,
       },
       {
-        src: '/api/picture?width=560&random=0.30455997175892846',
+        src: 'https://picsum.photos/560?random=0.30455997175892846',
         uploaderId: 13,
       },
       {
-        src: '/api/picture?width=947&random=0.736586015073244',
+        src: 'https://picsum.photos/947?random=0.736586015073244',
         uploaderId: 13,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.8099081805869313',
+        src: 'https://picsum.photos/1280/329?random=0.8099081805869313',
         uploaderId: 13,
       },
       {
-        src: '/api/picture?width=1280&height=920&random=0.6088044091198102',
+        src: 'https://picsum.photos/1280/920?random=0.6088044091198102',
         uploaderId: 14,
       },
       {
-        src: '/api/picture?width=947&random=0.24734118638948832',
+        src: 'https://picsum.photos/947?random=0.24734118638948832',
         uploaderId: 14,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.11436220715016998',
+        src: 'https://picsum.photos/700/1280?random=0.11436220715016998',
         uploaderId: 14,
       },
       {
-        src: '/api/picture?width=1280&random=0.04318131930432867',
+        src: 'https://picsum.photos/1280?random=0.04318131930432867',
         uploaderId: 14,
       },
       {
-        src: '/api/picture?width=1280&height=590&random=0.17824509549662393',
+        src: 'https://picsum.photos/1280/590?random=0.17824509549662393',
         uploaderId: 14,
       },
       {
-        src: '/api/picture?width=700&height=1280&random=0.42116299899831144',
+        src: 'https://picsum.photos/700/1280?random=0.42116299899831144',
         uploaderId: 14,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.9767006321217244',
+        src: 'https://picsum.photos/1280/329?random=0.9767006321217244',
         uploaderId: 14,
       },
       {
-        src: '/api/picture?width=560&random=0.39389693227439326',
+        src: 'https://picsum.photos/560?random=0.39389693227439326',
         uploaderId: 14,
       },
       {
-        src: '/api/picture?width=947&random=0.051065752190956104',
+        src: 'https://picsum.photos/947?random=0.051065752190956104',
         uploaderId: 14,
       },
       {
-        src: '/api/picture?width=1280&height=329&random=0.7145628776223387',
+        src: 'https://picsum.photos/1280/329?random=0.7145628776223387',
         uploaderId: 14,
       },
     ],
