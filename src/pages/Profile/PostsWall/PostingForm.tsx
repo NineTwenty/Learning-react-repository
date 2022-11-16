@@ -2,11 +2,11 @@ import { Formik, Form, FormikHelpers } from 'formik';
 import { TextAreaField } from 'common/components/TextAreaField';
 import SubmitField from 'common/components/SubmitField';
 import { Separator } from 'common/components/Separator/Separator';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { fetchFeed, getIsLoadingPostStatus } from 'data/entities';
 import { Wrapper } from 'common/components/Wrapper/Wrapper';
 import { AppDispatch } from 'data/store';
-import { useIdParam } from 'common/hooks/hooks';
+import { useAppDispatch, useIdParam } from 'common/hooks/hooks';
 import type { Feed } from 'utils/prismaUtils';
 import style from './PostingForm.module.css';
 
@@ -30,7 +30,7 @@ const validate = (values: FormValues) => {
 };
 
 function PostingForm({ header, onSubmit }: Props) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const id = useIdParam();
 
   if (!id) {
@@ -43,9 +43,9 @@ function PostingForm({ header, onSubmit }: Props) {
   ) => {
     const post = { ...posts, feedId: id };
 
-    dispatch(onSubmit(post));
+    void dispatch(onSubmit(post));
     // Update changed feed
-    dispatch(fetchFeed(id));
+    void dispatch(fetchFeed(id));
 
     formikBag.resetForm();
   };

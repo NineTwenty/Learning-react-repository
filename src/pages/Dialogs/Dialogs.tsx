@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import cx from 'classnames';
 import { fetchDialogs, selectDialogs } from 'data/entities';
-import { useAppSelector, useIdParam } from 'common/hooks/hooks';
+import { useAppDispatch, useAppSelector, useIdParam } from 'common/hooks/hooks';
 import { Dialog } from 'common/entities.types';
 import { Spinner } from 'common/components/Spinner';
 import { HamburgerButton } from 'common/components/HamburgerButton/HamburgerButton';
@@ -19,13 +18,13 @@ function Dialogs() {
   const isDialogChosen = !!currentDialogId;
   const isDialogsLoaded = dialogs;
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   // Periodically fetch dialogs
   useEffect(() => {
-    dispatch(fetchDialogs());
+    void dispatch(fetchDialogs());
     const interval = setInterval(() => {
-      dispatch(fetchDialogs());
+      void dispatch(fetchDialogs());
     }, 10000);
     return () => clearInterval(interval);
   }, [dispatch]);

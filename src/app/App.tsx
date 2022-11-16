@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './App.css';
 import './constants.css';
 import {
@@ -16,18 +16,19 @@ import HomeProfile from 'pages/Profile/HomeProfile';
 import Login from 'pages/Login/Login';
 import { SplashScreen } from 'common/components/SplashScreen/SplashScreen';
 import { Page } from 'common/components/Page';
+import { useAppDispatch } from 'common/hooks/hooks';
 
 function App(): JSX.Element {
   const loggedIn = useSelector(selectLoggedInStatus);
   const isInitialized = useSelector(selectIsAppInitialized);
   const redirectLink = useSelector(selectRedirectLink);
   const location = useLocation();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   // Initialization
   useEffect(() => {
     if (!isInitialized) {
-      dispatch(initialization());
+      void dispatch(initialization());
     }
   }, [dispatch, isInitialized]);
 

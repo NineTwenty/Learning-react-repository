@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useAppSelector } from 'common/hooks/hooks';
+import { useAppDispatch, useAppSelector } from 'common/hooks/hooks';
 import {
   clearMessages,
   selectDialogById,
@@ -18,7 +17,7 @@ type Props = {
 };
 
 function ChatBox({ dialogId, userId }: Props) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   // Clear messages on dialog or page change
   useEffect(() => {
@@ -52,7 +51,7 @@ function ChatBox({ dialogId, userId }: Props) {
 
   const loadMore = useCallback(
     (page: number) => {
-      dispatch(fetchMessages(page, dialogId));
+      void dispatch(fetchMessages(page, dialogId));
     },
     [dispatch, dialogId]
   );

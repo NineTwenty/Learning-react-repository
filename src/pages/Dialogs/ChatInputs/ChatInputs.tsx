@@ -2,9 +2,9 @@ import { KeyboardEvent, useRef } from 'react';
 import Button from 'common/components/Button';
 import { TextAreaField } from 'common/components/TextAreaField';
 import { Form, Formik, FormikErrors, FormikHelpers, FormikProps } from 'formik';
-import { useDispatch } from 'react-redux';
 import type { Dialog } from 'utils/prismaUtils';
 import { fetchDialogs, submitMessage } from 'data/entities';
+import { useAppDispatch } from 'common/hooks/hooks';
 import styles from './ChatInputs.module.css';
 
 type Props = {
@@ -16,7 +16,7 @@ type FormValues = {
 };
 
 function ChatInputs({ dialogId }: Props) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const formRef = useRef<FormikProps<FormValues>>(null);
 
   const validate = (values: FormValues) => {
@@ -39,8 +39,8 @@ function ChatInputs({ dialogId }: Props) {
     };
 
     // Submit message
-    dispatch(submitMessage(message));
-    dispatch(fetchDialogs());
+    void dispatch(submitMessage(message));
+    void dispatch(fetchDialogs());
 
     actions.setSubmitting(false);
 
