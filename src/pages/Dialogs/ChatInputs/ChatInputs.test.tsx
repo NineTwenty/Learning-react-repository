@@ -12,30 +12,34 @@ jest.mock('react-redux', () => ({
 const testString = 'Test string';
 
 test('Change value when something typed in', async () => {
+  const user = userEvent.setup();
   const { getByRole } = render(<ChatInputs dialogId={1} />);
   const textarea = getByRole('textbox');
 
-  userEvent.type(textarea, testString);
+  await user.type(textarea, testString);
 
   await waitFor(() => expect(textarea).toHaveValue(testString));
 });
 
 test('Reset Value on submit', async () => {
+  const user = userEvent.setup();
+
   const { getByRole } = render(<ChatInputs dialogId={1} />);
   const textarea = getByRole('textbox');
 
-  userEvent.type(textarea, testString);
-  userEvent.click(getByRole('button'));
+  await user.type(textarea, testString);
+  await user.click(getByRole('button'));
 
   await waitFor(() => expect(textarea).toBeEmptyDOMElement());
 });
 
 test('Type new line on shift + enter keypress', async () => {
+  const user = userEvent.setup();
   const { getByRole } = render(<ChatInputs dialogId={1} />);
   const textarea = getByRole('textbox');
 
-  userEvent.type(textarea, testString);
-  userEvent.keyboard('{Shift>}{Enter}{/Shift}');
+  await user.type(textarea, testString);
+  await user.keyboard('{Shift>}{Enter}{/Shift}');
 
   await waitFor(() => expect(textarea).toHaveValue(`${testString}\n`));
 });

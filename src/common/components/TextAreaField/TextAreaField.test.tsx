@@ -5,6 +5,7 @@ import SubmitField from 'common/components/SubmitField';
 import { TextAreaField } from './TextAreaField';
 
 it('Render and correctly integrate with form', async () => {
+  const user = userEvent.setup();
   const initialValues = {
     text: '',
   };
@@ -27,12 +28,12 @@ it('Render and correctly integrate with form', async () => {
   const string = 'Test string';
   const textarea = getByRole('textbox');
 
-  userEvent.type(textarea, string);
+  await user.type(textarea, string);
 
   expect(textarea).toHaveValue(string);
 
   // Submit
-  userEvent.click(getByRole('button'));
+  await user.click(getByRole('button'));
   await waitFor(() => expect(onSubmit).toBeCalledTimes(1));
 
   // Assert that form reset work correctly

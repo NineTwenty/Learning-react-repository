@@ -11,11 +11,12 @@ it('Show login page', () => {
 });
 
 it('Show sign up page', async () => {
+  const user = userEvent.setup();
   render(<Login loggedIn={false} />);
 
   screen.getByRole('button', { name: /sign in/i });
 
-  userEvent.click(screen.getByRole('button', { name: /sign up/i }));
+  await user.click(screen.getByRole('button', { name: /sign up/i }));
   await screen.findByRole('heading', { name: /already have/i });
 });
 

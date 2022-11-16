@@ -4,6 +4,7 @@ import { Field, Form, Formik, FormikHelpers } from 'formik';
 import SubmitField from './SubmitField';
 
 it('render and trigger submit on click', async () => {
+  const user = userEvent.setup();
   const initialValues = { text: '' };
 
   const onSubmit = jest.fn(
@@ -24,10 +25,10 @@ it('render and trigger submit on click', async () => {
   const string = 'Test string';
   const textbox = getByRole('textbox');
 
-  userEvent.type(textbox, string);
+  await user.type(textbox, string);
   expect(textbox).toHaveValue(string);
 
-  userEvent.click(getByRole('button'));
+  await user.click(getByRole('button'));
   await waitFor(() => expect(onSubmit).toBeCalledTimes(1));
 
   expect(textbox).toHaveValue('');
