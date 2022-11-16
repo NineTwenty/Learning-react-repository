@@ -16,13 +16,17 @@ type RenderOptions = {
   initialState?: PreloadedState<RootState>;
 } & RtlRenderOptions;
 
+type WrapperProps = {
+  children: React.ReactNode;
+};
+
 const render = (
   ui: ReactElement,
   { route = '/', initialState, ...renderOptions }: RenderOptions = {}
 ) => {
   const store = createStore(initialState);
   // eslint-disable-next-line react/function-component-definition, react/prop-types
-  const Wrapper: React.FC = ({ children }) => {
+  const Wrapper: React.FC<WrapperProps> = ({ children }) => {
     window.history.pushState({}, 'test page', route);
     return (
       <BrowserRouter>
