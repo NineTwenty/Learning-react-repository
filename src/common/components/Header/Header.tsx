@@ -20,10 +20,9 @@ function Header({
 
   return (
     <header className={styles.header}>
-      <img
-        src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRbqUkyAK84IcDm7zcaea_O8vPEYDDhEyZ-DR5wV_oqccAu65Zd&usqp=CAU'
-        alt='logo'
-      />
+      <h1 className={styles.heading}>
+        <span>R</span>RP
+      </h1>
       <HamburgerButton
         ref={menuBtnRef}
         styleType='borderless'
