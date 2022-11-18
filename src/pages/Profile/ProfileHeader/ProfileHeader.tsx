@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import cx from 'classnames';
-import { useAppDispatch, useAppSelector, useIdParam } from 'common/hooks/hooks';
-import { selectUserById } from 'data/entities';
+import { useAppSelector, useIdParam } from 'common/hooks/hooks';
+import {
+  selectDialogByMember,
+  selectUserById,
+  submitDialog,
+} from 'data/entities';
 import Avatar from 'common/components/Avatar/Avatar';
 import { Image } from 'common/components/Image/Image';
 import { Wrapper } from 'common/components/Wrapper/Wrapper';
-import Button from 'common/components/Button';
 import { HamburgerButton } from 'common/components/HamburgerButton';
-import { redirectToDialogByUser } from 'data/common/thunks';
 import { selectCurrentUserId } from 'data';
+import ButtonRedirectToDialog from 'pages/Profile/ProfileHeader/ButtonWithRedirect';
 import styles from './ProfileHeader.module.scss';
 
 type ProfileHeaderProps = {
@@ -19,9 +22,7 @@ export function ProfileHeader({ className }: ProfileHeaderProps) {
   const classes = cx(styles.Wrapper, { [`${className ?? ''}`]: className });
   const [isControlsOpen, setIsControlsOpen] = useState(false);
   const id = useIdParam();
-  const dispatch = useAppDispatch();
   const loggedUserId = useAppSelector(selectCurrentUserId);
-
   const user = useAppSelector(selectUserById(id));
 
   if (!id || !user) {
@@ -58,14 +59,13 @@ export function ProfileHeader({ className }: ProfileHeaderProps) {
         )}
         <div className={styles.Buttons}>
           {user.id !== loggedUserId && (
-            <Button
-              onClick={() => {
-                void dispatch(redirectToDialogByUser(id));
-              }}
+            <ButtonRedirectToDialog
+              selector={selectDialogByMember(id)}
+              thunk={submitDialog(id)}
               className={styles.DialogButton}
             >
               Message
-            </Button>
+            </ButtonRedirectToDialog>
           )}
         </div>
       </div>
