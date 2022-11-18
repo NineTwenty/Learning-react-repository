@@ -1,14 +1,12 @@
 import { useEffect } from 'react';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './App.css';
 import './constants.css';
 import {
   initialization,
-  redirected,
   selectIsAppInitialized,
   selectLoggedInStatus,
-  selectRedirectLink,
 } from 'data';
 import Dialogs from 'pages/Dialogs/Dialogs';
 import Profile from 'pages/Profile/Profile';
@@ -21,8 +19,6 @@ import { useAppDispatch } from 'common/hooks/hooks';
 function App(): JSX.Element {
   const loggedIn = useSelector(selectLoggedInStatus);
   const isInitialized = useSelector(selectIsAppInitialized);
-  const redirectLink = useSelector(selectRedirectLink);
-  const location = useLocation();
   const dispatch = useAppDispatch();
 
   // Initialization
@@ -32,23 +28,8 @@ function App(): JSX.Element {
     }
   }, [dispatch, isInitialized]);
 
-  // Check if delayed redirect happend & inform state about it
-  useEffect(() => {
-    if (redirectLink) {
-      // Prevent early state update & rerender before redirect even happen
-      if (location.pathname === redirectLink) {
-        dispatch(redirected());
-      }
-    }
-  }, [redirectLink, location.pathname, dispatch]);
-
   if (!isInitialized) {
     return <SplashScreen />;
-  }
-
-  // Delayed redirect to stored path
-  if (redirectLink) {
-    return <Navigate to={redirectLink} />;
   }
 
   // Render

@@ -4,7 +4,6 @@ export default function createPreloadedState() {
   const defaultState: RootState = {
     app: {
       isInitialized: false,
-      redirectLink: undefined,
     },
     auth: {
       userId: null,
@@ -43,7 +42,6 @@ export default function createPreloadedState() {
   const initializedState: RootState = {
     app: {
       isInitialized: true,
-      redirectLink: undefined,
     },
     auth: {
       userId: null,
@@ -82,7 +80,6 @@ export default function createPreloadedState() {
   const loggedInState: RootState = {
     app: {
       isInitialized: true,
-      redirectLink: undefined,
     },
     auth: {
       userId: 4,
@@ -191,7 +188,6 @@ export default function createPreloadedState() {
   const profilePageState: RootState = {
     app: {
       isInitialized: true,
-      redirectLink: undefined,
     },
     auth: {
       userId: 4,
@@ -1237,7 +1233,6 @@ export default function createPreloadedState() {
   const dialogsPageState: RootState = {
     app: {
       isInitialized: true,
-      redirectLink: undefined,
     },
     auth: {
       userId: 4,
