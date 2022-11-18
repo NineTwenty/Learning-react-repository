@@ -32,6 +32,14 @@ function App(): JSX.Element {
     return <SplashScreen />;
   }
 
+  if (!loggedIn) {
+    return (
+      <Routes>
+        <Route path='/login' element={<Login loggedIn={loggedIn} />} />
+        <Route path='*' element={<Navigate to='/login' />} />
+      </Routes>
+    );
+  }
   // Render
   return (
     <Routes>
@@ -46,12 +54,7 @@ function App(): JSX.Element {
           <Route path=':id' element={<Dialogs />} />
         </Route>
       </Route>
-      <Route path='/login' element={<Login loggedIn={loggedIn} />} />
-      {/* Redirect to valid default page */}
-      <Route
-        path='*'
-        element={loggedIn ? <Navigate to='/' /> : <Navigate to='/login' />}
-      />
+      <Route path='*' element={<Navigate to='/' />} />
     </Routes>
   );
 }
