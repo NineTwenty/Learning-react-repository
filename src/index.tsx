@@ -13,23 +13,17 @@ const iconsConfig = { className: 'react-icons' };
 
 const root = createRoot(document.getElementById('root')!);
 
-const explicitRender = () => {
-  root.render(
-    <React.StrictMode>
-      <BrowserRouter>
-        <Provider store={store}>
-          <IconContext.Provider value={iconsConfig}>
-            <App />
-          </IconContext.Provider>
-        </Provider>
-      </BrowserRouter>
-    </React.StrictMode>
-  );
-};
-
-explicitRender();
-
-store.subscribe(explicitRender);
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <IconContext.Provider value={iconsConfig}>
+          <App />
+        </IconContext.Provider>
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
