@@ -1,4 +1,4 @@
-import { Action, Middleware } from 'redux';
+import { Action, Middleware } from '@reduxjs/toolkit';
 import { LOGOUT } from 'data/common/actions';
 
 // Middleware to perform cleanup side effects after logout

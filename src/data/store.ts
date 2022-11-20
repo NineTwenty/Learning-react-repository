@@ -1,5 +1,8 @@
-import { combineReducers, PreloadedState } from 'redux';
-import { configureStore } from '@reduxjs/toolkit';
+import {
+  combineReducers,
+  configureStore,
+  PreloadedState,
+} from '@reduxjs/toolkit';
 import { appReducer, authReducer } from 'data';
 import { logoutMiddleware } from './middleware/logoutMiddleware';
 import { entitiesReducer } from './entities';

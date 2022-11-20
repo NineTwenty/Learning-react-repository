@@ -2,7 +2,7 @@ import {
   render as rtlRender,
   RenderOptions as RtlRenderOptions,
 } from '@testing-library/react';
-import { PreloadedState } from 'redux';
+import { PreloadedState } from '@reduxjs/toolkit';
 import { ReactElement } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
