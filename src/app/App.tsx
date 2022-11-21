@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import './constants.css';
 import {
   initialization,
   selectIsAppInitialized,
