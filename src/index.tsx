@@ -9,6 +9,8 @@ import * as serviceWorker from './serviceWorker';
 
 import App from './app/App';
 
+// Eslint false positive
+// eslint-disable-next-line react/jsx-no-constructed-context-values
 const iconsConfig = { className: 'react-icons' };
 
 const root = createRoot(document.getElementById('root')!);
