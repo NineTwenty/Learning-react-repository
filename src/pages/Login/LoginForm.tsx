@@ -1,4 +1,5 @@
 import { Formik, Form, FormikErrors } from 'formik';
+import type { FormikProps } from 'formik';
 import { useAppDispatch } from 'common/hooks/hooks';
 import { submitLoginForm } from 'data';
 import TextField from 'common/components/TextField';
@@ -58,7 +59,7 @@ function LoginForm() {
         }
         validate={validate}
       >
-        {() => (
+        {({ isSubmitting }: FormikProps<LoginFormValues>) => (
           <Form data-testid='loginForm' className={styles.form}>
             <TextField
               name='login'
@@ -74,7 +75,7 @@ function LoginForm() {
 
             <CheckboxField name='rememberMe' label='Remember Me' />
 
-            <SubmitField buttonText='Sign in' />
+            <SubmitField buttonText='Sign in' isSubmiting={isSubmitting} />
           </Form>
         )}
       </Formik>
