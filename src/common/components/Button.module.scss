@@ -70,6 +70,13 @@
     background: var(--color-primary);
     color: var(--color-text-light);
 
+    &:disabled,
+    &:disabled:hover,
+    &:disabled:focus {
+      background: var(--color-shadow-blue);
+      border-color: var(--color-shadow-blue);
+    }
+
     &:hover,
     &:focus {
       color: var(--color-text-light);
