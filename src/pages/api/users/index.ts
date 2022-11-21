@@ -4,7 +4,7 @@ import {
   authenticateUser,
   prepareUserForClient,
   userInclude,
-} from '../../src/utils/prismaUtils';
+} from 'utils/prismaUtils';
 
 const prisma = new PrismaClient();
 

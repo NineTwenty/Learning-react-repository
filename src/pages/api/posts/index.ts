@@ -1,10 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
-import {
-  authenticateUser,
-  preparePostForClient,
-} from '../../src/utils/prismaUtils';
+import { authenticateUser, preparePostForClient } from 'utils/prismaUtils';
 
 const prisma = new PrismaClient();
 
