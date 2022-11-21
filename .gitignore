@@ -19,3 +19,4 @@ jest_coverage
 reports
 .vercel
 .env
+.next
