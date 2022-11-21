@@ -6,6 +6,7 @@ import TextField from 'common/components/TextField';
 import PasswordField from 'common/components/PasswordField';
 import CheckboxField from 'common/components/Checkbox';
 import SubmitField from 'common/components/SubmitField';
+import { Spinner } from 'common/components/Spinner';
 import styles from './LoginForm.module.css';
 
 interface LoginFormValues {
@@ -76,6 +77,11 @@ function LoginForm() {
             <CheckboxField name='rememberMe' label='Remember Me' />
 
             <SubmitField buttonText='Sign in' isSubmiting={isSubmitting} />
+            {isSubmitting ? (
+              <div className={styles.SpinnerContainer}>
+                <Spinner />
+              </div>
+            ) : null}
           </Form>
         )}
       </Formik>
