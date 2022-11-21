@@ -44,3 +44,14 @@
 .Separator {
   margin: 1rem 0;
 }
+
+.Footer {
+  display: flex;
+  color: var(--color-text-unfocused);
+  margin: 1.8rem 0;
+  align-items: center;
+}
+
+.InfoIcon {
+  margin-right: 0.6rem;
+}
