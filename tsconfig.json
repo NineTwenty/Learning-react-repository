@@ -18,7 +18,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "plugins": [
       {
         "name": "typescript-plugin-css-modules",
@@ -28,10 +28,11 @@
       }
     ],
     "baseUrl": "src",
+    "incremental": true
   },
   "include": [
-    "src",
-    "api"
+    "next-env.d.ts",
+    "src"
   ],
   "exclude": [
     "node_modules",

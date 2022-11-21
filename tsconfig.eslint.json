@@ -3,5 +3,5 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": [ "src", "api", "prisma" ],
+  "include": [ "src", "prisma" ],
 }

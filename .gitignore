@@ -20,3 +20,4 @@ reports
 .vercel
 .env
 .next
+tsconfig.tsbuildinfo
