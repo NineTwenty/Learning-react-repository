@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import store from 'data/store';
 import { IconContext } from 'react-icons';
 
-import App from './app/App';
+import App from './App';
 
 // Eslint false positive
 // eslint-disable-next-line react/jsx-no-constructed-context-values
