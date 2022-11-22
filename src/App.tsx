@@ -10,6 +10,7 @@ import Dialogs from 'pages/Dialogs/Dialogs';
 import Profile from 'pages/Profile/Profile';
 import HomeProfile from 'pages/Profile/HomeProfile';
 import Login from 'pages/Login/Login';
+import ClientContextProviders from 'common/components/ClientContextProviders';
 import { SplashScreen } from 'common/components/SplashScreen/SplashScreen';
 import { Page } from 'common/components/Page';
 import { useAppDispatch } from 'common/hooks/hooks';
@@ -57,4 +58,10 @@ function App(): JSX.Element {
   );
 }
 
-export default App;
+export default function AppWithClientProviders() {
+  return (
+    <ClientContextProviders>
+      <App />
+    </ClientContextProviders>
+  );
+}
