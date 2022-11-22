@@ -9,7 +9,6 @@
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
@@ -19,17 +18,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "plugins": [
-      {
-        "name": "typescript-plugin-css-modules",
-        "options": {
-          "namedExports": false,
-        }
-      }
-    ],
     "baseUrl": "src",
-    "incremental": true
+    "incremental": true,
+    "types": [ "jest" ]
   },
-  "include": [ "next-env.d.ts", "**/*.ts", "**/*.tsx" ],
-  "exclude": [ "node_modules", "cypress.config.ts" ]
+  "include": [ "next-env.d.ts", "src", "prisma", "jest.setup.js" ],
+  "exclude": [ "node_modules" ]
 }
