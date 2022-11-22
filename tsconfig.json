@@ -30,11 +30,6 @@
     "baseUrl": "src",
     "incremental": true
   },
-  "include": [
-    "next-env.d.ts",
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-  ]
+  "include": [ "next-env.d.ts", "**/*.ts", "**/*.tsx" ],
+  "exclude": [ "node_modules", "cypress.config.ts" ]
 }
