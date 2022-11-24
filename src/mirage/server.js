@@ -18,9 +18,7 @@ export function makeServer({ environment = 'development' } = {}) {
     environment,
     serializers: {
       application: RestSerializer.extend({
-        include: (request) => {
-          return [request.queryParams.include];
-        },
+        include: (request) => [request.queryParams.include],
       }),
     },
     models,

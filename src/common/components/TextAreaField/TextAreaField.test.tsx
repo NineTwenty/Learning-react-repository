@@ -34,7 +34,7 @@ it('Render and correctly integrate with form', async () => {
 
   // Submit
   await user.click(getByRole('button'));
-  await waitFor(() => expect(onSubmit).toBeCalledTimes(1));
+  await waitFor(() => expect(onSubmit).toHaveBeenCalledTimes(1));
 
   // Assert that form reset work correctly
   expect(textarea).toBeEmptyDOMElement();

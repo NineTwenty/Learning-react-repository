@@ -28,17 +28,15 @@ function ChatBox({ dialogId, userId }: Props) {
   }, [dispatch, dialogId]);
 
   const populateMessages = (messages: Message[]) =>
-    messages.map(({ text, id, author }) => {
-      return (
-        <MessageItem
-          key={id}
-          id={id}
-          text={text}
-          authorId={author}
-          isMine={userId === author}
-        />
-      );
-    });
+    messages.map(({ text, id, author }) => (
+      <MessageItem
+        key={id}
+        id={id}
+        text={text}
+        authorId={author}
+        isMine={userId === author}
+      />
+    ));
 
   const { messages: messagesIds } = useAppSelector(
     selectDialogById(dialogId)

@@ -28,19 +28,13 @@ type MirageErrorResponse = {
 
 export const isMirageErrorResponse = (
   value: unknown
-): value is MirageErrorResponse => {
-  return (
-    value !== null &&
-    value !== undefined &&
-    (value as MirageErrorResponse).message !== undefined &&
-    (value as MirageErrorResponse).stack !== undefined
-  );
-};
+): value is MirageErrorResponse =>
+  value !== null &&
+  value !== undefined &&
+  (value as MirageErrorResponse).message !== undefined &&
+  (value as MirageErrorResponse).stack !== undefined;
 
-export const isTokenExpireResponse = (error: unknown): boolean => {
-  return (
-    axios.isAxiosError(error) &&
-    isMirageErrorResponse(error.response?.data) &&
-    error.response?.data.message === 'jwt expired'
-  );
-};
+export const isTokenExpireResponse = (error: unknown): boolean =>
+  axios.isAxiosError(error) &&
+  isMirageErrorResponse(error.response?.data) &&
+  error.response?.data.message === 'jwt expired';
