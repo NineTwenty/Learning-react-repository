@@ -2,11 +2,9 @@ import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ChatInputs from './ChatInputs';
 
-const mockDispatch = jest.fn();
-
-jest.mock('react-redux', () => ({
+jest.mock<typeof import('react-redux')>('react-redux', () => ({
   ...jest.requireActual('react-redux'),
-  useDispatch: () => mockDispatch,
+  useDispatch: jest.fn().mockImplementation(() => () => undefined),
 }));
 
 const testString = 'Test string';
