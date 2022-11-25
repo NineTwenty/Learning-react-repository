@@ -6,10 +6,10 @@ import {
   selectIsAppInitialized,
   selectLoggedInStatus,
 } from 'data';
-import Dialogs from 'pages/Dialogs/Dialogs';
-import Profile from 'pages/Profile/Profile';
-import HomeProfile from 'pages/Profile/HomeProfile';
-import Login from 'pages/Login/Login';
+import Dialogs from 'common/components/Dialogs/Dialogs';
+import Profile from 'common/components/Profile/Profile';
+import HomeProfile from 'common/components/Profile/HomeProfile';
+import Login from 'common/components/Login/Login';
 import ClientContextProviders from 'common/components/ClientContextProviders';
 import { SplashScreen } from 'common/components/SplashScreen/SplashScreen';
 import { Page } from 'common/components/Page';

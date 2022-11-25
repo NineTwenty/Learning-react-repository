@@ -11,7 +11,7 @@ import { Image } from 'common/components/Image/Image';
 import { Wrapper } from 'common/components/Wrapper/Wrapper';
 import { HamburgerButton } from 'common/components/HamburgerButton';
 import { selectCurrentUserId } from 'data';
-import ButtonRedirectToDialog from 'pages/Profile/ProfileHeader/ButtonWithRedirect';
+import ButtonRedirectToDialog from 'common/components/Profile/ProfileHeader/ButtonWithRedirect';
 import styles from './ProfileHeader.module.scss';
 
 type ProfileHeaderProps = {

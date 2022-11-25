@@ -4,7 +4,7 @@ import { MdInfo } from 'react-icons/md';
 import { useReferrerPath } from 'common/hooks/hooks';
 import Button from 'common/components/Button';
 import { Separator } from 'common/components/Separator';
-import SignUpForm from 'pages/Login/SignUpForm';
+import SignUpForm from 'common/components/Login/SignUpForm';
 import style from './Login.module.scss';
 import LoginForm from './LoginForm';
 
