@@ -10,7 +10,7 @@ type LightboxProps = {
   onClose?: () => void;
 };
 
-export function Lightbox({
+export default function Lightbox({
   className,
   children,
   onClose = () => {},

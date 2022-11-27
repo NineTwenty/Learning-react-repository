@@ -3,11 +3,11 @@ import cx from 'classnames';
 import { fetchDialogs, selectDialogs } from 'data/entities';
 import { useAppDispatch, useAppSelector, useIdParam } from 'common/hooks/hooks';
 import { Dialog } from 'common/entities.types';
-import { Spinner } from 'common/components/Spinner';
-import { HamburgerButton } from 'common/components/HamburgerButton/HamburgerButton';
+import Spinner from 'common/components/Spinner';
+import HamburgerButton from 'common/components/HamburgerButton';
 import { selectCurrentUserId } from 'data';
-import { DialogItem } from './DialogItem/DialogItem';
-import { DialogsList } from './DialogsList/DialogsList';
+import DialogItem from './DialogItem/DialogItem';
+import DialogsList from './DialogsList/DialogsList';
 import Chat from './Chat/Chat';
 import styles from './Dialogs.module.css';
 

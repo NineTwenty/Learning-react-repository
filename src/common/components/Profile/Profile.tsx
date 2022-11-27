@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
-import { Card } from 'common/components/Card/Card';
+import Card from 'common/components/Card/Card';
 import { Route, Routes, useNavigate, useParams } from 'react-router-dom';
-import { Wrapper } from 'common/components/Wrapper/Wrapper';
-import { Tabs } from 'common/components/Tabs';
-import { Tab } from 'common/components/Tab';
+import Wrapper from 'common/components/Wrapper/Wrapper';
+import Tabs from 'common/components/Tabs';
+import Tab from 'common/components/Tab';
 import style from './Profile.module.scss';
 import PostWall from './PostsWall/PostWall';
-import { FriendsGallery } from './FriendsGallery/FriendsGallery';
-import { About } from './About/About';
-import { ImagesGallery } from './ImagesGallery/ImagesGallery';
-import { ProfileHeader } from './ProfileHeader/ProfileHeader';
+import FriendsGallery from './FriendsGallery/FriendsGallery';
+import About from './About/About';
+import ImagesGallery from './ImagesGallery/ImagesGallery';
+import ProfileHeader from './ProfileHeader/ProfileHeader';
 
 function Profile() {
   const { entity } = useParams();

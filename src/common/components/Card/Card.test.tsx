@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Card } from './Card';
+import Card from './Card';
 
 it('Renders without crashing', () => {
   render(<Card header='test header'>test children</Card>);

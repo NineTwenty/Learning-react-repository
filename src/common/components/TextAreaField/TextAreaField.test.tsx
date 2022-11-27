@@ -2,7 +2,7 @@ import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Form, Formik, FormikHelpers } from 'formik';
 import SubmitField from 'common/components/SubmitField';
-import { TextAreaField } from './TextAreaField';
+import TextAreaField from '.';
 
 it('Render and correctly integrate with form', async () => {
   const user = userEvent.setup();

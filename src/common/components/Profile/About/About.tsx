@@ -1,9 +1,9 @@
 import cx from 'classnames';
-import { Wrapper } from 'common/components/Wrapper/Wrapper';
-import { Separator } from 'common/components/Separator';
+import Wrapper from 'common/components/Wrapper/Wrapper';
+import Separator from 'common/components/Separator';
 import { useSelector } from 'react-redux';
 import { selectUserById } from 'data/entities';
-import { Spinner } from 'common/components/Spinner';
+import Spinner from 'common/components/Spinner';
 import { useIdParam } from 'common/hooks/hooks';
 import styles from './About.module.scss';
 
@@ -11,7 +11,7 @@ type AboutProps = {
   className?: string;
 };
 
-export function About({ className }: AboutProps) {
+export default function About({ className }: AboutProps) {
   const classes = cx(styles.Wrapper, { [`${className ?? ''}`]: className });
   const id = useIdParam();
 

@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event';
 import { createRef } from 'react';
 import { render, screen } from 'utils/test-utils';
-import { Navbar } from './Navbar';
+import Navbar from './Navbar';
 
 const renderNavbar = ({
   btnRef = createRef<HTMLButtonElement>(),

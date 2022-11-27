@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectDialogMemberId, selectUserById } from 'data/entities';
-import { Spinner } from 'common/components/Spinner';
+import Spinner from 'common/components/Spinner';
 import Avatar from 'common/components/Avatar/Avatar';
 import type { Dialog } from 'utils/prismaUtils';
 import styles from './DialogItem.module.scss';
@@ -11,7 +11,7 @@ type Props = {
   isChosen: boolean;
 };
 
-export function DialogItem({ id, isChosen }: Props) {
+export default function DialogItem({ id, isChosen }: Props) {
   const memberId = useSelector(selectDialogMemberId(id));
   const user = useSelector(selectUserById(memberId));
 

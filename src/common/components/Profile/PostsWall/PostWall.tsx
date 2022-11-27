@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { submitPost, fetchFeed, selectFeedById } from 'data/entities';
-import { List } from 'common/components/List';
+import List from 'common/components/List';
 import { useSelector } from 'react-redux';
 import cx from 'classnames';
 import { useAppDispatch, useIdParam } from 'common/hooks/hooks';
 import PostingForm from './PostingForm';
-import { Post } from './Post/Post';
+import Post from './Post/Post';
 import style from './PostWall.module.css';
 
 type Props = {

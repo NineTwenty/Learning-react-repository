@@ -1,5 +1,5 @@
-import { CroppedImage } from 'common/components/CroppedImage/CroppedImage';
-import { Gallery } from 'common/components/Gallery/Gallery';
+import CroppedImage from 'common/components/CroppedImage/CroppedImage';
+import Gallery from 'common/components/Gallery/Gallery';
 import { useSelector } from 'react-redux';
 import { useIdParam } from 'common/hooks/hooks';
 import { selectUserById } from 'data/entities';
@@ -9,7 +9,10 @@ type ImagesGalleryProps = {
   limit?: number;
 };
 
-export function ImagesGallery({ className, limit }: ImagesGalleryProps) {
+export default function ImagesGallery({
+  className,
+  limit,
+}: ImagesGalleryProps) {
   const id = useIdParam();
 
   const user = useSelector(selectUserById(id));

@@ -1,6 +1,6 @@
 import { KeyboardEvent, useRef } from 'react';
 import Button from 'common/components/Button';
-import { TextAreaField } from 'common/components/TextAreaField';
+import TextAreaField from 'common/components/TextAreaField';
 import { Form, Formik, FormikErrors, FormikHelpers, FormikProps } from 'formik';
 import type { Dialog } from 'utils/prismaUtils';
 import { fetchDialogs, submitMessage } from 'data/entities';

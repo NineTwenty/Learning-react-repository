@@ -11,8 +11,8 @@ import Profile from 'common/components/Profile/Profile';
 import HomeProfile from 'common/components/Profile/HomeProfile';
 import Login from 'common/components/Login/Login';
 import ClientContextProviders from 'common/components/ClientContextProviders';
-import { SplashScreen } from 'common/components/SplashScreen/SplashScreen';
-import { Page } from 'common/components/Page';
+import SplashScreen from 'common/components/SplashScreen/SplashScreen';
+import Page from 'common/components/Page';
 import { useAppDispatch } from 'common/hooks/hooks';
 
 function App(): JSX.Element {

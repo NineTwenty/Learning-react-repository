@@ -6,7 +6,7 @@ import TextField from 'common/components/TextField';
 import PasswordField from 'common/components/PasswordField';
 import CheckboxField from 'common/components/Checkbox';
 import SubmitField from 'common/components/SubmitField';
-import { Spinner } from 'common/components/Spinner';
+import Spinner from 'common/components/Spinner';
 import styles from './LoginForm.module.css';
 
 interface LoginFormValues {

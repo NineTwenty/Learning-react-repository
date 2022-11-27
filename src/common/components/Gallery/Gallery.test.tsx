@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Gallery } from './Gallery';
+import Gallery from './Gallery';
 
 const fakeChildren: JSX.Element[] = [];
 // Generate 8 children

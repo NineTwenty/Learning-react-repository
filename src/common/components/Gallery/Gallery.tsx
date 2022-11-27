@@ -7,7 +7,7 @@ type GalleryProps = {
   limit?: number;
 };
 
-export function Gallery({ children, className, limit }: GalleryProps) {
+export default function Gallery({ children, className, limit }: GalleryProps) {
   const classes = cx(styles.Wrapper, { className });
   const items =
     Array.isArray(children) && limit ? children.slice(0, limit) : children;

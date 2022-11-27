@@ -10,7 +10,7 @@ interface TextAreaFieldProps {
   disabled?: boolean;
 }
 
-export function TextAreaField({
+export default function TextAreaField({
   className,
   name,
   rows,

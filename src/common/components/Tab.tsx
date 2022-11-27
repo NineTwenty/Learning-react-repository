@@ -7,7 +7,7 @@ type Props = {
   route: string;
 };
 
-export function Tab({ value, route }: Props) {
+export default function Tab({ value, route }: Props) {
   const handleClassName = ({ isActive }: { isActive: boolean }) =>
     cx([style.link, { [style.active]: isActive }]);
   return (

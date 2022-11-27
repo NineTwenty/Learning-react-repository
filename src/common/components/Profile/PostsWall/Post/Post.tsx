@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useCurrentUser } from 'common/contexts/current-user-context';
 import { deletePost } from 'data/entities/postsSlice';
 import { selectPostById, selectUserById } from 'data/entities';
-import { Separator } from 'common/components/Separator';
+import Separator from 'common/components/Separator';
 import Button from 'common/components/Button';
 import Avatar from 'common/components/Avatar/Avatar';
 import type { Post as PostEntity } from 'utils/prismaUtils';
@@ -24,7 +24,7 @@ type PostProps = {
   id: PostEntity['id'];
 };
 
-export function Post({ id }: PostProps) {
+export default function Post({ id }: PostProps) {
   const dispatch = useAppDispatch();
   const currentUser = useCurrentUser();
   const post = useSelector(selectPostById(id));

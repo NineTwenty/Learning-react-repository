@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { generatePath, Link } from 'react-router-dom';
 import { fetchUsers, selectUserById, selectUsersByIds } from 'data/entities';
 import Avatar from 'common/components/Avatar/Avatar';
-import { Gallery } from 'common/components/Gallery/Gallery';
+import Gallery from 'common/components/Gallery/Gallery';
 import { useAppDispatch, useIdParam } from 'common/hooks/hooks';
 import styles from './FriendsGallery.module.scss';
 
@@ -12,7 +12,10 @@ type FriendsGalleryProps = {
   limit?: number;
 };
 
-export function FriendsGallery({ className, limit }: FriendsGalleryProps) {
+export default function FriendsGallery({
+  className,
+  limit,
+}: FriendsGalleryProps) {
   const dispatch = useAppDispatch();
 
   // Fetch all users

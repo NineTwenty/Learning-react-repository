@@ -9,7 +9,7 @@ type Props = {
   menuBtnRef: React.RefObject<HTMLButtonElement>;
 };
 
-export function Navbar({
+export default function Navbar({
   isSideNavForceOpen,
   setSideNavForceOpen,
   menuBtnRef,

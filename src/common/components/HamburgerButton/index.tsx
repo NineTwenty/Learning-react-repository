@@ -63,5 +63,6 @@ const component = React.forwardRef<HTMLButtonElement, HamburgerButtonProps>(
 
 // Workaround to save name in devtools & named import
 component.displayName = 'HamburgerButton';
+const HamburgerButton = component;
 
-export const HamburgerButton = component;
+export default HamburgerButton;

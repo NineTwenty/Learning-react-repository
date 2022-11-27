@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'common/hooks/hooks';
 import { useCurrentUser } from 'common/contexts/current-user-context';
 import { fetchUsers, selectUsersByIds, submitDialog } from 'data/entities';
-import { Dialog } from 'common/components/Dialog/Dialog';
+import Dialog from 'common/components/Dialog/Dialog';
 import Avatar from 'common/components/Avatar/Avatar';
 import Button from 'common/components/Button';
 import styles from './NewChatDialog.module.scss';
@@ -13,7 +13,10 @@ interface NewChatDialogProps extends React.ComponentPropsWithoutRef<'div'> {
   onClose: () => void;
 }
 
-export function NewChatDialog({ onClose, className }: NewChatDialogProps) {
+export default function NewChatDialog({
+  onClose,
+  className,
+}: NewChatDialogProps) {
   const dispatch = useAppDispatch();
 
   const currentUser = useCurrentUser();

@@ -1,7 +1,7 @@
 import cx from 'classnames';
 import styles from './Card.module.scss';
-import { Separator } from '../Separator';
-import { Wrapper } from '../Wrapper/Wrapper';
+import Separator from '../Separator';
+import Wrapper from '../Wrapper/Wrapper';
 
 type CardProps = {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ type CardProps = {
   header: string;
 };
 
-export function Card({ children, className, header }: CardProps) {
+export default function Card({ children, className, header }: CardProps) {
   const classes = cx(styles.CardWrapper, className);
 
   return (

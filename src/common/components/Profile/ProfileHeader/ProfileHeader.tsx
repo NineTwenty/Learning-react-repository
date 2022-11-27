@@ -7,9 +7,9 @@ import {
   submitDialog,
 } from 'data/entities';
 import Avatar from 'common/components/Avatar/Avatar';
-import { Image } from 'common/components/Image/Image';
-import { Wrapper } from 'common/components/Wrapper/Wrapper';
-import { HamburgerButton } from 'common/components/HamburgerButton';
+import Image from 'common/components/Image/Image';
+import Wrapper from 'common/components/Wrapper/Wrapper';
+import HamburgerButton from 'common/components/HamburgerButton';
 import { selectCurrentUserId } from 'data';
 import ButtonRedirectToDialog from 'common/components/Profile/ProfileHeader/ButtonWithRedirect';
 import styles from './ProfileHeader.module.scss';
@@ -18,7 +18,7 @@ type ProfileHeaderProps = {
   className?: string;
 };
 
-export function ProfileHeader({ className }: ProfileHeaderProps) {
+export default function ProfileHeader({ className }: ProfileHeaderProps) {
   const classes = cx(styles.Wrapper, { [`${className ?? ''}`]: className });
   const [isControlsOpen, setIsControlsOpen] = useState(false);
   const id = useIdParam();

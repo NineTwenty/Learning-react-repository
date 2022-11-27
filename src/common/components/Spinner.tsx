@@ -1,6 +1,6 @@
 import style from './Spinner.module.css';
 
-export function Spinner() {
+export default function Spinner() {
   return (
     <div className={style.spinnerWrapper}>
       <div className={style.spinner} />

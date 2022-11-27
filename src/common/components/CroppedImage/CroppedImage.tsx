@@ -1,8 +1,8 @@
 import { useState, useCallback } from 'react';
 import cx from 'classnames';
 import styles from './CroppedImage.module.scss';
-import { Lightbox } from '../Lightbox/Lightbox';
-import { Image } from '../Image/Image';
+import Lightbox from '../Lightbox/Lightbox';
+import Image from '../Image/Image';
 
 type ImageProps = {
   src: string;
@@ -13,7 +13,7 @@ type ImageProps = {
   className?: string;
 };
 
-export function CroppedImage({
+export default function CroppedImage({
   src,
   alt,
   srcSet,
