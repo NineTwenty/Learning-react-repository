@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   initialization,
@@ -10,7 +10,6 @@ import Dialogs from 'common/components/Dialogs/Dialogs';
 import Profile from 'common/components/Profile/Profile';
 import HomeProfile from 'common/components/Profile/HomeProfile';
 import Login from 'common/components/Login/Login';
-import ClientContextProviders from 'common/components/ClientContextProviders';
 import SplashScreen from 'common/components/SplashScreen/SplashScreen';
 import Page from 'common/components/Page';
 import { useAppDispatch } from 'common/hooks/hooks';
@@ -60,8 +59,8 @@ function App(): JSX.Element {
 
 export default function AppWithClientProviders() {
   return (
-    <ClientContextProviders>
+    <BrowserRouter>
       <App />
-    </ClientContextProviders>
+    </BrowserRouter>
   );
 }
