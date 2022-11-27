@@ -28,7 +28,7 @@
     "build": "next build",
     "postinstall": "prisma generate --data-proxy",
     "test": "jest",
-    "test:staged": "cross-env CI=true npm test --env=jsdom --findRelatedTests --passWithNoTests",
+    "test:staged": "cross-env CI=true npm test -- --env=jsdom --findRelatedTests --passWithNoTests",
     "coverage": "npm-run-all -p coverage:cypress coverage:jest -s coverage:copy coverage:merge coverage:combined",
     "coverage:copy": "cp cypress_coverage/coverage-final.json reports/from-cypress.json && cp jest_coverage/coverage-final.json reports/from-jest.json",
     "coverage:merge": "npx nyc merge reports && mv coverage.json .nyc_output/out.json",
