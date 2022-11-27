@@ -1,31 +1,16 @@
 {
-  "env": {
-    "browser": true,
-    "es2021": true
+  "root": true,
+  "parserOptions": {
+    "project": "./tsconfig.json"
   },
   "extends": [
+    "next/core-web-vitals",
     "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:jsx-a11y/recommended",
-    "plugin:import/recommended",
     "airbnb",
-    "airbnb/hooks"
-  ],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 12,
-    "sourceType": "module"
-  },
-  "plugins": [
-    "react"
+    "airbnb/hooks",
+    "plugin:react/jsx-runtime"
   ],
   "rules": {
-    "no-param-reassign": "warn",
-    "no-console": "warn",
-    "no-debugger": "warn",
     "no-void": [
       "error",
       {
@@ -33,26 +18,20 @@
       }
     ],
     "consistent-return": "off",
-    "arrow-body-style": "off",
-    "react/require-default-props": "off",
-    "react/prop-types": "warn",
-    "react/jsx-props-no-spreading": [
-      "off"
-    ],
-    "import/prefer-default-export": "off",
+    "arrow-body-style": [ "error", "as-needed" ],
     "import/no-cycle": "warn",
     "import/extensions": "off",
+    "import/prefer-default-export": "warn",
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "warn",
+    "react/prop-types": "warn",
     "jsx-a11y/label-has-associated-control": [
       "error",
       {
+        "controlComponents": [ "Field" ],
         "assert": "either"
       }
     ]
-  },
-  "settings": {
-    "import/resolver": {
-      "typescript": {}
-    }
   },
   "overrides": [
     {
@@ -60,14 +39,6 @@
       "files": [
         "**/*.ts?(x)"
       ],
-      "plugins": [
-        "@typescript-eslint"
-      ],
-      "parser": "@typescript-eslint/parser",
-      "parserOptions": {
-        "tsconfigRootDir": "./",
-        "project": "./tsconfig.eslint.json"
-      },
       "extends": [
         "plugin:import/typescript",
         "plugin:@typescript-eslint/recommended",
@@ -75,36 +46,28 @@
         "airbnb-typescript"
       ],
       "rules": {
-        "react/prop-types": "error",
-        "@typescript-eslint/explicit-module-boundary-types": "off"
+        "comma-dangle": [ "warn", "only-multiline" ]
       }
     },
     {
       // Tests
       "files": [
-        "src/**/*.test.[jt]s"
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
       ],
       "extends": [
         "plugin:jest/recommended",
         "plugin:jest-dom/recommended",
         "plugin:testing-library/react"
-      ]
-    },
-    {
-      "files": [
-        "**/*.test.[jt]s?(x)"
       ],
       "rules": {
-        "import/no-extraneous-dependencies": "off"
+        "import/no-extraneous-dependencies": "off",
+        "testing-library/prefer-screen-queries": "warn"
       }
     },
     {
-      // Override styling rules & React import
-      "files": [
-        "**/*.[jt]s?(x)"
-      ],
+      "files": [ "*" ],
       "extends": [
-        "plugin:react/jsx-runtime",
         "prettier"
       ]
     }

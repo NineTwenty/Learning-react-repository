@@ -29,7 +29,7 @@ it('render and trigger submit on click', async () => {
   expect(textbox).toHaveValue(string);
 
   await user.click(getByRole('button'));
-  await waitFor(() => expect(onSubmit).toBeCalledTimes(1));
+  await waitFor(() => expect(onSubmit).toHaveBeenCalledTimes(1));
 
   expect(textbox).toHaveValue('');
 });

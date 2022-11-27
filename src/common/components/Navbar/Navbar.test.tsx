@@ -13,9 +13,7 @@ const renderNavbar = ({
       menuBtnRef={btnRef}
     />
   ),
-} = {}) => {
-  return render(children);
-};
+} = {}) => render(children);
 
 it('Change location on link click', async () => {
   const user = userEvent.setup();
@@ -51,8 +49,8 @@ it('Turn off forced open on click outside', async () => {
   // Click on associated menu button shouldn't trigger callback
   // cause they suppose to change same state
   await user.click(screen.getByRole('button', { name: 'menu' }));
-  expect(setForceOpen).not.toBeCalled();
+  expect(setForceOpen).not.toHaveBeenCalled();
 
   await user.click(screen.getByText('outside'));
-  expect(setForceOpen).toBeCalledWith(false);
+  expect(setForceOpen).toHaveBeenCalledWith(false);
 });

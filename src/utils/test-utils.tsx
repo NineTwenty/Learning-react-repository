@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import {
   render as rtlRender,
   RenderOptions as RtlRenderOptions,
@@ -45,6 +46,7 @@ const render = (
   };
 };
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 export * from '@testing-library/react';
 export { default as createPreloadedState } from './createPreloadedState';
 export { render };

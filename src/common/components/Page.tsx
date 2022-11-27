@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { RequireAuth } from 'app/RequireAuth';
+import { RequireAuth } from 'common/components/RequireAuth';
 import Header from 'common/components/Header/Header';
 import { Navbar } from 'common/components/Navbar/Navbar';
 import { CurrentUserProvider } from 'common/contexts/current-user-context';

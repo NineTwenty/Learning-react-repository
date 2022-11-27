@@ -125,12 +125,7 @@ export const selectMessagesIds = (state: RootState) => selectIds(state);
 export const selectMessageById = (id: Message['id']) => (state: RootState) =>
   selectById(state, id);
 export const selectLoadedMessagesByIds = createSelector(
-  [
-    selectEntities,
-    (_: unknown, props: Message['id'][]) => {
-      return props;
-    },
-  ],
+  [selectEntities, (_: unknown, props: Message['id'][]) => props],
   (entities, ids) => {
     if (ids) {
       // Make array of loaded messages

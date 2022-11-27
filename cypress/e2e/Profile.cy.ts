@@ -30,6 +30,8 @@ describe('Profile page', () => {
   describe('Posting form', () => {
     const string = 'Testing string';
     it('Should reset value on submit', () => {
+      // Avoid submitting to real db
+      cy.intercept('POST', '/api/posts', {});
       // Find containing form
       cy.findByTestId('postingForm')
         .parent()
