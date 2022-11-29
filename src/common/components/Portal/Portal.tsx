@@ -5,9 +5,8 @@ interface PortalProps {
   container?: Element;
 }
 
-export default function Portal({
-  children,
-  container = document.getElementById('root') as Element,
-}: PortalProps) {
-  return createPortal(children, container);
+export default function Portal({ children, container }: PortalProps) {
+  return typeof window !== 'undefined'
+    ? createPortal(children, container || document.body)
+    : null;
 }
