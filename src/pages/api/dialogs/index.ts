@@ -1,4 +1,4 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
 import {
@@ -11,8 +11,8 @@ import {
 const prisma = new PrismaClient();
 
 async function handleGet(
-  req: VercelRequest,
-  res: VercelResponse,
+  req: NextApiRequest,
+  res: NextApiResponse,
   userId: number
 ) {
   const dialogs = await prisma.dialog.findMany({
@@ -48,8 +48,8 @@ async function handleGet(
 }
 
 async function handlePost(
-  req: VercelRequest,
-  res: VercelResponse,
+  req: NextApiRequest,
+  res: NextApiResponse,
   userId: number
 ) {
   const { members } = z
@@ -68,7 +68,10 @@ async function handlePost(
   return res.status(201).send({ dialog: prepareDialogForClient(dialog) });
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const userId = authenticateUser(req);
   switch (req.method) {
     case 'GET':

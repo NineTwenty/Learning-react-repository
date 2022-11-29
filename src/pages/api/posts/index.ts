@@ -1,4 +1,4 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
 import { authenticateUser, preparePostForClient } from 'utils/prismaUtils';
@@ -6,8 +6,8 @@ import { authenticateUser, preparePostForClient } from 'utils/prismaUtils';
 const prisma = new PrismaClient();
 
 async function handlePost(
-  req: VercelRequest,
-  res: VercelResponse,
+  req: NextApiRequest,
+  res: NextApiResponse,
   userId: number
 ) {
   const postData = z
@@ -27,7 +27,10 @@ async function handlePost(
   res.status(201).send({ post: preparePostForClient(post) });
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const userId = authenticateUser(req);
   switch (req.method) {
     case 'POST':

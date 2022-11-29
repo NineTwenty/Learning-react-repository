@@ -4,7 +4,7 @@ import {
   Message as PrismaMessage,
   Post as PrismaPost,
 } from '@prisma/client';
-import type { VercelRequest } from '@vercel/node';
+import type { NextApiRequest } from 'next';
 import { UnsecuredJWT } from 'jose';
 import { z } from 'zod';
 
@@ -158,7 +158,7 @@ function verifyJWT(authHeader: string | string[] | undefined) {
     .parse(tokenPayload);
 }
 
-export function authenticateUser(request: VercelRequest) {
+export function authenticateUser(request: NextApiRequest) {
   const { authorization } = request.headers;
   const { userId } = verifyJWT(authorization);
   return userId;

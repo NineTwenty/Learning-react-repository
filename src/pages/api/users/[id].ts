@@ -1,10 +1,10 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import { findUserById } from 'utils/prismaUtils';
 
 const prisma = new PrismaClient();
 
-async function handleGet(req: VercelRequest, res: VercelResponse) {
+async function handleGet(req: NextApiRequest, res: NextApiResponse) {
   const userId = req.query.id;
   if (Array.isArray(userId)) {
     return res.status(400);
@@ -18,7 +18,10 @@ async function handleGet(req: VercelRequest, res: VercelResponse) {
   return res.status(404);
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   switch (req.method) {
     case 'GET':
       return handleGet(req, res);
