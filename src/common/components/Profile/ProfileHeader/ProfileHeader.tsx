@@ -7,7 +7,7 @@ import {
   submitDialog,
 } from 'data/entities';
 import Avatar from 'common/components/Avatar/Avatar';
-import Image from 'common/components/Image/Image';
+import Image from 'next/image';
 import Wrapper from 'common/components/Wrapper/Wrapper';
 import HamburgerButton from 'common/components/HamburgerButton';
 import { selectCurrentUserId } from 'data';
@@ -32,7 +32,15 @@ export default function ProfileHeader({ className }: ProfileHeaderProps) {
   return (
     <Wrapper className={classes}>
       <div className={styles.Background}>
-        <Image className={styles.Image} alt='Profile' src={user?.avatar} />
+        {user.avatar && (
+          <Image
+            className={styles.Image}
+            alt='Profile'
+            fill
+            sizes='90vw'
+            src={user.avatar}
+          />
+        )}
         <Avatar
           className={styles.Avatar}
           avatar={user.avatar}
