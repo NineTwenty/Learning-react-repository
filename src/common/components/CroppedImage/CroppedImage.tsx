@@ -1,8 +1,8 @@
 import { useState, useCallback } from 'react';
 import cx from 'classnames';
+import Image from 'next/image';
 import styles from './CroppedImage.module.scss';
 import Lightbox from '../Lightbox/Lightbox';
-import Image from '../Image/Image';
 
 type ImageProps = {
   src: string;
@@ -17,8 +17,8 @@ export default function CroppedImage({
   src,
   alt,
   srcSet,
-  width,
-  height,
+  width = 300,
+  height = 300,
   className,
 }: ImageProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,14 +30,20 @@ export default function CroppedImage({
   return (
     <>
       <button type='button' className={classes} onClick={onClick}>
-        <img
+        <Image
           className={styles.Image}
           {...{ src, srcSet, alt, width, height }}
         />
       </button>
       {isOpen && (
         <Lightbox onClose={onClose}>
-          <Image {...{ src, alt }} />
+          <Image
+            {...{ src, alt }}
+            fill
+            sizes='90vw'
+            quality={100}
+            style={{ objectFit: 'contain' }}
+          />
         </Lightbox>
       )}
     </>
