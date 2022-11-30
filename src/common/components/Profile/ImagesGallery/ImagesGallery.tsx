@@ -19,11 +19,9 @@ export default function ImagesGallery({
 
   const images = user ? user.images : [];
 
-  const croppedImages = Array.isArray(images)
-    ? images.map(({ src, id: imageId }) => (
-        <CroppedImage key={imageId} src={src} alt='' />
-      ))
-    : images;
+  const croppedImages = images.map(({ src, id: imageId }) => (
+    <CroppedImage key={imageId} src={src} alt='' />
+  ));
 
   return (
     <div className={className}>
