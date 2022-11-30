@@ -37,6 +37,7 @@ export default function ProfileHeader({ className }: ProfileHeaderProps) {
           className={styles.Avatar}
           avatar={user.avatar}
           name={`${user.firstName} ${user.lastName}`}
+          size='large'
         />
       </div>
       <div className={styles.Name}>
