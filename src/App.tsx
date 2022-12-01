@@ -1,34 +1,14 @@
-import { useEffect } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import {
-  initialization,
-  selectIsAppInitialized,
-  selectLoggedInStatus,
-} from 'data';
+import { selectLoggedInStatus } from 'data';
 import Dialogs from 'common/components/Dialogs/Dialogs';
 import Profile from 'common/components/Profile/Profile';
 import HomeProfile from 'common/components/Profile/HomeProfile';
 import Login from 'common/components/Login/Login';
-import SplashScreen from 'common/components/SplashScreen/SplashScreen';
 import Page from 'common/components/Page';
-import { useAppDispatch } from 'common/hooks/hooks';
 
 function App(): JSX.Element {
   const loggedIn = useSelector(selectLoggedInStatus);
-  const isInitialized = useSelector(selectIsAppInitialized);
-  const dispatch = useAppDispatch();
-
-  // Initialization
-  useEffect(() => {
-    if (!isInitialized) {
-      void dispatch(initialization());
-    }
-  }, [dispatch, isInitialized]);
-
-  if (!isInitialized) {
-    return <SplashScreen />;
-  }
 
   if (!loggedIn) {
     return (

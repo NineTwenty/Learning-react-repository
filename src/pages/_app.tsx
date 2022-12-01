@@ -5,6 +5,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { IconContext } from 'react-icons';
 import store from 'data/store';
+import ClientInitializer from 'ClientInitializer';
 
 // Eslint false positive
 // eslint-disable-next-line react/jsx-no-constructed-context-values
@@ -22,7 +23,9 @@ export default function App({ Component }: AppProps) {
             />
             <title>RRP</title>
           </Head>
-          <Component />
+          <ClientInitializer>
+            <Component />
+          </ClientInitializer>
         </IconContext.Provider>
       </Provider>
     </React.StrictMode>
