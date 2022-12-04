@@ -19,6 +19,7 @@ export const getInstance = () =>
       'Content-Type': 'application/json',
       Authorization: getAuthString(),
     },
+    withCredentials: true,
   });
 
 type MirageErrorResponse = {
