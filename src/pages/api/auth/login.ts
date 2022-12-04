@@ -22,9 +22,9 @@ export default async function handler(
     return res.status(400);
   }
   const { login, password } = validatedBody.data;
-  const user = await prisma.user.findUnique({ where: { login } });
+  const user = await prisma.user.findUnique({ where: { login, password } });
   // Authentication
-  if (user && user.password === password) {
+  if (user) {
     const token = new UnsecuredJWT({ userId: user.id })
       .setIssuedAt()
       .setExpirationTime('100m')
