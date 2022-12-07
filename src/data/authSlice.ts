@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import type { User } from 'common/entities.types';
 import { api } from '../api/API';
-import { LOGOUT } from './common/actions';
 import { addUser } from './entities/usersSlice';
 import type { AppDispatch, RootState } from './store';
 import {
@@ -46,6 +45,7 @@ const initialState: AuthState = {
 };
 
 const loginActions = { loginStarted, loginCompleted };
+const logoutActions = createLoadingActions(sliceName, 'logout');
 const registrationActions = createLoadingActions(sliceName, 'registration');
 const authorizationActions = createLoadingActions<User['id']>(
   sliceName,
@@ -77,7 +77,8 @@ const authSlice = createSlice({
 
     // Logout matcher
     const isLogout = ({ type }: { type: string }) =>
-      type === LOGOUT || type === authorizationActions.failure.toString();
+      type === logoutActions.success.toString() ||
+      type === authorizationActions.failure.toString();
 
     // Logout handler
     builder.addMatcher(isLogout, (state) => {
@@ -144,6 +145,17 @@ export const authorizationRequest = () => async (dispatch: AppDispatch) => {
     }
   }
 };
+
+export const logoutRequest = () =>
+  async function logoutThunk(dispatch: AppDispatch) {
+    dispatch(logoutActions.request());
+    try {
+      await api.post('auth/logout', {});
+      dispatch(logoutActions.success());
+    } catch (error) {
+      dispatch(logoutActions.failure());
+    }
+  };
 
 // onSubmit thunk for loginForm
 export const submitLoginForm =
