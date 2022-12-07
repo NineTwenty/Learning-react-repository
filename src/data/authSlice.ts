@@ -4,13 +4,13 @@ import type { User } from 'common/entities.types';
 import { api } from '../api/API';
 import { LOGOUT } from './common/actions';
 import { addUser } from './entities/usersSlice';
-import { AppDispatch, RootState } from './store';
+import type { AppDispatch, RootState } from './store';
 import {
   createLoadingActions,
   createLoadingMatchers,
   createLoadingReducers,
 } from './utils';
-import { StatusState } from './utils/utils.types';
+import type { StatusState } from './utils/utils.types';
 
 // Slice name
 

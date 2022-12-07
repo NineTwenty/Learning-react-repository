@@ -7,13 +7,13 @@ import { api } from 'api/API';
 import { isTokenExpireResponse } from 'api/APIUtils';
 import type { Dialog, Message } from 'common/entities.types';
 import { logout } from 'data/common/actions';
-import { AppDispatch, RootState } from 'data/store';
+import type { AppDispatch, RootState } from 'data/store';
 import {
   createLoadingActions,
   createLoadingMatchers,
   createLoadingReducers,
 } from 'data/utils';
-import { StatusState } from 'data/utils/utils.types';
+import type { StatusState } from 'data/utils/utils.types';
 
 const sliceName = 'messages';
 

@@ -1,14 +1,15 @@
+import type { RootState } from 'data/store';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
   render as rtlRender,
   RenderOptions as RtlRenderOptions,
 } from '@testing-library/react';
-import { PreloadedState } from '@reduxjs/toolkit';
+import type { PreloadedState } from '@reduxjs/toolkit';
 import { ReactElement } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { IconContext } from 'react-icons';
-import { createStore, RootState } from 'data/store';
+import { createStore } from 'data/store';
 
 const iconsConfig = { className: 'react-icons' };
 

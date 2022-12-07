@@ -5,7 +5,7 @@ import Separator from 'common/components/Separator';
 import { useSelector } from 'react-redux';
 import { fetchFeed, getIsLoadingPostStatus } from 'data/entities';
 import Wrapper from 'common/components/Wrapper/Wrapper';
-import { AppDispatch } from 'data/store';
+import type { AppDispatch } from 'data/store';
 import { useAppDispatch, useIdParam } from 'common/hooks/hooks';
 import type { Feed } from 'utils/prismaUtils';
 import style from './PostingForm.module.css';

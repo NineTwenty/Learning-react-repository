@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { authorizationRequest } from './authSlice';
-import { AppDispatch, RootState } from './store';
+import type { AppDispatch, RootState } from './store';
 
 const sliceName = 'app';
 

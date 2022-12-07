@@ -1,6 +1,6 @@
 import type { Feed, Post } from 'common/entities.types';
-import { AppDispatch, RootState } from 'data/store';
-import { StatusState } from 'data/utils/utils.types';
+import type { AppDispatch, RootState } from 'data/store';
+import type { StatusState } from 'data/utils/utils.types';
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { api } from 'api/API';
 import { isTokenExpireResponse } from 'api/APIUtils';

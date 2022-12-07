@@ -1,4 +1,4 @@
-import { RootState } from 'data/store';
+import type { RootState } from 'data/store';
 
 export default function createPreloadedState() {
   const defaultState: RootState = {

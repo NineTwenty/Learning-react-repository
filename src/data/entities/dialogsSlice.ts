@@ -6,8 +6,8 @@ import {
   createLoadingMatchers,
   createLoadingReducers,
 } from 'data/utils';
-import { AppDispatch, RootState } from 'data/store';
-import { StatusState } from 'data/utils/utils.types';
+import type { AppDispatch, RootState } from 'data/store';
+import type { StatusState } from 'data/utils/utils.types';
 import { isTokenExpireResponse } from 'api/APIUtils';
 import { logout } from 'data/common/actions';
 import { selectCurrentUserId } from 'data';
