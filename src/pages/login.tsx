@@ -1,25 +1,28 @@
-import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { MdInfo } from 'react-icons/md';
-import { useReferrerPath } from 'common/hooks/hooks';
+import { useRouter } from 'next/router';
 import Button from 'common/components/Button';
 import Separator from 'common/components/Separator';
 import SignUpForm from 'common/components/Login/SignUpForm';
-import style from './Login.module.scss';
-import LoginForm from './LoginForm';
+import SplashScreen from 'common/components/SplashScreen/SplashScreen';
+import style from 'common/components/Login/Login.module.scss';
+import LoginForm from 'common/components/Login/LoginForm';
+import { selectLoggedInStatus } from 'data';
+import { useAppSelector } from 'common/hooks/hooks';
 
-type Props = {
-  loggedIn: boolean;
-};
-
-function Login({ loggedIn }: Props) {
-  const referrerPath = useReferrerPath();
+function Login() {
+  const loggedIn = useAppSelector(selectLoggedInStatus);
+  const router = useRouter();
   const [isUserHaveAccount, setIsUserHaveAccount] = useState(true);
 
-  // Redirect if user already logged in
-  if (loggedIn) {
-    return <Navigate to={referrerPath} />;
-  }
+  useEffect(() => {
+    // Redirect if user already logged in
+    if (loggedIn) {
+      void router.push('/profile');
+    }
+  }, [loggedIn, router]);
+
+  if (loggedIn) return <SplashScreen />;
 
   return (
     <div className={style.Wrapper}>
