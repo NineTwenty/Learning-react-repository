@@ -6,7 +6,7 @@ import {
 } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { UnsecuredJWT } from 'jose';
-import { z } from 'zod';
+import { z, ZodError } from 'zod';
 import { serialize } from 'cookie';
 
 export const userInclude = Prisma.validator<Prisma.UserInclude>()({
@@ -178,4 +178,44 @@ export function expireAuthCookie(res: NextApiResponse): void {
       path: '/',
     })
   );
+}
+
+export function handleServerError<T extends Error>(
+  err: T,
+  res: NextApiResponse
+) {
+  if (err instanceof ZodError) {
+    if (err.message === 'userId is required in token payload') {
+      expireAuthCookie(res);
+      return res.status(401).send({ message: err.message });
+    }
+  }
+
+  if (err.message === 'auth_token required') {
+    expireAuthCookie(res);
+    return res.status(401).send({ message: err.message });
+  }
+
+  return res.status(500).end();
+}
+
+export async function queryWithAuthentication<
+  F extends (userId: number) => Promise<void>
+>({
+  req,
+  res,
+  query,
+}: {
+  req: NextApiRequest;
+  res: NextApiResponse;
+  query: F;
+}): Promise<void> {
+  try {
+    const userId = authenticateUser(req);
+    await query(userId);
+  } catch (error) {
+    if (error instanceof Error) {
+      handleServerError(error, res);
+    }
+  }
 }
