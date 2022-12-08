@@ -50,6 +50,10 @@ button {
   padding: 0;
 }
 
+p {
+  letter-spacing: 0.015rem;
+}
+
 * {
   box-sizing: border-box;
 }
