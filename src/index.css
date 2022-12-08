@@ -2,9 +2,9 @@
 
 :root {
   /* Colors */
-  --color-text-headers: #3f414d;
-  --color-text-unfocused: #a09e9e;
-  --color-text-ui: #777d74;
+  --color-text-headers: hsl(219, 14%, 27%);
+  --color-text-unfocused: hsl(219, 6%, 47%);
+  --color-text-ui: hsl(219, 6%, 36%);
   --color-text-light: #ffffff;
   --color-background: #ffffff;
   --color-primary: cornflowerblue;
