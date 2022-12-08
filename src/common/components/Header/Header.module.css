@@ -9,6 +9,7 @@
 
   background-color: var(--color-background);
   box-shadow: 0px 0px 0.7em 0px rgba(32, 16, 16, 0.1);
+  border-top: 0.33rem solid var(--color-primary);
 }
 
 .heading {
