@@ -30,7 +30,7 @@ function MessageItem({ text, id, authorId, isMine }: Props) {
           name={fullName}
           key={id}
         />
-        <span className={styles.messageItemText}>{text}</span>
+        <p className={styles.messageItemText}>{text}</p>
       </div>
     );
   }

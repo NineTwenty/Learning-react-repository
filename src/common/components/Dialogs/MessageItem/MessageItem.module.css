@@ -39,6 +39,7 @@
   border-radius: 0.4em;
   padding: 1em;
   box-shadow: 0em 0.1em 0.2em var(--color-shadow-light);
+  margin: 0;
 }
 
 .isMine .messageItemText {
