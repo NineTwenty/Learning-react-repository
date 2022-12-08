@@ -4,9 +4,10 @@ import {
   Message as PrismaMessage,
   Post as PrismaPost,
 } from '@prisma/client';
-import type { NextApiRequest } from 'next';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { UnsecuredJWT } from 'jose';
 import { z } from 'zod';
+import { serialize } from 'cookie';
 
 export const userInclude = Prisma.validator<Prisma.UserInclude>()({
   avatar: { include: { image: true } },
@@ -162,4 +163,19 @@ export function authenticateUser(request: NextApiRequest) {
   const { authorization } = request.headers;
   const { userId } = verifyJWT(authorization);
   return userId;
+}
+
+/**
+ * Mutate response object to remove (by expiring) auth-token cookie on client
+ */
+export function expireAuthCookie(res: NextApiResponse): void {
+  res.setHeader(
+    'Set-Cookie',
+    serialize('auth_token', '', {
+      httpOnly: true,
+      expires: new Date(Date.now() - 1000 * 1000),
+      sameSite: 'strict',
+      path: '/',
+    })
+  );
 }
