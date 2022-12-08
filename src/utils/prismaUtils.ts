@@ -139,15 +139,7 @@ export function preparePostForClient({
 
 export type Post = ReturnType<typeof preparePostForClient>;
 
-function verifyJWT(authHeader: string | string[] | undefined) {
-  // Validate input
-  const token = z
-    .string()
-    .startsWith('Bearer ')
-    // Extract token
-    .transform((val) => val.substring(7))
-    .parse(authHeader);
-
+function verifyJWT(token: string) {
   const tokenPayload = UnsecuredJWT.decode(token).payload;
 
   return z
@@ -160,8 +152,13 @@ function verifyJWT(authHeader: string | string[] | undefined) {
 }
 
 export function authenticateUser(request: NextApiRequest) {
-  const { authorization } = request.headers;
-  const { userId } = verifyJWT(authorization);
+  const { auth_token: token } = request.cookies;
+
+  if (!token) {
+    throw new Error('auth_token required');
+  }
+
+  const { userId } = verifyJWT(token);
   return userId;
 }
 

@@ -1,41 +1,30 @@
 import axios from 'axios';
+import { z } from 'zod';
 
 // Generation of URL with prefix part
 const API_PREFIX = '/api/';
-
-const getToken = () => localStorage.getItem('token');
-
-const getAuthString = () => {
-  const token = getToken();
-  if (token) return `Bearer ${token}`;
-
-  return '';
-};
 
 export const getInstance = () =>
   axios.create({
     baseURL: API_PREFIX,
     headers: {
       'Content-Type': 'application/json',
-      Authorization: getAuthString(),
     },
     withCredentials: true,
   });
 
-type MirageErrorResponse = {
-  message: string;
-  stack: string;
+export const isTokenExpireResponse = (error: unknown): boolean => {
+  if (!axios.isAxiosError(error)) return false;
+  const parsedError = z
+    .object({
+      data: z.object({
+        message: z.string().min(1),
+      }),
+    })
+    .parse(error.response);
+
+  return (
+    parsedError.data.message === 'userId is required in token payload' ||
+    parsedError.data.message === 'auth_token required'
+  );
 };
-
-export const isMirageErrorResponse = (
-  value: unknown
-): value is MirageErrorResponse =>
-  value !== null &&
-  value !== undefined &&
-  (value as MirageErrorResponse).message !== undefined &&
-  (value as MirageErrorResponse).stack !== undefined;
-
-export const isTokenExpireResponse = (error: unknown): boolean =>
-  axios.isAxiosError(error) &&
-  isMirageErrorResponse(error.response?.data) &&
-  error.response?.data.message === 'jwt expired';

@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
-import { authenticateUser } from 'utils/prismaUtils';
+import { queryWithAuthentication } from 'utils/prismaUtils';
 
 const prisma = new PrismaClient();
 
@@ -27,11 +27,17 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const userId = authenticateUser(req);
-  switch (req.method) {
-    case 'DELETE':
-      return handleDelete(req, res, userId);
-    default:
-      return res.status(405);
-  }
+  await queryWithAuthentication({
+    req,
+    res,
+    query: async (userId) => {
+      switch (req.method) {
+        case 'DELETE':
+          await handleDelete(req, res, userId);
+          break;
+        default:
+          res.status(405).end();
+      }
+    },
+  });
 }

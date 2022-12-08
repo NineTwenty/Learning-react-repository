@@ -105,15 +105,12 @@ const authenticationRequest =
 
     try {
       // Login request
-      const { token } = await api.post<{ token: string }>('auth/login', {
+      const response = await api.post('auth/login', {
         login,
         password,
       });
 
-      if (token) {
-        // Set token
-        localStorage.setItem('token', token);
-
+      if (response) {
         dispatch(authenticationActions.success());
       }
     } catch (err) {
@@ -125,24 +122,16 @@ const authenticationRequest =
 
 // Authorization
 export const authorizationRequest = () => async (dispatch: AppDispatch) => {
-  const token = localStorage.getItem('token');
+  // Dispatch start of request
+  dispatch(authorizationActions.request());
+  try {
+    // Fetch current user
+    const { user } = await api.get<{ user: User }>('auth/me');
 
-  // Check if there is token
-  if (token) {
-    // Dispatch start of request
-    dispatch(authorizationActions.request());
-    try {
-      // Fetch current user
-      const { user } = await api.get<{ user: User }>('auth/me');
-
-      dispatch(addUser(user));
-      dispatch(authorizationActions.success(user.id));
-    } catch (err) {
-      // Remove token due to failed authorization
-      localStorage.removeItem('token');
-
-      dispatch(authorizationActions.failure());
-    }
+    dispatch(addUser(user));
+    dispatch(authorizationActions.success(user.id));
+  } catch (err) {
+    dispatch(authorizationActions.failure());
   }
 };
 
@@ -205,9 +194,6 @@ export const handleUserRegistration =
       );
 
       if (token) {
-        // Set token
-        localStorage.setItem('token', token);
-
         dispatch(registrationActions.success());
 
         // Authorize user after successful registration

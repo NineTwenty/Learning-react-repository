@@ -1,7 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
-import { authenticateUser, preparePostForClient } from 'utils/prismaUtils';
+import {
+  preparePostForClient,
+  queryWithAuthentication,
+} from 'utils/prismaUtils';
 
 const prisma = new PrismaClient();
 
@@ -31,11 +34,17 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const userId = authenticateUser(req);
-  switch (req.method) {
-    case 'POST':
-      return handlePost(req, res, userId);
-    default:
-      return res.status(405);
-  }
+  await queryWithAuthentication({
+    req,
+    res,
+    query: async (userId) => {
+      switch (req.method) {
+        case 'POST':
+          await handlePost(req, res, userId);
+          break;
+        default:
+          res.status(405).end();
+      }
+    },
+  });
 }

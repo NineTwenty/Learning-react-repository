@@ -14,7 +14,6 @@ export const logoutMiddleware: Middleware =
     const dispatch = storeApi.dispatch as AppDispatch;
 
     if (type === LOGOUT) {
-      localStorage.removeItem('token');
       void dispatch(logoutRequest());
     }
 

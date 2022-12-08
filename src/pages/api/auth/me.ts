@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { authenticateUser, findUserById } from 'utils/prismaUtils';
+import { findUserById, queryWithAuthentication } from 'utils/prismaUtils';
 
 const prisma = new PrismaClient();
 
@@ -12,9 +12,14 @@ export default async function handler(
     return res.status(405);
   }
 
-  const userId = authenticateUser(req);
-  const user = await findUserById(userId, prisma);
-  if (user) {
-    return res.status(200).send({ user });
-  }
+  await queryWithAuthentication({
+    req,
+    res,
+    query: async (userId) => {
+      const user = await findUserById(userId, prisma);
+      if (user) {
+        return res.status(200).send({ user });
+      }
+    },
+  });
 }
