@@ -1,7 +1,7 @@
 import CroppedImage from 'common/components/CroppedImage/CroppedImage';
 import Gallery from 'common/components/Gallery/Gallery';
 import { useSelector } from 'react-redux';
-import { useIdParam } from 'common/hooks/hooks';
+import { useIdParam } from 'utils/hooks/hooks';
 import { selectUserById } from 'data/entities';
 
 type ImagesGalleryProps = {

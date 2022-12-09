@@ -4,7 +4,7 @@ import TextAreaField from 'common/components/TextAreaField';
 import { Form, Formik, FormikErrors, FormikHelpers, FormikProps } from 'formik';
 import type { Dialog } from 'utils/prismaUtils';
 import { fetchDialogs, submitMessage } from 'data/entities';
-import { useAppDispatch } from 'common/hooks/hooks';
+import { useAppDispatch } from 'utils/hooks/hooks';
 import styles from './ChatInputs.module.css';
 
 type Props = {

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCurrentUser } from 'common/contexts/current-user-context';
+import { useCurrentUser } from 'utils/contexts/current-user-context';
 
 export default function HomeProfile() {
   const { id: userId } = useCurrentUser();

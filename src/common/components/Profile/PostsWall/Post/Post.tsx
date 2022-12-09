@@ -1,6 +1,6 @@
-import { useAppDispatch } from 'common/hooks/hooks';
+import { useAppDispatch } from 'utils/hooks/hooks';
 import { useSelector } from 'react-redux';
-import { useCurrentUser } from 'common/contexts/current-user-context';
+import { useCurrentUser } from 'utils/contexts/current-user-context';
 import { deletePost } from 'data/entities/postsSlice';
 import { selectPostById, selectUserById } from 'data/entities';
 import Separator from 'common/components/Separator';

@@ -1,5 +1,5 @@
 import SplashScreen from 'common/components/SplashScreen/SplashScreen';
-import { useAppDispatch } from 'common/hooks/hooks';
+import { useAppDispatch } from 'utils/hooks/hooks';
 import { initialization, selectIsAppInitialized } from 'data';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';

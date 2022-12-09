@@ -4,7 +4,7 @@ import Separator from 'common/components/Separator';
 import { useSelector } from 'react-redux';
 import { selectUserById } from 'data/entities';
 import Spinner from 'common/components/Spinner';
-import { useIdParam } from 'common/hooks/hooks';
+import { useIdParam } from 'utils/hooks/hooks';
 import styles from './About.module.scss';
 
 type AboutProps = {

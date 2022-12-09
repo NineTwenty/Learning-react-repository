@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from 'common/hooks/hooks';
+import { useAppDispatch, useAppSelector } from 'utils/hooks/hooks';
 import {
   clearMessages,
   selectDialogById,

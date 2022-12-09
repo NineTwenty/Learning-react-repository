@@ -1,6 +1,6 @@
 import Button from 'common/components/Button';
 import HamburgerButton from 'common/components/HamburgerButton';
-import { useAppDispatch } from 'common/hooks/hooks';
+import { useAppDispatch } from 'utils/hooks/hooks';
 import { logout } from 'data/common/actions';
 import { MdLogout } from 'react-icons/md';
 import styles from './Header.module.css';

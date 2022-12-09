@@ -4,7 +4,7 @@ import { generatePath, Link } from 'react-router-dom';
 import { fetchUsers, selectUserById, selectUsersByIds } from 'data/entities';
 import Avatar from 'common/components/Avatar/Avatar';
 import Gallery from 'common/components/Gallery/Gallery';
-import { useAppDispatch, useIdParam } from 'common/hooks/hooks';
+import { useAppDispatch, useIdParam } from 'utils/hooks/hooks';
 import styles from './FriendsGallery.module.scss';
 
 type FriendsGalleryProps = {

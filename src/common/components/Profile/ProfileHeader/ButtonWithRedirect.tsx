@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'common/hooks/hooks';
+import { useAppDispatch, useAppSelector } from 'utils/hooks/hooks';
 import Button from 'common/components/Button';
 import { selectDialogByMember, submitDialog } from 'data/entities';
 

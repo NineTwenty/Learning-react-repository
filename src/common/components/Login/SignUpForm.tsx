@@ -1,6 +1,6 @@
 import { Form, Formik, FormikErrors } from 'formik';
 import { handleUserRegistration } from 'data';
-import { useAppDispatch } from 'common/hooks/hooks';
+import { useAppDispatch } from 'utils/hooks/hooks';
 import PasswordField from 'common/components/PasswordField';
 import SubmitField from 'common/components/SubmitField';
 import TextField from 'common/components/TextField';

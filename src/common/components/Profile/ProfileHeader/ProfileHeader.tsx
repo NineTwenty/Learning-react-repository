@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import cx from 'classnames';
-import { useAppSelector, useIdParam } from 'common/hooks/hooks';
+import { useAppSelector, useIdParam } from 'utils/hooks/hooks';
 import {
   selectDialogByMember,
   selectUserById,

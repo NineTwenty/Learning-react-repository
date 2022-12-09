@@ -8,7 +8,7 @@ import SplashScreen from 'common/components/SplashScreen/SplashScreen';
 import style from 'common/components/Login/Login.module.scss';
 import LoginForm from 'common/components/Login/LoginForm';
 import { selectLoggedInStatus } from 'data';
-import { useAppSelector } from 'common/hooks/hooks';
+import { useAppSelector } from 'utils/hooks/hooks';
 
 function Login() {
   const loggedIn = useAppSelector(selectLoggedInStatus);
