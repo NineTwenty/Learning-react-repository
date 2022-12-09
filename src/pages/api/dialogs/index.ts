@@ -5,8 +5,8 @@ import {
   dialogInclude,
   prepareDialogForClient,
   prepareUserForClient,
-  queryWithAuthentication,
 } from 'utils/prismaUtils';
+import { queryWithAuthentication } from 'utils/serverUtils';
 
 const prisma = new PrismaClient();
 

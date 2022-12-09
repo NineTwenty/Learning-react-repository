@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
-import { findUserById, queryWithAuthentication } from 'utils/prismaUtils';
+import { findUserById } from 'utils/prismaUtils';
+import { queryWithAuthentication } from 'utils/serverUtils';
 
 const prisma = new PrismaClient();
 

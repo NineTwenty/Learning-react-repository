@@ -1,10 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
-import {
-  prepareFeedForClient,
-  preparePostForClient,
-  queryWithAuthentication,
-} from 'utils/prismaUtils';
+import { prepareFeedForClient, preparePostForClient } from 'utils/prismaUtils';
+import { queryWithAuthentication } from 'utils/serverUtils';
 
 const prisma = new PrismaClient();
 
