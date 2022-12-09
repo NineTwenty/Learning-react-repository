@@ -7,7 +7,7 @@ import {
   selectLoadedMessagesByIds,
 } from 'data/entities';
 import InfiniteScrollReverse from 'common/components/InfiniteScrollReverse/InfiniteScrollReverse';
-import type { Dialog, Message, User } from 'common/entities.types';
+import type { Dialog, Message, User } from 'types/entities.types';
 import MessageItem from '../MessageItem/MessageItem';
 import styles from './ChatBox.module.css';
 

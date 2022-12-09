@@ -1,4 +1,4 @@
-import { User } from 'common/entities.types';
+import type { User } from 'types/entities.types';
 import React, { useContext } from 'react';
 
 import { useSelector } from 'react-redux';

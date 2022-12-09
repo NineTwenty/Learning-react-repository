@@ -1,4 +1,4 @@
-import { User } from 'common/entities.types';
+import type { User } from 'types/entities.types';
 import Avatar from 'common/components/Avatar/Avatar';
 import styles from './ChatHeader.module.css';
 

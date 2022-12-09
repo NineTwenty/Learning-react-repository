@@ -5,7 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 import { api } from 'utils/api/API';
 import { isTokenExpireResponse } from 'utils/api/APIUtils';
-import type { Dialog, Message } from 'common/entities.types';
+import type { Dialog, Message } from 'types/entities.types';
 import { logout } from 'data/common/actions';
 import type { AppDispatch, RootState } from 'data/store';
 import {

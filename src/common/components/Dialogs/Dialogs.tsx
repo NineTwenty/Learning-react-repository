@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import cx from 'classnames';
 import { fetchDialogs, selectDialogs } from 'data/entities';
 import { useAppDispatch, useAppSelector, useIdParam } from 'utils/hooks/hooks';
-import { Dialog } from 'common/entities.types';
+import type { Dialog } from 'types/entities.types';
 import Spinner from 'common/components/Spinner';
 import HamburgerButton from 'common/components/HamburgerButton';
 import { selectCurrentUserId } from 'data';

@@ -1,4 +1,4 @@
-import type { Feed, Post } from 'common/entities.types';
+import type { Feed, Post } from 'types/entities.types';
 import type { AppDispatch, RootState } from 'data/store';
 import type { StatusState } from 'data/utils/utils.types';
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';

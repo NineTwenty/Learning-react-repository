@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import type { User } from 'common/entities.types';
+import type { User } from 'types/entities.types';
 import { api } from 'utils/api/API';
 import { addUser } from './entities/usersSlice';
 import type { AppDispatch, RootState } from './store';

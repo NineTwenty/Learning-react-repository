@@ -1,4 +1,4 @@
-import type { Dialog, User } from 'common/entities.types';
+import type { Dialog, User } from 'types/entities.types';
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { api } from 'utils/api/API';
 import {
