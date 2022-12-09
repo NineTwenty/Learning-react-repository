@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { MdInfo } from 'react-icons/md';
 import { useRouter } from 'next/router';
-import Button from 'common/components/Button';
-import Separator from 'common/components/Separator';
-import SignUpForm from 'common/components/Login/SignUpForm';
-import SplashScreen from 'common/components/SplashScreen/SplashScreen';
-import style from 'common/components/Login/Login.module.scss';
-import LoginForm from 'common/components/Login/LoginForm';
+import Button from 'components/Button';
+import Separator from 'components/Separator';
+import SignUpForm from 'components/Login/SignUpForm';
+import SplashScreen from 'components/SplashScreen/SplashScreen';
+import style from 'components/Login/Login.module.scss';
+import LoginForm from 'components/Login/LoginForm';
 import { selectLoggedInStatus } from 'data';
 import { useAppSelector } from 'utils/hooks/hooks';
 

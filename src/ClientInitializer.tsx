@@ -1,4 +1,4 @@
-import SplashScreen from 'common/components/SplashScreen/SplashScreen';
+import SplashScreen from 'components/SplashScreen/SplashScreen';
 import { useAppDispatch } from 'utils/hooks/hooks';
 import { initialization, selectIsAppInitialized } from 'data';
 import { useEffect } from 'react';

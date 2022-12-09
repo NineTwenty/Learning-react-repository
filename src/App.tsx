@@ -1,8 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import Dialogs from 'common/components/Dialogs/Dialogs';
-import Profile from 'common/components/Profile/Profile';
-import HomeProfile from 'common/components/Profile/HomeProfile';
-import Page from 'common/components/Page';
+import Dialogs from 'components/Dialogs/Dialogs';
+import Profile from 'components/Profile/Profile';
+import HomeProfile from 'components/Profile/HomeProfile';
+import Page from 'components/Page';
 
 function App(): JSX.Element {
   return (
