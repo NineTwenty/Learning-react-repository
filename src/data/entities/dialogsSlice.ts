@@ -1,6 +1,6 @@
 import type { Dialog, User } from 'common/entities.types';
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-import { api } from 'api/API';
+import { api } from 'utils/api/API';
 import {
   createLoadingActions,
   createLoadingMatchers,
@@ -8,7 +8,7 @@ import {
 } from 'data/utils';
 import type { AppDispatch, RootState } from 'data/store';
 import type { StatusState } from 'data/utils/utils.types';
-import { isTokenExpireResponse } from 'api/APIUtils';
+import { isTokenExpireResponse } from 'utils/api/APIUtils';
 import { logout } from 'data/common/actions';
 import { selectCurrentUserId } from 'data';
 import { addUsers } from '.';
