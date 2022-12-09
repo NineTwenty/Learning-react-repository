@@ -1,6 +1,7 @@
 .checkInput {
   margin: 0;
   appearance: none;
+  outline: 0;
 }
 
 .label {

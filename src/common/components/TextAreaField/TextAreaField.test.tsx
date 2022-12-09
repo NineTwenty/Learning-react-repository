@@ -2,9 +2,10 @@ import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Form, Formik, FormikHelpers } from 'formik';
 import SubmitField from 'common/components/SubmitField';
-import { TextAreaField } from './TextAreaField';
+import TextAreaField from '.';
 
 it('Render and correctly integrate with form', async () => {
+  const user = userEvent.setup();
   const initialValues = {
     text: '',
   };
@@ -27,13 +28,13 @@ it('Render and correctly integrate with form', async () => {
   const string = 'Test string';
   const textarea = getByRole('textbox');
 
-  userEvent.type(textarea, string);
+  await user.type(textarea, string);
 
   expect(textarea).toHaveValue(string);
 
   // Submit
-  userEvent.click(getByRole('button'));
-  await waitFor(() => expect(onSubmit).toBeCalledTimes(1));
+  await user.click(getByRole('button'));
+  await waitFor(() => expect(onSubmit).toHaveBeenCalledTimes(1));
 
   // Assert that form reset work correctly
   expect(textarea).toBeEmptyDOMElement();

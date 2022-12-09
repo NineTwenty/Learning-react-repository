@@ -4,14 +4,19 @@ import Button from './Button';
 
 type Props = {
   buttonText: string;
+  isSubmiting?: boolean;
 };
 
 function SubmitField(props: Props) {
-  const { buttonText } = props;
+  const { buttonText, isSubmiting } = props;
   return (
     <div className={styles.submitField}>
       <StatusErrors />
-      <Button className={styles.SubmitButton} type='submit'>
+      <Button
+        disabled={isSubmiting}
+        className={styles.SubmitButton}
+        type='submit'
+      >
         {buttonText}
       </Button>
     </div>

@@ -2,19 +2,18 @@ import {
   createEntityAdapter,
   createSelector,
   createSlice,
-  EntityId,
 } from '@reduxjs/toolkit';
 import { api } from 'api/API';
 import { isTokenExpireResponse } from 'api/APIUtils';
-import { Message } from 'common/entities.types';
+import type { Dialog, Message } from 'common/entities.types';
 import { logout } from 'data/common/actions';
-import { AppDispatch, RootState } from 'data/store';
+import type { AppDispatch, RootState } from 'data/store';
 import {
   createLoadingActions,
   createLoadingMatchers,
   createLoadingReducers,
 } from 'data/utils';
-import { StatusState } from 'data/utils/utils.types';
+import type { StatusState } from 'data/utils/utils.types';
 
 const sliceName = 'messages';
 
@@ -25,7 +24,7 @@ const adapter = createEntityAdapter<Message>();
 const initialState = adapter.getInitialState<StatusState>({ status: 'idle' });
 
 // State type
-type MessagesState = typeof initialState;
+export type MessagesState = typeof initialState;
 
 // Setup loading parts
 // Loading reducers
@@ -80,7 +79,7 @@ export const clearMessages = () => messagesSlice.actions.removeAll();
 // Thunks
 
 export const fetchMessages =
-  (page: number, dialogId: EntityId) => async (dispatch: AppDispatch) => {
+  (page: number, dialogId: Dialog['id']) => async (dispatch: AppDispatch) => {
     dispatch(getRequest.request());
     try {
       const { messages } = await api.get<{ messages: Message[] }>(
@@ -123,15 +122,10 @@ const { selectIds, selectById, selectAll, selectEntities } =
 
 export const selectMessages = (state: RootState) => selectAll(state);
 export const selectMessagesIds = (state: RootState) => selectIds(state);
-export const selectMessageById = (id: EntityId) => (state: RootState) =>
+export const selectMessageById = (id: Message['id']) => (state: RootState) =>
   selectById(state, id);
 export const selectLoadedMessagesByIds = createSelector(
-  [
-    selectEntities,
-    (_: unknown, props: EntityId[]) => {
-      return props;
-    },
-  ],
+  [selectEntities, (_: unknown, props: Message['id'][]) => props],
   (entities, ids) => {
     if (ids) {
       // Make array of loaded messages

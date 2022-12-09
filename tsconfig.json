@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES6",
     "lib": [
       "dom",
       "dom.iterable",
@@ -9,7 +9,6 @@
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
@@ -18,21 +17,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "plugins": [
-      {
-        "name": "typescript-plugin-css-modules",
-        "options": {
-          "namedExports": false,
-        }
-      }
-    ],
+    "jsx": "preserve",
     "baseUrl": "src",
+    "incremental": true,
+    "types": [ "jest" ]
   },
-  "include": [
-    "src",
-  ],
-  "exclude": [
-    "node_modules",
-  ]
+  "include": [ "next-env.d.ts", "src", "prisma", "jest.setup.js" ],
+  "exclude": [ "node_modules" ]
 }

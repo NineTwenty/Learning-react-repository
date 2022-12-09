@@ -1,7 +1,7 @@
-import { Feed, Post } from 'common/entities.types';
-import { AppDispatch, RootState } from 'data/store';
-import { StatusState } from 'data/utils/utils.types';
-import { createEntityAdapter, createSlice, EntityId } from '@reduxjs/toolkit';
+import type { Feed, Post } from 'common/entities.types';
+import type { AppDispatch, RootState } from 'data/store';
+import type { StatusState } from 'data/utils/utils.types';
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { api } from 'api/API';
 import { isTokenExpireResponse } from 'api/APIUtils';
 import {
@@ -56,7 +56,7 @@ export const feedsSliceName = feedsSlice.name;
 
 // Thunks
 
-export const fetchFeed = (id: string) => async (dispatch: AppDispatch) => {
+export const fetchFeed = (id: Feed['id']) => async (dispatch: AppDispatch) => {
   dispatch(getRequest.request());
   try {
     const { feed, posts } = await api.get<{ feed: Feed; posts: Post[] }>(
@@ -82,5 +82,5 @@ const { selectById } = adapter.getSelectors(
 export const selectIsLoadingFeedStatus = (state: RootState) =>
   state.entities[sliceName].status !== 'idle';
 
-export const selectFeedById = (id: EntityId) => (state: RootState) =>
+export const selectFeedById = (id: Feed['id']) => (state: RootState) =>
   selectById(state, id);

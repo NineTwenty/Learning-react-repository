@@ -4,6 +4,6 @@ type Props = {
   children: React.ReactNode;
 };
 
-export function Tabs({ children }: Props) {
+export default function Tabs({ children }: Props) {
   return <div className={style.tabs}>{children}</div>;
 }

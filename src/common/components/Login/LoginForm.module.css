@@ -1,0 +1,19 @@
+.form {
+  color: var(--color-text-headers);
+  position: relative;
+}
+
+.form > * {
+  margin-top: 1.3em;
+}
+
+.SpinnerContainer {
+  display: flex;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  justify-content: center;
+  background: #ffffffa9;
+}

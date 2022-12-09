@@ -1,7 +1,7 @@
-import { Post } from 'common/entities.types';
-import { AppDispatch, RootState } from 'data/store';
-import { StatusState } from 'data/utils/utils.types';
-import { createEntityAdapter, createSlice, EntityId } from '@reduxjs/toolkit';
+import type { Feed, Post } from 'common/entities.types';
+import type { AppDispatch, RootState } from 'data/store';
+import type { StatusState } from 'data/utils/utils.types';
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { api } from 'api/API';
 import { isTokenExpireResponse } from 'api/APIUtils';
 import {
@@ -31,7 +31,7 @@ const { isStartOfRequest, isEndOfRequest } = createLoadingMatchers(sliceName);
 
 const getRequest = createLoadingActions<Post[]>(sliceName, 'get');
 const submitRequest = createLoadingActions<Post>(sliceName, 'submit');
-const deleteRequest = createLoadingActions<EntityId>(sliceName, 'delete');
+const deleteRequest = createLoadingActions<Post['id']>(sliceName, 'delete');
 
 // Slice
 
@@ -87,7 +87,7 @@ export const fetchPosts = () => async (dispatch: AppDispatch) => {
 };
 
 export const submitPost =
-  (newPost: { postText: string; feedId: string }) =>
+  (newPost: { postText: string; feedId: Feed['id'] }) =>
   async (dispatch: AppDispatch) => {
     dispatch(submitRequest.request());
     try {
@@ -102,7 +102,7 @@ export const submitPost =
     }
   };
 
-export const deletePost = (id: string) => async (dispatch: AppDispatch) => {
+export const deletePost = (id: Post['id']) => async (dispatch: AppDispatch) => {
   dispatch(deleteRequest.request());
   try {
     await api.delete(`posts/${id}`);
@@ -127,5 +127,5 @@ export const getIsLoadingPostStatus = (state: RootState) =>
   state.entities[sliceName].status !== 'idle';
 
 export const selectPostsIds = (state: RootState) => selectIds(state);
-export const selectPostById = (id: EntityId) => (state: RootState) =>
+export const selectPostById = (id: Post['id']) => (state: RootState) =>
   selectById(state, id);

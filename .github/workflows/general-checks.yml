@@ -1,0 +1,26 @@
+name: General checks
+on: [push]
+jobs:
+  General-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+      - name: Install packages
+        run: npm ci
+      - name: Check linting
+        run: npm run lint
+      - name: Check types
+        run: npm run check-types
+      - name: Run jest tests
+        run: npm test
+      - name: Run cypress tests
+        env:
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+        uses: cypress-io/github-action@v4
+        with:
+          start: npm run dev
+          wait-on: 'http://localhost:3000'
