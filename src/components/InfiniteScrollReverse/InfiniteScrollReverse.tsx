@@ -1,64 +1,31 @@
 import { useEffect, useLayoutEffect, useReducer, useRef } from 'react';
 import styles from './InfiniteScrollReverse.module.css';
 
-// Types
-enum TypeKeys {
-  INITIALIZATION_FINISH = 'INITIALIZATION_FINISH',
-  LOADING_STARTED = 'LOADING_STARTED',
-  LOADING_FINISH = 'LOADING_FINISH',
-  ITEMS_CHANGED = 'ITEMS_CHANGED',
-  BOTTOM_TRIGGERED = 'BOTTOM_TRIGGERED',
-}
-
-// Action types
-interface FinishInitializationAction {
-  type: TypeKeys.INITIALIZATION_FINISH;
-}
-
-interface StartLoadingAction {
-  type: TypeKeys.LOADING_STARTED;
-}
-
-interface FinishLoadingAction {
-  type: TypeKeys.LOADING_FINISH;
-  payload: { itemsAmount: number };
-}
-
-interface UpdateItemsAmountAction {
-  type: TypeKeys.ITEMS_CHANGED;
-  payload: { itemsAmount: number };
-}
-
-interface BottomTriggeredAction {
-  type: TypeKeys.BOTTOM_TRIGGERED;
-  payload: { isIntersecting: boolean };
-}
-
 // Action Creators
-const finishInitialization = (): FinishInitializationAction => ({
-  type: TypeKeys.INITIALIZATION_FINISH,
+const finishInitialization = () => ({
+  type: 'INITIALIZATION_FINISH' as const,
 });
 
-const startLoading = (): StartLoadingAction => ({
-  type: TypeKeys.LOADING_STARTED,
+const startLoading = () => ({
+  type: 'LOADING_STARTED' as const,
 });
 
-const finishLoading = (itemsAmount: number): FinishLoadingAction => ({
-  type: TypeKeys.LOADING_FINISH,
+const finishLoading = (itemsAmount: number) => ({
+  type: 'LOADING_FINISH' as const,
   payload: {
     itemsAmount,
   },
 });
 
-const updateItemsAmount = (itemsAmount: number): UpdateItemsAmountAction => ({
-  type: TypeKeys.ITEMS_CHANGED,
+const updateItemsAmount = (itemsAmount: number) => ({
+  type: 'ITEMS_CHANGED' as const,
   payload: {
     itemsAmount,
   },
 });
 
-const bottomTriggered = (isIntersecting: boolean): BottomTriggeredAction => ({
-  type: TypeKeys.BOTTOM_TRIGGERED,
+const bottomTriggered = (isIntersecting: boolean) => ({
+  type: 'BOTTOM_TRIGGERED' as const,
   payload: {
     isIntersecting,
   },
@@ -73,24 +40,24 @@ interface InfiniteScrollState {
 }
 
 type ActionTypes =
-  | FinishInitializationAction
-  | StartLoadingAction
-  | FinishLoadingAction
-  | UpdateItemsAmountAction
-  | BottomTriggeredAction;
+  | ReturnType<typeof finishInitialization>
+  | ReturnType<typeof startLoading>
+  | ReturnType<typeof finishLoading>
+  | ReturnType<typeof updateItemsAmount>
+  | ReturnType<typeof bottomTriggered>;
 
 // Reducer
 const reducer = (state: InfiniteScrollState, action: ActionTypes) => {
   const { isLoading, nextPage, isInitialized } = state;
 
   switch (action.type) {
-    case TypeKeys.INITIALIZATION_FINISH:
+    case 'INITIALIZATION_FINISH':
       return { ...state, isInitialized: true };
 
-    case TypeKeys.LOADING_STARTED:
+    case 'LOADING_STARTED':
       return isLoading ? state : { ...state, isLoading: true };
 
-    case TypeKeys.LOADING_FINISH:
+    case 'LOADING_FINISH':
       return isLoading || !isInitialized
         ? {
             ...state,
@@ -100,10 +67,10 @@ const reducer = (state: InfiniteScrollState, action: ActionTypes) => {
           }
         : state;
 
-    case TypeKeys.ITEMS_CHANGED:
+    case 'ITEMS_CHANGED':
       return { ...state, itemsAmount: action.payload.itemsAmount };
 
-    case TypeKeys.BOTTOM_TRIGGERED:
+    case 'BOTTOM_TRIGGERED':
       return { ...state, isStickToBottom: action.payload.isIntersecting };
 
     default:
