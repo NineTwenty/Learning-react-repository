@@ -28,6 +28,7 @@ export default function NewChatDialog({
   const friends = useSelector(selectUsersByIds(currentUser.friends));
 
   const friendsList = friends.map((user) => {
+    if (!user) return null;
     const createDialog = () => {
       void dispatch(submitDialog(user.id));
     };

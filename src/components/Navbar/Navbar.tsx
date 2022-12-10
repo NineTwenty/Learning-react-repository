@@ -24,14 +24,14 @@ export default function Navbar({
 
     // Click event handler
     const closeOnOutsideClick = ({ target }: MouseEvent) => {
-      if (!target) return;
+      if (!(target && target instanceof Node)) return;
       // Check if it's not the toggle button
-      if (menuBtn && !menuBtn.contains(target as Element)) {
+      if (menuBtn && !menuBtn.contains(target)) {
         // Check if navbar is open & target is part of navbar
         if (
           isSideNavForceOpen &&
           selfRef.current &&
-          !selfRef.current.contains(target as Element)
+          !selfRef.current.contains(target)
         ) {
           // Close navbar
           setSideNavForceOpen(false);
