@@ -805,7 +805,7 @@ async function main() {
   await prisma.image.createMany({
     data: [
       {
-        src: 'https://picsum.photos/seed/0.22455715310808766/1280/920',
+        src: 'https://picsum.photos/id/661/1280/920',
         uploaderId: 1,
       },
       {
@@ -845,7 +845,7 @@ async function main() {
         uploaderId: 1,
       },
       {
-        src: 'https://picsum.photos/seed/0.9431001600011457/1280/920',
+        src: 'https://picsum.photos/id/777/1280/920',
         uploaderId: 2,
       },
       {
@@ -885,7 +885,7 @@ async function main() {
         uploaderId: 2,
       },
       {
-        src: 'https://picsum.photos/seed/0.34987029750095777/1280/920',
+        src: 'https://picsum.photos/id/823/1280/920',
         uploaderId: 3,
       },
       {
@@ -925,7 +925,7 @@ async function main() {
         uploaderId: 3,
       },
       {
-        src: 'https://picsum.photos/seed/0.08934466448831246/1280/920',
+        src: 'https://picsum.photos/id/669/1280/920',
         uploaderId: 4,
       },
       {
@@ -965,7 +965,7 @@ async function main() {
         uploaderId: 4,
       },
       {
-        src: 'https://picsum.photos/seed/0.28327708142687924/1280/920',
+        src: 'https://picsum.photos/id/1027/1280/920',
         uploaderId: 5,
       },
       {
@@ -1005,7 +1005,7 @@ async function main() {
         uploaderId: 5,
       },
       {
-        src: 'https://picsum.photos/seed/0.9780308373854332/1280/920',
+        src: 'https://picsum.photos/id/64/1280/920',
         uploaderId: 6,
       },
       {
@@ -1045,7 +1045,7 @@ async function main() {
         uploaderId: 6,
       },
       {
-        src: 'https://picsum.photos/seed/0.9630028347815214/1280/920',
+        src: 'https://picsum.photos/id/1011/1280/920',
         uploaderId: 7,
       },
       {
@@ -1085,7 +1085,7 @@ async function main() {
         uploaderId: 7,
       },
       {
-        src: 'https://picsum.photos/seed/0.017926876125443858/1280/920',
+        src: 'https://picsum.photos/id/863/1280/920',
         uploaderId: 8,
       },
       {
@@ -1125,7 +1125,7 @@ async function main() {
         uploaderId: 8,
       },
       {
-        src: 'https://picsum.photos/seed/0.919178526609638/1280/920',
+        src: 'https://picsum.photos/id/513/1280/920',
         uploaderId: 9,
       },
       {
@@ -1165,7 +1165,7 @@ async function main() {
         uploaderId: 9,
       },
       {
-        src: 'https://picsum.photos/seed/0.5490036300951802/1280/920',
+        src: 'https://picsum.photos/id/628/1280/920',
         uploaderId: 10,
       },
       {
@@ -1205,7 +1205,7 @@ async function main() {
         uploaderId: 10,
       },
       {
-        src: 'https://picsum.photos/seed/0.5974271211710938/1280/920',
+        src: 'https://picsum.photos/id/1012/1280/920',
         uploaderId: 11,
       },
       {
@@ -1245,7 +1245,7 @@ async function main() {
         uploaderId: 11,
       },
       {
-        src: 'https://picsum.photos/seed/0.9594311983220825/1280/920',
+        src: 'https://picsum.photos/id/883/1280/920',
         uploaderId: 12,
       },
       {
@@ -1285,7 +1285,7 @@ async function main() {
         uploaderId: 12,
       },
       {
-        src: 'https://picsum.photos/seed/0.4825668772964997/1280/920',
+        src: 'https://picsum.photos/id/550/1280/920',
         uploaderId: 13,
       },
       {
@@ -1325,7 +1325,7 @@ async function main() {
         uploaderId: 13,
       },
       {
-        src: 'https://picsum.photos/seed/0.6088044091198102/1280/920',
+        src: 'https://picsum.photos/id/1005/1280/920',
         uploaderId: 14,
       },
       {
