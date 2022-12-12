@@ -1,5 +1,6 @@
 import { useAppDispatch } from 'utils/hooks/hooks';
 import { useSelector } from 'react-redux';
+import { MdDelete } from 'react-icons/md';
 import { useCurrentUser } from 'utils/contexts/current-user-context';
 import { deletePost } from 'data/entities/postsSlice';
 import { selectPostById, selectUserById } from 'data/entities';
@@ -52,11 +53,12 @@ export default function Post({ id }: PostProps) {
         </div>
         {currentUser.id === post.author && (
           <Button
+            styleType='borderless'
             onClick={() => {
               void dispatch(deletePost(id));
             }}
           >
-            Delete
+            <MdDelete className={style.button} aria-label='Delete' />
           </Button>
         )}
       </div>
