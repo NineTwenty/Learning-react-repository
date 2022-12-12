@@ -4,7 +4,6 @@ import { MdDelete } from 'react-icons/md';
 import { useCurrentUser } from 'utils/contexts/current-user-context';
 import { deletePost } from 'data/entities/postsSlice';
 import { selectPostById, selectUserById } from 'data/entities';
-import Separator from 'components/Separator';
 import Button from 'components/Button';
 import Avatar from 'components/Avatar/Avatar';
 import type { Post as PostEntity } from 'utils/prismaUtils';
@@ -62,11 +61,7 @@ export default function Post({ id }: PostProps) {
           </Button>
         )}
       </div>
-      <p>{post.postText}</p>
-      <div className={style.meta}>
-        {/* <span className={style.views}>Views: {post.views}</span> */}
-      </div>
-      <Separator />
+      <p className={style.postText}>{post.postText}</p>
     </div>
   );
 }

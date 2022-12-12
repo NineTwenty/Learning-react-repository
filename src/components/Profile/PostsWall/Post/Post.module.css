@@ -1,7 +1,11 @@
 .post {
   color: var(--color-text-ui);
   display: block;
-  padding-bottom: var(--padding-primary);
+}
+
+.postText {
+  margin: 0;
+  padding: 0.7rem 0.3rem;
 }
 
 .header {
@@ -15,6 +19,7 @@
 
 .time {
   font-size: 0.8rem;
+  color: var(--color-text-unfocused);
 }
 
 .name {
@@ -22,11 +27,6 @@
   font-size: 1rem;
   padding: 0;
   margin: 0;
-}
-
-.meta {
-  display: flex;
-  margin-bottom: var(--padding-primary);
 }
 
 .views {

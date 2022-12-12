@@ -9,7 +9,9 @@ type Props = {
 export default function List({ children }: Props) {
   // Wrap children elements in li tag
   const listElements = React.Children.map(children, (el) => (
-    <li key={el.props.id}>{el}</li>
+    <li className={style.listItem} key={el.props.id}>
+      {el}
+    </li>
   ));
 
   return (
