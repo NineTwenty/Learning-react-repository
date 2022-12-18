@@ -1,9 +1,0 @@
-{
-  "**/*.+(js|jsx|ts|tsx)": [
-    "eslint"
-  ],
-  "**/*.+(js|jsx|ts|tsx|css|scss)": [
-    "npm run test:staged",
-    "prettier --write"
-  ]
-}

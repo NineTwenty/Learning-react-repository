@@ -3,9 +3,10 @@
   "compilerOptions": {
     "isolatedModules": false,
     "noEmit": true,
-    "target": "es5",
-    "lib": [ "es5", "dom" ],
-    "types": [ "cypress", "@testing-library/cypress", "node" ]
+    "types": [
+      "cypress",
+      "@testing-library/cypress"
+    ]
   },
   "include": [
     "../node_modules/cypress",

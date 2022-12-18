@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import cx from 'classnames';
 import style from './Tab.module.css';
 
 type Props = {
@@ -7,11 +6,9 @@ type Props = {
   route: string;
 };
 
-export default function Tab({ value, route }: Props) {
-  const handleClassName = ({ isActive }: { isActive: boolean }) =>
-    cx([style.link, { [style.active]: isActive }]);
+export function Tab({ value, route }: Props) {
   return (
-    <NavLink to={route} className={handleClassName}>
+    <NavLink to={route} className={style.link} activeClassName={style.active}>
       {value}
     </NavLink>
   );

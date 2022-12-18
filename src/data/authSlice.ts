@@ -1,15 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, EntityId } from '@reduxjs/toolkit';
 import axios from 'axios';
-import type { User } from 'common/entities.types';
+import { User } from 'common/entities.types';
 import { api } from '../api/API';
+import { LOGOUT } from './common/actions';
 import { addUser } from './entities/usersSlice';
-import type { AppDispatch, RootState } from './store';
+import { AppDispatch, RootState } from './store';
 import {
   createLoadingActions,
   createLoadingMatchers,
   createLoadingReducers,
 } from './utils';
-import type { StatusState } from './utils/utils.types';
+import { StatusState } from './utils/utils.types';
 
 // Slice name
 
@@ -32,7 +33,7 @@ const loginCompleted = () => ({
 // State type
 
 type AuthState = {
-  userId: User['id'] | null;
+  userId: EntityId | null;
   loggedIn: boolean;
 } & StatusState;
 
@@ -45,9 +46,8 @@ const initialState: AuthState = {
 };
 
 const loginActions = { loginStarted, loginCompleted };
-const logoutActions = createLoadingActions(sliceName, 'logout');
 const registrationActions = createLoadingActions(sliceName, 'registration');
-const authorizationActions = createLoadingActions<User['id']>(
+const authorizationActions = createLoadingActions<EntityId>(
   sliceName,
   'authorization'
 );
@@ -77,8 +77,7 @@ const authSlice = createSlice({
 
     // Logout matcher
     const isLogout = ({ type }: { type: string }) =>
-      type === logoutActions.success.toString() ||
-      type === authorizationActions.failure.toString();
+      type === LOGOUT || type === authorizationActions.failure.toString();
 
     // Logout handler
     builder.addMatcher(isLogout, (state) => {
@@ -105,12 +104,15 @@ const authenticationRequest =
 
     try {
       // Login request
-      const response = await api.post('auth/login', {
+      const { token } = await api.post<{ token: string }>('auth/login', {
         login,
         password,
       });
 
-      if (response) {
+      if (token) {
+        // Set token
+        localStorage.setItem('token', token);
+
         dispatch(authenticationActions.success());
       }
     } catch (err) {
@@ -122,29 +124,26 @@ const authenticationRequest =
 
 // Authorization
 export const authorizationRequest = () => async (dispatch: AppDispatch) => {
-  // Dispatch start of request
-  dispatch(authorizationActions.request());
-  try {
-    // Fetch current user
-    const { user } = await api.get<{ user: User }>('auth/me');
+  const token = localStorage.getItem('token');
 
-    dispatch(addUser(user));
-    dispatch(authorizationActions.success(user.id));
-  } catch (err) {
-    dispatch(authorizationActions.failure());
+  // Check if there is token
+  if (token) {
+    // Dispatch start of request
+    dispatch(authorizationActions.request());
+    try {
+      // Fetch current user
+      const { user } = await api.get<{ user: User }>('auth/me');
+
+      dispatch(addUser(user));
+      dispatch(authorizationActions.success(user.id));
+    } catch (err) {
+      // Remove token due to failed authorization
+      localStorage.removeItem('token');
+
+      dispatch(authorizationActions.failure());
+    }
   }
 };
-
-export const logoutRequest = () =>
-  async function logoutThunk(dispatch: AppDispatch) {
-    dispatch(logoutActions.request());
-    try {
-      await api.post('auth/logout', {});
-      dispatch(logoutActions.success());
-    } catch (error) {
-      dispatch(logoutActions.failure());
-    }
-  };
 
 // onSubmit thunk for loginForm
 export const submitLoginForm =
@@ -178,10 +177,12 @@ export const submitLoginForm =
 
 export const handleUserRegistration =
   (
-    userData: Partial<User> &
-      Pick<User, 'firstName' | 'lastName' | 'email'> & {
-        password: string;
-      }
+    userData: Partial<User> & {
+      firstName: string;
+      lastName: string;
+      email: string;
+      password: string;
+    }
   ) =>
   async (dispatch: AppDispatch): Promise<{ payload: string[] } | void> => {
     dispatch(registrationActions.request());
@@ -194,6 +195,9 @@ export const handleUserRegistration =
       );
 
       if (token) {
+        // Set token
+        localStorage.setItem('token', token);
+
         dispatch(registrationActions.success());
 
         // Authorize user after successful registration

@@ -11,7 +11,6 @@
 
   cursor: pointer;
   white-space: nowrap;
-  letter-spacing: 0.045rem;
 
   &:hover,
   &:focus {
@@ -70,13 +69,6 @@
 
     background: var(--color-primary);
     color: var(--color-text-light);
-
-    &:disabled,
-    &:disabled:hover,
-    &:disabled:focus {
-      background: var(--color-shadow-blue);
-      border-color: var(--color-shadow-blue);
-    }
 
     &:hover,
     &:focus {

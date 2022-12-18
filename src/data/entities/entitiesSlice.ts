@@ -1,4 +1,4 @@
-import { combineReducers } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
 import { dialogsReducer, dialogsSliceName } from './dialogsSlice';
 import { feedsReducer, feedsSliceName } from './feedsSlice';
 import { messagesReducer, messagesSliceName } from './messagesSlice';

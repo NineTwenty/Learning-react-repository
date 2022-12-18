@@ -1,31 +1,5 @@
 @import-normalize;
 
-:root {
-  /* Colors */
-  --color-text-headers: hsl(219, 14%, 27%);
-  --color-text-unfocused: hsl(219, 6%, 47%);
-  --color-text-ui: hsl(219, 6%, 36%);
-  --color-text-light: #ffffff;
-  --color-background: #ffffff;
-  --color-primary: cornflowerblue;
-  --color-secondary: #eef8ff;
-  --color-border-light: #f1f1f1;
-  --color-border-dark: #dbdbdb;
-  --color-shadow-light: #d2d6d8;
-  --color-shadow-blue: #4988c4d3;
-  --color-focus: hsl(219, 100%, 64%);
-  --color-error: #dc3545;
-
-  /* Sizes */
-  --border-radius-small: 0.5em;
-  --padding-primary: 0.63em;
-
-  /* Fonts */
-  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-}
-
 body {
   background: #fafafb;
   color: var(--color-text-headers);
@@ -48,10 +22,6 @@ button {
   font-size: 1em;
   font-family: var(--font-family);
   padding: 0;
-}
-
-p {
-  letter-spacing: 0.015rem;
 }
 
 * {

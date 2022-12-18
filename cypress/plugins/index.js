@@ -15,10 +15,8 @@
 /**
  * @type {Cypress.PluginConfig}
  */
-// eslint-disable-next-line no-unused-vars, arrow-body-style
+// eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
-  // eslint-disable-next-line import/no-extraneous-dependencies, global-require
-  return require('@cypress/code-coverage/task')(on, config);
-};
+}

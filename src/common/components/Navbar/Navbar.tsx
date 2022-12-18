@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
-import cx from 'classnames';
 import style from './Navbar.module.css';
 
 type Props = {
@@ -9,7 +8,7 @@ type Props = {
   menuBtnRef: React.RefObject<HTMLButtonElement>;
 };
 
-export default function Navbar({
+export function Navbar({
   isSideNavForceOpen,
   setSideNavForceOpen,
   menuBtnRef,
@@ -44,25 +43,42 @@ export default function Navbar({
     return () => window.removeEventListener('click', closeOnOutsideClick);
   }, [isSideNavForceOpen, setSideNavForceOpen, menuBtnRef]);
 
-  const handleClassName = ({ isActive }: { isActive: boolean }) =>
-    cx([style.navLink, { [style.active]: isActive }]);
-
   // Render
   return (
     <nav ref={selfRef} className={`${style.nav} ${isOpen}`}>
-      <NavLink to='/profile' className={handleClassName}>
-        Profile
-      </NavLink>
-      <NavLink to='/dialogs' className={handleClassName}>
+      <NavLink
+        to='/dialogs'
+        className={style.navLink}
+        activeClassName={style.active}
+      >
         Dialogs
       </NavLink>
-      <NavLink to='/news' className={handleClassName}>
+      <NavLink
+        to='/profile'
+        className={style.navLink}
+        activeClassName={style.active}
+      >
+        Profile
+      </NavLink>
+      <NavLink
+        to='/news'
+        className={style.navLink}
+        activeClassName={style.active}
+      >
         News
       </NavLink>
-      <NavLink to='/music' className={handleClassName}>
+      <NavLink
+        to='/music'
+        className={style.navLink}
+        activeClassName={style.active}
+      >
         Music
       </NavLink>
-      <NavLink to='/settings' className={handleClassName}>
+      <NavLink
+        to='/settings'
+        className={style.navLink}
+        activeClassName={style.active}
+      >
         Settings
       </NavLink>
     </nav>

@@ -1,13 +1,13 @@
-import type { Dialog, User } from 'common/entities.types';
-import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { Dialog, User } from 'common/entities.types';
+import { createEntityAdapter, createSlice, EntityId } from '@reduxjs/toolkit';
 import { api } from 'api/API';
 import {
   createLoadingActions,
   createLoadingMatchers,
   createLoadingReducers,
 } from 'data/utils';
-import type { AppDispatch, RootState } from 'data/store';
-import type { StatusState } from 'data/utils/utils.types';
+import { AppDispatch, RootState } from 'data/store';
+import { StatusState } from 'data/utils/utils.types';
 import { isTokenExpireResponse } from 'api/APIUtils';
 import { logout } from 'data/common/actions';
 import { selectCurrentUserId } from 'data';
@@ -22,7 +22,7 @@ const adapter = createEntityAdapter<Dialog>();
 const initialState = adapter.getInitialState<StatusState>({ status: 'idle' });
 
 // State type
-export type DialogsState = typeof initialState;
+type DialogsState = typeof initialState;
 
 // Loading reducers
 const { handleRequestStart, handleRequestEnd } =
@@ -90,27 +90,23 @@ export const fetchDialogs = () => async (dispatch: AppDispatch) => {
   }
 };
 
-export const submitDialog =
-  (id: Dialog['id']) => async (dispatch: AppDispatch) => {
-    const newDialog: Pick<Dialog, 'members'> = {
-      members: [id],
-    };
-
-    dispatch(submitRequest.request());
-    try {
-      const { dialog } = await api.post<{ dialog: Dialog }>(
-        'dialogs',
-        newDialog
-      );
-      dispatch(submitRequest.success(dialog));
-      return dialog;
-    } catch (error) {
-      if (isTokenExpireResponse(error)) {
-        dispatch(submitRequest.failure());
-        dispatch(logout());
-      }
-    }
+export const submitDialog = (id: EntityId) => async (dispatch: AppDispatch) => {
+  const newDialog: Pick<Dialog, 'members'> = {
+    members: [id],
   };
+
+  dispatch(submitRequest.request());
+  try {
+    const { dialog } = await api.post<{ dialog: Dialog }>('dialogs', newDialog);
+    dispatch(submitRequest.success(dialog));
+    return dialog;
+  } catch (error) {
+    if (isTokenExpireResponse(error)) {
+      dispatch(submitRequest.failure());
+      dispatch(logout());
+    }
+  }
+};
 
 // Selectors
 
@@ -122,10 +118,10 @@ const { selectIds, selectById, selectAll } = selectors;
 
 export const selectDialogs = (state: RootState) => selectAll(state);
 export const selectDialogsIds = (state: RootState) => selectIds(state);
-export const selectDialogById = (id: Dialog['id']) => (state: RootState) =>
+export const selectDialogById = (id: EntityId) => (state: RootState) =>
   selectById(state, id);
 export const selectDialogMemberId =
-  (dialogId: Dialog['id']) => (state: RootState) => {
+  (dialogId: EntityId) => (state: RootState) => {
     // Get current user
     const userId = selectCurrentUserId(state);
     // Get dialog
@@ -139,7 +135,7 @@ export const selectDialogMemberId =
   };
 
 export const selectDialogByMember =
-  (userId: User['id']) => (state: RootState) => {
+  (userId: EntityId) => (state: RootState) => {
     const dialogs = selectDialogs(state);
 
     return dialogs.find((dialog) => dialog.members.includes(userId));

@@ -2,25 +2,18 @@
   position: sticky;
   top: 0;
   display: flex;
-  height: 5.1ch;
+  justify-content: space-between;
+  height: 5vh;
   z-index: 10;
   padding: 0 var(--padding-primary);
-  align-items: center;
 
   background-color: var(--color-background);
   box-shadow: 0px 0px 0.7em 0px rgba(32, 16, 16, 0.1);
-  border-top: 0.33rem solid var(--color-primary);
 }
 
-.heading {
-  padding: 0 0.5rem 0 0;
-  margin: 0;
+.header img {
+  height: 100%;
 }
 
-.heading > span {
-  color: var(--color-primary);
-}
-
-.logoutButton {
-  margin-left: auto;
+.headerAuthButton {
 }
