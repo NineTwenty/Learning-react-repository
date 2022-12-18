@@ -48,7 +48,9 @@ function Login() {
         {isUserHaveAccount ? (
           <footer className={style.Footer}>
             <MdInfo className={style.InfoIcon} />
-            To sign in use &apos;admin&apos; as login and password.
+            <span>
+              To sign in use <b>admin</b> as login and password.
+            </span>
           </footer>
         ) : null}
       </div>
