@@ -56,15 +56,6 @@ export default function Navbar({
       <NavLink to='/dialogs' className={handleClassName}>
         Dialogs
       </NavLink>
-      <NavLink to='/news' className={handleClassName}>
-        News
-      </NavLink>
-      <NavLink to='/music' className={handleClassName}>
-        Music
-      </NavLink>
-      <NavLink to='/settings' className={handleClassName}>
-        Settings
-      </NavLink>
     </nav>
   );
 }
