@@ -27,7 +27,7 @@
     "dev": "next dev",
     "start": "next start",
     "build": "next build",
-    "postinstall": "prisma generate --data-proxy",
+    "postinstall": "prisma generate",
     "test": "jest",
     "test:staged": "cross-env CI=true npm test -- --env=jsdom --findRelatedTests --passWithNoTests",
     "coverage": "npm-run-all -p coverage:cypress coverage:jest -s coverage:copy coverage:merge coverage:combined",
